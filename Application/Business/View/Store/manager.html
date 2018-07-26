@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/BusinessManager.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="col-md-10">
+        <div>
+            <span>搜索:</span>
+            <form action="javascript:void(0)">
+                <input type="text" placeholder="请输入搜索关键词">
+                <button class="btn btn-sm btn-default">确定</button>
+            </form>
+            <button style="float:right;margin-bottom: 5px;" class="btn btn-sm btn-default" onclick="addManager()">新增店铺管理员</button>
+        </div>
+        <table class="table table-bordered">
+            <thead>
+            <tr><th>序号</th><th>管理员名称</th><th>登陆账号</th><th>登录密码</th><th>操作</th></tr>
+            </thead>
+            <tbody>
+            <volist name="managerList" id="vo">
+                <tr><td>{$i}</td><td>{$vo.manager_name}</td><td>{$vo.login_account}</td><td>{$vo.password}</td><td><button class="">编辑</button><button class="  ">删除</button></tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">新增店铺管理员</h4>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)">
+                    <div class="form-group">
+                        <label for="managerName">管理员名称</label>
+                        <input type="text" id="managerName" class="form-control" placeholder="管理员名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="manager_number">登录账号</label>
+                        <input type="text" id="manager_number" class="form-control" placeholder="登录账号">
+                    </div>
+                    <div class="form-group">
+                        <label for="manager_password">登录密码</label>
+                        <input type="text" id="manager_password" class="form-control" placeholder="登录密码">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-primary" onclick="addManagerInfo()">提交更改</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script>
+    function addManager(){
+        $("#myModal").modal("show");
+    }
+
+    function addManagerInfo(){
+
+    }
+</script>
+</html>

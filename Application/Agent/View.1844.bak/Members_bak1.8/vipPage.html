@@ -1,0 +1,77 @@
+<table class="table table-responsive">
+    <thead>
+    <tr>
+        <th></th>
+        <th>手机号</th>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>生日</th>
+        <th>性别</th>
+        <th>余额</th>
+        <th>积分</th>
+        <th>消费总计</th>
+        <th>所属会员组</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    <foreach name="vips1" item="v">
+        <tr>
+            <td>{++$key}</td>
+            <td>{$v['phone']}</td>
+            <td>{$v['username']}</td>
+            <td>{$v['age']}</td>
+            <td>{$v['birthday']}</td>
+            <td> <?php if($v['sex'] == 1):?>
+                男
+                <?php else: ?>
+                女
+            </td>
+            <?php endif; ?>
+
+            <td>{$v['remainder']}元</td>
+            <td>{$v['score']}分</td>
+            <td>{$v['total_consume']}元</td>
+            <td>
+                <?php if($v['group_id'] == 0): ?>
+                默认会员组
+                <?php else: ?>
+                <foreach name="vip_group1" item="val">
+                    <?php if($v['group_id'] == $val['group_id']):?>
+                    {$val['group_name']}
+                    <?php endif;?>
+                </foreach>
+                <?php endif;?>
+            </td>
+            <td>
+                <button class="btn btn-black" data-toggle="modal" data-target="#editmembers" data-vip_id = "{$v['id']}" onclick="editInfo(this,{$now_page})">编辑</button>
+            </td>
+        </tr>
+    </foreach>
+    </tbody>
+</table>
+<div class="text-center">
+    <ul class="pagination" id="detail-page">{$page}</ul>
+</div>
+
+<script>
+//点击页码执行动作
+$("#detail-page").children().children("a").click(function(){
+var page = parseInt($(this).data("page"));
+// console.log(page);
+$.ajax({
+url:"/index.php/agent/members/vipPage/page/"+page+"/keyword/{$Think.get.keyword}",
+type:"get",
+success:function(data){
+// console.log(data);
+$("#all").html(data);
+},
+error:function(){
+alert("出错了");
+}
+});
+});
+</script>
+
+

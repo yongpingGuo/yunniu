@@ -1,0 +1,56 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="折扣设置" />
+    <input type="hidden" id="vip_switch_hidden" value="{$vip_if_open}" />
+    <input type="hidden" id="restaurant_switch_hidden" value="{$restaurant_if_open}" />
+    <section class="content">
+        <div class="section-row flex-content vertical-flex">
+            <span class="text-4">折扣类型：</span>
+            <div class="select-reset flex-main">
+                <select name="discount_switch" id="discount_switch" onchange="change_switch_status(this)">
+                    <option value="0">关闭折扣</option>
+                    <option value="1">只限会员折扣</option>
+                    <option value="2">店铺折扣</option>
+                </select>
+            </div>
+        </div>
+        <div class="remarks section-row">
+            <div>* 所有顾客与会员折扣，只能选择一项。</div>
+            <div>* 会员折扣须要依赖微信公众号。</div>
+        </div>
+    </section>
+    <section class="section">
+        <header class="section-title">折扣设置</header>
+        <div class="flex-content flex-wrap section-row">
+            <a class="index-item" href="{:U('Member/discount_all')}">
+                <div class="section-icon">
+                    <img src="__PUBLIC__/images/mobile/all.png">
+                </div>
+                <div>所有顾客</div>
+            </a>
+            <a class="index-item" href="{:U('Member/discount_vip')}">
+                <div class="section-icon">
+                    <img src="__PUBLIC__/images/mobile/vip.png">
+                </div>
+                <div>会员折扣</div>
+            </a>
+        </div>
+    </section>
+    <div class="remarks">*自由折扣可从收银机上设置</div>
+</block>
+<block name="js">
+    <script>
+    $(function() {
+        var vip_if_open = $('#vip_switch_hidden').val();
+        var restaurant_if_open = $('#restaurant_switch_hidden').val();
+        if (vip_if_open == 1) {
+            $('#discount_switch').val([1]);
+        } else if (restaurant_if_open == 1) {
+            $('#discount_switch').val([2]);
+        } else {
+            $('#discount_switch').val([0]);
+        }
+    });
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/Member_discount.js"></script>
+</block>

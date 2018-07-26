@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <div class="member-tab-item2" id="delCash">
+        积分：
+        <input type="text" name="account" value="{$point_cash_rules[account]}" id="man">分=现金：
+        <input type="text" name="benefit" value="{$score}" id="zhe">元
+
+        <input type="hidden" name="id" value="{$point_cash_rules[id]}"/>
+        <div class="tab-item-right">
+            <button class="btn btn-primary" onclick="return save_point_cash(this)">保存</button>
+            <button class="btn btn-danger" onclick="return shanchu_point_cash(this,'/index.php/Agent/Members/del_point_cash')">删除</button>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,92 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="饿了么" />
+    <form  action="javascript:void(0)" id="myform">
+        <div class="content flex-content vertical-flex">
+            <div class="flex-main food-chart-head">
+                <div class="section-row flex-content vertical-flex">
+                    <span class="text-4 text-right">日期：</span>
+                    <input type="text" class="input flex-main datepicker-start" name="startDate" value="{$startDate}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" class="input flex-main datepicker-end" name="endtDate" value="{$endDate}">
+                </div>
+                <div class="section-row flex-content vertical-flex">
+                    <span class="text-4 text-right">时间：</span>
+                    <input type="text" class="input flex-main timepicker" name="startTime" value="{$startTime}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" class="input flex-main timepicker" name="endTime" value="{$endTime}">
+                </div>
+            </div>
+            <button class="danger-btn-default" onclick="query_submit()">查询</button>
+        </div>
+    </form>
+
+    <div id="orderInfo"></div>
+	<div class="remarks tips">
+		<div>
+			<span class="tips-icon">*</span>
+			<span>对接后，在点餐机上面进入饿了么设置自动接单、打印机。</span>
+		</div>
+		<div>
+			<span class="tips-icon">*</span>
+			<span>注：自动接单只限一台设备，设备包含手机、点餐机、APP等等。若在收银机上接单，应关闭APP、手机等饿了么自动接单功能。
+			</span>
+		</div>
+</block>
+<block name="js">
+	<include file="Public:date" />
+    <script>
+        $(function(){
+            var form = $("#myform")[0];
+            var formData = new FormData(form);
+
+            $.ajax({
+                url:'/index.php/MobileAdmin/sale/eleme',
+                data:formData,
+                type:"post",
+                contentType:false,
+                processData:false,
+                async:true,
+                cache:false,
+                beforeSend:function(){
+                    layer.open({
+                        type:3,
+                        icon:2,
+                        skin:"loading"
+                    });
+                },
+                success:function(data){
+                    $("#orderInfo").html(data);
+                    layer.closeAll('loading');
+                }
+            });
+
+        });
+
+        function query_submit(){
+            var form = $("#myform")[0];
+            var formData = new FormData(form);
+
+            $.ajax({
+                url:'/index.php/MobileAdmin/sale/eleme',
+                data:formData,
+                type:"post",
+                contentType:false,
+                processData:false,
+                async:true,
+                cache:false,
+                beforeSend:function(){
+                    layer.open({
+                        type:3,
+                        icon:2,
+                        skin:"loading"
+                    });
+                },
+                success:function(data){
+                    $("#orderInfo").html(data);
+                    layer.closeAll('loading');
+                }
+            });
+        }
+    </script>
+</block>

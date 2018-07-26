@@ -1,0 +1,29 @@
+<volist name="info" id="v">
+    <div class="dish-list-item">
+        <div class="flex-content vertical-flex">
+            <span class="flex-main">{$v.food_name}</span>
+            <span>{$v.food_price}元</span>
+        </div>
+        <div class="flex-content vertical-flex">
+            <div class="flex-main">
+                <img src="/{$v.food_img}" class="dish-icon">
+            </div>
+            <div class="dishes-btn-group">
+            <button class="default-btn" onclick="modify_food({$v['food_id']})">编辑</button>
+            <button class="default-btn" onclick="type_and_attr({$v['food_id']})">规格</button>
+            <button class="default-btn" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="delfoodinfo(this)">删除</button>
+            <button class="default-btn" data-index="{$key+1}" data-sort="{$v.sort}" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="moveup(this)">上移</button>
+            <button class="default-btn" data-index="{$key+1}" data-sort="{$v.sort}" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="movedown(this)">下移</button>
+            <!--<button class="default-btn">售罄</button>-->
+                <!--<if condition="$v['is_shutdown'] eq 0 ">-->
+                    <!--<button class="default-btn" data-food_id="{$v.food_id}" onclick="sell_all(this)">售罄</button>-->
+                <!--</if>-->
+                <if condition="$v['is_shutdown'] eq 1 ">
+                    <button class="default-btn" data-food_id="{$v.food_id}" onclick="not_sell_all(this)" style="background-color: red" >售罄</button>
+                    <else />
+                    <button class="default-btn" data-food_id="{$v.food_id}" onclick="sell_all(this)">售罄</button>
+                </if>
+                </div>
+        </div>
+    </div>
+</volist>

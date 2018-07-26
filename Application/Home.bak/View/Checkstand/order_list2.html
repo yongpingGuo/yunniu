@@ -1,0 +1,88 @@
+<volist name = "info" id = "v">
+		<div class="order-list-item" id="{$v.order_id}">
+			<div class="container-fluid">
+				<div class="row text-left order-number">
+					<div class="col-xs-12 col-sm-6">
+						序号：{$key+1}&nbsp;&nbsp;&nbsp;&nbsp;订单号：{$v.order_sn}
+					</div>
+					<div class="col-xs-12 col-sm-5 text-right">
+						下单时间：{$v.add_time|date="Y-m-d",###}
+					</div>		
+					<div class="col-xs-2 col-sm-1 text-right">
+						<button class="order-delete" onclick="delorder({$v.order_id})">
+							<span class="glyphicon glyphicon-trash"></span>
+						</button>
+					</div>	
+				</div>
+				<div class="row">
+					<div class="col-xs-5 text-left">
+						<volist name="v['namelist']" id = "vo">
+						<span>{$vo}</span><br>
+						</volist>
+					</div>
+					<div class="col-xs-1">
+						<volist name="v['pricelist']" id= "vo1">
+							<span>¥{$vo1}</span><br>
+						</volist>
+					</div>
+					<div class="col-xs-1">
+						<volist name="v['numlist']" id= "vo2">
+							<span>{$vo2}</span><br>
+						</volist>
+					</div>
+					<div class="col-xs-1">
+						<if condition = "$v['order_type'] eq 1">
+							堂吃
+						</if>
+						<if condition = "$v['order_type'] eq 2">
+							打包带走
+						</if>	
+						<if condition = "$v['order_type'] eq 3">
+							微信外卖
+						</if>
+					</div>
+					<div class="col-xs-1">
+						<if condition = "$v['terminal_order'] eq 1">
+							终端点餐
+						</if>
+						<if condition = "$v['terminal_order'] eq 2">
+							收银点餐
+						</if>	
+						<if condition = "$v['terminal_order'] eq 3">
+							微信点餐
+						</if>
+					</div>
+					<div class="col-xs-1">
+						支付宝
+					</div>
+					<div class="col-xs-1">
+						已完成
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		</volist>
+		<div class="text-center device-page">
+			<ul class="pagination">
+				{$page}
+			</ul>
+		</div>
+		<script>
+			$(".pagination").children().children("a").click(function() {
+		var page = parseInt($(this).data("page"));
+		console.log(page);
+		$.ajax({
+			url:"/index.php/home/checkstand/deskInfo",
+			data:{"page":page},
+			type:"get",
+			success:function(data){
+				$("#changebody").html(data);
+			},
+			error:function(){
+				alert("出错了");
+			}
+		});
+		//alert("分页");
+	});
+		</script>

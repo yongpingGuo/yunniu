@@ -1,0 +1,32 @@
+<!--
+	作者：凯
+	时间：2017-01-10
+	描述：设备左侧栏操作后的ajax替换页面
+-->
+<volist name = "Arrlist" id = "v">
+	<li>
+		<button class="btn-none">+</button>
+		<span>{$v.restaurant_name}</span>
+		<ul>
+			<volist name = "v['CityArray']" id = "v1">
+				<li>
+					<button class="btn-none">+</button>
+					<span>{$Think.lang.$key}</span>
+					<ul>
+						<volist name = "v1" id = "v2">
+							<li>
+								<a href="javascript:void(0)" style="color: white; text-decoration: none;" onclick="showinfo({$v2.id})">{$v2.address}</a>
+							</li>
+						</volist>
+					</ul>
+				</li>
+			</volist>
+		</ul>
+	</li>
+</volist>
+
+<script>
+	$('.sidebar-list button').click(function(){
+			$(this).siblings('ul').slideToggle();
+	});
+</script>

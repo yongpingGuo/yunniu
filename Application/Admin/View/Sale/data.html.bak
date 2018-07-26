@@ -1,0 +1,41 @@
+<include file="Public/head"/>
+<!-- 数据表 -->
+<body>
+	<div class="container-fluid">
+		<input type="hidden" value="{$restaurant_id}" name="restaurant_id" id="restaurant_id">
+		<div class="month-data" id="month_data" data-month_data='{$sales_for_month}' data-month_cash = '{$cash_for_month}' data-month_alipay = '{$alipay_for_month}' data-month_wechat = '{$wechat_for_month}'>
+			<p>月份：
+				<select id="month" onchange="monthData()">
+					<for start="1" end="13" name="mo">
+						<if condition="$mo eq $month">
+							<option value="{$mo}" selected="selected" >{$mo}月</option>
+							<else/>
+							<option value="{$mo}">{$mo}月</option>
+						</if>
+					</for>
+				</select>
+			</p>
+			<div id="month_canvas"></div>
+			<p class="ml-30 mt-10" id="salesInfo">{$salesInfo}</p>
+		</div>
+		<div class="year-data" id="year_data" data-year_data='{$sales_for_year}' data-year_cash = '{$cash_for_year}' data-year_alipay = '{$alipay_for_year}' data-year_wechat = '{$wechat_for_year}'>
+			<p>年表:
+				<select id="year" onchange="yearData()">
+					<volist name="year_list" id="v_year">
+						<if condition="$v_year eq $year">
+							<option value="{$v_year}" selected>{$v_year}</option>
+							<else/>
+							<option value="{$v_year}">{$v_year}</option>
+						</if>
+					</volist>
+				</select>
+			</p>
+			<div id="year_canvas"></div>
+		</div>
+	</div>
+	<!-- 柱状图插件 -->
+	<script src="__PUBLIC__/js/echarts.min.js"></script>
+	<!-- 数据填充 -->
+	<script src="__PUBLIC__/js/chart-data.js"></script>
+</body>
+</html>

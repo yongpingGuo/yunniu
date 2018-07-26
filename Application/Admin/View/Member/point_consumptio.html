@@ -1,0 +1,104 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
+</block>
+
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">{{langData.pointsDonated[lang]}}</a>
+        </li>
+        <li><a href="#present" data-toggle="tab">{{langData.pointsGifts[lang]}}</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab tab-pane active in" id="home">
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.pointsDonated[lang]}}</span>
+                    <div class="checkbox-switch">
+                        <if condition="$if_open eq 1">
+                        <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/Admin/Member/discount_set1')" checked>
+                        <else/>
+                        <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/Admin/Member/discount_set1')">
+                        </if>
+                    
+                        <label></label>
+                    </div>
+                    <span class="section-tips">{{langData.pointsDonatedTips[lang]}}</span>
+                </div>
+                <div class="section-content">
+                    <table class="point_consumptio-table">
+                    <?php foreach ($prepaid_rules as $k => $v): ?>
+                        <tr>
+                            <td><?php echo ++$k;?></td>
+                            <td>{{langData.spendingFull[lang]}}<?php echo $v['account'];?>{{langData.yuan[lang]}}</td>
+                            <td>{{langData.pointsDonated[lang]}}:<?php echo $v['benefit'];?>{{langData.point[lang]}}</td>
+                        </tr>
+                    <?php endforeach ?>
+                    </table>
+                </div>
+            </section>
+        </div>
+        <div class="tab tab-pane" id="present">
+            <section class="section point_consumptio-content">
+                <div class="section-header">
+                    <span>{{langData.redeemPoints[lang]}}</span>
+                    <div class="checkbox-switch">
+                        <if condition="$goods_open eq 1">
+                        <input type="checkbox" name="change" class="change" onchange="to_bd(this.name,'/index.php/Admin/Member/goods_set')" checked>
+                        <else/>
+                        <input type="checkbox" name="change" class="change" onchange="to_bd(this.name,'/index.php/Admin/Member/goods_set')">
+                        </if>
+                        <label></label>
+                    </div>
+                    <span class="section-tips">{{langData.redeemPointsTips[lang]}}</span>
+                </div>
+                <div class="section-content">
+                    <div id="photo" class="clearfix">
+                        <foreach name="img_rules" item="v">
+                            <div class="pull-left point-exchange-item">
+                                <div class="pic-thumbnail">
+                                    <img src="/Public/Uploads/Goods/{$v[goods_img]}">
+                                    <input type="hidden" name="id" value="{$v['id']}" />
+                                    <input type="hidden" name="goods_name" value="{$v['goods_name']}" />
+                                    <input type="hidden" name="score" value="{$v['score']}" />
+                                    <input type="hidden" name="money" value="{$v['money']}" />
+                                    <input type="hidden" name="goods_desc" value="{$v['goods_desc']}" />
+                                </div>
+                                <div class="flex-content">
+                                    <span class="flex-main">{$v['goods_name']}</span>
+                                    <span>{$v[score]}{{langData.point[lang]}}</span>
+                                </div>
+                            </div>
+                        </foreach>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    </block>
+
+    <block name="js">
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <script>
+    $('[name="if_open"]').val([$("#cash_open").val()]);
+    $('.point_goods').val([$("#goods_open").val()]);
+
+
+    function to_bd(a,url){
+    var cls = "." + a;
+    var hschek = $(cls).is(':checked');
+    if (hschek) {
+        b = 1;
+    }else{
+        b = 0;
+    }
+        // 发送ajax
+        $.post(url,{"if_open":b},function(data){
+            if(data.status == 0){
+                alert(data.info);
+            }
+        });
+}
+    </script>
+</block>

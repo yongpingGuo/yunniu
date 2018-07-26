@@ -1,0 +1,124 @@
+<include file="Public/head"/>
+<body class="number-bg">
+<header class="home-header">
+	<a href="__CONTROLLER__/index">
+		<img src="__PUBLIC__/images/lt.png">
+		<span>返回</span>
+	</a>
+</header>
+<div class="number">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div class="number-left">
+					<div class="number-title">请领取设备旁边的订餐牌</div>
+					<input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+					<div class="number-input">
+						<input type="text" id="numtext" data-order_type="{$Think.get.order_type}" value="" readonly="readonly">
+						<button id="btn">确认</button>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6 number-right">
+				<div class="number-table clearfix">
+					<div class="pull-left">
+						<table>
+							<tr>
+								<td>
+									<button class="num-btn">1</button>
+								</td>
+								<td>
+									<button class="num-btn">2</button>
+								</td>
+								<td>
+									<button class="num-btn">3</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="num-btn">4</button>
+								</td>
+								<td>
+									<button class="num-btn">5</button>
+								</td>
+								<td>
+									<button class="num-btn">6</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="num-btn">7</button>
+								</td>
+								<td>
+									<button class="num-btn">8</button>
+								</td>
+								<td>
+									<button class="num-btn">9</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="pull-left number-table-right">
+						<table>
+							<tr>
+								<td>
+									<button class="num-btn">0</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button id="del-num">
+										<p>删</p>除
+									</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- 	<footer class="number-footer">
+		<div>提示：你手上的餐牌号是否为
+		<span id="table-num">001</span>
+		号！</div>
+		<button>退出</button>
+	</footer> -->
+<footer class="number-footer text-center">
+	本页面在<span class="footer-time" id="time">20</span>秒后自动关闭
+</footer>
+</body>
+<script>
+	$('#btn').click(function(){
+		var tablenum = $('#numtext').val();
+		var order_type = $('#numtext').data("order_type");
+		if(!order_type){
+			order_type = 1;
+		}
+		if(tablenum){
+			window.location.href = "/index.php/home/index/processRoute/process/number/order_type/"+order_type+"/tablenum/"+tablenum+"";
+		}else{
+			alert("请输入取餐号");
+		}
+	});
+
+	//设定倒数秒数
+	var t = 20;
+	//显示倒数秒数
+	function showTime(){
+		t -= 1;
+		document.getElementById('time').innerHTML= t;
+		if(t==0){
+			location.href='/index.php/Home/Index';
+			return;
+		}
+		//每秒执行一次,showTime()
+		setTimeout("showTime()",1000);
+	}
+	//执行showTime()
+	showTime();
+
+</script>
+
+</html>

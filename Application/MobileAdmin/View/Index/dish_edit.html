@@ -1,0 +1,74 @@
+<extend name="Public:base" />
+<block name="main">
+	<div class="dish-img-preview">
+		<img src="">
+	</div>
+	<div class="flex-content section-row">
+		<div class="flex-main">
+			<span class="default-btn active">不辣</span>
+			<button class="default-btn">微辣</button>
+			<button class="default-btn">特辣</button>
+		</div>
+		<div class="flex-main">
+			<button class="default-btn active">
+				<i class="iconfont icon-dianzan"></i>
+			</button>
+			<button class="default-btn">
+				<i class="iconfont icon-dianzan"></i>
+			</button>
+		</div>
+		<div class="file-content">
+			<button class="danger-btn-sm">选择图片</button>
+			<input type="file" name="">
+		</div>
+	</div>
+	<section class="section">
+		<div class="flex-content vertical-flex section-row">
+			<span>名称：</span>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span>描述：</span>
+			<textarea class="flex-main textarea" rows="3"></textarea>
+		</div>
+		<div class="section-row">
+			<span>价格：</span>
+			<input type="text" class="input-xs">
+			<span>元</span>
+		</div>
+		<div class="section-row">
+			<span>每日限量：</span>
+			<input type="text" class="input-xs">
+			<span>份</span>
+			<span class="remarks">（今天已售：40份）</span>
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span>后厨打印机：</span>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span>标签打印机：</span>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span>取餐叫号屏：</span>
+			<input type="text" class="flex-main input">
+		</div>
+	</section>
+	<section class="section">
+		<div class="dish-edit-title">
+			<span>选择分类</span>
+			<span class="remarks">（支持多选）</span>
+		</div>
+		<div class="dish-classify flex-content flex-wrap  vertical-flex">
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类一二三四</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类一二三四</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex active">菜品分类</div>
+		</div>
+	</section>
+	<button class="danger-btn-lg">保存设置</button>
+</block>

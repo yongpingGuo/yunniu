@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/showNumber2.css">
+        <script src='__PUBLIC__/js/socket.io.js'></script>
+	</head>
+	<body>
+		<div id="showNumber" class="clear" v-cloak>
+			<div class="coming">
+				<div class="coming-header">准备中coming</div>
+				<div class="coming-content" v-if="showComing">
+					<el-carousel :interval="show_time" arrow="never" indicator-position="none" :autoplay="true">
+						<el-carousel-item v-for="page in comingNum">
+				  			<el-row>
+				  			  <el-col  v-for="num in page" :span="12">{{num}}</el-col>
+				  			</el-row>
+					  	</el-carousel-item>
+					</el-carousel>
+				</div>
+			</div>
+			<div class="finish">
+				<div class="finish-header">请取餐finish</div>
+				<div class="finish-content" v-if="showFinish">
+					<el-carousel :interval="show_time" arrow="never" indicator-position="none" :autoplay="true">
+						<el-carousel-item v-for="page in finishNum">
+							<div v-for="finishnum in page">{{finishnum}}</div>
+					  	</el-carousel-item>
+					</el-carousel>
+				</div>
+			</div>
+			<div class="ad">
+				<img :src="img" class="ad-img">
+			</div>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<script src="__PUBLIC__/js/vue-axios.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script>
+		var device_code = "{$Think.session.device_code}";
+		var district_id = "{$Think.session.district_id}";
+		var district_mark = "{$Think.session.district_mark}";
+
+		var wsUri ="ws://shop.founpad.com:9218/";
+
+		function init() {
+			testWebSocket();
+		}
+
+		function testWebSocket() {
+			websocket = new WebSocket(wsUri);
+			websocket.onopen = function(evt) {
+				onOpen(evt)
+			};
+			websocket.onmessage = function(evt) {
+				onMessage(evt)
+			};
+			websocket.onerror = function(evt) {
+				onError(evt)
+                console.log(666);
+                console.log(evt);
+			};
+		}
+
+		function onOpen(evt) {
+			// console.log(district_mark);
+			doSend(district_mark);
+		}
+
+		function onMessage(evt) {
+			window.addEventListener("load", init, false);
+			var data = evt.data.replace(/&quot;/g, '"');
+			try{
+				data = JSON.parse(data);
+			}catch(e){
+				// console.log(e.name+":"+ e.message)
+			}
+			if(data) {
+                console.log(888);
+				console.log(data);
+				if(data.order_sn){
+					location.href = "";
+				}
+			}
+		}
+
+		function onError(evt) {
+
+		}
+
+		function doSend(message) {
+			// console.log(message);
+			websocket.send(message);
+		}
+
+		window.addEventListener("load", init, false);
+
+		Vue.prototype.$http = axios;
+		var vm = new Vue({
+			data:{	
+				show_time:3000,
+				showComing:false,
+				showFinish:false,
+				comingNum:"",
+				finishNum:"",
+				img:'http://img.zcool.cn/community/0183f955a867ee6ac7258178bdc8d2.png',
+			},
+			mounted:function(){
+				var _self = this;
+				var form1 = new FormData();
+				form1.append("device_code",device_code);
+				form1.append("status","1");
+				form1.append("district_id",district_id);
+
+				//获取分区coming的订单号
+				this.$http.post("/index.php/api/showNumber/getOrderNumByStatus",form1)
+						.then(function(returnData){
+							// console.log(returnData.data.data);
+							_self.comingNum = returnData.data.data;
+							_self.showComing=true;
+						});
+
+				var form2 = new FormData();
+				form2.append("device_code",device_code);
+				form2.append("status","2");
+				form2.append("district_id",district_id);
+
+				//获取个分区finish的订单号
+				this.$http.post("/index.php/api/showNumber/getOrderNumByStatus",form2)
+						.then(function(returnData){
+							// console.log(returnData.data.data);
+							_self.finishNum = returnData.data.data;
+							_self.showFinish=true;
+						});
+
+				var form3 = new FormData();
+				form3.append("device_code",device_code);
+				form3.append("advertisement_type","2");
+				//获取个分区finish的订单号
+				this.$http.post("/index.php/api/advertisement/getAdvertisementList",form3)
+						.then(function(returnData){
+							// console.log(returnData.data.data[0].advertisement_image_url);
+
+							_self.img = returnData.data.data[0].advertisement_image_url;
+						});
+
+			},
+		}).$mount('#showNumber');
+</script>
+</html>

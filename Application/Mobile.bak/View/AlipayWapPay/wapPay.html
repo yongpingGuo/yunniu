@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="__PUBLIC__/js/ap.js"></script>
+</head>
+<body>
+    {$html_text}
+    <input type="hidden" value="">
+</body>
+<script>
+    // href 是支付宝收银台的 URL
+    var href = window.location.href;
+//    alert(href);
+    _AP.pay(href);
+</script>
+</html>

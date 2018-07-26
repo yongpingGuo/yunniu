@@ -1,0 +1,81 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="年营业额" />
+    <section class="content">
+        <form id="postForm">
+            <div class="select-none">
+                <select id="year" name="year">
+                    <volist name="year_list" id="v_year">
+                        <if condition="$v_year eq $year">
+                            <option value="{$v_year}" selected>{$v_year}</option>
+                            <else/>
+                            <option value="{$v_year}">{$v_year}</option>
+                        </if>
+                    </volist>
+                </select>
+            </div>
+            <span>年</span>
+            <button class="danger-btn-sm" id="query_button">查询</button>
+        </form>
+    </section>
+    <div id="sale_list">
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+    $(window).bind('touchstart', function() {
+        $('.chart-msg').hide();
+    });
+    $(window).scroll(function() {
+        $('.chart-msg').hide();
+    });
+
+    function showDetail(month_num) {
+        $('#' + month_num).siblings().hide();
+        event.stopPropagation();
+        //          $('.chart-msg').css({
+        $('#' + month_num).css({
+            'top': event.clientY,
+            'display': 'block'
+        });;
+    }
+
+    $(function() {
+        //查询年表
+        $('#postForm').on('submit', function(e) {
+            var ev = window.event || e;
+            window.event ? window.event.returnValue = false : ev.preventDefault();
+            var vs = $('select  option:selected').val();
+            $.ajax({
+                url: '/index.php/MobileAdmin/sale/year',
+                async: true,
+                cache: false,
+                data: { "year": vs },
+                type: 'POST',
+                beforeSend: function() {
+                    layer.open({
+                        type: 3,
+                        icon: 2,
+                        skin: "loading"
+                    });
+                },
+                success: function(data) {
+                    layer.closeAll('loading');
+                    $('#sale_list').html(data);
+                },
+                error: function() {
+                    layer.closeAll('loading');
+                    alert("出错了");
+                }
+            })
+            return false;
+        });
+
+        //            $('form').submit();
+
+        $("#query_button").click(function() {
+            $('#postForm').submit();
+        });
+    })
+    </script>
+</block>

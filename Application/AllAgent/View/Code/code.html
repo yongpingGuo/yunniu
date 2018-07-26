@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+    <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="__PUBLIC__/js/AllAgent/device-code.js"></script> 
+	<script src="__PUBLIC__/js/layer.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <h2>注册码列表</h2>
+        </div>
+        <div class="col-md-8">
+            {$page}
+        </div>
+    </div>
+    <table class="table table-hover">
+        <thead>
+        	<tr>
+        		<td><input type="checkbox" name="checkbox10" id="all" onclick="swapCheck()"></td>
+	        	<th>序号</th>
+	        	<th>注册码</th>
+	        	<th>所属商家</th>
+	        	<th>状态</th>
+	        	<!--<th>开始时间</th><th>结束时间</th>-->
+	        	<th>操作</th>
+	        	</tr>
+        </thead>
+        <tbody>
+        <volist name="codeList" id="vo1" key="k">
+            <tr>
+            	<td><input type="checkbox" name="check_code"  value="{$vo1.code_id}"></td>
+            	<td>{$k}</td>
+            	<td>{$vo1.code}</td>
+                <td><select name="" id="" onchange="isChange(this)" data-code_id="{$vo1.code_id}">
+                    <option value="0">暂没分配</option>
+                    <volist name="businessList" id="vo2">
+                        <if condition="$vo1[business_id] eq $vo2[business_id]">
+                            <option value="{$vo2.business_id}" selected>
+                                {$vo2.business_name}
+                            </option>
+                            <else/>
+                            <option value="{$vo2.business_id}">
+                                {$vo2.business_name}
+                            </option>
+                        </if>
+                    </volist>
+                    </select>
+                </td>
+                <td>
+                    <if condition="$vo1['code_status'] eq 0">
+                        已使用
+                        <else/>
+                        未使用
+                    </if></td>
+               <!-- <td><input type="text" value="{$vo1.code_timestamp}"  data-code_id="{$vo1.code_id}" id="start_time" onchange="changeCodeTime(this)"></td>
+                <td><input type="text" value="{$vo1.rest_timestamp}" data-code_id="{$vo1.code_id}" id="end_time" onchange="changeCodeTime(this)"></td>-->
+                <td><button data-code_id="{$vo1.code_id}" onclick="deleteCode(this)">删除</button>
+                    <!--<button data-code_id="{$vo1.code_id}" onclick="findInfo(this)">查看关联</button>-->
+                </td>
+            </tr>
+        </volist>
+         <button onclick="batch_delete()">批量删除</button>
+        </tbody>
+    </table>
+</div>
+<div class="col-md-4">
+    <form action="javascript:void(0)" id="code_num" style="margin-top: 20px">
+        <button onclick="create_code()">生成注册码</button>
+        <input type="radio" name="code_num" id="code_num1" value="1" checked><label for="code_num1">1个</label>
+        <input type="radio" name="code_num" id="code_num2" value="10"><label for="code_num2">10个</label>
+        <select name="business_id" id="business_id">
+            <option value="0">
+                请选择商家
+            </option>
+            <volist name="businessList" id="vo">
+                <option value="{$vo.business_id}">
+                    {$vo.business_name}
+                </option>
+            </volist>
+        </select>
+    </form>
+</div>
+</body>
+</html>

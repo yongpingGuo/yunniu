@@ -1,0 +1,71 @@
+<form action="/index.php/Admin/member/vip_info" onsubmit="return keep(this)" id="ajax-content">
+    <table class="table-condensed">
+        <tbody>
+            <tr>
+                <td>{{langData.compellation[lang]}}:</td>
+                <td>
+                    <input type="text" name="username" value="{$vipinfo['username']}">
+                    <input type="hidden" name="id" value="{$vipinfo['id']}"/>
+                </td>
+            </tr>
+            <tr>
+                <td>{{langData.gender[lang]}}:</td>
+                <td>
+                    <div class="radio-form">
+                        <input type="radio" name="sex" value="1" id="male">
+                        <label for="man">{{langData.male[lang]}}</label>
+                        <input type="radio" name="sex" value="2" id="female">
+                        <label for="sex-off">{{langData.female[lang]}}</label>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>{{langData.phoneNum[lang]}}:</td>
+                <td>
+                    <input type="text" name="phone" value="{$vipinfo['phone']}">
+                </td>
+            </tr>
+            <tr>
+                <td>{{langData.birthday[lang]}}:</td>
+                <td>
+                    <input type="text" readonly="readonly" id="select_date" name="birthday" value="{$vipinfo['birthday']}" class="selectIcon">
+                </td>
+            </tr>
+            <tr>
+                <td>{{langData.membership[lang]}}:</td>
+                <td>
+                    <select name="group_id" class="select-grey">
+                        <option value="0">{{langData.defaultMemberGroup[lang]}}</option>
+                        <foreach name="vip_group1" item="val">
+                            <option value="{$val['group_id']}" <?php if($vipinfo['group_id'] == $val['group_id']):?>selected<?php endif;?>>{$val['group_name']}</option>
+                        </foreach>
+                    </select>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <button class="blue-btn">{{langData.save[lang]}}</button>
+    </div>
+</form>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    },
+    mounted: function() {
+        $("#select_date").datetimepicker({
+            format:'yyyy-mm-dd',
+            todayBtn: true,
+            autoclose: true,
+            todayHighlight: true,
+            minView: "month", //选择日期后，不会再跳转去选择时分秒 
+            language: vm.lang
+        });
+    }
+})

@@ -1,0 +1,30 @@
+<include file="Public/head"/>
+<body>
+<!-- 	<div id="ad-carousel" class="carousel" data-ride="carousel" data-interval="{$time}"> -->
+	<div id="ad-carousel" class="carousel" data-ride="carousel" data-interval="{$time}" onclick="location='/index.php/home/index/processRoute/process/index'">
+		<div class="carousel-inner" role="listbox" id="listbox">
+			<volist name = "info" id = "v">
+				<div class="item">
+					<img src="/{$v.advertisement_image_url}" alt="点击开始点餐">
+				</div>
+			</volist>
+		</div>
+	</div>
+</body>
+<!--<audio controls="controls" preload id="music" hidden>-->
+	<!--<source src="__PUBLIC__/wav/payFinish.wav" type="audio/mpeg"/>-->
+<!--</audio>-->
+<!--<script>-->
+	<!--$("#music")[0].play();-->
+<!--</script>-->
+
+<!-- <script type="text/javascript">
+	// onclick="location='/index.php/home/index/processRoute/process/index'"
+	//创建一个新的hammer对象并且在初始化时指定要处理的dom元素
+         var hammertime = new Hammer(document.getElementById("ad-carousel"));
+         //添加事件
+         hammertime.on("tap", function (e) {
+            location='/index.php/home/index/processRoute/process/index';
+         });
+</script> -->
+</html>

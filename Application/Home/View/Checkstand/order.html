@@ -1,0 +1,750 @@
+<include file="Public/checkstandHead"/>
+<!-- 收银 -->
+<body class="order-body">
+<header class="home-header">
+    <a href="__CONTROLLER__/index">
+        <img src="__PUBLIC__/images/lt.png">
+        <span>重新点餐</span>
+    </a>
+    <input type="hidden" name="isOpenNum" id="isOpenNum" value="{$isOpenNum}">
+    <!-- <h2 class="text-center order-head">方雅自助点餐系统</h2> -->
+    <input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+    <div class="header-right">
+        <a href="#payModal" data-toggle="modal">
+            <img src="__PUBLIC__/images/fu.png">
+        </a>
+        <a href="#integralModal" data-toggle="modal">
+            <img src="__PUBLIC__/images/ji.png">
+        </a>
+        <a href="#" onclick="openCashBox()">
+            <img src="__PUBLIC__/images/yuan.png">
+        </a>
+<!--         <a href="#setModal" data-toggle="modal">
+            <img src="__PUBLIC__/images/set.png">
+            <span>1</span>
+        </a> -->
+        <a href="https://mct.y.nuomi.com/login">
+            <img src="__PUBLIC__/images/bai.png">
+        </a>
+        <a href="https://e.dianping.com/">
+            <img src="__PUBLIC__/images/da.png">
+        </a>
+        <a href="https://epassport.meituan.com/account/login">
+            <img src="__PUBLIC__/images/mei.png">
+        </a>
+		<a href="{:U('Statistics/common')}">
+            <img src="__PUBLIC__/images/yun.png">
+        </a>
+
+        <!-- <a href="#">
+            <img src="__PUBLIC__/images/scan.png">
+            <span>打单</span>
+        </a> -->
+        <!-- <a href="{:U('checkstand/order_list')}">
+            <img src="__PUBLIC__/images/cart.png">
+            <div class="cart-num" id="ordercount">{$ordercount}</div>
+        </a> -->
+        <!-- <a href="#">
+            <img src="__PUBLIC__/images/print.png">
+            <div class="print-num">2</div>
+        </a> -->
+        <a href="/index.php/home/checkstand/checkout" onclick="if(confirm('确定要退出吗？')) return true;else return false;">
+            <img src="__PUBLIC__/images/user.png">
+            <span>{$Think.session.names}</span>
+        </a>
+    </div>
+</header>
+
+<div class="order">
+    <!-- 左边分类 start -->
+    <div class="order-left">
+        <ul class="sorts-list">
+            <volist name = "info" id = "v">
+                <li>
+                    <a href="" data-toggle="tab" id="category_type" onclick="showtypefood({$v.food_category_id})">
+                        <span>{$v.food_category_name}</span>
+                    </a>
+                </li>
+            </volist>
+        </ul>
+    </div> <!-- 左边分类 end -->
+
+    <!-- 中间菜品列表 start -->
+    <div class="order-content">
+        <div class="container-fluid">
+            <div class="tab-content" id="food_info">
+                <div class="tab-pane fade in active" id="recommend">
+                    <div class="row">
+                        <volist name = "info1" id = "v1">
+                            <div class="col-sm-6 col-md-4">
+                                <a href="javascript:void(0)" class="food-item"  data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" onclick="findfoodinfo(this)">
+                                    <div class="food-box">
+                                        <div class="food-box-img">
+                                            <img src="/{$v1.food_img}">
+                                        </div>
+                                        <div class="clearfix">
+                                            <div class="pull-left">
+                                                <div class="star">
+                                                    <if condition = "$v1.star_level eq 1">
+                                                        <span></span>
+                                                    </if>
+                                                    <if condition = "$v1.star_level eq 2">
+                                                        <span>★★</span>
+                                                    </if>
+                                                    <if condition = "$v1.star_level eq 3">
+                                                        <span>★★★</span>
+                                                    </if>
+                                                    <if condition = "$v1.star_level eq 4">
+                                                        <span>★★★★</span>
+                                                    </if>
+                                                    <if condition = "$v1.star_level eq 5">
+                                                        <span>★★★★★</span>
+                                                    </if>
+                                                </div>
+                                            </div>
+                                            <div class="pull-right text-right">
+                                                <div class="cayenne">
+                                                    <if condition = "$v1.hot_level eq 0"></if>
+													<if condition = "$v1.hot_level eq 1"></if>
+													<if condition = "$v1.hot_level eq 2">
+														<img src="__PUBLIC__/images/cayenne.png">
+														<img src="__PUBLIC__/images/cayenne.png">
+													</if>
+													<if condition = "$v1.hot_level eq 3">
+														<img src="__PUBLIC__/images/cayenne.png">
+														<img src="__PUBLIC__/images/cayenne.png">
+														<img src="__PUBLIC__/images/cayenne.png">
+													</if>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="food-details">
+                                        <div class="food-name">{$v1.food_name}</div>
+                                        <div class="food-price">&yen;{$v1.food_price}</div>
+                                    </div>
+                                </a>
+                            </div>
+                        </volist>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- 菜品列表 end -->
+
+    <!-- 右边已选菜品 start -->
+    <div class="order-right">
+        <div class="container-fluid">
+            <!-- 菜品选择列表 start -->
+            <div class="food-select" id="foodlist">
+
+            </div><!-- 菜品选择列表 end -->
+        </div>
+
+        <div class="total" >
+            <p>合计：&yen;<span id="Total">0.00</span>元</p>
+            <div class="">
+                <input type="hidden" name="order_type" id="order_type" data-order_type="1">
+                <button class="dineWay active" data-order_type="1">堂吃</button>
+                <button class="dineWay" data-order_type="2">外带</button>
+            </div>
+            <button id="placeOrder" class="common-btn place-order-btn" onclick="PlaceOrder2()">
+                <span>立即下单</span>
+                <img src="__PUBLIC__/images/gt.png">
+            </button>
+        </div>
+    </div><!-- 右边已选菜品 end -->
+</div>
+
+<!-- 餐桌Modal -->
+    <div class="modal" id="tableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="tableModal-return">
+                <button class="btn-none" data-dismiss="modal">
+                    <span>&lt;</span>
+                    <span>返回点餐</span>
+                </button>
+            </div>
+            <div class="number text-center">
+                <div class="number-title">输入餐牌号，按确认</div>
+                <div class="number-input">
+                    <input type="text" readonly="readonly" id="tableNum">
+                    <button class="btn-none"   onclick="isTableNum()">确认</button>
+                </div>
+                <div class="number-table clearfix">
+                    <div class="pull-left">
+                        <table>
+                            <tr>
+                                <td>
+                                    <button class="num-btn">1</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">2</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">3</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="num-btn">4</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">5</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">6</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="num-btn">7</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">8</button>
+                                </td>
+                                <td>
+                                    <button class="num-btn">9</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="pull-left number-table-right">
+                        <table>
+                            <tr>
+                                <td>
+                                    <button class="num-btn">0</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button class="del-num">
+                                        <p>删</p>除
+                                    </button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- 菜品Modal -->
+<div class="modal" id="foodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modelfood">
+        
+    </div>
+</div>
+
+<!-- 付Modal -->
+<div class="modal" id="payModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="number-content text-center">
+                <div class="text-left modal-head">
+                    <button class="btn-none" data-dismiss="modal">
+                        <img src="__PUBLIC__/images/lt.png">
+                        <span>返回</span>
+                    </button>
+                </div>
+                <div class="number-input">
+                    <span>支付号：</span>
+                    <input type="text" readonly="readonly" id="pay_num">
+                    <button class="btn-none" onclick="payForNum()">确认</button>
+                </div>
+                <div class="modal-wrapper">
+                    <div class="number-table clearfix">
+                        <div class="pull-left">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <button class="num-btn">1</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">2</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">3</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="num-btn">4</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">5</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">6</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="num-btn">7</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">8</button>
+                                    </td>
+                                    <td>
+                                        <button class="num-btn">9</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div class="pull-left number-table-right">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <button class="num-btn">0</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button class="del-num">
+                                            <p>删</p>
+                                            除
+                                        </button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- 积分Modal -->
+<div class="modal" id="integralModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="text-left modal-head">
+                <button class="btn-none" data-dismiss="modal">
+                    <img src="__PUBLIC__/images/lt.png">
+                    <span>返回</span>
+                </button>
+            </div>
+            <div class="modal-wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="member-input">
+                                <div class="member-input-item">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                    <span>会员：</span>
+                                    <input type="text" readonly="readonly" id="member-name">
+                                </div>
+                                <div class="member-input-item">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                    <span>密码：</span>
+                                    <input type="password" readonly="readonly" id="member-password">
+                                    <button id="member-check">确认</button>
+                                </div>
+                                <div class="member-input-item">
+                                    <span class="glyphicon glyphicon-gift"></span>
+                                    <span>物品：</span>
+                                    <select>
+                                        <option>布娃娃</option>
+                                        <option>铅笔</option>
+                                    </select>
+                                </div>
+                                <div class="integral-info">
+                                    积分：
+                                    <span>2000</span>
+                                    分，物品扣分：
+                                    <span>100</span>
+                                    分
+                                </div>
+                                <div class="member-input-item text-center">
+                                    <button>确认</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="number-table clearfix">
+                                <div class="pull-left">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button class="num-btn">1</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">2</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">3</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button class="num-btn">4</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">5</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">6</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button class="num-btn">7</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">8</button>
+                                            </td>
+                                            <td>
+                                                <button class="num-btn">9</button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="pull-left number-table-right">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <button class="num-btn">0</button>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <button class="del-num">
+                                                    <p>删</p>
+                                                    除
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <button class="member-scanner">使用扫描仪</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- 设置Modal -->
+<div class="modal" id="setModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="text-left modal-head">
+                <button class="btn-none" data-dismiss="modal">
+                    <img src="__PUBLIC__/images/lt.png">
+                    <span>返回</span>
+                </button>
+            </div>
+            <div class="modal-wrapper">
+                <table class="print-table">
+                    <tr>
+                        <td>名称</td>
+                        <td>MAC</td>
+                        <td>到期日期</td>
+                        <td>状态</td>
+                    </tr>
+                    <tr>
+                        <td>1.前台收银</td>
+                        <td>23：55：22:99:77:88</td>
+                        <td>2016-11-20</td>
+                        <td>纸将尽</td>
+                    </tr>
+                    <tr>
+                        <td>1.前台收银</td>
+                        <td>23：55：22:99:77:88</td>
+                        <td>2016-11-20</td>
+                        <td>纸将尽</td>
+                    </tr>
+                    <tr>
+                        <td>1.前台收银</td>
+                        <td>23：55：22:99:77:88</td>
+                        <td>2016-11-20</td>
+                        <td>纸将尽</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+<script>
+
+    sessionStorage.setItem("cloud",1);
+
+    // 支付码模态框键盘按钮控制
+    $('#payModal .num-btn').click(function(){
+        var numtext=$('#payModal .number-input input');
+        if(numtext.val().length == 3){
+            layer.msg('支付号过长',{
+                title: false,
+                closeBtn: 0,
+                shadeClose: true,
+                skin: 'layer-class',
+                area: '30%',
+                time: 1000
+            });
+            return;
+        }
+        var num=$(this).html();
+        var inputNum=numtext.val()+num;
+        numtext.val(inputNum);
+    });
+
+    $('#payModal .del-num').click(function(){
+        var numtext=$('#payModal .number-input input');
+        var numStr=numtext.val();
+        var inputStr=numStr.substring(0,numStr.length-1);
+        numtext.val(inputStr);
+    });
+
+    // 餐牌号模态框键盘按钮控制
+    $('#tableModal .num-btn').click(function(){
+        var numtext=$('#tableModal .number-input input');
+        if(numtext.val().length == 3){            
+            layer.msg('餐牌号过长',{
+                title: false,
+                closeBtn: 0,
+                shadeClose: true,
+                skin: 'layer-class',
+                area: '30%',
+                time: 1000
+            });
+            return;
+        }
+        var num=$(this).html();
+        var inputNum=numtext.val()+num;
+        numtext.val(inputNum);
+        $('#tableNum').html(inputNum);
+    });
+
+    $('#tableModal .del-num').click(function(){
+        var numtext=$('#tableModal .number-input input');
+        var numStr=numtext.val();
+        var inputStr=numStr.substring(0,numStr.length-1);
+        numtext.val(inputStr);
+    });
+
+
+    // 会员积分模态框键盘按钮控制
+    var focus = "member-name";
+    $(document).ready(function(){
+        $(".member-input input").click(function(){
+            var id = $(":focus").attr('id');
+            console.log(id);
+            if (id == "member-password") {
+                focus = "member-password";
+            }
+            if (id == "member-name") {
+                focus = "member-name";
+            }
+        });
+    });
+    var content = '';
+    $('#integralModal .num-btn').click(function(){
+        var number=$(this).html();
+        var content = $("#"+focus).val();
+        content = content + number;
+        $("#"+focus).val(content);
+    });
+
+    $('#integralModal .del-num').click(function(){
+        content = $("#"+focus).val();
+        var inputStr=content.substring(0,content.length-1);
+        $("#"+focus).val(inputStr);
+    });
+
+
+    // 选择就餐方式
+    $('.dineWay').click(function(){
+        $(this).addClass('active').siblings().removeClass('active');
+        var order_type = $(this).data("order_type");
+        $("#order_type").data("order_type",order_type);
+    });
+
+
+    $(function(){
+        var pagenum = $("table_num").val();
+        if(!pagenum){
+            pagenum = 000;
+        }
+        $('#Tables').html(pagenum);
+    });
+
+    function showtypefood(i){
+        //alert(i);
+        $.ajax({
+            type:"get",
+            url:"/index.php/home/checkstand/showtypefood/type/"+i+"",
+            //dataType:"json",
+            success:function(data){
+                $("#food_info").html(data);
+            }
+        });
+    }
+
+    function findfoodinfo(obj){
+        var i = $(obj).data('food_id');
+        $.ajax({
+            type:"get",
+            url:"/index.php/home/checkstand/findfoodinfo/food_id/"+i+"",
+            //dataType:"json",
+            success:function(data){
+                $("#modelfood").html(data);//加载模态框
+
+            }
+        });
+    }
+
+    function PlaceOrder2() {
+
+        var order_type = $("#order_type").data('order_type');
+
+        var isOpenNum = $("#isOpenNum").val();
+
+        var total = Number($("#Total").html()).toFixed(2);
+        console.log(total);
+        if (total == 0  ) {
+            layer.msg('请先选择菜品，谢谢',{
+                title: false,
+                closeBtn: 0,
+                shadeClose: true,
+                skin: 'layer-class',
+                area: '60%',
+                time: 1000
+            });
+        }else {
+            if(isOpenNum != 0){
+                //如果则弹出模态框
+                $("#tableModal").modal("show");
+            }else{
+                var tableNum = Number($("#tableNum").html());
+                var list = {};
+                $('#foodlist section').each(function(k,v){
+                    var temp = [];
+                    temp["0"] = $(this).data("food_id");
+                    temp["1"] = $(this).data("food_num");
+                    temp["2"] = $(this).data("attrs");
+                    list[k] = temp;
+                });
+                console.log(list);
+                $.ajax({
+                    type: "post",
+                    url: "__CONTROLLER__/PlaceOrder/order_type/"+order_type+"/tableNum/"+tableNum,
+                    data: list,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == 1) {
+                            var order_sn = data.data['order_sn'];
+                            var Total = $("#Total").html();
+                            window.location.href = "/index.php/home/checkstand/pay/price/" + Total + "/order_sn/" + order_sn;
+                        }
+                    },
+                    error: function () {
+                        console.log("访问出错");
+                    }
+                });
+            }
+        }
+    }
+
+
+
+    function payForNum(){
+        var pay_num = Number($("#pay_num").val());
+        console.log(pay_num);
+        if(pay_num <= 0){
+            layer.tips('支付号错误', '#pay_num', {
+                tips: [1, '#0FA6D8'] //还可配置颜色
+            });
+            return;
+        }
+        $.ajax({
+            url:"/index.php/home/checkstand/jpushPayForNum",
+            type:"post",
+            data:{"pay_num":pay_num},
+            dataType:"json",
+            success:function(msg){
+                console.log(msg);
+                if(msg.code == 0){
+                    layer.tips('支付号错误', '#pay_num', {
+                        tips: [1, '#0FA6D8'] //还可配置颜色
+                    });
+                }else if(msg.code == 1){
+                    var Total = msg.total;
+                    var order_sn = msg.order_sn;
+                    window.location.href = "/index.php/home/checkstand/pay/price/" + Total + "/order_sn/" + order_sn;
+                }
+            }
+        });
+    }
+
+    function isTableNum(){
+        var tableNum = Number($("#tableNum").val());
+        if(tableNum && tableNum != 0){
+            $("#tableModal").modal("hide");
+            var total = Number($("#Total").html()).toFixed(2);
+            console.log(total);
+            if (total == 0  ) {
+                layer.msg('请先选择菜品，谢谢',{
+                    title: false,
+                    closeBtn: 0,
+                    shadeClose: true,
+                    skin: 'layer-class',
+                    area: '60%',
+                    time: 1000
+                });
+            }else {
+                var order_type = $("#order_type").data('order_type');
+
+                var list = {};
+                $('#foodlist section').each(function(k,v){
+                    var temp = [];
+                    temp["0"] = $(this).data("food_id");
+                    temp["1"] = $(this).data("food_num");
+                    temp["2"] = $(this).data("attrs");
+                    list[k] = temp;
+                });
+                console.log(list);
+                $.ajax({
+                    type: "post",
+                    url: "__CONTROLLER__/PlaceOrder/order_type/"+order_type+"/tableNum/"+tableNum,
+                    data: list,
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.code == 1) {
+                            var order_sn = data.data['order_sn'];
+                            var Total = $("#Total").html();
+                            window.location.href = "/index.php/home/checkstand/pay/price/" + Total + "/order_sn/" + order_sn;
+                        }
+                    },
+                    error: function () {
+                        console.log("访问出错");
+                    }
+                });
+            }
+        }else{
+            layer.msg('餐牌号不能为空或者为0，谢谢',{
+                title: false,
+                closeBtn: 0,
+                shadeClose: true,
+                content: '餐牌号不能为空或者为0，请重新输入',
+                skin: 'layer-class',
+                area: '60%',
+                time: 1000
+            });
+        }
+    }
+
+    function openCashBox(){
+        JsObj.OpenMoneyBoard();
+    }
+</script>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+
+    <!-- admin CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/admin.css?v=20171215">
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <title>餐饮店云管理</title>
+</head>
+<!-- 点餐流程 -->
+
+<body>
+    <div class="section">
+    	<div class="section-header">会员中心-顶部广告</div>
+    	<div class="section-content">
+    		<div class="clearfix" id="mytr">
+    		    <volist name="info" id="v" offset="0" length='1'>
+    		        <div class="showImg pull-left">
+    		            <div class="imgHorizontal" id="{$v.advertisement_id}">
+    		                <img src="/{$v.advertisement_image_url}" class="uploadImg">
+    		                <input type="file" name="default" onchange="topPreview(this)">
+    		            </div>
+    		        </div>
+    		    </volist>
+    		    <volist name="info" id="v" offset="1">
+    		        <div class="showImg pull-left">
+    		            <div class="imgHorizontal" id="{$v.advertisement_id}">
+    		                <img src="/{$v.advertisement_image_url}" class="uploadImg">
+    		                <button class="delete-btn" onclick="deladver({$v.advertisement_id})">
+    		                    <img src="__PUBLIC__/images/delete.png">
+		                    </button>
+    		                <input type="file" name="change" onchange="topPreview(this)">
+    		            </div>
+    		        </div>
+    		    </volist>
+    		    <div class="showImg pull-left">
+    		        <div class="imgHorizontal">
+    		            <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+    		        	<input type="file" name="change" onchange="topPreview(this)">
+    		        </div>
+    		    </div>
+    		</div>
+    		<div class="section-tips">< 分辨率：720x480；颜色：RGB色； 大小：1M以内；></div>
+    	</div>
+	</div>
+
+	<div class="section">
+        <div class="section-header">会员中心-底部广告</div>    
+        <div class="section-content">
+        	<div class="clearfix" id="mytr1">
+        	    <volist name="info1" id="v1" offset="0" length='1'>
+        	        <div class="showImg pull-left">
+        	            <div class="imgHorizontal" id="{$v1.advertisement_id}">
+        	                <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+        	                <input type="file" name="default" onchange="bottomPreview(this)">
+        	            </div>
+        	        </div>
+        	    </volist>
+        	    <volist name="info1" id="v1" offset="1">
+        	        <div class="showImg pull-left">
+        	            <div class="imgHorizontal" id="{$v1.advertisement_id}">
+        	                <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+        	                <button class="delete-btn" onclick="deladver1({$v1.advertisement_id})">
+        	                    <img src="__PUBLIC__/images/delete.png">
+    	                    </button>
+        	                <input type="file" name="change" onchange="bottomPreview(this)">
+        	            </div>
+        	        </div>
+        	    </volist>
+        	    <div class="showImg pull-left">
+        	        <div class="imgHorizontal">
+        	            <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+        	            <input type="file" name="change" onchange="bottomPreview(this)">
+        	        </div>
+        	    </div>
+        	</div>
+        	<div class="section-tips">< 分辨率：720x480；颜色：RGB色； 大小：1M以内；></div>
+        </div>     
+    </div>
+</body>
+<script type="text/javascript">
+//横屏广告的预览+上传(预览时就上传)
+function topPreview(file) {
+    var prevDiv = $(file).parent()[0]; //获取上传图片父级所在的DOM对象
+    var statu = $(file).siblings('img').attr('src'); //获取广告位状态（空或已有广告）
+    if($(file).siblings('img').attr('data-img')=="add"){
+    	statu="";
+    }
+    var aid = $(file).parent().attr('id'); //当前广告ID
+    var wtype = $(file).attr('name'); //广告位类型(默认或动态广告位)
+    //------------------------------------广告位的广告预览-----------------------------------------
+    if (file.files && file.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="uploadImg" />';
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else {
+        prevDiv.innerHTML = '<div class="img uploadImg" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+    }
+    //------------------------------------广告位上传广告--------------------------------------------
+    var formdata = new FormData();
+    formdata.append("file", file.files[0]); //上传文件
+    formdata.append("wtype", wtype); //广告位类型，第一个广告位是默认，第二个广告位是可变
+    formdata.append("aid", aid) //广告id
+    formdata.append("statu", statu); //广告图片src值
+    $.ajax({
+        type: 'post',
+        url: '/index.php/agent/Members/uploadimg',
+        data: formdata,
+        cache: false,
+        processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType: false, // 不设置Content-type请求头
+        success: function(data) {
+            alert("上传成功！");
+            $('#mytr').html(data);
+        }
+    });
+}
+
+function bottomPreview(file) {
+    var prevDiv = $(file).parent()[0];
+    var statu = $(file).siblings('img').attr('src');
+    if($(file).siblings('img').attr('data-img')=="add"){
+    	statu="";
+    }
+    var aid = $(file).parent().attr('id');
+    var wtype = $(file).attr('name');
+    if (file.files && file.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(evt) {
+            prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="uploadImg" />';
+        }
+        reader.readAsDataURL(file.files[0]);
+    } else {
+        prevDiv.innerHTML = '<div class="img uploadImg" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+    }
+    var formdata = new FormData();
+    formdata.append("file", file.files[0]); //上传文件
+    formdata.append("wtype", wtype); //广告位类型，第一个广告位是默认，第二个广告位是可变
+    formdata.append("aid", aid) //广告id
+    formdata.append("statu", statu); //广告图片src值
+    $.ajax({
+        type: 'post',
+        url: '/index.php/agent/Members/uploadphimg',
+        data: formdata,
+        cache: false,
+        processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+        contentType: false, // 不设置Content-type请求头
+        success: function(data) {
+            alert("上传成功！");
+            $("#mytr1").html(data);
+        }
+    });
+}
+//删除顶部广告
+function deladver(z) {
+    var msg = "确定要删除一条广告吗？"
+    if (confirm(msg) == true) {
+        $.ajax({
+            type: "post",
+            url: "/index.php/agent/Members/deladver",
+            data: {
+                "advertisement_id": z
+            },
+            success: function(data) {
+                $("#mytr").html(data);
+            }
+        });
+    }
+}
+//删除底部广告
+function deladver1(z) {
+    var msg = "确定要删除一条广告吗？"
+    if (confirm(msg) == true) {
+        $.ajax({
+            type: "post",
+            url: "/index.php/agent/Members/deladver1",
+            data: {
+                "advertisement_id": z
+            },
+            success: function(data) {
+                $("#mytr1").html(data);
+            }
+        });
+    }
+}
+</script>
+
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/calendar.min.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/member.css">
+
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+
+		<![endif]-->
+
+		
+
+		<title>用户中心|会员注册</title>
+	</head>
+
+	<body>
+		<section class="login">
+            <form action="{:U('inputPhone')}" method="post" onSubmit="return mobile_reg(this)">
+                <div class="login-textbox">
+                    <span class="glyphicon glyphicon-phone left-icon"></span>
+                    <input type="text" id="mobile" name="phone" dataType="Require" placeholder="请输入您的手机号码">
+                </div>
+                <button class="btn btn-danger login-btn" type="submit">提交</button>
+            </form>
+		</section>
+		<!-- <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+		<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script> -->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/js/calendar.min.js"></script>
+        <script src="__PUBLIC__/js/validator.js"></script>
+        <script src="__PUBLIC__/js/lamson.js"></script>
+
+	</body>
+
+    <script>
+        // AJAX表单处理
+        function mobile_reg(obj)
+        {
+            var phone = $('#mobile').val();
+            // 利用“我佛山人”插件进行合法的验证
+            if( Validator.Validate(obj, 3))
+            {
+                // AJAX提交表单
+                $.post(obj.action, $(obj).serialize(), function(data){
+                    // console.log(data);
+                    if(data.status == 0)
+                    {
+                        alert(data.info);
+                    }else
+                    {
+                        var destinct = data.destinct;
+                        var info = data.info;
+                        if(destinct == 2){
+                            console.log('regist');
+                            var type = data.type;
+                            // 注册界面
+                            // var url = '/index.php/mobile/member/redirectReg/info/'+info+'/type/'+type;
+                            var url = '/index.php/mobile/member/redirectReg/phone/'+phone+'/type/'+type;
+                            // var url = '/index.php/mobile/member/redirectReg/type/'+type;
+                        }else{
+                            console.log('vip_center');
+                            // 会员中心
+                            var url = '/index.php/mobile/member/vipCenter/info/'+info;
+                        }
+                       location.href = url;
+                    }
+                });
+            }
+            return false;
+        }
+    </script>
+
+
+

@@ -1,0 +1,45 @@
+<section class="section">
+    <table class="w100 chart-table">
+        <tbody>
+        <volist name="returnData.totle" id="v">
+            <tr onclick="showDetail({$key})">
+                <td>{$key}月</td>
+                <td>
+                    <span class="chart-length" style="width:{$v*$step_length}px;"></span>
+                </td>
+                <td class="text-right">{$v}元</td>
+            </tr>
+        </volist>
+        </tbody>
+    </table>
+</section>
+<section class="content text-center">共计：{$all_year_total}元</section>
+
+<div>
+    <volist name="every_month_data" id="v">
+        <div class="chart-msg" id="{++$key}">
+            <div>{$key}月</div>
+            <div class="flex-content">
+                <div class="flex-main">微信</div>
+                <div>{$v['wechat']}元</div>
+            </div>
+            <div class="flex-content">
+                <div class="flex-main">支付宝</div>
+                <div>{$v['alipay']}元</div>
+            </div>
+            <div class="flex-content">
+                <div class="flex-main">银行代收</div>
+                <div>{$v['fourth']}元</div>
+            </div>
+            <div class="flex-content">
+                <div class="flex-main">会员</div>
+                <div>{$v['remainder']}元</div>
+            </div>
+            <div class="flex-content">
+                <div class="flex-main">现金</div>
+                <div>{$v['cash']}元</div>
+            </div>
+        </div>
+    </volist>
+</div>
+

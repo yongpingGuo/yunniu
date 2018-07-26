@@ -1,0 +1,187 @@
+<include file="Public/head"/>
+<body>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+	<section class="clearfix">
+		<aside class="sidebar">
+			<p>查询品牌商</p>
+			<p class="search-box">
+				<input type="text" name="key" placeholder="品牌商名称">
+				<button class="btn btn-default" type="button" onclick="search()">搜索</button>
+			</p>
+			<div id="mytable">
+			<ul class="sidebar-list">
+				<volist name = "Arrlist" id = 'v'>
+					<li>
+						<empty name="v['restaurantNameArr']">
+							<button class="btn-none">-</button>
+						<else/>
+							<button class="btn-none">+</button>
+						</empty>
+						<span>{$v['business_name']}</span>
+						<input type="hidden" name="business_id" value="{$v['business_id']}"/>
+						<ul>
+							<volist name = "v['restaurantNameArr']" id = 'v1'>
+							<li>
+								<button class="btn-none">+</button>
+								<span>{$v1['restaurant_name']}</span>
+								<ul>
+									<volist name = "v1['City1Array']" id = 'v2'>
+										<li>
+											<input type="hidden" name = "restaurant_name" value="{$v1['restaurant_name']}" />
+											<a href="javascript:void(0)" style="color: white; text-decoration: none;" onclick="showinfo({$v['business_id']},{$v2['city3']},this)">{$v2['cityArr']}</a>
+										</li>
+									</volist>
+								</ul>
+							</li>
+							</volist>
+						</ul>
+					</li>
+				</volist>
+			</ul>
+			</div>
+		</aside>
+		<div class="right-content">
+			<input type="hidden" name="session_manager_id" value="{$Think.session.manager_id}" id="session_manager_id">
+			<div class="container-fluid pre100">
+				<div style="border-bottom:1px solid #000">
+					日期：<input type="text" name="device_start_time" id="device_start_time" placeholder="注册时间"/>--	
+					<input type="text" name="device_end_time" id="device_end_time" placeholder="到期时间"/>
+					<input type="button" value="搜索" style="padding-left: 20px; padding-right: 20px;" onclick="search_time()"/>
+				</div>
+				<div id="listtable">
+				<table class="device-table table-hover">
+					<tr>
+						<td>序号</td>
+						<td>设备名称</td>
+						<td>MAC</td>
+						<td>注册时间</td>
+						<td>到期时间</td>
+						<td>上次使用时间</td>
+						<td>设备状态</td>
+						<td>详细地址</td>
+						<td>操作</td>
+					</tr>
+					<volist name = "deviceArr" id = "v">
+							<tr>
+								<td>{$key+1}</td>
+								<td>{$v.device_name}</td>
+								<td>{$v.device_code}</td>
+								<td>{$v.start_time|date="Y-m-d",###}</td>
+								<td>{$v.end_time|date="Y-m-d",###}</td>
+								<td>{$v.last_time}</td>
+								<eq name = "v.device_status" value = "1">
+									<td>正常</td>
+									<else/>
+									<td>禁用</td>
+								</eq>
+								<td>{$v.address}</td>
+								<td>
+									<button class="btn btn-black" data-toggle="modal" onclick="modify({$v.device_id})">编辑</button>
+									<button class="btn btn-black" data-target="#renew" data-toggle="modal">续费</button>
+									<button class="btn btn-default" onclick="del({$v.device_id})">删除</button>
+								</td>
+							</tr>
+					</volist>
+				</table>
+				<div>
+				    <ul class="pagination" id="detail-page">
+				        {$page}
+				    </ul>
+				</div>
+			</div>
+			</div>
+		</div>
+	</section>
+
+
+	<!--编辑模态框-->
+	<div class="modal fade" id="editDevice" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-head">编辑设备</div>	
+				<form id="myform">
+				<input type="hidden" name="uuid" id="uuid" />
+				<input type="hidden" name="uuid2" id="uuid2" />
+				<input type="hidden" name="uuid3" id="uuid3" />
+				<table class="table-condensed">
+					<tr>
+						<input type="hidden" name="device_id">
+						<input type="hidden" name="restaurant_id">
+						<td>设备名称:</td>
+						<td>
+							<input type="text" name="device_name">
+						</td>
+					</tr>
+					<tr>
+						<td>开始日期:</td>
+						<td>
+							<input type="text" name="start_time" disabled="true" id="startDate">
+						</td>
+					</tr>
+					<tr>
+						<td>结束日期:</td>
+						<td>
+							<input type="text" name="end_time" id="endtDate">
+						</td>
+					</tr>
+					<tr>
+						<td>详细地址:</td>
+						<td>
+							<input type="text" name="address">
+						</td>
+					</tr>
+					<tr>
+						<td>状态</td>
+						<td>
+							<input type="radio" name="state" value="1">正常
+							<input type="radio" name="state" value="0">禁用
+						</td>
+					</tr>
+				</table>
+				</form>
+				<div class="text-center">
+					<button class="btn btn-black" type="button" onclick="commit()">保存</button>
+					<button class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!--续费模态框-->
+	<div class="modal fade" id="renew" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-head">设备续费</div>
+				<table class="table-condensed">
+					<tr>
+						<td>{$renewArr.renew_time1}年</td>
+						<td><input type="radio" name="renew" value="1" checked="checked"></td>
+					</tr>
+					<tr>
+						<td>{$renewArr.renew_time2}年</td>
+						<td><input type="radio" name="renew" value="2"></td>
+					</tr>
+					<tr>
+						<td>{$renewArr.renew_time3}年</td>
+						<td><input type="radio" name="renew" value="3"></td>
+					</tr>
+				</table>
+				<div class="text-center">
+					<button class="btn btn-black" type="button">去支付</button>
+					<button class="btn btn-default" data-dismiss="modal">关闭</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__PUBLIC__/js/dateSelect.js"></script>
+	<script src="__PUBLIC__/js/AllAgent/device.js"></script>
+	<script type="text/javascript">
+		$('.sidebar-list button').click(function(){
+			$(this).siblings('ul').slideToggle();
+		});
+	</script>
+</body>
+</html>

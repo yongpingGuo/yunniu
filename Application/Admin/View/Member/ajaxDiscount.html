@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<foreach name="discount_rules" item="v">
+    <div class="member-tab-item" id="delDiscount">
+        <span class="index">{++$key}</span>.满
+        <input type="text" name="account" value="{$v['money']}">元，
+        打<input type="text" name="benefit" value="{$v['discount']}">折
+        <input type="hidden" name="id" value="{$v['id']}"/>
+        所属会员组
+        <select name="group_id">
+            <option value="0">默认会员组</option>
+            <foreach name="group_info" item="val">
+                <option value="{$val['group_id']}" <?php if($v['group_id'] == $val['group_id']):?>selected<?php endif;?>>{$val['group_name']}</option>
+            </foreach>
+        </select>
+        <div class="tab-item-right">
+            <button class="btn btn-primary" onclick="return save_discount(this)">保存</button>
+            <button class="btn btn-danger" onclick="return shanchu_discount(this,'/index.php/Admin/Member/del_discount')">删除</button>
+        </div>
+    </div>
+</foreach>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<script src="js/mobiscroll.javascript.min.js"></script>
+	<link href="css/mobiscroll.javascript.min.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<input id="scroller" />
+	<script type="text/javascript">
+		mobiscroll.settings = {
+    lang: 'zh',
+    display: 'bottom'
+};
+		 var now = new Date(),
+        minDate = new Date(now.getFullYear() - 100, 0, 1),
+        maxDate = new Date(now.getFullYear() + 30, 11, 31),
+        minTime = new Date(new Date().setHours(10, 30)),
+        maxTime = new Date(new Date().setHours(18, 59)),
+        bday = new Date(now.getFullYear() - 18, now.getMonth(), now.getDay());
+		// 日期选择
+		// mobiscroll.date('#scroller');
+		// 时间选择
+		mobiscroll.time('#scroller',{
+			min:minTime,
+			max:maxTime,
+		});
+		// 日期时间选择
+		// mobiscroll.datetime('#scroller');
+	</script>
+</body>
+</html>

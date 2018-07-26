@@ -1,0 +1,109 @@
+<include file="Public/head"/>
+<!-- 支付页 -->
+<body>
+	<header class="home-header">
+		<a href="javascript:history.back(-1)">
+			<img src="__PUBLIC__/images/lt.png">
+			<b>重新点餐</b>
+		</a>
+	</header>
+	
+	<div class="pay">
+		<h2 class="text-center">
+			<div class="text-center">餐桌号：{$order.desk_code}</div>
+			<div class="text-center" style="font-size: 10px">订单号：{$order.order_sn}</div>
+			<div class="red">
+				&yen;<span class="Total">{$order.total_amount}</span>元
+			</div>
+		</h2>
+		<div class="pay-select">
+			<!--<div class="pay-item" id="alipay">-->
+				<!--<a href="javascript:void(0)">-->
+					<!--<img src="__PUBLIC__/images/alipay.png" class="pay-item-img">-->
+					<!--<span>支付宝支付</span>-->
+				<!--</a>-->
+				<!--<div class="pay-item-right">-->
+					<!--<span class="glyphicon glyphicon-ok-circle" data-paytype="1"></span>-->
+				<!--</div>-->
+			<!--</div>-->
+			<div class="pay-item" id="weixin">
+				<a href="javascript:void(0)">
+					<img src="__PUBLIC__/images/wechat.png" class="pay-item-img">
+					<span>微信支付</span>
+				</a>
+				<div class="pay-item-right">
+					<span class="glyphicon glyphicon-ok-circle red" data-paytype="0"></span>
+				</div>
+			</div>
+		</div>
+		<div class="text-center">
+			<button class="btn-none check-pay" onclick="selectPay()">确认支付<span class="larger ml-10">&yen;<span class="Total">{$order.total_amount}</span>元</span></button>
+		</div>
+	</div>
+	<input type="hidden" value="{$order.order_sn}" name="order_sn" id="order_sn">
+
+    <input type="hidden" value="{$Think.session.restaurant_id}" name="restaurant_id" id="restaurant_id">
+    <input type="hidden" value="{$Think.session.desk_code}" name="desk_code" id="desk_code">
+	<!--<footer class="home-footer text-center">
+		&lt;!&ndash;本页面在<span class="footer-time" id="pageCloseTime">70秒</span>后自动关闭&ndash;&gt;
+	</footer>-->
+    <!--<div id="pay_display"></div>-->
+</body>
+<script>
+	function selectPay(){
+		var order_sn = $("#order_sn").val();
+		var node = $(".pay-item-right span");
+		$.each(node,function(){
+			var temp = ($(this).hasClass('red'));
+			if(temp){
+				var payType = $(this).data("paytype");
+				if(payType == 1){
+					self.location.href = "/index.php/mobile/AlipayWapPay/wapPay/order_sn/"+order_sn;
+				}else if(payType == 0){
+                    callpay();
+				}
+			}
+		});
+	}
+
+    //调用微信JS api 支付
+    function jsApiCall()
+    {
+        WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                {$jsApiParameters},
+                function(res){
+                    WeixinJSBridge.log(res.err_msg);
+                    if(res.err_msg == 'get_brand_wcpay_request:cancel') {
+                        alert("您已取消了此次支付");
+                        return;
+                    } else if(res.err_msg == 'get_brand_wcpay_request:fail') {
+                        alert("支付失败");
+                        return;
+                    } else if(res.err_msg == 'get_brand_wcpay_request:ok') {
+                        var restaurant_id = $("#restaurant_id").val();
+                        var desk_code = $("#desk_code").val();
+                        location.href="__CONTROLLER__/index/restaurant_id/"+restaurant_id+"/desk_code/"+desk_code;
+                    } else {
+                        alert("未知错误"+res.error_msg);
+                        return;
+                    }
+                }
+        );
+    }
+    function callpay()
+    {
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+            }
+        }else{
+            jsApiCall();
+        }
+    }
+</script>
+
+</html>

@@ -1,0 +1,1076 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+}
+
+body {
+    padding: 2.5%;
+    background-image: url('../images/bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #313131;
+    font-size: 1em;
+}
+
+ul {
+    list-style: none;
+}
+
+.iconfont{
+    font-size: 1em;
+}
+.clear:before,
+.clear:after {
+    display: table;
+    content: "";
+}
+
+.clear:after {
+    clear: both;
+}
+
+.hr {
+    border: none;
+    border-top: 1px solid #ccc;
+    height: 0;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.hr-dashed {
+    border: none;
+    border-top: 1px dashed #ccc;
+    height: 0;
+    margin-top: .2em;
+    margin-bottom: .2em;
+}
+
+.hr-lg {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
+.content {
+    padding-bottom: .6em;
+    color: #fff;
+}
+
+.section {
+    padding: .5em 3%;
+    background-color: rgba(182, 182, 182, 0.37);
+    border-radius: .3em;
+    margin-bottom: .6em;
+    color: #fff;
+}
+
+.section-title {
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    line-height: 2;
+    margin-bottom: .5em;
+}
+
+
+.section-row {
+    margin-bottom: .5em;
+}
+
+.section-icon {
+    width: 4em;
+    height: 4em;
+    padding: .5em 0;
+    text-align: center;
+    background-color: rgba(182, 182, 182, 0.37);
+    border: 1px solid #b4a7ac;
+    border-radius: 50%;
+    color: #fff;
+    margin: .5em auto 0;
+}
+
+.section-icon img {
+    height: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.remarks,
+.tips {
+    color: #d1c9c9;
+    font-size: 0.8em;
+}
+
+.tips {
+    margin-top: 1em;
+    line-height: 2;
+    padding-left: 1em;
+}
+
+.tips-icon {
+    margin-left: -.8em;
+}
+
+.w100 {
+    width: 100%;
+}
+
+button {
+    outline: none;
+}
+
+.file-content {
+    position: relative;
+}
+
+input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+.default-btn,
+.like-btn {
+    display: inline-block;
+    vertical-align: middle;
+    width: 3em;
+    height: 3em;
+    line-height: 2.8em;
+    font-size: .8em;
+    text-align: center;
+    background-color: rgba(182, 182, 182, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.37);
+    color: #fff;
+    border-radius: 50%;
+}
+
+.like-btn {
+    margin-left: .5em;
+}
+
+.default-btn:focus,
+.default-btn:active,
+.default-btn.active,
+.like-btn.active {
+    background-color: #ad0000;
+    border: 1px solid #fff;
+}
+
+.default-btn:not(:last-child) {
+    margin-right: .3em;
+}
+
+.danger-btn {
+    display: inline-block;
+    background-color: #ad0000;
+    color: #fff;
+    font-size: 2.2em;
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.4em;
+    text-align: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+}
+
+.danger-btn:focus {
+    background-color: #b6b6b6;
+}
+
+.danger-btn .iconfont {
+    font-weight: bolder;
+}
+.danger-btn.apply{
+    background-color: #d10000;
+    box-sizing: content-box;
+    line-height: 1.5em;
+    padding: .1em;
+    vertical-align: middle;
+    font-weight: 100;
+    font-size: 2em;
+}
+.danger-btn-sm {
+    background-color: #d10000;
+    border: 1px solid #fff;
+    color: #fff;
+    height: 2.2em;
+    padding: 0 1em;
+    border-radius: .3em;
+    text-align: center;
+}
+
+.danger-btn-default,
+.danger-btn-lg {
+    background-color: #d10000;
+    border: 1px solid #fff;
+    color: #fff;
+    height: 3em;
+    border-radius: .3em;
+    text-align: center;
+}
+
+.danger-btn-default {
+    padding: 0 1em;
+}
+
+.danger-btn-lg {
+    width: 100%;
+    font-size: 1em;
+}
+
+.danger-btn-lg:focus {
+    background-color: #b6b6b6;
+}
+
+.link-btn {
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: middle;
+}
+
+.danger-btn-lg.link-btn {
+    line-height: 2.9em;
+}
+
+input,
+select,
+textarea {
+    font-size: 1em;
+}
+
+.input,
+.input-xs,
+.input-sm,
+.input-md,
+.input-time,
+.select-reset,
+.select-none {
+    height: 2em;
+    background-color: #fff;
+    border: 1px solid #949494;
+    border-radius: .3em;
+    padding: 0 .3em;
+    outline: none;
+}
+
+.select-none {
+    display: inline-block;
+    vertical-align: middle;
+    width: 3em;
+    overflow-x: hidden;
+    padding: 0;
+}
+
+.select-reset {
+    display: inline-block;
+    vertical-align: middle;
+    background-image: url('../images/select_grey.png');
+    background-size: auto 100%;
+    background-position: right center;
+    background-repeat: no-repeat;
+    min-width: 12em;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.select-none select,
+.select-reset select {
+    outline: none;
+    width: 130%;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
+.select-none select {
+    width: 5em;
+}
+
+input[name="login_account"][readonly] {
+    background: #dddcdc;
+}
+
+.input.flex-main {
+    width: 100%;
+}
+
+.input-xs {
+    width: 4.5em;
+}
+
+.input-sm {
+    width: 7.6em;
+}
+
+.input-md {
+    width: 14em;
+}
+
+.input-time {
+    display: inline;
+    width: 8em;
+    height: 2em;
+    line-height: 2em;
+    padding: 0;
+}
+
+input[readonly].input-time {
+    background-color: #fff;
+}
+
+.textarea {
+    background-color: #fff;
+    border: 1px solid #949494;
+    border-radius: 4px;
+    padding: .5em;
+    outline: none;
+}
+
+.textarea-lg {
+    width: 100%;
+}
+
+
+/*普通单选按钮样式*/
+
+.radio {
+    display: inline-block;
+    position: relative;
+    margin: .2em .5em .2em 0;
+}
+
+.radio input[type="radio"] {
+    display: none;
+}
+
+.radio .circle-icon {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    background-color: #fff;
+    border: 1px solid #626262;
+    width: 1.2em;
+    height: 1.2em;
+    border-radius: 50%;
+    margin-right: .3em;
+    box-sizing: content-box;
+}
+
+.radio input:checked+.circle-icon:before {
+    position: absolute;
+    content: "";
+    background-color: #ad0000;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    box-sizing: border-box;
+}
+
+
+/*普通复选框样式*/
+
+.checkbox {
+    display: inline-block;
+    position: relative;
+    margin: .2em .5em .2em 0;
+}
+
+.checkbox input[type="checkbox"] {
+    display: none;
+}
+
+.checkbox span:before {
+    display: inline-block;
+    vertical-align: middle;
+    content: "";
+    background-color: #fff;
+    border: 1px solid #535353;
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em;
+    text-align: center;
+    border-radius: .2em;
+    margin-right: .3em;
+}
+
+.checkbox input:checked+span:before {
+    font-family: "iconfont" !important;
+    content: "\e642";
+    color: #ad0000;
+}
+
+
+/*滑动开关样式*/
+
+.checkbox-switch {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: .5em;
+}
+
+.checkbox-switch input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    line-height: 20px;
+}
+
+.checkbox-switch label {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: #a9a9a9;
+    border-radius: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.checkbox-switch label:before {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    line-height: 20px;
+    font-size: 12px;
+    content: 'OFF';
+    right: 8px;
+    z-index: 1;
+}
+
+.checkbox-switch label:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    left: 2px;
+    top: 2px;
+    z-index: 2;
+    background: #fff;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.checkbox-switch input:checked+label {
+    background: #206fb3;
+}
+
+.checkbox-switch input:checked+label:before {
+    content: 'ON';
+    right: auto;
+    left: 8px;
+}
+
+.checkbox-switch input:checked+label:after {
+    left: 30px;
+}
+
+.table-padding td {
+    padding-bottom: .5em;
+}
+
+.table-striped {
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 1em;
+}
+
+.table-striped td {
+    padding: .5em 0;
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.icon-xs {
+    height: 1em;
+}
+.icon-sm {
+    height: 2em;
+}
+
+.icon-lg {
+    display: block;
+    width: 80%;
+    margin: 1em auto;
+    border-radius: .3em;
+}
+
+.store-icon {
+    width: 5em;
+    height: 5em;
+    border: 1px solid #fff;
+    border-radius: .5em;
+    margin-right: 1em;
+}
+
+.title {
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.text-2 {
+    display: inline-block;
+    width: 2em;
+}
+.text-3 {
+    display: inline-block;
+    width: 4em;
+}
+.text-4 {
+    display: inline-block;
+    width: 5.5em;
+}
+
+.text-5 {
+    display: inline-block;
+    width: 6em;
+}
+
+.text-6 {
+    display: inline-block;
+    width: 7em;
+}
+
+.indent-1 {
+    text-indent: 1em;
+}
+
+.flex-content {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
+
+.vertical-flex {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flex-wrap {
+    -moz-box-lines: multiple;
+    /*Firefox*/
+    -webkit-box-lines: multiple;
+    /*Safari,Opera,Chrome*/
+    box-lines: multiple;
+    flex-wrap: wrap;
+}
+
+.flex-main {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.flex-main>.input,
+.flex-main>.textarea{
+    width: 100%;
+}
+
+
+
+
+/*login*/
+
+.login-wrapper {
+    min-height: 100%;
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+.login-header {
+    display: block;
+    width: 65%;
+    margin: 0 auto 2em;
+}
+
+.login-section {
+    padding: 1em;
+}
+
+.login-table {
+    width: 100%;
+}
+
+.login-table td {
+    padding-top: 1em;
+}
+
+.login-table .input {
+    width: 100%;
+    height: 3em;
+}
+
+.login-tips {
+    display: block;
+    width: 51%;
+    margin: 1em auto;
+}
+
+.login-footer {
+    margin-top: -6em;
+    width: 100%;
+    padding: 1em;
+    color: #fff;
+    text-align: center;
+    line-height: 1.8;
+    z-index: 2;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    background-color: #d10000;
+    color: #fff;
+    text-align: center;
+}
+.return{
+    position: absolute;
+    top: 0;
+    left: .5em;
+    line-height: 3em;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    padding: 2.5%;
+}
+
+/*首页*/
+
+.index-item {
+    flex: 0 0 25%;
+    text-align: center;
+    color: inherit;
+    text-decoration: none;
+}
+
+/*设备信息*/
+.device-info .layui-layer-content{
+    padding: .5em 1em;
+    line-height: 2;
+}
+/*菜品分类*/
+
+.classify-list {
+    border-bottom: 1px solid #d7d7d7;
+    padding: .5em 0;
+    margin-bottom: .2em;
+}
+
+.classify-name {
+    padding: 0 .5em;
+}
+
+
+/*菜品设置*/
+
+.food-set {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.classify {
+    float: left;
+    margin-left: 3%;
+    margin-right: 2%;
+    width: 23%;
+}
+
+.food-set-title {
+    line-height: 3;
+    text-align: center;
+}
+
+.classify-content {
+    background-color: #cacaca;
+    color: #000;
+}
+
+.classify-item {
+    padding: 1em .5em;
+    line-height: 1.6;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+}
+
+.classify-item.active {
+    background-color: #fff;
+}
+
+.dish-list {
+    float: left;
+    width: 70%;
+}
+
+.dish-list .food-set-title {
+    border-bottom: 1px dashed #d1d1d1;
+}
+
+.dish-list-item {
+    padding: .5em 0;
+    margin-bottom: .2em;
+    border-bottom: 1px dashed #d1d1d1;
+    line-height: 2;
+}
+
+.dish-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 3.5em;
+    height: 2.1em;
+}
+.dishes-btn-group{
+    margin-left: 1em;
+}
+.dishes-btn-group .default-btn{
+    margin-bottom: 5px;
+}
+
+
+/*菜品编辑*/
+
+.dish-classify-item {
+    width: 5em;
+    height: 5em;
+    padding: .3em;
+    font-size: .9em;
+    background-color: rgba(182, 182, 182, 0.37);
+    border-radius: .3em;
+    border: 2px solid rgba(255, 255, 255, 0.37);
+    margin-bottom: .5em;
+    margin-right: .3em;
+}
+
+.dish-classify-item.active {
+    background-color: #ad0000;
+    border: 1px solid #fff;
+}
+
+.dish-img-preview,
+.img_horizontal,
+.img_vertical,
+.img-vip-ad {
+    border-radius: .5em;
+    background-color: #ccc;
+    border: 1px solid #fff;
+    overflow: hidden;
+}
+
+.dish-img-preview {
+    width: 100%;
+    margin-top: 1em;
+    margin-bottom: .5em;
+}
+
+.img_horizontal {
+    width: 14em;
+    height: 7.875em;
+}
+
+.img_vertical {
+    width: 9em;
+    height: 16em;
+}
+
+.img-vip-ad {
+    width: 14em;
+    height: 6.3em;
+}
+
+.dish-img-preview img,
+.img_horizontal img,
+.img_vertical img,
+.img-vip-ad img {
+    width: 100%;
+    height: 100%;
+}
+
+.dish-edit-title {
+    position: relative;
+    text-align: center;
+    font-size: 1.2em;
+    line-height: 2.4;
+    margin-bottom: .5em;
+}
+
+.dish-edit-title .remarks {
+    position: absolute;
+    right: 0;
+    top: .5em;
+}
+
+
+/*顾客小票*/
+.receipt-logo{
+    display: block;
+    width: 7em;
+    height: 7em;
+    border-radius: 1em;
+    margin: .5em auto;
+}
+.receipt-header {
+    line-height: 3;
+    text-align: center;
+    color: #fff;
+}
+
+.receipt-preview {
+    width: 90%;
+    background-color: #fff;
+    color: #313131;
+    border-radius: .2em;
+    padding: .5em;
+    margin: 0 auto 1em;
+    line-height: 1.5;
+}
+
+.receipt-food {
+    width: 100%;
+}
+
+.receipt-num {
+    font-size: 1.6em;
+    text-align: center;
+}
+
+.bill-demo-content {
+    float: left;
+    width:
+}
+
+.bill-demo-icon {
+    width: 8em;
+    height: 6em;
+    padding: 1em 0;
+    background-color: #e4e3e3;
+    border: 1px solid #fff;
+    border-radius: .5em;
+    text-align: center;
+    margin-right: 1em;
+}
+
+.bill-demo-icon img {
+    height: 100%;
+}
+
+.bill-demo-icon.active {
+    position: relative;
+    background-color: #d10000;
+}
+
+.bill-demo-icon.active:before {
+    position: absolute;
+    top: .3em;
+    right: .3em;
+    font-family: "iconfont" !important;
+    content: "\e642";
+    color: #fff;
+}
+.printer-tips{
+    padding-left: 2em;
+}
+
+
+/*角色设置*/
+
+.accounts-role {
+    min-width: 3em;
+}
+
+.accounts-operate {
+    min-width: 6.5em;
+}
+
+
+/*外卖对接*/
+
+.metituan-ad {
+    padding-top: 2em;
+    padding-bottom: 2em;
+}
+
+
+/*条形数据表*/
+
+.chart-table td {
+    padding: .2em .1em;
+}
+
+.chart-length {
+    display: inline-block;
+    height: .5em;
+    background-color: #c6c6c6;
+}
+
+.chart-length.blue {
+    height: .8em;
+    background-color: #00b8ee;
+}
+
+.chart-msg {
+    display: none;
+    position: fixed;
+    left: 50%;
+    margin-left: -7.5em;
+    width: 15em;
+    padding: .5em 1em;
+    line-height: 1.8em;
+    background-color: #7b7b7b;
+    color: #fff;
+    border: 1px solid #7ecdf4;
+    border-radius: .5em;
+}
+
+
+
+/*圆环图表 标注*/
+
+.chart-legend {
+    width: 8em;
+    margin-left: 1em;
+}
+
+.chart-icon {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+    margin-top: 2px;
+    margin-right: 5px;
+}
+
+.cash {
+    background-color: #fe0000;
+}
+
+.wechat {
+    background-color: #00ff01;
+}
+
+.alipay {
+    background-color: #00a0ea;
+}
+
+.member {
+    background-color: #ff7e00;
+}
+
+.card {
+    background-color: #fe00dd;
+}
+
+
+/*白底方块统计*/
+
+.chart-content {
+    display: inline-block;
+    width: 45%;
+    height: 6em;
+    line-height: 2;
+    background-color: #fff;
+    color: #434343;
+    border: 1px solid #434343;
+    padding: 1em 1em .5em;
+    border-radius: .5em;
+    text-align: center;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: .5em;
+}
+
+.chart-detail {
+    padding-top: .5em;
+    line-height: 1.8;
+}
+
+
+/*菜品统计*/
+
+.food-chart-head {
+    padding-right: 1em;
+}
+
+.food-chart-tab {
+    background-color: #b6b4b5;
+    color: #fff;
+    width: 100%;
+    height: 3em;
+    line-height: 3em;
+    overflow: hidden;
+    border-radius: .3em;
+    margin-bottom: 1em;
+    text-align: center;
+}
+
+.food-chart-tab .flex-main.active {
+    background-color: #d20001;
+}
+
+
+
+
+
+/*积分兑换礼品列表*/
+
+.gift-list {
+    margin-left: -3%;
+    margin-right: -3%;
+    padding: 0 .2em;
+}
+
+.gift-item {
+    float: left;
+    width: 50%;
+    padding: 0 .5em .5em;
+}
+
+.gift-item img {
+    display: block;
+    width: 100%;
+    margin: .2em auto;
+}
+
+
+
+.hide {
+    display: none;
+}

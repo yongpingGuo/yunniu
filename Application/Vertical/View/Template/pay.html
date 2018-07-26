@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+	</head>
+	<body class="pay">
+		<div id="pay" v-cloak>
+			<header class="template-header">
+				<button class="return-btn" @click="orderAgain">
+					<img src="__PUBLIC__/images/return.png">
+					<span>重新点餐</span>
+				</button>
+			</header>
+			<section class="pay-content">
+				<input type="hidden" name="wechat_code" id="wechat_code" value="{$wechat_code}">
+				<input type="hidden" name="total_amount" id="total_amount" value="{$total_amount}">
+				<input type="hidden" name="order_sn" id="order_sn" value="{$order_sn}">
+				<input type="hidden" name="ali_code" id="ali_code" value="{$ali_code}">
+				<input type="hidden" name="wechat" id="wechat" value="{$wechat}">
+				<input type="hidden" name="cash" id="cash" value="{$cash}">
+				<div class="">共：&yen;<span class="pay-money">{{total_amount}}</span>元</div>
+				<div class="pay-way">
+					<el-row :gutter="100" type="flex" justify="center">
+						<el-col :span="9" v-if="wechat_code == '1'">
+							<!--<button  onclick="location='/index.php/Vertical/Template/finish'">-->
+								<img src="/index.php/Vertical/WxChat/qrc/order_sn/{$order_sn}">
+								<div>微信支付</div>
+							<!--</button>-->
+						</el-col>
+						<el-col :span="9" v-if="ali_code == '1'">
+							<!--<button  onclick="location='/index.php/Vertical/Template/finish'">-->
+								<img src="/index.php/Vertical/AlipayDirect/alipay_code/order_sn/{$order_sn}">
+								<div>支付宝支付</div>
+							<!--</button>-->
+						</el-col>
+					</el-row>
+				</div>
+			</section>
+			<footer class="template-footer clear">
+				<if condition = "$cash eq 1">
+				<button  onclick="cashPay()">我要到收银台付款</button>
+				<else/>
+				</if>
+				本页面在<span id="time">120</span>秒后自动关闭
+			</footer>
+			<audio controls="controls" preload id="music" hidden>
+				<source src="__PUBLIC__/wav/payFinish.wav" type="audio/mpeg" />
+			</audio>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script>
+		//设定倒数秒数
+		var t = 120;
+		//显示倒数秒数
+		function showTime(){
+			t -= 1;
+			document.getElementById('time').innerHTML= t;
+			if(t==3){
+				JsObj.CloseVguang();
+			}
+
+			if(t==0){
+				localStorage.removeItem("order_type");
+				location.href='/index.php/Vertical/Template/serviceRoute';
+				return;
+			}
+			//每秒执行一次,showTime()
+			setTimeout("showTime()",1000);
+		};
+		showTime();
+
+		
+		//vue
+		new Vue({
+			data:{
+				total_amount:0,
+				ali_code:"",
+				wechat:"",
+				cash:"",
+				wechat_code:"",
+				order_sn:"",
+			},
+			created:function(){
+				this.total_amount = $("#total_amount").val();
+				this.cash = $("#cash").val();
+				this.wechat = $("#wechat").val();
+				this.ali_code = $("#ali_code").val();
+				this.wechat_code = $("#wechat_code").val();
+				this.order_sn = $("#order_sn").val();
+
+			},
+			mounted:function(){
+				$('iframe').hide();
+			},
+			methods:{
+				orderAgain:function(){
+					localStorage.removeItem("order_type");
+					JsObj.CloseVguang();
+					location.href='/index.php/Vertical/Template/serviceRoute';
+				}
+			}
+		}).$mount('#pay')
+		
+		//开启微光
+		function jpush(){
+			var order_sn = $("#order_sn").val();
+			JsObj.OpenVguang(order_sn);
+		}	
+		
+		//--------------------------------轮询查询当前订单状态，若订单支付成功则跳页面---------------------------------------	
+		var j;
+		//定时用ajax获取后台订单的状态，当下单的订单状态为已支付时实现页面的跳转
+		window.onload = function myFun(){
+			jpush();
+			j = setInterval("getOrderStatus()",3000);
+		};
+
+		function getOrderStatus(){
+			var order_sn = $("#order_sn").val();
+			var postData = {"order_sn": order_sn};
+
+			postData = (function(obj){ // 转成post需要的字符串.
+				var str = "";
+
+				for(var prop in obj){
+					str += prop + "=" + obj[prop] + "&"
+				}
+				return str;
+			})(postData);
+			var xhr = new XMLHttpRequest();
+			xhr.open("post","/index.php/Vertical/index/getOrderStatus", 'true');
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function (){
+				var XMLHttpReq = xhr;
+				if (XMLHttpReq.readyState == 4) {
+					if (XMLHttpReq.status == 200) {
+						var text = XMLHttpReq.responseText;
+						console.log(text);
+						var msg = eval('('+text+')');
+						console.log(msg);
+						if(msg['code'] == 1){
+							clearInterval(j);
+							JsObj.CompletePay(order_sn);
+							JsObj.CloseVguang();
+							//location.href='/index.php/Vertical/Template/serviceRoute';
+							location.href='/index.php/Vertical/Template/finish';
+						}
+					}
+				}
+			};
+			xhr.send(postData);
+		}
+		//------------------------------------------------------------------------------------------------------------------------
+		
+		
+		//现金支付
+		function cashPay(){
+			var order_sn = $("#order_sn").val();
+			//alert(order_sn);
+			$.ajax({
+				url:'/index.php/home/index/jpushCashPay',
+				type:"post",
+				dataType:'json',
+				data:{"order_sn":order_sn},
+				success:function(data){
+					console.log(data);
+					if(data.code == 1){
+						JsObj.CompletePay(order_sn);
+						JsObj.CloseVguang();
+						location.href='/index.php/Vertical/Template/serviceRoute';
+					}
+				},
+				error:function(){
+					alert("出错了");
+				}
+			});
+			
+		}
+		
+</script>
+</html>

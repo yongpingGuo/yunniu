@@ -1,0 +1,126 @@
+.col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+.el-input--mini .el-input__inner{
+    max-height: 24px;
+}
+.el-select .el-tag{
+    height: 22px;
+    line-height: 22px;
+}
+input[type="text"], input[type="password"]{
+    max-width: 100%;
+}
+.el-select{
+    max-width: 100%;
+}
+.table-input{
+    width: 50%;
+}
+
+.btn-time-delete{
+    background:transparent;
+    border: 0;
+}
+
+.btn-time-delete span{
+    color: red;
+    width: 100%;
+    border: 0;
+}
+
+.div-border{
+    padding-bottom: 0.3%;
+    margin-bottom: 0.2%;
+    border-bottom: 0.8px solid #ddddbb;
+}
+.row-margin-top {
+    margin-top: 1.5%;
+}
+
+.img-div{
+    position:relative;
+    width: 100%;
+}
+
+.bill-img{
+    width: 100%;
+    height: 90px;
+}
+
+.btn-close{
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    bottom: 0;
+    background-color: transparent;
+    border: 0;
+    width: 1.5em;
+    height: 1.5em;
+}
+.btn-close img{
+    width: 100%;
+    height: 100%;
+}
+.add-btn{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+}
+
+.add-btn img{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.datetimepicker-hours .switch{
+    color: white;
+}
+.datetimepicker-minutes .switch{
+    color: white;
+}
+
+.el-date-editor.el-input{
+    width: 100%;
+}
+
+.el-input__inner {
+    max-height: 37px;
+}
+
+.el-select__tags {
+    overflow: hidden;
+    max-height: 28px;
+}
+
+.text-center{
+    white-space: nowrap;
+}
+
+.a-upload {
+    height: 100%;
+    line-height: 20px;
+    position: relative;
+    cursor: pointer;
+    color: #888;
+    background: #fafafa;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    overflow: hidden;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1
+}
+
+.a-upload  input {
+    position: absolute;
+    font-size: 100px;
+    right: 0;
+    top: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: pointer
+}

@@ -1,0 +1,228 @@
+<include file="Public/head" />
+
+<body>
+    <div class="container-fluid main-content">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2">公众号名称</label>
+                <div class="form-controls col-sm-8">
+                    <input type="text" autocomplete="off" value="{$wechat.name}" id="name">
+                    <span class="help-block">填写公众号的账号名称</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">描述</label>
+                <div class="form-controls col-sm-8">
+                    <textarea rows="3" id="describe">{$wechat.describe}</textarea>
+                    <span class="help-block">用于说明此公众号的功能及用途。</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">公众号账号</label>
+                <div class="form-controls col-sm-8">
+                    <input type="text" value="{$wechat.account}" id="account">
+                    <span class="help-block">填写公众号的账号,一般为英文账号</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">原始ID</label>
+                <div class="form-controls col-sm-8">
+                    <input type="text" value="{$wechat.first_id}" id="first_id">
+                    <span class="help-block">原始ID不能修改,请谨慎填写</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">类型</label>
+                <div class="form-controls col-sm-8">
+                    <select id="type">
+                        <option value="0" <if condition="$wechat['type'] eq '0'">selected</if>>普通订阅号</option>
+                        <option value="1" <if condition="$wechat['type'] eq '1'">selected</if>>普通服务号</option>
+                        <option value="2" <if condition="$wechat['type'] eq '2'">selected</if>>认证订阅号</option>
+                        <option value="3" <if condition="$wechat['type'] eq '3'">selected</if>>认证服务号/认证媒体/政府订阅号</option>
+                    </select>
+                    <span class="help-block">注意:即使公众平台显示为“未认证”, 但只要【公众号设置】/【账号详情】下【认证情况】显示资质审核通过, 即可认定为认证号.</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">AppId</label>
+                <div class="form-controls col-sm-8">
+                    <input type="text" value="{$wechat.appid}" id="appid">
+                    <span class="help-block">请填写微信公众平台后台的AppId</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">AppSecret</label>
+                <div class="form-controls col-sm-8">
+                    <input type="text" value="{$wechat.appsecret}" id="appsecret">
+                    <span class="help-block">请填写微信公众平台后台的AppSecret</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-2 text-right">
+                    <label>URL</label>
+                    <small>（服务器地址）</small>
+                </div>
+                <!--<div id="serverURL" class="col-sm-8">http://myshop.cloudabull.com/index.php/Shop/Wechat/valid</div>-->
+                <div id="serverURL" class="col-sm-8">http://shop.founpad.com/index.php/Admin/Wechat/valid</div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-sm btn-default" onclick="copy('serverURL')">点击复制</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 text-right">Token</label>
+                <div id="token" class="col-sm-8">myshop</div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-sm btn-default" onclick="copy('token')">点击复制</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 text-right">IP白名单</label>
+                <!--<div id="IP" class="col-sm-8">120.24.48.2</div>-->
+                <div id="IP" class="col-sm-8">112.74.12.248</div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-sm btn-default" onclick="copy('IP')">点击复制</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 text-right">文件上传</label>
+                <div class="col-sm-8 text-muted">填写网页授权域名之前请先上传指定文件</div>
+                <div class="col-sm-2">
+                    <div class="file-content">
+                        <button type="button" class="btn btn-sm btn-default">上传文件</button>
+                        <input type="file" name="">
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 text-right">网页授权域名</label>
+                <!--<div id="website" class="col-sm-8">myshop.cloudabull.com</div>-->
+                <div id="website" class="col-sm-8">shop.founpad.com</div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn btn-sm btn-default" onclick="copy('website')">点击复制</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2">Oauth 2.0</label>
+                <div class="form-controls col-sm-8">
+                    <p>在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的【开发者中心】<b>网页服务</b>中配置授权回调域名。<a href="#" target="_black">查看详情</a></p>
+                </div>
+            </div>
+            <div class="form-group text-center">
+                <button type="button" class="blue-btn btn-submit" id="keep">保存</button>
+            </div>
+        </form>
+    </div>
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function copy(elementId) {
+        // 创建元素用于复制
+        var copyContent = document.createElement("input");
+        // 获取复制内容
+        var content = document.getElementById(elementId).innerHTML || document.getElementById(elementId).value;
+        // 设置元素内容
+        copyContent.setAttribute("value", content);
+        // 将元素插入页面进行调用
+        document.body.appendChild(copyContent);
+        // 复制内容
+        copyContent.select();
+        // 将内容复制到剪贴板
+        document.execCommand("copy");
+        // 删除创建元素
+        document.body.removeChild(copyContent);
+    }
+    var wechat_set = "__MODULE__/Wechat/wechatSet";
+    var wechat = "__MODULE__/Wechat/index";
+    var file_upload = "__MODULE__/Wechat/fileUpload";
+
+    $("input[type='file']").change(function() {
+        var formData = new FormData();
+        formData.append("myfile", $(this)[0].files[0]);
+        console.log($(this)[0].files[0]);
+        $.ajax({
+            url: "fileUpload",
+            type: "POST",
+            data: formData,
+            //              data:$(this)[0].files[0],
+            /**
+             *必须false才会自动加上正确的Content-Type
+             */
+            contentType: false,
+            /*
+             * 必须false才会避开jQuery对 formdata 的默认处理
+             * XMLHttpRequest会对 formdata 进行正确的处理
+             */
+            processData: false,
+            success: function(data) {
+                if (data.code == 0) {
+                    layer.msg('上传成功');
+                } else {
+                    layer.msg(data.msg);
+
+                }
+
+            }
+        });
+
+    });
+
+    //上传微信信息
+    $('#keep').on('click', function() {
+        //var is_set = $('#is_set').val();
+        var describe = $('#describe').val();
+        var first_id = $('#first_id').val();
+        var account = $('#account').val();
+        console.log(describe);
+        console.log(first_id);
+        console.log(account);
+        var name = $('#name').val();
+        var appid = $('#appid').val();
+        var appsecret = $('#appsecret').val();
+        var type = $('#type').val();
+
+        //console.log(is_set);
+        console.log(name);
+        console.log(appid);
+        console.log(appsecret);
+        console.log(type);
+
+        if (name && appid && appsecret && describe && first_id && account) {
+            $.ajax({
+                type: 'get',
+                url: wechat_set,
+                data: {
+                    //is_set:is_set,
+                    name: name,
+                    describe: describe,
+                    first_id: first_id,
+                    account: account,
+                    appid: appid,
+                    appsecret: appsecret,
+                    type: type
+                },
+                success: function(data) {
+                    if (data.code == 0) {
+                        layer.msg('修改成功');
+                        setTimeout(function() {
+                            location.href = wechat;
+                        }, 1000);
+                    } else if (data.code == 2) {
+                        layer.msg('插入成功');
+                        setTimeout(function() {
+                            location.href = wechat;
+                        }, 1000);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            })
+        } else {
+            layer.msg('请输入公众号信息');
+        }
+
+    })
+    </script>
+</body>
+
+</html>

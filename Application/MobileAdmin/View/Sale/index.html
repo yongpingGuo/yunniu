@@ -1,0 +1,133 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="明细报表" />
+    <form id="search_form" action="javascript:void(0)">
+        <div class="content flex-content vertical-flex">
+            <div class="flex-main food-chart-head">
+                <div class="section-row flex-content vertical-flex">
+                    <span>日期：</span>
+                    <input type="text" name="startDate" class="input flex-main datepicker-start" value="{$startDate}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" name="endtDate" class="input flex-main datepicker-end" value="{$endDate}">
+                </div>
+                <div class="section-row flex-content vertical-flex">
+                    <span>时间：</span>
+                    <input type="text" name="startTime" class="input flex-main timepicker" value="{$startTime}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" name="endTime" class="input flex-main timepicker" value="{$endTime}">
+                </div>
+            </div>
+            <button class="danger-btn-default" onclick="submit_form()">查询</button>
+        </div>
+    </form>
+    <!--<section class="section flex-content vertical-flex">
+        <div id="cahrtCanvas"></div>
+        <div class="chart-legend">
+            <div class="section-row">
+                <span class="chart-icon wechat"></span>
+                <span>微信</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon alipay"></span>
+                <span>支付宝</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon cash"></span>
+                <span>现金</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon member"></span>
+                <span>会员</span>
+            </div>
+            <div>
+                <span class="chart-icon card"></span>
+                <span>银行代收</span>
+            </div>
+        </div>
+    </section>
+    <div class="section-row">
+        <div class="chart-content">
+            <div>实际营业额</div>
+            <div>500.00</div>
+        </div>
+        <div class="chart-content">
+            <div>有效订单</div>
+            <div>100单</div>
+        </div>
+        <div class="chart-content chart-detail">
+            <div class="flex-content">
+                <span>退单数：</span>
+                <span class="flex-main text-right">0单</span>
+            </div>
+            <div class="flex-content">
+                <span>退菜：</span>
+                <span class="flex-main text-right">0份</span>
+            </div>
+            <div class="flex-content">
+                <span>退款：</span>
+                <span class="flex-main text-right">0.00元</span>
+            </div>
+        </div>
+    </div>-->
+    <div id="orderInfo">
+    </div>
+    <div class="remarks">*通过电脑端进入，可查订单明细与导出明细报表。</div>
+</block>
+<block name="js">
+    <include file="Public:date" />
+    <include file="Public:highcharts" />
+    <script>
+    $(function() {
+        var form = $("#search_form")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url: '/index.php/MobileAdmin/sale/orderInfo',
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            beforeSend: function() {
+                layer.open({
+                    type: 3,
+                    icon: 2,
+                    skin: "loading"
+                });
+            },
+            success: function(data) {
+                $("#orderInfo").html(data);
+                // charts(data);
+                layer.closeAll('loading');
+            }
+        });
+
+    });
+
+    function submit_form() {
+        var form = $("#search_form")[0];
+        var formDate = new FormData(form);
+        $.ajax({
+            url: '/index.php/MobileAdmin/sale/orderInfo',
+            data: formDate,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                layer.open({
+                    type: 3,
+                    icon: 2,
+                    skin: "loading"
+                });
+            },
+            success: function(data) {
+                $("#orderInfo").html(data);
+                // charts(data);
+                layer.closeAll('loading');
+            }
+        });
+    }
+    </script>
+</block>

@@ -1,0 +1,2 @@
+sesion：{"restaurant_id":"1","desk_code":"0","wx_prepaid_flag":1,"business_id":"23"}，cookie:{"PHPSESSID":"6451d8rk0fmj3ef5hrps5eume5","Hm_lvt_407473d433e871de861cf818aa1405a1":"1511521459,1511580749,1511750293,1511837180","Hm_lpvt_407473d433e871de861cf818aa1405a1":"1511837196","restaurant_id":"1"}||时间2017-11-28 10:47:19
+

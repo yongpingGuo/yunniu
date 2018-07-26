@@ -1,0 +1,111 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="新增分类" />
+    <form id="myform" action="javascript:void(0)">
+        <section class="section">
+            <div class="section-row flex-content vertical-flex">
+                <div>分类名称：</div>
+                <input type="text" class="flex-main input" name="food_category_name" id="food_category_name" placeholder="请输入菜品分类名称">
+            </div>
+            <div class="file-content">
+                <button class="danger-btn-sm">自定义图标</button>
+                <input type="file" name="user_define_img" onchange="preview(this)" id="user_define_img">
+            </div>
+            <input type="hidden" name="ico_category_type" id="ico_category_type" value="0" />
+            <div class="section-row flex-content vertical-flex">
+                <span>图标预览：</span>
+                <img src="__PUBLIC__/images/defaultFoodCate1.png" class="icon-sm" id="img_display">
+                <input type="hidden" name="img_url" id="img_url" value="__PUBLIC__/images/defaultFoodCate1.png" />
+            </div>
+            <div class="section-row">
+                <foreach name="ico_detail" item="vo">
+                    <img src="{$vo['photo']}" class="icon-sm" onclick="point_img(this.src)">
+                </foreach>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section-row">
+                <span>设为定时</span>
+                <div class="checkbox-switch">
+                    <input type="checkbox" name="is_timing" id="is_timing" onchange="showtime2()">
+                    <label></label>
+                </div>
+                <span class="remarks">指定星期、时间显示</span>
+            </div>
+        </section>
+        <section class="section" id="timeout_week" style="display: none">
+            <span>星期定时</span>
+            <div id="day">
+                <!--<div>
+                <div class="section-row">
+                    <input type="text" class="input-time timepicker" name="dayStartTime">
+                    <span>至</span>
+                    <input type="text" class="input-time timepicker" name="dayEndTime">
+                </div>
+                <div>
+                    <label class="checkbox">
+                        <input type="checkbox" name="monday" value="1">
+                        <span>周一</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="tuesday" value="2">
+                        <span>周二</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="wednesday" value="3">
+                        <span>周三</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="thursday" value="4">
+                        <span>周四</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="friday" value="5">
+                        <span>周五</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="saturday" value="6">
+                        <span>周六</span>
+                    </label>
+                    <label class="checkbox">
+                        <input type="checkbox" name="sunday" value="0">
+                        <span>周日</span>
+                    </label>
+                </div>
+            </div>-->
+            </div>
+            <hr class="hr">
+            <button class="danger-btn" type="button">
+                <i class="iconfont icon-plus" data-type="0" onclick="addTiming(this)"></i>
+            </button>
+        </section>
+        <section class="section" id="timeout_date" style="display: none">
+            <span>日期定时</span>
+            <div id="time">
+                <!--<div>
+                <div class="section-row">
+                    <span>日期：</span>
+                    <input type="text" class="input-time datepicker-start"  name="startTime">
+                    <span>至</span>
+                    <input type="text" class="input-time datepicker-end" name="endTime">
+                </div>
+                <div class="section-row">
+                    <span>时间：</span>
+                    <input type="text" class="input-time timepicker" name="startHour">
+                    <span>至</span>
+                    <input type="text" class="input-time timepicker" name="endHour">
+                </div>
+            </div>-->
+            </div>
+            <hr class="hr">
+            <button class="danger-btn" type="button">
+                <i class="iconfont icon-plus" data-type="1" onclick="addTiming(this)"></i>
+            </button>
+        </section>
+    </form>
+    <button class="danger-btn-lg" onclick="commit(0)">保存设置</button>
+</block>
+<block name="js">
+    <include file="Public:date" />
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/category_set.js?20170921"></script>
+</block>

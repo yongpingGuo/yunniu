@@ -1,0 +1,102 @@
+ <table id="mytr">
+                        <tr class="text-center">
+                            <td></td>
+                            <td>排序</td>
+                            <td>名称</td>
+                            <td>图片</td>
+                            <td>价格</td>
+                            <td>类别</td>
+                            <td>星级</td>
+                            <td>时价</td>
+                            <td>状态</td>
+                            <td></td>
+                        </tr>
+                        <volist name = "info" id = "v">
+                        <tr>
+                        	<td>{$key+1}</td>
+                        	<!--<td><button class="btn-none" onclick = "moveup({$v.food_id})"><img src="__PUBLIC__/images/up.png" ></button>
+                        	<button class="btn-none" onclick = "movedown({$v.food_id})"><img src="__PUBLIC__/images/down.png"></button>
+                    			</td>-->
+                    			<td><button class="btn-none moveup" ><img src="__PUBLIC__/images/up.png" ></button>
+                        	<button class="btn-none movedown"><img src="__PUBLIC__/images/down.png"></button>
+                    			</td>
+                    			<td>{$v.food_name}</td>
+                    			<td><img src = "/{$v.food_img}" class="dishes-img" style="width: 70px; height: 47px;"></td>
+                    			<td>{$v.food_price}元</td>
+                    			<td>{$v.food_category_name}</td>
+								<input name = 'food_category_name' value = "{$v.food_category_id}"/>
+                    			<if condition = "$v.star_level eq 1">
+                    					<td>★</td>
+                    			</if>
+                  					<if condition = "$v.star_level eq 2">
+                    					<td>★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 3">
+                    					<td>★★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 4">
+                    					<td>★★★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 5">
+                    					<td>★★★★★</td>
+                    			</if>
+                    			<eq name = "v.is_prom" value = "0">
+                    				<td>关闭</td>
+                    			<else/>
+                    				<td>开启</td>
+                    			</eq>
+                  				<eq name = "v.is_sale" value = "0">
+                    				<td>下架</td>
+                    			<else/>
+                    				<td>上架</td>
+                    			</eq>	
+                  				<td>
+                  					<button class="btn btn-primary" onclick="location = '/index.php/admin/Dishes/edit/food_id/{$v.food_id}'">编辑</button>
+                    				<button class="btn btn-info" onclick="changestatu({$v.food_id})"><eq name = "v.is_sale" value = "1">下架<else/>上架</eq></button>
+                    				<button class="btn btn-default" onclick = "delfoodinfo1({$v.id})">删除</button>
+                  				</td>
+                        </tr>
+                        </volist>
+                    </table>
+                    <div class="text-center">
+						<ul class="pagination" id="detail-page">{$page}</ul>
+					</div>
+                    
+<script>
+		$(".moveup").click(function(){ 
+    	var $tr = $(this).parents("tr"); 
+	    if ($tr.index() != 1) { 
+	      $tr.fadeOut().fadeIn(); 
+	      $tr.prev().before($tr); 
+	        
+	    } 
+  }); 
+  
+  	$(".movedown").click(function(){ 
+    	var len = $(".movedown").length; 
+	    var $tr = $(this).parents("tr"); 
+    	if ($tr.index() != len) { 
+     	 $tr.fadeOut().fadeIn(); 
+      	$tr.next().after($tr); 
+    	} 
+  }); 
+  
+  $("#detail-page").children().children("a").click(function(){
+		var page = parseInt($(this).data("page"));
+		var food_category_id = $('.food_category_name').attr("values");
+		console.log(food_category_id);
+		$.ajax({
+			url:"/index.php/admin/Dishes/deskInfo2",
+			data:{"page":page,"food_category_id":food_category_id},
+			type:"get",
+			success:function(data){
+				$("#all").html(data);
+			},
+			error:function(){
+				alert("出错了");
+			}
+		});
+		
+		
+	});
+</script>

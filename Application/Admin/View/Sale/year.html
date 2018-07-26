@@ -1,0 +1,125 @@
+<extend name="Public:base" />
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="{:U('Sale/year')}">{{langData.annualReport[lang]}}</a>
+        </li>
+        <li>
+            <a href="{:U('Sale/month')}">{{langData.monthlyReport[lang]}}</a>
+        </li>
+    </ul>
+    <div class="container-fluid">
+        <form class="panel-heading alert-success" id="postForm">
+            <span>{{langData.annualReport[lang]}}:</span>
+            <select id="year" name="year">
+                <volist name="year_list" id="v_year">
+                    <if condition="$v_year eq $year">
+                        <option value="{$v_year}" selected>{$v_year}</option>
+                        <else/>
+                        <option value="{$v_year}">{$v_year}</option>
+                    </if>
+                </volist>
+            </select>
+        </form>
+        <div id="contain"></div>
+    </div>
+</block>
+<block name="js">
+    <include file="Public/hcharts" />
+    <script src="__PUBLIC__/highcharts/highcharts_lang.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            $("#contain").css('min-width', $('.main-content').width() - 50);
+            //查询年表
+            $('#postForm').on('submit', function(e) {
+                var ev = window.event || e;
+                window.event ? window.event.returnValue = false : ev.preventDefault();
+                var vs = $('select  option:selected').val();
+                $.ajax({
+                    url: '/index.php/admin/sale/year',
+                    dataType: 'json',
+                    data: { "year": vs },
+                    type: 'POST',
+                    beforeSend: function() {
+                        layer.open({
+                            type: 3,
+                            icon: 2,
+                            skin: "loading"
+                        });
+                    },
+                    success: function(data) {
+                        layer.closeAll('loading');
+                        if (data.code == 1) {
+                            chart(data.data);
+                        } else {
+                            alert(data.msg);
+                        }
+                    }
+                })
+                return false;
+            });
+
+            $('form').submit();
+            // 选择按年
+            $("#year").change(function() {
+                $('#postForm').submit();
+            });
+        })
+
+        function chart(data) {
+            $('#contain').highcharts({
+                chart: {
+                    type: 'column'
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: vm.langData.annualReport[vm.lang]
+                },
+                xAxis: {
+                    categories: data.month
+                },
+                yAxis: {
+                    min: 0,
+                    title: {
+                        text: vm.langData.sales[vm.lang]
+                    }
+                },
+                tooltip: {
+                    headerFormat: '',
+                    pointFormat: '<table><tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                        '<td style="padding:0"><b>{point.y:.2f} </b></td></tr>',
+                    footerFormat: '</table>',
+                    shared: true,
+                    useHTML: true
+                },
+                plotOptions: {
+                    column: {
+                        pointPadding: 0.2,
+                        borderWidth: 0
+                    }
+                },
+                series: [{
+                    name: vm.langData.cash[vm.lang],
+                    data: data.cash
+                }, {
+                    name: vm.langData.WeChat[vm.lang],
+                    data: data.wx
+                }, {
+                    name: vm.langData.Alipay[vm.lang],
+                    data: data.ali
+                }, {
+                    name: vm.langData.member[vm.lang],
+                    data: data.mem
+                }, {
+                    name: vm.langData.bankReceipt[vm.lang],
+                    data: data.minsheng
+                }, {
+                    name: vm.langData.total[vm.lang],
+                    data: data.totle
+                }]
+            });
+        };
+    </script>
+</block>

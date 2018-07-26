@@ -1,0 +1,51 @@
+<include file="Public/head"/>
+<!-- 打印机对接 -->
+<body>
+	<div class="container-fluid">
+	<h2>美团商家数据配置</h2><br>
+    <span>APP ID</span><br>
+    <input type="hidden" name="primary_id" value="{$meituan['id']}" id="primary_id"/>
+    <input id="app_id" placeholder="输入商家APP ID" value="{$meituan['app_id']}" style="width:300px;"><br><br><br>
+    <span>APP Secret</span><br>
+    <input id="app_secret" placeholder="输入商家APP Secret" value="{$meituan['app_secret']}" style="width:300px;"><br><br><br>
+    <!--<span>app_poi_code（店铺id）</span><br>-->
+    <!--<input id="app_poi_code" placeholder="输入商家app_poi_code" value="{$Think.session.restaurant_id}" style="width:300px;" readonly="readonly"><br><br><br>-->
+    <button id="submit_info">提交设置</button><br><br><br>
+		<!--<span>注：以下url配置流程，美团外卖开放平台&ndash;&gt;开发者中心&ndash;&gt;登录&ndash;&gt;美团外卖开发者后台&ndash;&gt;基础设置&ndash;&gt;回调接口设置&ndash;&gt;配置对应url</span><br><br>
+		<span>美团开发者平台连接：<a href="http://developer.waimai.meituan.com" target="_blank">http://developer.waimai.meituan.com</a></span><br><br><br>
+		<span>推送订单URL：{$push_order_url}</span><br><br><br>
+    <span>美团用户或客服取消URL：{$push_order_cancel_url}</span><br><br><br>
+    <span>订单结算信息回调URL：{$push_order_result_url}</span><br><br><br>-->
+
+    <span style="color: #FF0000">温馨提示：完成以上“商家数据配置”后，就到“美团店铺映射”完成店铺映射</span><br><br><br>
+	</div>
+</body>
+<script>
+  $("#submit_info").bind('click',function(){
+    var app_id=$("#app_id").val();
+    var app_secret=$("#app_secret").val();
+    var primary_id=$("#primary_id").val();
+//    var app_poi_code=$("#app_poi_code").val();
+      if(!(app_id && app_secret)){
+            alert('请将信息填写完整');
+            return false;
+      }
+//    location.href="__URL__/submit_meituan_info?app_id="+app_id+"&app_secret="+app_secret+"&app_poi_code="+app_poi_code;
+      /*$.post("__URL__/submit_meituan_info",{"app_id":app_id,"app_secret":app_secret,"primary_id":primary_id},function(data){
+
+      });*/
+      $.ajax({
+          url:"__URL__/submit_meituan_info",
+          type:"post",
+          data:{"app_id":app_id,"app_secret":app_secret,"primary_id":primary_id},
+          async:false,
+          success:function(data){
+              location.href="__URL__/meituan";
+          },
+          error:function(){
+              console.log("访问出错");
+          }
+      });
+  });
+</script>
+</html>

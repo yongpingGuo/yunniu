@@ -1,0 +1,29 @@
+<extend name="Public:canteen" />
+<block name="main">
+    <body>
+        <!-- 有订单的页面 -->
+        <div class="container  order-list-body">
+        <volist name="list" id="vo">
+            <a class="flex-content list-item" href='{:U("order/info", "order_id=$vo[order_id]")}'>
+                <div class="flex-main">
+                    <P class="order-restaurant">{$vo.restaurant_name}</P>
+                    <p class="text-grey">使用时间：{$vo.use_time} </p>
+                    <p class="text-grey">消费金额：&yen;{$vo.total_amount}</p>
+                </div>
+                <if condition="$vo['push_status'] neq 5">
+                    <div class="text-danger">未使用</div>
+                <else />
+                    <div class="text-grey">已使用</div>
+                </if>
+            </a>
+        </volist>
+        <empty name="list">
+            <p class="none-msg">您还没有相关订单</p>
+        </empty>
+        <footer class="back-order order-footer">
+            <a href="{$url}"><div class="back-info">返回继续点餐</div></a>
+        </footer>
+    </div>
+        <!-- 无订单列表 -->
+        <!-- <p class="none-msg">您还没有相关订单</p> -->
+</block>

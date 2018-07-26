@@ -1,0 +1,118 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="收款对接" />
+    <section class="section">
+        <header class="section-title">对接设置</header>
+        <label class="section-row flex-content">
+            <input type="hidden" id="hidden_mode" value="{$mode}" />
+            <div class="radio">
+                <input type="radio" name="mode" value="1" onchange="is_mode(this)">
+                <i class="circle-icon"></i>
+            </div>
+            <div class="flex-main">
+                <span>微信、支付宝官方对接</span>
+                <div class="remarks">微信收款到银行卡，支付宝收款到支付宝。</div>
+            </div>
+        </label>
+        <label class="section-row flex-content">
+            <div class="radio">
+                <input type="radio" name="mode" value="2" onchange="is_mode(this)">
+                <i class="circle-icon"></i>
+            </div>
+            <div class="flex-main">
+                <span>银行代收（微信+支付宝）</span>
+                <div class="remarks">微信与支付宝，商家收款都在同一张银行卡上。</div>
+            </div>
+        </label>
+    </section>
+    <section class="section">
+        <header class="section-title">对接设置</header>
+        <div class="flex-content flex-wrap section-row">
+            <a class="index-item" href="{:U('DataDock/wechat')}">
+                <div class="section-icon">
+                    <img src="__PUBLIC__/images/mobile/wechat.png">
+                </div>
+                <div>微信官方</div>
+            </a>
+            <a class="index-item" href="{:U('DataDock/alipay')}">
+                <div class="section-icon">
+                    <img src="__PUBLIC__/images/mobile/alipay.png">
+                </div>
+                <div>支付宝官方</div>
+            </a>
+            <!--<a class="index-item" href="{:U('Index/bank')}">-->
+            <a class="index-item" href="{:U('DataDock/fourth')}">
+                <div class="section-icon">
+                    <img src="__PUBLIC__/images/mobile/discount.png">
+                </div>
+                <div>银行代收</div>
+            </a>
+        </div>
+        <div class="remarks indent-1">设为银行代收时，无须申请微信与支付宝。</div>
+    </section>
+    <section class="section">
+        <header class="section-title">使用状态</header>
+        <div class="section-row">
+            <span class="text-4">微信收款</span>
+            <div class="checkbox-switch">
+                <volist name="pay_select" id="pa_vo">
+                    <if condition="$pa_vo['s_num'] eq 1">
+                        <if condition="$pa_vo['value'] eq 1">
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)" checked>
+                            <else/>
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)">
+                        </if>
+                    </if>
+                </volist>
+                <label></label>
+            </div>
+        </div>
+        <div class="section-row">
+            <span class="text-4">支付宝收款</span>
+            <div class="checkbox-switch">
+                <volist name="pay_select" id="pa_vo">
+                    <if condition="$pa_vo['s_num'] eq 4">
+                        <if condition="$pa_vo['value'] eq 1">
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)" checked>
+                            <else/>
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)">
+                        </if>
+                    </if>
+                </volist>
+                <label></label>
+            </div>
+        </div>
+        <div class="section-row">
+            <span>自助点餐机现金收款</span>
+            <div class="checkbox-switch">
+                <volist name="pay_select" id="pa_vo">
+                    <if condition="$pa_vo['s_num'] eq 2">
+                        <if condition="$pa_vo['value'] eq 1">
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)" checked>
+                            <else/>
+                            <input type="checkbox" name="{$pa_vo.config_name}" onchange="is_open(this)">
+                        </if>
+                    </if>
+                </volist>
+                <label></label>
+            </div>
+            <span class="remarks">建议关闭</span>
+        </div>
+        <div class="remarks">顾客流程：下单 >未支付，打印小票 >恁小票到收银台支付</div>
+    </section>
+    <section class="section">
+        <!--<header class="section-title">花一分钱测试微信支付</header>-->
+        <img src="__PUBLIC__/images/pay_01.png" class="icon-lg hide">
+        <button class="danger-btn-lg" data-type="2" onclick=" create_qr_code(this)">花一分钱测试微信支付</button>
+        <div class="remarks text-center">请用其它手机扫本码，支付时，确认商家名称正确。</div>
+    </section>
+    <section class="section">
+        <!--<header class="section-title">花一分钱测试支付宝支付</header>-->
+        <img src="__PUBLIC__/images/pay_03.png" class="icon-lg hide">
+        <button class="danger-btn-lg" data-type="1" onclick="create_qr_code(this)">花一分钱测试支付宝支付</button>
+        <div class="remarks text-center">请用其它手机扫本码，支付时，确认商家名称正确。</div>
+    </section>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/dataForPay.js"></script>
+</block>

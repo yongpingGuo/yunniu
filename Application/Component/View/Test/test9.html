@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<form action="javascript:void(0)" method="post" id="form">
+    <input type="text" name="device_code">
+    <input type="text" name="action" id="action">
+    <button type="submit" id="submit-form" onclick="submit_form()">提交</button>
+</form>
+<script>
+    function submit_form(){
+        var action = document.getElementById("action").value;
+        var url = "/index.php/allAgent/activate/"+action;
+
+        document.getElementById("form").action = url;
+        document.getElementById("submit-form").submit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>取餐提醒</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/remind.css">
+	<script src='__PUBLIC__/js/socket.io.js'></script>
+	<script src='__PUBLIC__/js/notify.js'></script>
+	<script src='__PUBLIC__/js/websocket.js'></script>
+</head>
+<body>
+<input type="hidden" name="device_code" id="device_code" value="{$device_code}">
+<div class="container-fluid" id="table">
+	<div class="row">
+		<div class="col-xs-5 coming">
+			<header>准备中coming</header>
+			<div id="comingDiv">
+				<div id="comingCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+
+					<!-- 轮播（Carousel）项目 -->
+					<div class="carousel-inner" id="item1" >
+						<div class="item active" >
+							<ul class="clearfix">
+								<if condition="$resultArrLen eq 0">
+									<li style="opacity: 0">qweqwe</li>
+								</if>
+								<volist name = "resultArr" id = "v" offset="0" length='16'>
+                                    <?php if($v['take_num']):?>
+                                        <li id="coming{$v.order_sn|substr=-5,5}">{$v.take_num}</li>
+                                    <?php else: ?>
+                                        <li id="coming{$v.order_sn|substr=-5,5}">{$v.order_sn|substr=-5,5}</li>
+                                    <?php endif; ?>
+
+									<!--<li id="coming{$v.order_sn|substr=-5,5}">{$v.order_sn|substr=-5,5}</li>-->
+									<!--<li id="coming{$v.order_sn|substr=-5,5}">{$v.take_num}</li>-->
+								</volist>
+							</ul>
+						</div>
+						<for start="1" end="$total" name="k">
+							<div class="item">
+								<ul>
+									<volist name = "resultArr" id = "v" offset="$k*16" length='16'>
+										<!--<li id="coming{$v.order_sn|substr=-5,5}">{$v.order_sn|substr=-5,5}</li>-->
+										<!--<li id="coming{$v.order_sn|substr=-5,5}">{$v.take_num}</li>-->
+
+                                        <?php if($v['take_num']):?>
+                                            <li id="coming{$v.order_sn|substr=-5,5}">{$v.take_num}</li>
+                                        <?php else: ?>
+                                            <li id="coming{$v.order_sn|substr=-5,5}">{$v.order_sn|substr=-5,5}</li>
+                                        <?php endif; ?>
+									</volist>
+								</ul>
+							</div>
+						</for>
+					</div>
+					<input type="hidden" id="resultArrLen" value="{$resultArrLen}">
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 finish">
+			<header>请取餐finish</header>
+			<div id="serverDiv">
+				<div id="serverCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+					<!-- 轮播（Carousel）项目 -->
+					<div class="carousel-inner" id="item2">
+						<div class="item active">
+							<ul>
+								<volist name = "resultArr1" id = "v1" offset="0" length='5'>
+									<!--<li id="finish{$v1.order_sn|substr=-5,5}">{$v1.order_sn|substr=-5,5}</li>-->
+									<!--<li id="finish{$v1.order_sn|substr=-5,5}">{$v1.take_num}</li>-->
+
+                                    <?php if($v1['take_num']):?>
+                                    <li id="coming{$v1.order_sn|substr=-5,5}">{$v1.take_num}</li>
+                                    <?php else: ?>
+                                    <li id="coming{$v1.order_sn|substr=-5,5}">{$v1.order_sn|substr=-5,5}</li>
+                                    <?php endif; ?>
+								</volist>
+							</ul>
+						</div>
+						<for start="1" end="$total1" name="b">
+							<div class="item">
+								<ul>
+									<volist name = "resultArr1" id = "v1" offset="$b*5" length='5'>
+										<!--<li id="finish{$v1.order_sn|substr=-5,5}">{$v1.order_sn|substr=-5,5}</li>-->
+                                        <!--<li id="finish{$v1.order_sn|substr=-5,5}">{$v1.take_num}</li>-->
+
+                                        <?php if($v1['take_num']):?>
+                                        <li id="coming{$v1.order_sn|substr=-5,5}">{$v1.take_num}</li>
+                                        <?php else: ?>
+                                        <li id="coming{$v1.order_sn|substr=-5,5}">{$v1.order_sn|substr=-5,5}</li>
+                                        <?php endif; ?>
+									</volist>
+								</ul>
+							</div>
+						</for>
+					</div>
+					<input type="hidden" id="resultArrLen1" value="{$resultArrLen1}">
+				</div>
+			</div>
+			<footer>请留意您取餐号</footer>
+		</div>
+		<div class="col-xs-3 ad">
+			<div id="ad-carousel" class="carousel" data-ride="carousel">
+				<!-- 轮播图片 -->
+				<div class="carousel-inner">
+					<div class="item">
+						<img class="remind_ad" src="/{$addr}">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/prevent.js"></script>
+<script>
+	$(document).ready(function () {
+		console.log("domain:");
+		console.log(document.domain);
+		// 连接服务端
+		var socket = io('http://'+document.domain+':2120');
+		// 连接后登录
+		socket.on('connect', function(){
+			var uid = $("#device_code").val();
+			console.log("uid:");
+			console.log(uid);
+			socket.emit('login', uid);
+		});
+		// 后端推送来消息时
+		socket.on('new_msg', function(msg){
+			console.log("msg:");
+			console.log(msg);
+
+			msg = msg.replace(/&quot;/g, '"');
+			console.log(msg);
+			//将推送过来的msg(json字符串转json对象)
+			var msgObj = JSON.parse(msg);
+
+			//判断status的值来决定到底做哪一种行为
+			if(msgObj){
+				f();
+				f1();
+				if(msgObj['action'] == 'finish_order'){
+//					var order_sn = msgObj['order_sn'].substr(-5,5);
+                    // 这里虽然字段名为order_sn，但其实内容是take_num  ,推送的是staff/changestatus
+                    if(msgObj['take_num'] !== "0"){
+                        var order_sn = msgObj['take_num'];
+                    }else{
+                        var order_sn = msgObj['order_sn'].substr(-5,5);
+                    }
+                    // 12 008
+					var str = "请."+order_sn+"号顾客取餐";
+					try{
+						JsObj.speak(str);
+					}catch(e){
+						console.log(e.name+ e.message);
+					}
+				}
+			}
+		});
+	});
+
+	function f(){
+		$.ajax({
+			type:"get",
+			url:"/index.php/home/staff/refresh",
+//			async:false,
+			success:function(data){
+				$('#comingDiv').html(data);
+
+				$('#comingCarousel').carousel({
+					interval: 3000,
+					wrap:true,
+				})
+			}
+		});
+	}
+
+	function f1(){
+		$.ajax({
+			type:"get",
+			url:"/index.php/home/staff/refresh1",
+//				async:false,
+			success:function(data){
+				$('#serverDiv').html(data);
+				$('#serverCarousel').carousel({
+					interval: 2000,
+					wrap:true,
+				})
+			}
+		});
+	}
+
+	$('#ad-carousel .item:first-child').addClass('active');
+</script>
+</body>
+</html>

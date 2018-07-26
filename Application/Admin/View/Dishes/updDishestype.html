@@ -1,0 +1,76 @@
+<include file="Public/head"/>
+<!-- 菜品设置 -->
+<body>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script>
+		function modify1(c){
+			//alert(c);
+			$.ajax({
+				type:"post",
+				url:"__CONTROLLER__/updDishestype",
+				data:{"food_category_id":c},
+			});
+			
+			
+		}
+		
+	</script>
+	
+	
+	<!-- 编辑分类模态框（Modal） -->	
+	<div class="modal fade" id="updSort" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="__MODULE__/Dishes/modifyDishetype/food_category_id/{$info.food_category_id}" method="post" enctype="multipart/form-data">
+				<div class="modal-header">
+				</div>
+				<div class="modal-body">
+					<p>
+						<span>分类名称：</span>
+						<input type="text" name="food_category_name" value="{$info.food_category_name}">
+					</p>
+					<div class="upload-sortImg">
+						<div><span>图标:</span></div>
+						<div class="upload-box"></div>
+						<div><input type="file" class="btn-none ml-10" name="img_pic"/></div>
+						<div><span class="ml-10">建议分辨率：300*300</span></div>
+					</div>
+					<p>定时：
+						<input type="radio" name="setTime" value="timeOff" checked="checked">关闭
+						<input type="radio" name="setTime" value="timeOn">开启
+					</p>
+					<div class="container-fluid">
+						<table class="table-condensed">
+							<tr>
+								<td class="col-sm-1">
+									<button class="btn-none" data-toggle="modal" data-target="#addTime">新增</button>
+								</td>
+								<td class="col-sm-2">星期/号</td>
+								<td  class="col-sm-3">时间段</td>
+							</tr>
+							<tr>
+								<td colspan="2" class="text-center">
+									1.一、二、三、四、五
+								</td>
+								<td>10:00-12:00</td>
+							</tr>
+						</table>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="admin-btn" data-dismiss="modal">关闭</button>
+					<button type="submit" class="admin-btn">提交更改</button>
+				</div>
+				</form>
+			</div>
+			<!-- /.modal-content -->	
+		</div>
+		<!-- /.modal -->	
+	</div>
+	
+
+	
+	<script src="__PUBLIC__/js/dateSelect.js"></script>
+</body>
+</html>

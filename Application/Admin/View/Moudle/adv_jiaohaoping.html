@@ -1,0 +1,25 @@
+<volist name="info888" id="v5" offset="0" length='1'>
+    <div class="showImg pull-left">
+        <div class="imgRectangle" id="{$v5.advertisement_id}">
+            <img src="/{$v5.advertisement_image_url}" class="uploadImg">
+            <input type="file" name="default" onchange="doubleDisplay(this)">
+        </div>
+    </div>
+</volist>
+<volist name="info888" id="v5" offset="1">
+    <div class="showImg pull-left">
+        <div class="imgRectangle" id="{$v5.advertisement_id}">
+            <img src="/{$v5.advertisement_image_url}" class="uploadImg">
+            <button class="delete-btn" onclick="deladver88({$v5.advertisement_id})">
+                <img src="__PUBLIC__/images/delete.png">
+            </button>
+            <input type="file" name="change" onchange="doubleDisplay(this)">
+        </div>
+    </div>
+</volist>
+<div class="showImg pull-left">
+    <div class="imgRectangle">
+        <img src="__PUBLIC__/images/addRectangle.png" class="uploadImg" data-img="add">
+        <input type="file" name="change" onchange="doubleDisplay(this)"></a>
+    </div>
+</div>

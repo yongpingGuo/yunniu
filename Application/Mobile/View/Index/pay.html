@@ -1,0 +1,84 @@
+<extend name="Public:base" />
+<block name="main">
+	<body class="pay-bd">
+		<div class="pay-line pay-dicount">本单可享受的优惠</div>
+		<div class="pay-line">
+			<div class="pay-name">就餐方式</div>
+			<div class="flex-content eat-way">
+				<div class="flex-main eat-item active" data-type="1" onclick="select_order_type(this)">
+					<i class="iconfont icon-canyin eat-icon"></i>
+					<span>堂吃</span>
+				</div>
+				<div class="flex-main eat-item" data-type="2" onclick="select_order_type(this)">
+					<i class="iconfont icon-bag eat-icon"></i>
+					<span>外带</span>
+				</div>
+			</div>
+		</div>
+		<div class="pay-line flex-content vertical-flex">
+			<div class="pay-name">联系方式</div>
+			<input class="flex-main input" type="tel">
+		</div>
+
+		<div class="pay-line flex-content vertical-flex">
+			<div class="flex-main pay-name">支付方式</div>
+			<img src="__PUBLIC__/images/wechat.png" class="mini-icon large">
+			<span class="large">微信支付</span>
+		</div>
+
+		<div class="pay-invoice">
+			<div class="pay-line flex-content vertical-flex">
+				<div class="flex-main pay-name">发票与更多需要</div>
+				<!-- <i class="iconfont icon-more"></i> -->
+			</div>
+			<div class="pay-line">
+				<div class="pay-name">你的姓名</div>
+				<input class="w100 input" type="text">
+			</div>
+		</div>
+		
+
+		<footer class="pay-footer flex-content vertical-flex">
+			<div class="order-footer-left flex-main flex-content vertical-flex">
+                <span>&yen;</span>
+                <span class="order-footer-total">{$order.total_amount}</span>
+                <small>（优惠前总价）</small>
+            </div>
+            <input type="hidden" value="{$order.order_sn}" name="order_sn" id="order_sn">
+			<button class="pay-footer-btn" onclick="selectPay()">
+			    <span>立即支付</span>
+			    <i class="iconfont icon-more"></i>
+			</button>
+		</footer>
+	</body>
+</block>
+
+<block name="js">
+    <script >
+        function select_order_type(obj){
+            var type = $(obj).data('type');
+            $(obj).addClass('active').siblings().removeClass('active');
+            var order_sn = $('#order_sn').val();
+            $.ajax({
+                url: "__CONTROLLER__/change_order_type",
+                type: "post",
+                data: {'order_type':type,'order_sn':order_sn},
+                async: false,
+                dataType: "json",
+                success: function(data) {
+                    if(data.code == 0){
+                        alert('改变订单状态出错');
+                    }
+                },
+                error:function(){
+                    alert("出错了");
+                }
+            });
+        }
+
+        function selectPay(){
+            var order_sn = $("#order_sn").val();
+            self.location.href = "/index.php/mobile/WxPay/pay/order_sn/"+order_sn;
+        }
+    </script>
+</block>

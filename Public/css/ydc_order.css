@@ -1,0 +1,141 @@
+@charset "utf-8";
+.order-body{
+	margin: 0;
+	padding: 0;
+	background: #FFF;
+	box-sizing: border-box;
+	font-size: 14px;
+}
+.order-content{
+	background: url(../images/background1.png);
+	background-repeat: no-repeat;
+	background-size: cover;
+	position: absolute;
+	width: 100%;
+	height: 106%;
+}
+.header-company{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 56px;
+	display:  table;
+	box-sizing: border-box;
+	background: #E2454E;
+	border-radius: 0 0 30px 30px;
+	-o-border-radius: 0 0 30px 30px;
+	-ms-border-radius: 0 0 30px 30px;
+	-webkit-border-radius: 0 0 30px 30px;
+}
+.logo-img{
+	height: 60px;
+	display:  inline-block;
+	position:  absolute;
+	top: 10px;
+	left: 6%;
+}
+.logo-img img{
+	height: 100%;
+	border: none;
+}
+.company-info{
+	width: 100%;
+	display:  table-cell;
+	vertical-align:  middle;
+	color: #FFFFFF;
+	padding-left: 27%;
+}
+.company-info .company-name{
+	font-size: 1.08rem;
+	letter-spacing: 2px;
+}
+.company-info .company-address{
+	font-size: 0.9rem;
+	letter-spacing: 3px;
+	padding-top: 2px;
+}
+.main-content{
+	position:  absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: table;
+}
+.main-order{
+	display:  table-cell;
+	vertical-align:  middle;
+}
+.main-order .order-list{
+	width: 50%;
+	color: #FFFFFF;
+	margin: 0 auto;
+	padding: 1.5em 2em;
+	border-radius: 15px;
+	-o-border-radius: 15px;
+	-ms-border-radius: 15px;
+	-webkit-border-radius: 15px;
+	background: rgba(228,0,0,0.7);
+}
+.order-btn{
+	width:  100%;
+	font-size: 1.4em;
+	display:  table;
+	border-radius: 30px;
+	-o-border-radius: 30px;
+	-ms-border-radius: 30px;
+	-webkit-border-radius: 30px;
+	box-sizing: border-box;
+	margin-bottom: 1em;
+	padding: 10px 20px;
+	height: 54px;
+	position:  relative;
+	text-align: left;
+	letter-spacing: 4px;
+	padding-left: 3em;
+	outline:  none;
+	text-decoration: none;
+	border: 1px solid rgba(255,255,255,0.7);
+}
+.order-btn .btn-text{
+	color: #FFF;
+	text-decoration: none;
+	display:  table-cell;
+	vertical-align:  middle;
+}
+.order-btn:hover{
+	background: #E40000;
+	border: 1px solid #fffad9;
+	border-radius: 30px;
+	-o-border-radius: 30px;
+	-ms-border-radius: 30px;
+	-webkit-border-radius: 30px;
+}
+.order-btn:last-child{
+	margin-bottom: 0;
+}
+.order-btn img{
+	height: 2rem;
+	position:  absolute;
+	top: 10px;
+	left: 0.8em;
+	vertical-align: middle;
+}
+.footer-company{
+	position: relative;
+	top: 94%;
+	width: 100%;
+	height: 6%;
+	color: #E5E5E5;
+	display: table;
+	text-align: center;
+	letter-spacing: 3px;
+}
+.footer-info{
+	font-size: 0.85rem;
+	display: table-cell;
+	vertical-align:  middle;
+}
+@media screen and (max-width:320px){
+	.order-btn{font-size:1.2em;}
+}

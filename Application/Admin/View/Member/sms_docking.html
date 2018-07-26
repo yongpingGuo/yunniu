@@ -1,0 +1,81 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.pointsSet[lang]}}</div>
+        <div class="section-content">
+            <div id="sms_docking">
+                <div class="container-fluid">
+                    <form class="form-horizontal" method="post" onSubmit="return save_sms_docking(this)">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Access Key ID:</label>
+                            <div class="col-sm-6 col-lg-5">
+                                <input type="text" name="appkey" class="form-control" value="{$sms_vip_info['appkey']}" dataType="Require">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">Access Key Secret:</label>
+                            <div class="col-sm-6 col-lg-5">
+                                <input type="text" name="secret" class="form-control" value="{$sms_vip_info['secret']}" dataType="Require">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{langData.signatureName[lang]}}:</label>
+                            <div class="col-sm-6 col-lg-5">
+                                <input type="text" name="sign" class="form-control" value="{$sms_vip_info['sign']}" dataType="Require">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">{{langData.templateCODE[lang]}}:</label>
+                            <div class="col-sm-6 col-lg-5">
+                                <input type="text" name="temp_id" class="form-control" value="{$sms_vip_info['temp_id']}" dataType="Require">
+                                <input type="hidden" name="id" value="{$sms_vip_info['id']}" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-xs-3 control-label">{{langData.AliSMSLinkEntrance[lang]}}:</label>
+                            <div class="col-xs-9 section-tips">
+                                <p>{{langData.AliSMSLinkEntranceTips[lang]}}</p>
+                                <p>({{langData.SMSTemplatesTips[lang]}}
+                                    <span class="text-danger">"{{langData.SMSTemplates[lang]}}${msgcode}"</span>)</p>
+                                <p>
+                                    <span>{{langData.oldUser[lang]}}:</span>
+                                    <a href="https://www.alidayu.com/?channel=baidu&spm=a1z15.973.4467.17133&ad_id=1001319817aad41eae59&campaign_id=547194&b=9447&jlogid=a1614284735f6d" target="_blank">{{langData.enterSMSPlatform[lang]}}</a>
+                                </p>
+                                <p>
+                                    <span>{{langData.newUser[lang]}}:</span>
+                                    <a href="https://dysms.console.aliyun.com/dysms.htm?spm=5176.sms-sign.101.6.3ad73f87bJmb8R#/account" target="_blank">{{langData.enterMessagingPlatform[lang]}}</a>
+                                </p>
+                                <p>
+                                    <span>{{langData.obtainAccessKey[lang]}}:</span>
+                                    <a href="https://ak-console.aliyun.com/?spm=5176.doc55451.2.3.RRM9hK#/accesskey" target="_blank">{{langData.logAliCloudAccess[lang]}}</a>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-sm-10 text-center">
+                            <button class="blue-btn" type="submit">{{langData.save[lang]}}</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+</block>
+<block name="js">
+    <script>
+    function save_sms_docking(obj) {
+        if ($('[name="appkey"]').val() == "" || $('[name="secret"]').val()=="" || $('[name="sign"]').val() == "" || $('[name="temp_id"]').val() == "") {
+            layer.msg(vm.langData.notEmpty[vm.lang])
+            return false;
+        }
+        $.post("/index.php/Admin/member/add_sms_docking", $(obj).serialize(), function(data) {
+            layer.msg(vm.langData.success[vm.lang], { time: "1000" }, function() {
+                location.reload();
+            });
+            // $.get("/index.php/Admin/member/get_sms_docking", function(data) {
+            //     $("#sms_docking").html(data);
+            // });
+
+        });
+    }
+    </script>
+</block>

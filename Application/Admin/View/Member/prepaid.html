@@ -1,0 +1,162 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.preRecharge[lang]}}</div>
+        <div class="section-content">
+            <form>
+                <div class="radio-form">
+                    <label>
+                        <input class="radio-circle" type="radio" name="if_open" id="prepaid-on" value="1" onchange="to_db(this.value,'/index.php/Admin/Member/prepaid_set')">
+                        <i></i>
+                        <span>{{langData.on[lang]}}</span>
+                    </label>
+                    <label>
+                        <input class="radio-circle" type="radio" name="if_open" id="prepaid-off" value="0" onchange="to_db(this.value,'/index.php/Admin/Member/prepaid_set')">
+                        <i></i>
+                        <span>{{langData.off[lang]}}</span>
+                    </label>
+                </div>
+                <div id="memberList">
+                    <table class="table-condensed">
+                        <tbody>
+                            <foreach name="prepaid_rules" item="v">
+                                <tr id="delPrepaid">
+                                    <td class="index1">{++$key}.</td>
+                                    <td>{{langData.recharge[lang]}}
+                                        <input class="small-input" type="text" name="account" value="{$v[account]}">
+                                        <span>{{langData.yuan[lang]}},{{langData.handsel[lang]}}</span>
+                                        <input class="small-input" type="text" name="benefit" value="{$v[benefit]}">
+                                        <span>{{langData.yuan[lang]}}={$v['account']+$v['benefit']}{{langData.yuan[lang]}}</span>
+                                        <input type="hidden" name="id" value="{$v['id']}" />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" onclick="return save_prepaid(this)">{{langData.save[lang]}}</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger" onclick="return shanchu_prepaid(this,'/index.php/Admin/Member/del_prepaid')">{{langData.delete[lang]}}</button>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+            <button class="blue-btn" data-toggle="modal" data-target="#addModal">{{langData.add[lang]}}</button>
+        </div>
+    </section>
+</block>
+<block name="modal">
+    <div class="modal fade add-content" id="addModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal"></button>
+                    <h4 class="modal-title">{{langData.preRecharge[lang]}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-inline">
+                        <div class="form-group">
+                            {{langData.recharge[lang]}}:
+                            <input class="small-input" type="text" name="account" class="form-control" id="man">
+                            <span>{{langData.yuan[lang]}},{{langData.handsel[lang]}}</span>
+                            <input class="small-input" type="text" name="benefit" class="form-control" id="zhe">
+                            <span>{{langData.yuan[lang]}}</span>
+                        </div>
+                    </form>
+                    <div class="text-center">
+                        <button type="button" class="blue-btn" onclick="return add_prepaid(this,'/index.php/Agent/Members/add_prepaid')">{{langData.add[lang]}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <script>
+    $('[name="if_open"]').val([{$if_open}]);
+
+    // 将各类型的设置传递到数据库
+    function to_db(b, url) {
+        // 发送ajax
+        $.post(url, { "if_open": b }, function(data) {
+            if (data.info == 0) {
+                layer.msg(data.info);
+            }
+        });
+    }
+
+    // 模态框添加预充值信息
+    function add_prepaid() {
+        var account = $("#man").val();
+        var benefit = $("#zhe").val();
+        if (account == "" || benefit == "") {
+            layer.msg(vm.langData.preChargeInfoNotEmpty[vm.lang]);
+        } else {
+            // ajax提交
+            $.post('/index.php/Admin/Member/add_prepaid', { "account": account, "benefit": benefit }, function(data) {
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg
+                } else {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                }
+                $("#addModal").modal("hide");
+            });
+        }
+    }
+
+    //模态框消失后清空表单
+    $('#addModal').on('hidden.bs.modal', function() {
+        // 执行一些动作...
+        $("#man").val("");
+        $("#zhe").val("");
+    })
+
+    // 每条记录后面的保存处理
+    function save_prepaid(obj) {
+        var account = $(obj).parent().siblings().find('[name="account"]').val();
+        var benefit = $(obj).parent().siblings().find('[name="benefit"]').val();
+        var id = $(obj).parent().siblings('[name="id"]').val();
+
+        if (account == "" || benefit == "" || id == "") {
+            layer.msg(vm.langData.preChargeInfoNotEmpty[vm.lang]);
+        } else {
+            // ajax提交
+            $.post('/index.php/Admin/Member/save_prepaid', { "account": account, "benefit": benefit, "id": id }, function(data) {
+                layer.msg(vm.langData.preChargeExists[vm.lang]);
+                $.post('/index.php/Admin/Member/get_prepaid', "", function(data) {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                });
+            });
+        }
+        return false;
+    }
+
+    // 预充值删除
+    function shanchu_prepaid(obj, url) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        }, function(index) {
+            // 获取到它的ID，然后删除掉即可
+            var hid = $(obj).parent().siblings().find("[name='id']").val();
+            // ajax提交
+            $.post(url, { "id": hid }, function(data) {
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(vm.langData.failed[vm.lang]);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                }
+
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+    </script>
+</block>

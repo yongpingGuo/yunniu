@@ -1,0 +1,35 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="厨房票据" />
+    <section class="section">
+        <table class="w100 table-striped">
+            <tbody>
+                <volist name="printList" id="vo">
+                    <tr>
+                        <td>
+                            <if condition="$vo.print_type eq 2">
+                                <img src="__PUBLIC__/images/mobile/bill1.png" class="icon-sm">
+                                <else/>
+                                <img src="__PUBLIC__/images/mobile/bill2.png" class="icon-sm">
+                            </if>
+                        </td>
+                        <td>{$vo.printer_name}</td>
+                        <td>{$vo.printer_ip}</td>
+                        <!--<button class="default-btn" onclick="location='{:U(\'DataDock/bill_edit\')}'">修改</button>-->
+                        <td class="text-right">
+                            <button class="default-btn" onclick="update({$vo.printer_id})">修改</button>
+                            <button class="default-btn" data-printer_id="{$vo.printer_id}" onclick="deletePrinter(this)">删除</button>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <button class="danger-btn" onclick="location='{:U(\'DataDock/bill_add\')}'">
+            <i class="iconfont icon-plus"></i>
+        </button>
+    </section>
+</block>
+<block name="js">
+    <!--厨房票据-->
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/printer.js"></script>
+</block>

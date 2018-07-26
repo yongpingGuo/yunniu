@@ -1,0 +1,123 @@
+/*.no-padding{
+	padding: 0;
+}
+.mt-30{
+	margin-top: 30px;
+}
+.mr-10{
+	margin-right: 10px;
+}
+.green{
+	color: #1d7a3a;
+}
+.red{
+	color: #e84244;
+}
+.orange{
+	color: #dc7705;
+}
+
+.btn-none{
+	border: none;
+	background-color: transparent;
+	outline: transparent;
+}
+.pre100{
+	width: 100%;
+}*/
+
+/* ---------------------------------------------- /*
+ * 广告图
+/* ---------------------------------------------- */
+#ad-carousel{
+	width: 100%;
+	height: 100%;
+}
+#ad-carousel img{
+	width: 100%;
+}
+/* ---------------------------------------------- /*
+ * 选择堂吃/打包
+/* ---------------------------------------------- */
+.select{
+	display: table;
+	height: 100%;
+	width: 100%;
+}
+.select .container-fluid{
+	display: table-cell;
+	vertical-align: middle;
+}
+.select h1{
+	font-size: 3em;
+	font-weight: 700;
+	margin-bottom: 1em;
+	margin-top: -1em;
+}
+.select a{
+	display: inline-block;
+	margin-left: 5%;
+	margin-right: 5%;
+}
+.select img{
+	width: 100%;
+	max-width: 300px;
+}
+@media screen and (min-width:768px) {
+	.forHere{
+		text-align: right;
+	}
+	.goTo{
+		text-align: left;
+	}
+}
+/* ---------------------------------------------- /*
+ * 餐牌号modal
+/* ---------------------------------------------- */
+.number-tips{
+	font-size: 2rem;
+	color: #fff;
+	line-height: 2;
+	text-align: left;
+	padding-left: 1rem;
+}
+/* ---------------------------------------------- /*
+ * 点餐页
+/* ---------------------------------------------- */
+.order-right{
+	padding-bottom: 10rem;
+}
+/* ---------------------------------------------- /*
+ * 支付页
+/* ---------------------------------------------- */
+.pay-item-img{
+	border: 2px solid #b5b4b4;
+	background: #fff;
+	padding: 10px;
+}
+
+.pay-iframe-content{
+	border: 2px solid #b5b4b4;
+	background: #fff;
+	width: 350px;
+	height: 350px;
+	margin-bottom: 20px;
+}
+.pay-iframe-content iframe{
+	width: 305px;
+	height: 305px;
+	margin: 20px auto 0 auto;
+	border: 0;
+}
+
+.customer-cash-pay{
+	position: absolute;
+	right: 0;
+	top: 0;
+	bottom: 0;
+}
+.customer-cash-pay button{
+	padding: 0 1em;
+	height: 100%;
+	letter-spacing: 2px;
+}

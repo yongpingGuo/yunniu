@@ -1,0 +1,100 @@
+<include file="Public/head"/>
+<link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_392209_nahcvr37dvv1v2t9.css">
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+
+<body class="order-page" style="background-color:white;">
+    <header>
+        <p style="font-size: 16px;margin: 0px;">{$order_info.restaurant_name}</p>
+        <small class="text-danger">{$order_info.pay_time|date="Y-m-d H:i:s",###}</small>
+    </header>
+    <div class="small text-grey">支付方式</div>
+    <div class="flex-content pay-way">
+        <span class="flex-main">微信支付</span>
+        <i class="iconfont icon-shape text-danger"></i>
+    </div>
+    <div class="small text-grey">菜品信息</div>
+    <table class="order-table">
+        <tbody>
+            <tr class="text-center">
+                <td class="text-left">名称</td>
+                <td>数量</td>
+                <td class="text-right">金额</td>
+            </tr>
+            <volist name="order_info.food" id="vo">
+                <tr>
+                    <!--<td class="edit">
+                        <a href="http://shop.founpad.com/index.php/Mobile/index/index/restaurant_id/131/desk_code/666" class="iconfont icon-edit text-grey"></a>
+                    </td>-->
+                    <td>
+                        <span>{$vo.food_name}</span>
+                    </td>
+                    <td class="text-center">
+                        <!--
+                        <div class="count-num">
+                            <button class="btn-none text-grey">
+                            <i class="iconfont icon-minus-circle"></i>
+                        </button>-->
+                        <span class="text-danger num">{$vo.food_num}</span>
+                        <!--
+                        <button class="btn-none text-danger">
+                            <i class="iconfont icon-plus-circle"></i>
+                        </button>-->
+                        </div>
+                    </td>
+                    <td class="text-danger text-right">&yen;{$vo.food_price2}</td>
+                </tr>
+            </volist>     
+        </tbody>
+    </table>
+    <div class="text-right text-danger">
+        <small>（已优惠：{$order_info.benefit_money}）</small>
+        <p>订单总价：&yen;{$order_info.total_amount}</p>
+    </div>
+    <footer class="order-footer flex-content vertical-flex">
+        
+        <div class="flex-main">
+            <i class="iconfont icon-return" onclick="history.back();"></i>
+        </div>
+            <button class="btn-inline btn-warning" onclick="location='{:U('Order/consumptCode','order_id='.$order_id.'')}'">消费码</button>
+            <button class="btn-inline btn-primary" onclick="scanQRCode()">扫码下单</button>
+    </footer>
+<script type="text/javascript">
+    wx.config({
+        debug: false,
+        appId: '{$jssdk_config.appId}',
+        timestamp: {$jssdk_config.timestamp},
+        nonceStr: '{$jssdk_config.nonceStr}',
+        signature: '{$jssdk_config.signature}',
+        jsApiList: [ 
+            'checkJsApi', 
+            'startRecord', 
+            'stopRecord',
+            'translateVoice',
+            'scanQRCode',
+            'openCard']
+    });
+    var order_id = {$order_id};
+    function scanQRCode(){
+        wx.scanQRCode({
+            needResult: 1,
+            desc: 'scanQRCode desc',
+            success: function (res) {
+                var reslust = res.resultStr;
+                var desk_code = reslust.substring(reslust.indexOf("desk_code") + 10);
+                $.post("{:U('WxPay/updateDeskCode')}", {desk_code:desk_code, order_id:order_id}, function(data){
+                    if(data.code == 1){
+                        layer.msg(data.msg);
+                        return false;
+                    }
+                    layer.msg(data.msg, function(){
+                        location.reload();
+                    })
+                });
+            } 
+        });
+    }
+</script>
+</body>
+
+</html>

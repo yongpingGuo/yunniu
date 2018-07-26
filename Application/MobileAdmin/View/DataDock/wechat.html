@@ -1,0 +1,61 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="微信官方" />
+    <form action="javascript:void(0)" id="wxpayForm">
+        <section class="section">
+            <div class="section-row flex-content vertical-flex">
+                <span>微信商户号：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" value="{$wx_config.wxpay_child_mchid}" placeholder="子商户号（用于代理）" name="wxpay_child_mchid" id="wxpay_child_mchid">
+                </div>
+            </div>
+            <div class="remarks section-row">本商户号为对接方派餐饮系统的微信商户号，若未申请对接，请联系客服提交资料申请。</div>
+            <hr class="hr hr-lg">
+            <div class="section-row flex-content vertical-flex">
+                <span class="text-6">公众号APPID：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" value="{$wx_config.wxpay_appid}" placeholder="绑定支付的APPID" name="wxpay_appid" id="wxpay_appid">
+                </div>
+                <span class="remarks">非必填</span>
+            </div>
+            <div class="section-row flex-content vertical-flex">
+                <span class="text-6 text-right">公众号密钥：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" value="{$wx_config.wxpay_appsecret}" placeholder="公众帐号secert" name="wxpay_appsecret" id="wxpay_appsecret">
+                </div>
+                <span class="remarks">非必填</span>
+            </div>
+            <div class="remarks">
+                <div class="section-row">公众号的作用：</div>
+                <div class="section-row">* 顾客支付时，可关注公众号</div>
+                <div class="section-row">* 会员、餐桌扫码点餐、外卖，须要公从号支持。</div>
+            </div>
+        </section>
+        <button class="danger-btn-lg" data-paytype="wxpay" onclick="submitPayInfo(this)">保存设置</button>
+    </form>
+    <div class="remarks tips">
+        <div class="section-row">
+            <span class="tips-icon">*</span>
+            <span>手续费：微信线上收款，请自行前往微信官方查询！http://kf.qq.com/faq/161223jeuArU161223NVVVj2.html</span>
+        </div>
+        <div class="section-row">
+            <span class="tips-icon">*</span>
+            <span>商户号为对接方派餐饮系统的商户号，其它商户号在本系统上无法对接！这是由微信官方决定。</span>
+        </div>
+        <div class="section-row">
+            <span class="tips-icon">*</span>
+            <span>本商户号与商家的其它商户号没有任何区别，申请后，微信官方发出的帐号与密码直接到商家邮箱上。</span>
+        </div>
+        <div class="section-row">
+            <span class="tips-icon">*</span>
+            <span>公众号入口：https://mp.weixin.qq.com/</span>
+        </div>
+    </div>
+    <div class="content text-right">
+        <span>点击这里申请微信线上收款</span>
+        <button class="danger-btn apply" onclick="location='http://svc.founya.com/home/user/login.html'">申</button>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/dataForPay.js"></script>
+</block>

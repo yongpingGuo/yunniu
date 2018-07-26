@@ -1,0 +1,99 @@
+<!-- 点餐设备界面 start-->
+	<div class="row" >
+		<div class="col-sm-1 mt-30">横屏</div>
+		<volist name = "info" id = "v" offset="0" length='1'>
+		<div class="col-sm-2">
+			<img src="/{$v.order_page_img}">
+			<div class="mt-5">
+				<!--<img src="__PUBLIC__/images/themeColor.png">-->
+				<input type="radio" name="color" onchange="changecolor()"/>红
+				<input type="radio" name="color" onchange="changecolor()"/>蓝
+				<input type="radio" name="color" onchange="changecolor()"/>绿
+			</div>
+			<div>
+				<eq name = "v['replace_status']" value = "1">
+					<input type="radio" name = "heng" class="hengradio" value="{$v.ids}" checked="checked">
+				<else/>
+					<input type="radio" name = "heng" class="hengradio" value="{$v.ids}">
+				</eq>
+				<span class="ml-10">{$v.order_page_name}</span>
+			</div>
+		</div>
+		</volist>
+		<volist name = "info" id = "v" offset="1">
+			<div class="col-sm-2">
+				<img src="/{$v.order_page_img}" style="width: 168px;height: 95px;">
+				<button class="delete-btn" onclick = "delpage1({$v.ids})">
+					<img src="/public/images/delete.png" >
+				</button>
+			<div class="mt-5">
+				<!--<input type="text" placeholder="请输入模板名称" onchange="findTelp(this)" id="telp">-->
+				<span>模板名：<span style="color: red;">{$v.order_page_name}</span></span>
+			</div>
+			<div>
+				<eq name = "v['replace_status']" value = "1">
+					<input type="radio" name = "heng" class="hengradio" value="{$v.ids}" checked="checked">订制模板
+				<else/>
+					<input type="radio" name = "heng" class="hengradio" value="{$v.ids}">订制模板
+				</eq>
+			</div>
+			</div>
+		</volist>
+		<div class="col-sm-2">
+				<img src="" style="width: 168px;height: 95px;">
+			<div class="mt-5">
+				<input type="text" placeholder="请输入模板名称" onchange="findTelp(this)"></div>
+			<div>
+				<input type="radio" name = "heng" class="hengradio">订制模板</div>
+		</div>
+	</div>
+	<div class="row mt-10" id="row1">
+		<div class="col-sm-1 mt-30">竖屏</div>
+		<volist name = "info2" id = "v2" offset = "0" length = '1'>
+		<div class="col-sm-2">
+			<img src="/{$v2.order_page_img}">
+			<div class="mt-5">
+				<!--<img src="__PUBLIC__/images/themeColor.png">-->
+				<input type="radio" name="color" onchange="changecolor()"/>红
+				<input type="radio" name="color" onchange="changecolor()"/>蓝
+				<input type="radio" name="color" onchange="changecolor()"/>绿
+			</div>
+			<div>
+				<eq name = "v2['replace_status']" value = "1">
+					<input type="radio" name = "shu" value="{$v2.ids}" class="shuradio" checked="checked">
+				<else/>
+					<input type="radio" name = "shu" value="{$v2.ids}" class="shuradio">
+				</eq>
+				<span class="ml-10">{$v2.order_page_name}</span>
+			</div>
+		</div>
+		</volist>
+		<volist name = "info2" id = "v2" offset = "1" >
+		<div class="col-sm-2">
+				<img src="/{$v2.order_page_img}" style="width: 61px;height: 107px;">
+				<button class="delete-btn" onclick = "delpage1({$v2.ids})">
+					<img src="/public/images/delete.png" >
+				</button>
+				<div class="mt-5">
+					<!--<input type="text" placeholder="请输入模板名称">-->
+					<span>模板名：<span style="color: red;">{$v2.order_page_name}</span></span>
+				</div>
+				<div>
+					<eq name = "v2['replace_status']" value = "1">
+						<input type="radio" name = "shu" value="{$v2.ids}" class="shuradio" checked="checked">订制模板
+					<else/>
+						<input type="radio" name = "shu" value="{$v2.ids}" class="shuradio">订制模板
+					</eq>
+				</div>
+		</div>
+		</volist>
+		<div class="col-sm-2">
+				<img src="" style="width: 61px;height: 107px;">
+				<div class="mt-5">
+					<input type="text" placeholder="请输入模板名称" onchange="findTelp(this)">
+				</div>
+				<div>
+					<input type="radio" name = "shu" value="{$v2.ids}" class="shuradio">订制模板
+				</div>
+		</div>
+	</div>

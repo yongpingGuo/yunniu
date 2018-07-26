@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>核销员</title>
+	<!-- Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/remind.css">
+	<script src='__PUBLIC__/js/socket.io.js'></script>
+	<script src='__PUBLIC__/js/notify.js'></script>
+	<script src='__PUBLIC__/js/websocket.js'></script>
+</head>
+<body>
+<input type="hidden" name="device_code" id="device_code" value="{$device_code}">
+<div class="clerk clearfix">
+	<volist name = "info" id = "v">
+		<if condition = "$v.order_status eq 11">
+
+                <?php if($v['take_num']):?>
+                    <button id = "{$v.order_id}" class="order-number order-check" data-toggle="modal" data-target="#myModal" onclick="showinfo({$v.order_id})">{$v.take_num}</button>
+                <?php else: ?>
+                    <button id = "{$v.order_id}" class="order-number order-check" data-toggle="modal" data-target="#myModal" onclick="showinfo({$v.order_id})">{$v.order_sn}</button>
+                <?php endif; ?>
+            </button>
+			<else/>
+
+                <?php if($v['take_num']):?>
+                    <button id = "{$v.order_id}" class="order-number" data-toggle="modal" data-target="#myModal" onclick="showinfo({$v.order_id})">{$v.take_num}</button>
+                <?php else: ?>
+                    <button id = "{$v.order_id}" class="order-number" data-toggle="modal" data-target="#myModal" onclick="showinfo({$v.order_id})">{$v.order_sn}</button>
+                <?php endif; ?>
+		</if>
+	</volist>
+</div>
+
+<!-- Modal -->
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+	<div class="modal-dialog" id="modal">
+
+	</div>
+</div>
+
+<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/prevent.js"></script>
+<script>
+	function showinfo(i){
+		$.ajax({
+			type:"get",
+			url:"/index.php/home/staff/getorderinfo/order_id/"+i+"",
+			success:function(data){
+//				console.log(data);
+				$('#modal').html(data);
+			},
+			error:function(){
+				console.log("访问出错");
+			}
+		});
+	}
+
+	//改变状态
+	function changestatu(i){
+		//alert(i);
+		$('#myModal').modal("hide");
+		$.ajax({
+			type:"get",
+			url:"/index.php/home/staff/changestatus/order_id/"+i+"",
+			dataType:"json",
+			async:true,
+			success:function(data){
+				if(data.data == 1){
+					$("#"+i+"").addClass("order-check");//
+				}
+			}
+		});
+	}
+
+	//核销
+	function changestatu1(i){
+		$('#myModal').modal("hide");
+		$.ajax({
+			type:"get",
+			url:"/index.php/home/staff/changestatus1/order_id/"+i+"",
+			dataType:"json",
+			async:true,
+			success:function(data){
+				if(data.data == 1){
+					location.reload();
+				}
+			}
+		});
+	}
+</script>
+<script>
+	$(document).ready(function () {
+		console.log("domain:");
+		console.log(document.domain);
+		// 连接服务端
+		var socket = io('http://'+document.domain+':2120');
+		// 连接后登录
+		socket.on('connect', function(){
+			var uid = $("#device_code").val();
+			socket.emit('login', uid);
+		});
+		// 后端推送来消息时
+		socket.on('new_msg', function(msg){
+			if(msg){
+				location.href = "";
+			}
+		});
+	});
+</script>
+</body>
+</html>

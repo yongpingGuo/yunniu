@@ -1,0 +1,270 @@
+<extend name="Public:base" />
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">{{langData.orderProcess[lang]}}</a>
+        </li>
+        <li>
+            <a href="#ad" data-toggle="tab">{{langData.advertiseSetting[lang]}}</a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab tab-pane in active" id="home">
+            <!-- 点餐流程选择 start -->
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.orderProcess[lang]}}</span>
+                    <span class="section-tips"><{{langData.orderProcessTips[lang]}}></span>
+                </div>
+                <div class="section-content">
+                    <!-- <div class="order-process flex-content" id="diancan">
+                        <volist name="info2" id="v2">
+                            <div class="flex-main process-item">
+                                <div class="flex-content process-item-header">
+                                    <span class="flex-main">{$v2.process_name}</span>
+                                    <if condition="$v2['process_id'] eq 3">
+                                        <elseif condition="$v2['process_id'] eq 5" />
+                                        <else/>
+                                        <if condition="$v2.process_status eq 1">
+                                            <div class="checkbox-switch">
+                                                <input type="checkbox" name="adPage{$v2.process_id}" class="adPage{$v2.process_id}" onchange="changestatu(this,{$v2.process_id})" checked>
+                                                <label></label>
+                                            </div>
+                                            <else/>
+                                            <div class="checkbox-switch">
+                                                <input type="checkbox" name="adPage{$v2.process_id}" class="adPage{$v2.process_id}" onchange="changestatu(this,{$v2.process_id})">
+                                                <label></label>
+                                            </div>
+                                        </if>
+                                    </if>
+                                </div>
+                                <img src="{$v2.process_img}">
+                                <if condition="$v2['process_id'] eq 1">
+                                    <div class="section-tips">* {{langData.adPageTips[lang]}}</div>
+                                    <elseif condition="$v2['process_id'] eq 2" />
+                                    <div class="section-tips">* {{langData.eatWayTips[lang]}}</div>
+                                    <elseif condition="$v2['process_id'] eq 4" />
+                                    <div class="section-tips">* {{langData.DeliveryMode[lang]}}</div>
+                                    <else/>
+                                    <div class="section-tips"> </div>
+                                </if>
+                            </div>
+                        </volist>
+                    </div> -->
+                    <div id="diancan" class="order-process flex-content">
+                        <div class="flex-main process-item">
+                            <div class="flex-content process-item-header">
+                                <span class="flex-main">{{langData.adPage[lang]}}</span>
+                                <!-- 判断-->
+                                <if condition="$info2['0']['process_status'] eq 1">
+                                <div class="checkbox-switch">
+                                    <input type="checkbox" name="adPage1" onchange="changestatu(this,1)"  class="adPage1"  checked>
+                                    <label></label>
+                                </div>
+                                <else/>
+                                    <div class="checkbox-switch">
+                                        <input type="checkbox" name="adPage1" onchange="changestatu(this,1)" class="adPage1">
+                                        <label></label>
+                                    </div>
+                                </if>
+                            </div> 
+                            <img src="__PUBLIC__/images/adPage.png">
+                            <div class="section-tips">* {{langData.adPageTips[lang]}}</div>
+                        </div>
+                        <div class="flex-main process-item">
+                            <div class="flex-content process-item-header">
+                                <span class="flex-main">{{langData.packageHall[lang]}}</span>
+                                <!-- 判断-->
+                                <if condition="$info2['1']['process_status'] eq 1">
+                                <div class="checkbox-switch">
+                                    <input type="checkbox" name="adPage2" onchange="changestatu(this,2)"  class="adPage2"  checked>
+                                    <label></label>
+                                </div>
+                                <else/>
+                                    <div class="checkbox-switch">
+                                        <input type="checkbox" name="adPage2" onchange="changestatu(this,2)" class="adPage2">
+                                        <label></label>
+                                    </div>
+                                </if>
+                            </div> 
+                            <img src="__PUBLIC__/images/eatPage.png">
+                            <div class="section-tips">* {{langData.eatWayTips[lang]}}</div>
+                        </div>
+                        <div class="flex-main process-item">
+                            <div class="flex-content process-item-header">
+                                <span class="flex-main">{{langData.orderPage[lang]}}</span>
+                            </div> 
+                            <img src="__PUBLIC__/images/orderPage.png">
+                            <div class="section-tips"></div>
+                        </div>
+                        <div class="flex-main process-item">
+                            <div class="flex-content process-item-header">
+                                <span class="flex-main">{{langData.numberPage[lang]}}</span>
+                                <!-- 判断-->
+                                <if condition="$info2['3']['process_status'] eq 1">
+                                <div class="checkbox-switch">
+                                    <input type="checkbox" name="adPage4" onchange="changestatu(this,4)" class="adPage4" checked>
+                                    <label></label>
+                                </div>
+                                <else/>
+                                    <div class="checkbox-switch">
+                                        <input type="checkbox" name="adPage4" onchange="changestatu(this,4)" class="adPage4">
+                                        <label></label>
+                                    </div>
+                                </if>
+                            </div> 
+                            <img src="__PUBLIC__/images/numberPage.png">
+                            <div class="section-tips">* {{langData.DeliveryMode[lang]}}</div>
+                        </div>
+                        <div class="flex-main process-item">
+                            <div class="flex-content process-item-header">
+                                <span class="flex-main">{{langData.paymentPage[lang]}}</span>
+                            </div> 
+                            <img src="__PUBLIC__/images/payPage.png">
+                            <div class="section-tips"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-danger">*</span>
+                        <span>{{langData.OrdersuccessfulHint[lang]}}</span>
+                        <input type="text" name="advlang" value="{$info4}" onchange="changeadvlang()" class="larger-input">
+                    </div>
+                </div>
+            </section>
+            <!-- 点餐流程选择 end -->
+        </div>
+        <div class="tab tab-pane" id="ad">
+            <!-- 横屏点餐机广告 start -->
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.horizontalAD[lang]}}</span>
+                    <span class="section-tips">{{langData.horizontalAdClaim[lang]}}</span>
+                </div>
+                <div class="section-content">
+                    <div class="clearfix" id="mytr">
+                        <volist name="info" id="v" offset="0" length='1'>
+                            <div class="showImg pull-left">
+                                <div class="imgHorizontal" id="{$v.advertisement_id}">
+                                    <img src="/{$v.advertisement_image_url}" class="uploadImg">
+                                    <input type="file" name="default" onchange="preview1(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <volist name="info" id="v" offset="1">
+                            <div class="showImg pull-left">
+                                <div class="imgHorizontal" id="{$v.advertisement_id}">
+                                    <img src="/{$v.advertisement_image_url}" class="uploadImg">
+                                    <button class="delete-btn" onclick="deladver({$v.advertisement_id})">
+                                        <img src="__PUBLIC__/images/delete.png">
+                                    </button>
+                                    <input type="file" name="change" onchange="preview1(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <div class="showImg pull-left">
+                            <div class="imgHorizontal">
+                                <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+                                <input type="file" name="change" onchange="preview1(this)">
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span>{{langData.pictureIntervals[lang]}}</span>
+                        <input type="text" value="{$info3}" onchange="changetime()" id="interval" class="mini-input">
+                        <span>{{langData.seconds[lang]}}</span>
+                    </div>
+                </div>
+            </section>
+            <!-- 横屏点餐机广告 end -->
+            <!-- 竖屏点餐机广告 start -->
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.VerticalAD[lang]}}</span>
+                    <span class="section-tips">{{langData.VerticalAdClaim[lang]}}{{langData.deviceAdClaim[lang]}}</span>
+                </div>
+                <div class="section-content">
+                    <!-- 竖屏广告 start -->
+                    <div class="clearfix" id="mytr1">
+                        <volist name="info1" id="v1" offset="0" length='1'>
+                            <div class="showImg pull-left">
+                                <div class="imgVertical" id="{$v1.advertisement_id}">
+                                    <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                                    <input type="file" name="default" onchange="preview(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <volist name="info1" id="v1" offset="1">
+                            <div class="showImg pull-left">
+                                <div class="imgVertical" id="{$v1.advertisement_id}">
+                                    <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                                    <button class="delete-btn" onclick="deladver1({$v1.advertisement_id})">
+                                        <img src="__PUBLIC__/images/delete.png">
+                                    </button>
+                                    <input type="file" name="change" onchange="preview(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <div class="showImg pull-left">
+                            <div class="imgVertical">
+                                <img src="__PUBLIC__/images/add_vertical.png" class="uploadImg" data-img="add">
+                                <input type="file" name="change" onchange="preview(this)">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 竖屏广告 start -->
+                    <div>
+                        <span class="text-danger">*</span>
+                        <span>{{langData.verticalScreenSlogan[lang]}}</span>
+                        <input type="text" name="shuping_adv_lang" value="{$info5}" onchange="changeShuPingLang()" class="larger-input" :placeholder="langData.verticalScreenSlogan[lang]">
+                    </div>
+                </div>
+            </section>
+            <!-- 双屏客显广告 start -->
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.doubleScreenAds[lang]}}</span>
+                    <span class="section-tips">{{langData.doubleAdClaim[lang]}}</span>
+                </div>
+                <div class="section-content">
+                    <div class="clearfix" id="mytr88">
+                        <volist name="doubleDisplay" id="v1" offset="0" length='1'>
+                            <div class="showImg pull-left">
+                                <div class="imgRectangle" id="{$v1.advertisement_id}">
+                                    <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                                    <input type="file" name="default" onchange="doubleDisplay(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <volist name="doubleDisplay" id="v1" offset="1">
+                            <div class="showImg pull-left">
+                                <div class="imgRectangle" id="{$v1.advertisement_id}">
+                                    <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                                    <button class="delete-btn" onclick="deladver88({$v1.advertisement_id})">
+                                        <img src="__PUBLIC__/images/delete.png">
+                                    </button>
+                                    <input type="file" name="change" onchange="doubleDisplay(this)">
+                                </div>
+                            </div>
+                        </volist>
+                        <div class="showImg pull-left">
+                            <div class="imgRectangle">
+                                <img src="__PUBLIC__/images/addRectangle.png" class="uploadImg" data-img="add">
+                                <input type="file" name="change" onchange="doubleDisplay(this)">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="text-danger">*</span>
+                        <span>{{langData.doubleScreenSlogan[lang]}}:</span>
+                        <input type="text" name="double_display" value="{$info6}" onchange="changeDoubleLang()" class="larger-input">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/Admin/Moudle_index.js?20171022"></script>
+</block>

@@ -1,0 +1,229 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.officialAccount[lang]}}</div>
+        <div class="section-content">
+            <form class="form-horizontal" id="dataForm" action="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label class="control-label col-xs-2">{{langData.name[lang]}}</label>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" autocomplete="off" value="{$wechat.name}" id="name" name="name">
+                        <span class="help-block">{{langData.fillOfficialAccountsName[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">{{langData.description[lang]}}</label>
+                    <div class="form-controls col-xs-8">
+                        <textarea rows="3" id="describe" name="describe">{$wechat.describe}</textarea>
+                        <span class="help-block">{{langData.officialDescriptionTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">{{langData.officialAccountsUsername[lang]}}</label>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" value="{$wechat.first_id}" id="account" name="wxpay_mchid">
+                        <span class="help-block">{{langData.officialAccountsUsernameTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">{{langData.originalID[lang]}}</label>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" value="{$wechat.account}" id="first_id" name="wxpay_key">
+                        <span class="help-block">{{langData.originalIDTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">{{langData.type[lang]}}</label>
+                    <div class="form-controls col-xs-8">
+                        <select id="type" name="type" class="select-grey">
+                            <option value="0" <if condition="$wechat['type'] eq '0'">selected</if>>{{langData.ordinarySubscriptionAccount[lang]}}</option>
+                            <option value="1" <if condition="$wechat['type'] eq '1'">selected</if>>{{langData.ordinaryServiceAccount[lang]}}</option>
+                            <option value="2" <if condition="$wechat['type'] eq '2'">selected</if>>{{langData.certificationSubscriptionAccount[lang]}}</option>
+                            <option value="3" <if condition="$wechat['type'] eq '3'">selected</if>>{{langData.certificationServiceAccount[lang]}}</option>
+                        </select>
+                        <span class="help-block">{{langData.certificationTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">AppId</label>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" value="{$wechat.appid}" id="appid" name="wxpay_appid">
+                        <span class="help-block">{{langData.AppIdTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">AppSecret</label>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" value="{$wechat.appsecret}" id="appsecret" name="wxpay_appsecret">
+                        <span class="help-block">{{langData.AppSecretTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-2 text-right">
+                        <label>URL</label>
+                        <small>({{langData.wechatIndex[lang]}})</small>
+                    </div>
+                    <div class="form-controls col-xs-8">
+                        <input type="text" value="{$wechat.url}" id="wechatUrl" name="wxpay_url">
+                        <span class="help-block">{{langData.wechatURLTips[lang]}}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-xs-2 text-right">
+                        <label>URL</label>
+                        <small>({{langData.serverAddress[lang]}})</small>
+                    </div>
+                    <div id="serverURL" class="col-xs-8">http://shop.founpad.com/index.php/Admin/Wechat/valid</div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-sm btn-default" onclick="copy('serverURL')">{{langData.copy[lang]}}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 text-right">Token</label>
+                    <div id="token" class="col-xs-8">myshop</div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-sm btn-default" onclick="copy('token')">{{langData.copy[lang]}}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 text-right">{{langData.IPWhitelist[lang]}}</label>
+                    <div id="IP" class="col-xs-8">112.74.12.248</div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-sm btn-default" onclick="copy('IP')">{{langData.copy[lang]}}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 text-right">{{langData.fileUpload[lang]}}</label>
+                    <div class="col-xs-8 text-muted">{{langData.authorizedUploadTips[lang]}}</div>
+                    <div class="col-xs-2">
+                        <div class="file-content">
+                            <button type="button" class="btn btn-sm btn-default">{{langData.upload[lang]}}</button>
+                            <input type="file" name="">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-2 text-right">{{langData.WebAuthorization[lang]}}</label>
+                    <div id="website" class="col-xs-8">shop.founpad.com</div>
+                    <div class="col-xs-2">
+                        <button type="button" class="btn btn-sm btn-default" onclick="copy('website')">{{langData.copy[lang]}}</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-xs-2">Oauth 2.0</label>
+                    <div class="form-controls col-xs-8">
+                        <p>{{langData.authorizationTips[lang]}}</p>
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button type="button" class="blue-btn btn-submit" id="keep">{{langData.save[lang]}}</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+    function copy(elementId) {
+        // 创建元素用于复制
+        var copyContent = document.createElement("input");
+        // 获取复制内容
+        var content = document.getElementById(elementId).innerHTML || document.getElementById(elementId).value;
+        // 设置元素内容
+        copyContent.setAttribute("value", content);
+        // 将元素插入页面进行调用
+        document.body.appendChild(copyContent);
+        // 复制内容
+        copyContent.select();
+        // 将内容复制到剪贴板
+        document.execCommand("copy");
+        // 删除创建元素
+        document.body.removeChild(copyContent);
+    }
+    var wechat_set = "__MODULE__/Wechat/wechatSet";
+    var wechat = "__MODULE__/Wechat/index";
+    var file_upload = "__MODULE__/Wechat/fileUpload";
+
+    $("input[type='file']").change(function() {
+        var formData = new FormData();
+        formData.append("myfile", $(this)[0].files[0]);
+        console.log($(this)[0].files[0]);
+        $.ajax({
+            url: "fileUpload",
+            type: "POST",
+            data: formData,
+            //              data:$(this)[0].files[0],
+            /**
+             *必须false才会自动加上正确的Content-Type
+             */
+            contentType: false,
+            /*
+             * 必须false才会避开jQuery对 formdata 的默认处理
+             * XMLHttpRequest会对 formdata 进行正确的处理
+             */
+            processData: false,
+            success: function(data) {
+                if (data.code == 0) {
+                    layer.msg('上传成功');
+                } else {
+                    layer.msg(data.msg);
+
+                }
+
+            }
+        });
+
+    });
+
+    //上传微信信息
+    $('#keep').on('click', function() {
+        //var is_set = $('#is_set').val();
+        var describe = $('#describe').val();
+        var first_id = $('#first_id').val();
+        var account = $('#account').val();
+        var name = $('#name').val();
+        var appid = $('#appid').val();
+        var appsecret = $('#appsecret').val();
+        var type = $('#type').val();
+        var url = $("#wechatUrl").val();
+        // var formData = new FormData($('#dataForm')[0]);
+
+        if (name && appid && appsecret && describe && first_id && account && wechatUrl) {
+            $.ajax({
+                type: 'POST',
+                url: wechat_set,
+                data: {
+                    name: name,
+                    describe: describe,
+                    first_id: first_id,
+                    account: account,
+                    appid: appid,
+                    appsecret: appsecret,
+                    type: type,
+                    url: url
+                },
+                success: function(data) {
+                    if (data.code == 0) {
+                        layer.msg('修改成功');
+                        setTimeout(function() {
+                            location.href = wechat;
+                        }, 1000);
+                    } else if (data.code == 2) {
+                        layer.msg('插入成功');
+                        setTimeout(function() {
+                            location.href = wechat;
+                        }, 1000);
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            })
+        } else {
+            layer.msg('请输入公众号信息');
+        }
+
+    })
+    </script>
+</block>

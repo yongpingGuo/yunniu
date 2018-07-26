@@ -1,0 +1,63 @@
+<include file ="Public/head"/>
+	<body class="login-body">
+		<div class="login_bg"></div>
+		<div class="login">
+			<form class="login-form" action="__CONTROLLER__/loginCheck" method="post" id="loginForm">
+				<h3 class="login-title text-center">用户登录</h3>
+				<div class="userName">
+				    <label>帐号：</label>
+					<input type="text" name="login_account" id = "login_account"/>
+				</div>
+
+				<div class="passWord">
+					<label>密码：</label>
+					<input type="password" name="login_password" id = "login_password"/>
+				</div>
+				<div class="login-style">
+					<label>类型：</label>
+					<input type="radio" name="adminType" value="0" checked="checked"/>
+					<span>店铺</span>
+					<input type="radio" name="adminType" value="1"/>
+					<span>品牌</span>
+				</div>
+				<input type="hidden" name="screenWidth" value="" id="screenWidth"/>
+				
+				<div class="form-group text-center">
+					<button class="login_btn" type="button" onclick="commitLogin()">登&nbsp;&nbsp;录</button>
+				</div>
+			</form>
+		</div>
+	</body>
+	<script>
+		$(function(){
+			var screenWidth = $(window).width();
+			$("#screenWidth").val(screenWidth);
+		})
+		
+		function commitLogin(){
+			var login_account = $("#login_account").val();
+			var login_password = $("#login_password").val();
+			if(login_account && login_password){
+				$.ajax({
+					type:"post",
+					url:"__CONTROLLER__/loginCheck",
+					data:$("#loginForm").serialize(),
+					dataType:"json",
+					async:true,
+					success:function(data){
+						if(data.code == 1){					
+							location.href = "/index.php/Boss/Turnover/index";
+						}else{
+							alert(data.msg);
+						}
+					},
+					error:function(data){
+						alert("网络出错了!!!");
+					}
+				});
+			}else{
+				alert("帐号或密码错误！！！");
+			}
+		}
+	</script>
+</html>

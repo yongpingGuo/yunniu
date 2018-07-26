@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/no_pay.css">
+	</head>
+	<body class="finish">
+		<div id="finish">
+			<header class="template-header">
+				<button class="return-btn" @click="orderAgain">
+					<img src="__PUBLIC__/images/return.png">
+					<span>重新点餐</span>
+				</button>
+			</header>
+			<section class="finish-content">
+				<div>请领取小票，到取餐区取餐</div>
+				<button class="finish-btn" @click="orderAgain">确定</button>
+			</section>
+			<footer class="template-footer clear">
+				本页面在<span id="time">10</span>秒后自动关闭
+			</footer>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script>
+		try{
+			JsObj.CloseVguang();
+		}catch(e){
+			console.log(e.name+":"+ e.message)
+		}
+
+			//设定倒数秒数
+			var t = 10;
+			//显示倒数秒数
+			function showTime(){
+				t -= 1;
+				document.getElementById('time').innerHTML= t;
+
+				if(t==0){
+					localStorage.removeItem("order_type");
+					location.href='/index.php/Vertical/Template/serviceRoute';
+					return;
+				}
+				//每秒执行一次,showTime()
+				setTimeout("showTime()",1000);
+			};
+			showTime();
+
+
+		new Vue({
+			data:{
+
+			},
+			mounted:function(){
+				$('iframe').hide();
+			},
+			methods:{
+				orderAgain:function(){
+					localStorage.removeItem("order_type");
+					//JsObj.CloseVguang();
+					location.href='/index.php/Vertical/Template/serviceRoute';
+				}
+			}
+		}).$mount('#finish')
+</script>
+</html>

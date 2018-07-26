@@ -1,0 +1,95 @@
+<include file="Public/head"/>
+<link rel="stylesheet" href="/element-ui@1.1.6/lib/theme-default/element.css">
+<link rel="stylesheet" href="__PUBLIC__/css/billboard.css">
+<script src="__PUBLIC__/js/vue.js"></script>
+<!--<script src="/element-ui@1.1.6/lib/index.js"></script>-->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="__PUBLIC__/js/vue-axios.js"></script>
+<script src="__PUBLIC__/js/vue-router.js"></script>
+<body>
+<div id="app">
+    <i class="el-icon-edit"></i>
+    <i class="el-icon-share"></i>
+    <i class="el-icon-delete"></i>
+    <el-button type="primary" icon="search">搜索</el-button>
+    <timer :m_items="c"></timer>
+    <v-select :select_item="options"></v-select>
+</div>
+<template id="timer" >
+    <div>
+        <div v-for="item in items">
+            <div class="block">
+                <el-date-picker
+                        v-model="item.value1"
+                        type="date"
+                        placeholder="选择日期"
+                        >
+                </el-date-picker>
+            </div>
+        </div>
+    </div>
+</template>
+<template id="select">
+    <el-select v-model="value"  multiple placeholder="请选择">
+        <el-option
+                v-for="item2 in my_options"
+                :label="item2.label"
+                :value="item2.value">
+        </el-option>
+    </el-select>
+</template>
+<script>
+    var timer = {
+        template:"#timer",
+        props:['m_items'],
+        data:function(){
+            return {
+                items:this.m_items,
+            }
+        },
+        mounted:function(){
+            console.log(this.m_items);
+        }
+    }
+    var select = {
+        template:"#select",
+        props:['select_item'],
+        data:function(){
+            return {
+                my_options:this.select_item,
+                value:"",
+            }
+        },
+        mounted:function(){
+            console.log(this.select_item);
+        }
+    }
+
+    var vm = new Vue({
+        data:{
+            c:[{value1:"1212"},{value1:"1212"},{value1:"1212"}],
+            options: [{
+                value: '选项1',
+                label: '黄金糕'
+            }, {
+                value: '选项2',
+                label: '双皮奶'
+            }, {
+                value: '选项3',
+                label: '蚵仔煎'
+            }, {
+                value: '选项4',
+                label: '龙须面'
+            }, {
+                value: '选项5',
+                label: '北京烤鸭'
+            }]
+        },
+        components:{
+            "timer":timer,
+            "v-select":select,
+        }
+    }).$mount("#app");
+</script>
+</body>
+</html>

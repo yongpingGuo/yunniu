@@ -1,0 +1,65 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="所有顾客" />
+    <section class="section">
+        <header class="section-title">所有顾客整单打折</header>
+        <div id="restaurant_discount_list">
+            <?php if($discount_restaurant_info):?>
+            <form action="javascript:void(0)">
+                <div class="section-row">
+                    <input type="hidden" value="{$discount_restaurant_info['id']}" name="id" />
+                    <div>
+                        <span>消费满</span>
+                        <input type="text" name="money" id="money_restaurant" class="input-xs" value="{$discount_restaurant_info['money']}">
+                        <span> 元时：</span>
+                    </div>
+                    <div class="flex-content vertical-flex">
+                        <div class="flex-main">
+                            <span>&nbsp;&nbsp;折扣</span>
+                            <input type="text" name="discount" id="discounts_restaurant" class="input-xs" value="{$discount_restaurant_info['discount']}">
+                            <span>折，立减</span>
+                            <input type="text" name="reduce" id="reduce_restaurant" class="input-xs" value="{$discount_restaurant_info['reduce']}">
+                            <span>元</span>
+                        </div>
+                        <button class="default-btn" onclick="keep_restaurant_discount(this,1)">保存</button>
+                        <button class="default-btn" onclick="return deleteDisc_restaurant(this)" data-type_id="{$discount_restaurant_info['id']}">删除</button>
+                    </div>
+                    <hr class="hr hr-dashed">
+                </div>
+            </form>
+            <?php endif; ?>
+        </div>
+        <?php if(!$discount_restaurant_info):?>
+        <button class="danger-btn" onclick="add_restaurant_discount()" id="new_add_two">
+            <i class="iconfont icon-plus"></i>
+        </button>
+        <?php endif; ?>
+        <button class="danger-btn" onclick="add_restaurant_discount()" style="display:none;" id="new_add">
+            <i class="iconfont icon-plus"></i>
+        </button>
+    </section>
+    <div class="remarks tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>折扣和立减同时有效！</span>
+            <div>不设立减时，立减填写为：0元</div>
+            <div>不设折扣时，折扣填写为：10折（0折=免费）</div>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>折扣设置如：8.5折；8折；</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>消费满按最大额计算：</span>
+            <div>1. 满10元，立减1元</div>
+            <div>2. 满20元，立减3元</div>
+            <div>当顾客消费9元时，不进行打折</div>
+            <div>当顾客消费10-19元时，立减1元</div>
+            <div>当顾客消费20元以上时，立减3元</div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/Member_discount.js"></script>
+</block>

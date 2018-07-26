@@ -1,0 +1,115 @@
+<div class="section eleme-stats">
+    <div class="section-header text-center">订单详细</div>
+    <div class="section-content">
+        <div>
+            <table>
+                <tbody>
+                    <tr class="text-center">
+                        <td></td>
+                        <td class="text-left">日期时间</td>
+                        <!--<td>订单号</td>-->
+                        <td>流水号</td>
+                        <td>服务费</td>
+                        <td>配送费</td>
+                        <td>订单原价</td>
+                        <td>客户实际支付价</td>
+                        <td>商家实收</td>
+                    </tr>
+                    <volist name="order_list" id="vo" key="k">
+                        <tr class="stats-detail-item text-center">
+                            <td class="text-left">
+                                <span class="stats-detail-index">{$k}</span>
+                                <button class="stats-detail-btn" onclick="open_close({$k},this)">+</button>
+                            </td>
+                            <td class="text-left">{$vo.activeAt}</td>
+                            <!--<td>{$vo.orderId}</td>-->
+                            <td>{$vo.daySn}</td>
+                            <td>{$vo.serviceFee}</td>
+                            <td>{$vo.deliverFee}</td>
+                            <td>{$vo.originalPrice}</td>
+                            <td>{$vo.totalPrice}</td>
+                            <td>{$vo.income}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td colspan="3">
+                                <table id="order_food{$k}" data-value="0" class="stats-detail-dishes">
+                                    <volist name="vo.groups" id="vo2">
+                                        <foreach name="vo2:items" item="vo3" >
+                                            <tr>
+                                                <td class="stats-detail-name">菜品名：{$vo3->name}</td>
+                                                <td class="stats-detail-name">份数：{$vo3->quantity}</td>
+                                                <td class="stats-detail-name">单价：{$vo3->price}</td>
+                                                <td class="stats-detail-name">菜品总价：{$vo3->total}</td>
+                                            </tr>
+                                            <tr>
+                                                <foreach name="vo3:newSpecs" item="vo4" >
+                                                    <td class="stats-detail-attr">规格名：{$vo4->name}</td>
+                                                    <td class="stats-detail-num">规格值：{$vo4->value}</td>
+                                                </foreach>
+                                            </tr>
+                                            <tr>
+                                                <foreach name="vo3:attributes" item="vo5" >
+                                                    <td class="stats-detail-attr">属性名：{$vo5->name}</td>
+                                                    <td class="stats-detail-num">属性值：{$vo5->value}</td>
+                                                </foreach>
+                                            </tr>
+                                        </foreach>
+                                    </volist>
+                                </table>
+                            </td>
+                            <td></td>
+                        </tr>
+                    </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center sale-table-page">
+            <ul class="pagination" id="detail-page">
+                {$page}
+            </ul>
+        </div>
+        <input type="hidden" id="income_sum" value="{$income_sum}">
+        <input type="hidden" id="serviceFee_sum" value="{$serviceFee_sum}">
+        <input type="hidden" id="deliverFee_sum" value="{$deliverFee_sum}">
+        <input type="hidden" id="order_count" value="{$order_count}">
+    </div>
+</div>
+<script>
+    $("#detail-page").children().children("a").click(function() {
+        var page = parseInt($(this).data("page"));
+        var form = $("#search_form")[0];
+        var formDate = new FormData(form);
+        $.ajax({
+            url: "/index.php/admin/sale/eleme_order_page/page/" + page,
+            data: formDate,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $("#eleme_order_info").html(data);
+            },
+            error: function() {
+                alert("出错了");
+            }
+        });
+    });
+
+function open_close(i, obj) {
+    var tid = "#order_food" + i;
+    var value = $(tid).data("value");
+    console.log(value);
+    if (value == 1) {
+        $(obj).text('+');
+        $(tid).hide();
+        $(tid).data("value", 0);
+    } else if (value == 0) {
+        $(obj).text('-');
+        $(tid).show();
+        $(tid).data("value", 1)
+    }
+}
+</script>
+
+</html>

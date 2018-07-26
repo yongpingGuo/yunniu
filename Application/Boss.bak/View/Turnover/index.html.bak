@@ -1,0 +1,71 @@
+<include file = "Public/head"/>	
+	<body>
+		<header class="turnover-header clearfix">
+			<div class="pull-right user-content">
+				<button class="user-btn" onclick="loginout()">
+					<img src="__PUBLIC__/images/user.png">
+					<div>{$Think.session.adminNameWithBoss}</div>
+				</button>
+			</div>
+			<!--<img src="__PUBLIC__/images/logo.png" class="logo-img">-->
+			<img src="{$logo}" class="logo-img">
+		</header>
+
+		<div class="chart-section">
+			<div id="dayTurnover" class="chart_data" data-cashtoday = "{$totalAmount_isCashToday}" data-alipaytoday = "{$totalAmount_isAlipayToday}" data-wechattoday = "{$totalAmount_isWeChatToday}" data-remaindertoday = "{$totalAmount_isRemainderToday}"></div>
+			<div class="turnover-total">
+				共：<span>{$totalAmout_whenToday}</span>元
+			</div>
+		</div>
+		
+		<div class="chart-section">
+			<div id="monthTurnover" class="chart_data" data-cashmonth = "{$totalAmount_isCashMonth}" data-alipaymonth = "{$totalAmount_isAlipayMonth}" data-wechatmonth = "{$totalAmount_isWeChatMonth}" data-remaindermonth = "{$totalAmount_isRemainderMonth}"></div>
+
+			<div class="turnover-total">
+				共：<span>{$totalAmount_whenMonth}</span>元
+			</div>			
+		</div>
+		
+		<div class="turnover-order">
+			<div class="row">
+				<div class="col-xs-6">
+					<div class="turnover-item">
+						<p>今日订单数：</p>
+						<div class="text-right turnover-order-num">
+							<span>{$orderNum_withToday}</span>份
+						</div>
+					</div>
+				</div>
+				<div class="col-xs-6">
+					<!--<div class="turnover-item">
+						<p>退菜：</p>
+						<div class="text-right turnover-order-num">
+							<span>5</span>份
+						</div>
+					</div>-->
+				</div>
+			</div>
+		</div>
+
+		<footer class="clearfix boss-footer">
+			<button class="btn-none" onclick="location.reload()">
+				<span>刷新</span>
+			</button>
+			<div class="pull-right boss-footer-right">
+				<button class="btn-none" onclick="location='/index.php/Boss/Score/index'">
+					<img src="__PUBLIC__/images/dishes-icon.png">
+					<div>菜品</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Turnover/index'">
+					<img src="__PUBLIC__/images/score-icon.png">
+					<div>营业额</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Detail/index'">
+					<img src="__PUBLIC__/images/detail-icon.png">
+					<div>明细</div>
+				</button>
+			</div>
+		</footer>
+	</body>
+	<script src="__PUBLIC__/js/Boss/Turnover.js"></script>
+</html>

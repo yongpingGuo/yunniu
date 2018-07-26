@@ -1,0 +1,85 @@
+<extend name="Public:base" />
+<block name="main">
+	<header class="header">所有顾客</header>
+	<section class="section">
+		<header class="section-title">所有顾客整单打折</header>
+		<div class="section-row">
+			<div>
+				<span>1.消费满</span>
+				<input type="text" class="input-xs">
+				<span> 元时：</span>
+			</div>
+			<div class="flex-content vertical-flex">
+				<div class="flex-main">
+					<span>&nbsp;&nbsp;折扣</span>
+					<input type="text" class="input-xs">
+					<span>折，立减</span>
+					<input type="text" class="input-xs">
+					<span>元</span>
+				</div>
+				<button class="default-btn">删除</button>
+			</div>
+			<hr class="hr hr-dashed">
+		</div>
+		<div class="section-row">
+			<div>
+				<span>1.消费满</span>
+				<input type="text" class="input-xs">
+				<span> 元时：</span>
+			</div>
+			<div class="flex-content vertical-flex">
+				<div class="flex-main">
+					<span>&nbsp;&nbsp;折扣</span>
+					<input type="text" class="input-xs">
+					<span>折，立减</span>
+					<input type="text" class="input-xs">
+					<span>元</span>
+				</div>
+				<button class="default-btn">删除</button>
+			</div>
+			<hr class="hr hr-dashed">
+		</div>
+		<div class="section-row">
+			<div>
+				<span>1.消费满</span>
+				<input type="text" class="input-xs">
+				<span> 元时：</span>
+			</div>
+			<div class="flex-content vertical-flex">
+				<div class="flex-main">
+					<span>&nbsp;&nbsp;折扣</span>
+					<input type="text" class="input-xs">
+					<span>折，立减</span>
+					<input type="text" class="input-xs">
+					<span>元</span>
+				</div>
+				<button class="default-btn">删除</button>
+			</div>
+			<hr class="hr hr-dashed">
+		</div>
+		<button class="danger-btn">
+			<i class="iconfont icon-plus"></i>
+		</button>
+	</section>
+	<div class="remarks tips">
+		<div>
+			<span class="tips-icon">*</span>
+			<span>折扣和立减同时有效！</span>
+			<div>不设立减时，立减填写为：0元</div>
+  			<div>不设折扣时，折扣填写为：10折（0折=免费）</div>
+		</div>
+		<div>
+			<span class="tips-icon">*</span>
+			<span>折扣设置如：8.5折；8折；</span>
+		</div>
+		<div>
+			<span class="tips-icon">*</span>
+			<span>消费满按最大额计算：</span>
+			<div>1. 满10元，立减1元</div>
+			<div>2. 满20元，立减3元</div>
+			<div>当顾客消费9元时，不进行打折</div>
+			<div>当顾客消费10-19元时，立减1元</div>
+			<div>当顾客消费20元以上时，立减3元</div>
+		</div>
+	</div>
+</block>

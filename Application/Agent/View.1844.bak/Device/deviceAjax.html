@@ -1,0 +1,63 @@
+	<table class="device-table table-hover">
+		<tr>
+			<td>序号</td>
+			<td>设备名称</td>
+			<td>机器ID</td>
+			<td>最后注册时间</td>
+			<td>到期时间</td>
+			<td>所属店铺</td>
+			<td>状态</td>
+			<td></td>
+		</tr>
+		<volist name = "deviceList" id = "v4">
+		<tr>
+			<td>{$key+1}</td>
+			<td>{$v4.device_name}</td>
+			<td>{$v4.device_code}</td>
+			<td>{$v4.start_time|date="Y-m-d",###}</td>
+			<td>{$v4.end_time|date="Y-m-d",###}</td>
+			<td>
+				<select name="bingInfo" id="bindInfo" data-code_id="{$v4.code_id}" onchange="changeBindRes(this)">
+					<volist name="restaurant_list" id="rsl">
+						<if condition="$rsl['restaurant_id'] eq $v4['restaurant_id']">
+							<option value="{$rsl.restaurant_id}" selected>{$rsl.restaurant_name}</option>
+						<else/>
+							<option value="{$rsl.restaurant_id}">{$rsl.restaurant_name}</option>
+						</if>
+					</volist>
+				</select>
+			</td>
+			<eq name = "v4.device_status" value = "1">
+				<td>正常</td>
+			<else/>
+				<td>禁用</td>
+			</eq>
+			
+			<td>
+				<button class="btn btn-black" data-target="#editDevice" data-toggle="modal" onclick="modify({$v4.device_id})">编辑</button>
+				<button class="btn btn-default" onclick="del({$v4.device_id})">删除</button>
+				
+			</td>
+		</tr>
+		</volist>
+	</table>
+	<div>
+	    <ul class="pagination" id="detail-page">
+	        {$page}
+	    </ul>
+	</div>
+	<script>
+		$("#detail-page").children().children("a").click(function(){
+		var page = parseInt($(this).data("page"));
+			$.ajax({
+				url:"/index.php/agent/Device/device_ajax/page/"+page,
+				type:"get",
+				success:function(data){
+					$("#mytable").html(data);
+				},
+				error:function(){
+					alert("出错了");
+				  }
+			   });
+	    });
+	</script>

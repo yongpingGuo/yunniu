@@ -1,0 +1,38 @@
+<extend name="Public:base" />
+<block name="main">
+	<section class="section">
+		<div>
+			<span>餐牌号：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<div class="section-row">
+			<span class="remarks">点餐时，将餐牌号给于顾客，服务员按餐牌号送餐</span>
+		</div>
+		<div>
+			<span>外带：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<div class="section-row">
+			<span class="remarks">只限于竖屏自助点餐机，收银机上默认可选择外带、堂吃</span>
+		</div>
+		<div>
+			<span>广告：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<div class="section-row">
+			<span class="remarks">只限于竖屏自助点餐机。点击屏幕，开始点餐。</span>
+		</div>
+		<div class="section-row">微信、支付宝，支付成功提示：</div>
+		<textarea class="textarea textarea-lg" rows="2"></textarea>
+	</section>
+	<button class="danger-btn-lg">保存设置</button>
+</block>

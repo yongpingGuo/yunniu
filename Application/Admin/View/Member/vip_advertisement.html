@@ -1,0 +1,191 @@
+<extend name="Public:base" />
+<block name="main">
+    <div class="section">
+        <div class="section-header">{{langData.memberCentre[lang]}}-{{langData.topAds[lang]}}</div>
+        <div class="section-content">
+            <div class="clearfix" id="mytr">
+                <volist name="info" id="v" offset="0" length='1'>
+                    <div class="showImg pull-left">
+                        <div class="imgHorizontal" id="{$v.advertisement_id}">
+                            <img src="/{$v.advertisement_image_url}" class="uploadImg">
+                            <input type="file" name="default" onchange="topPreview(this)">
+                        </div>
+                    </div>
+                </volist>
+                <volist name="info" id="v" offset="1">
+                    <div class="showImg pull-left">
+                        <div class="imgHorizontal" id="{$v.advertisement_id}">
+                            <img src="/{$v.advertisement_image_url}" class="uploadImg">
+                            <button class="delete-btn" onclick="deladver({$v.advertisement_id})">
+                                <img src="__PUBLIC__/images/delete.png">
+                            </button>
+                            <input type="file" name="change" onchange="topPreview(this)">
+                        </div>
+                    </div>
+                </volist>
+                <div class="showImg pull-left">
+                    <div class="imgHorizontal">
+                        <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+                        <input type="file" name="change" onchange="topPreview(this)">
+                    </div>
+                </div>
+            </div>
+            <div class="section-tips">
+                <{{langData.memberCentreAdTips[lang]}}>
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="section-header">{{langData.memberCentre[lang]}}-{{langData.bottomAds[lang]}}</div>
+        <div class="section-content">
+            <div class="clearfix" id="mytr1">
+                <volist name="info1" id="v1" offset="0" length='1'>
+                    <div class="showImg pull-left">
+                        <div class="imgHorizontal" id="{$v1.advertisement_id}">
+                            <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                            <input type="file" name="default" onchange="bottomPreview(this)">
+                        </div>
+                    </div>
+                </volist>
+                <volist name="info1" id="v1" offset="1">
+                    <div class="showImg pull-left">
+                        <div class="imgHorizontal" id="{$v1.advertisement_id}">
+                            <img src="/{$v1.advertisement_image_url}" class="uploadImg">
+                            <button class="delete-btn" onclick="deladver1({$v1.advertisement_id})">
+                                <img src="__PUBLIC__/images/delete.png">
+                            </button>
+                            <input type="file" name="change" onchange="bottomPreview(this)">
+                        </div>
+                    </div>
+                </volist>
+                <div class="showImg pull-left">
+                    <div class="imgHorizontal">
+                        <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+                        <input type="file" name="change" onchange="bottomPreview(this)">
+                    </div>
+                </div>
+            </div>
+            <div class="section-tips">
+                <{{langData.memberCentreAdTips[lang]}}>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+    //横屏广告的预览+上传(预览时就上传)
+    function topPreview(file) {
+        var prevDiv = $(file).parent()[0]; //获取上传图片父级所在的DOM对象
+        var statu = $(file).siblings('img').attr('src'); //获取广告位状态（空或已有广告）
+        if ($(file).siblings('img').attr('data-img') == "add") {
+            statu = "";
+        }
+        var aid = $(file).parent().attr('id'); //当前广告ID
+        var wtype = $(file).attr('name'); //广告位类型(默认或动态广告位)
+        //------------------------------------广告位的广告预览-----------------------------------------
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="uploadImg" />';
+            }
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            prevDiv.innerHTML = '<div class="img uploadImg" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+        //------------------------------------广告位上传广告--------------------------------------------
+        var formdata = new FormData();
+        formdata.append("file", file.files[0]); //上传文件
+        formdata.append("wtype", wtype); //广告位类型，第一个广告位是默认，第二个广告位是可变
+        formdata.append("aid", aid) //广告id
+        formdata.append("statu", statu); //广告图片src值
+        $.ajax({
+            type: 'post',
+            url: '/index.php/admin/Member/uploadimg',
+            data: formdata,
+            cache: false,
+            processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+            contentType: false, // 不设置Content-type请求头
+            success: function(data) {
+                layer.msg(vm.langData.success[vm.lang]);
+                $('#mytr').html(data);
+            }
+        });
+    }
+
+    function bottomPreview(file) {
+        var prevDiv = $(file).parent()[0];
+        var statu = $(file).siblings('img').attr('src');
+        if ($(file).siblings('img').attr('data-img') == "add") {
+            statu = "";
+        }
+        var aid = $(file).parent().attr('id');
+        var wtype = $(file).attr('name');
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="uploadImg" />';
+            }
+            reader.readAsDataURL(file.files[0]);
+        } else {
+            prevDiv.innerHTML = '<div class="img uploadImg" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+        var formdata = new FormData();
+        formdata.append("file", file.files[0]); //上传文件
+        formdata.append("wtype", wtype); //广告位类型，第一个广告位是默认，第二个广告位是可变
+        formdata.append("aid", aid) //广告id
+        formdata.append("statu", statu); //广告图片src值
+        $.ajax({
+            type: 'post',
+            url: '/index.php/admin/Member/uploadphimg',
+            data: formdata,
+            cache: false,
+            processData: false, // 不处理发送的数据，因为data值是Formdata对象，不需要对数据做处理
+            contentType: false, // 不设置Content-type请求头
+            success: function(data) {
+                layer.msg(vm.langData.success[vm.lang]);
+                $("#mytr1").html(data);
+            }
+        });
+    }
+    //删除顶部广告
+    function deladver(z) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        }, function(index) {
+            $.ajax({
+                type: "post",
+                url: "/index.php/admin/Member/deladver",
+                data: {
+                    "advertisement_id": z
+                },
+                success: function(data) {
+                    $("#mytr").html(data);
+                    layer.msg(vm.langData.success[vm.lang]);
+                }
+            });
+            layer.close(index);           
+        });
+    }
+    //删除底部广告
+    function deladver1(z) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        }, function(index) {
+            $.ajax({
+                type: "post",
+                url: "/index.php/admin/Member/deladver1",
+                data: {
+                    "advertisement_id": z
+                },
+                success: function(data) {
+                    layer.msg(vm.langData.success[vm.lang]);
+                    $("#mytr1").html(data);
+                }
+            });
+            layer.close(index);
+        });
+    }
+    </script>
+</block>

@@ -1,0 +1,116 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="新增菜品" />
+    <form action="javascript:void(0)" id="food_info">
+        <div class="dish-img-preview" id="preview">
+            <img src="/Application/Admin/Uploads/default/unupload.png">
+        </div>
+        <div class="flex-content section-row">
+            <div>
+                <input type="hidden" name="hot_level" value="0" id="hot_level" />
+                <span class="default-btn active" data-index="0" onclick="click_hot_level(this)">不辣</span>
+                <span class="default-btn" data-index="1" onclick="click_hot_level(this)">微辣</span>
+                <span class="default-btn" data-index="2" onclick="click_hot_level(this)">中辣</span>
+                <span class="default-btn" data-index="3" onclick="click_hot_level(this)">特辣</span>
+            </div>
+            <div class="flex-main">
+                <input type="hidden" name="star_level" value="1" id="star_level" />
+                <input type="hidden" name="dianzan" id="dianzan_value" value="1" />
+                <button class="like-btn active" onclick="point_zan(this)">
+                    <i class="iconfont icon-dianzan"></i>
+                </button>
+            </div>
+            <div class="file-content">
+                <button class="danger-btn-sm">选择图片</button>
+                <input type="file" name="food_pic" onchange="preview(this)">
+            </div>
+        </div>
+        <section class="section">
+            <div class="flex-content vertical-flex section-row">
+                <span>名称：</span>
+                <input type="text" class="flex-main input" name="food_name" placeholder="请输入菜品名称" style="color: #000">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span>描述：</span>
+                <textarea class="flex-main textarea" rows="3" name="food_desc" placeholder="请输入菜品的描述" style="color: #000"></textarea>
+            </div>
+            <div class="section-row">
+                <span>价格：</span>
+                <input type="text" class="input-xs" name="food_price" placeholder="价格" style="color: #000">
+                <span>元</span>
+            </div>
+            <div class="section-row">
+                <span>每日限量：</span>
+                <input type="text" class="input-xs" name="foods_num_day" value="10000" style="color: #000">
+                <span>份</span>
+                <!--<span class="remarks">（今天已售：40份）</span>-->
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span>后厨打印机：</span>
+                <!--<input type="text" class="flex-main input">-->
+                <div class="select-reset">
+                    <select name="print_id" id="print_id" style="color: #000">
+                        <option value="0">不设打印</option>
+                        <?php foreach ($printerList as $k => $v): ?>
+                        <?php if ($v['print_type'] !=2) {
+	                                    echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+	                };?>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span>标签打印机：</span>
+                <!--<input type="text" class="flex-main input">-->
+                <div class="select-reset">
+                    <select name="tag_print_id" id="sel" style="color: #000">
+                        <option value="0">不设打印</option>
+                        <?php foreach ($printerList as $k => $v): ?>
+                        <?php if ($v['print_type'] ==2) {
+	                                        echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+	                };?>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span>取餐叫号屏：</span>
+                <!--<input type="text" class="flex-main input">-->
+                <div class="select-reset">
+                    <select name="district" id="district" style="color: #000">
+                        <volist name="district_list" id="district_vo">
+                            <if condition="$district_vo['district_id'] eq 0">
+                                <option value="{$district_vo['district_id']}" selected>
+                                    {$district_vo.district_name}
+                                </option>
+                                <else/>
+                                <option value="{$district_vo['district_id']}">
+                                    {$district_vo.district_name}
+                                </option>
+                            </if>
+                        </volist>
+                    </select>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="dish-edit-title">
+                <span>选择分类</span>
+                <span class="remarks">（支持多选）</span>
+            </div>
+            <div class="dish-classify flex-content flex-wrap  vertical-flex">
+                <volist name="data" id="v">
+                    <div class="dish-classify-item flex-content vertical-flex" onclick="belong_category(this)">
+                        <input class="menu_input" type="checkbox" name="sort1[]" value="{$v.food_category_id}" style="display:none"> {$v.food_category_name}
+                    </div>
+                </volist>
+            </div>
+        </section>
+    </form>
+    <footer class="footer">
+        <button class="danger-btn-lg" id="save_food">保存设置</button>
+    </footer>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/dish_add.js?v2017092999"></script>
+</block>

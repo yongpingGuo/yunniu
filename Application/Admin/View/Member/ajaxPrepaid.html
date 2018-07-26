@@ -1,0 +1,34 @@
+<table class="table-condensed" id="ajax-content">
+    <tbody>
+        <foreach name="prepaid_rules" item="v">
+            <tr id="delPrepaid">
+                <td class="index1">{++$key}.</td>
+                <td>{{langData.recharge[lang]}}
+                    <input class="small-input" type="text" name="account" value="{$v[account]}">
+                    <span>{{langData.yuan[lang]}},{{langData.handsel[lang]}}</span>
+                    <input class="small-input" type="text" name="benefit" value="{$v[benefit]}">
+                    <span>{{langData.yuan[lang]}}={$v['account']+$v['benefit']}{{langData.yuan[lang]}}</span>
+                    <input type="hidden" name="id" value="{$v['id']}" />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="return save_prepaid(this)">{{langData.save[lang]}}</button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick="return shanchu_prepaid(this,'/index.php/Admin/Member/del_prepaid')">{{langData.delete[lang]}}</button>
+                </td>
+            </tr>
+        </foreach>
+    </tbody>
+</table>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

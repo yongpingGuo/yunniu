@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/no_pay.css">
+	</head>
+	<body class="member">
+		<div id="member">
+			<header class="template-header">
+				<button class="return-btn">
+					<img src="__PUBLIC__/images/return.png">
+					<span>返回</span>
+				</button>
+			</header>
+			<section class="member-content">
+				<el-row :gutter="50">
+					<el-col :span="8">
+						<div class="member-title">1.请扫下面二维码进入公众号</div>
+						<div>
+							<img src="__PUBLIC__/images/number_code.png" class="member-img">
+						</div>
+					</el-col>
+					<el-col :span="8">
+						<div class="member-title">2.打开用户中心</div>
+						<div>
+							<img src="__PUBLIC__/images/wechatMember.png" class="member-img">
+						</div>
+					</el-col>
+					<el-col :span="8">
+						<div class="member-title">3.设备扫码器扫描会员码</div>
+						<div>
+							<img src="__PUBLIC__/images/wechatMember.png" class="member-img">
+						</div>
+					</el-col>
+				</el-row>
+			</section>
+			<footer class="template-footer clear">
+				<button>我要到收银台付款</button>
+				本页面在<span id="time">70</span>秒后自动关闭
+			</footer>
+			<audio controls="controls" preload id="music" hidden>
+				<source src="__PUBLIC__/wav/payFinish.wav" type="audio/mpeg" />
+			</audio>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script type="text/javascript">
+		new Vue({
+
+		}).$mount('#member');
+	</script>
+</html>

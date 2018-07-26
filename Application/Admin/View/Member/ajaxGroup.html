@@ -1,0 +1,32 @@
+<table class="table-condensed" id="ajax-content">
+    <tbody>
+        <foreach name="group_info" item="v">
+            <tr>
+                <td class="index">{++$key}</td>
+                <td>{{langData.memberGroup[lang]}}:</td>
+                <td>
+                    <input type="text" name="group_name1" value="{$v[group_name]}" :placeholder="langData.memberGroup[lang]" id="gm{$key}">
+                    <input type="hidden" name="group_id" value="{$v[group_id]}" id='hid{$key}' />
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-primary" onclick="return save_group(this,'{$key}','/index.php/Admin/Member/save_group')">{{langData.save[lang]}}</button>
+                </td>
+                <td>
+                    <button class="btn btn-sm btn-danger" onclick="return shanchu_group(this,'{$v[group_id]}','/index.php/Admin/Member/del_group')">{{langData.delete[lang]}}</button>
+                </td>
+            </tr>
+        </foreach>
+    </tbody>
+</table>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

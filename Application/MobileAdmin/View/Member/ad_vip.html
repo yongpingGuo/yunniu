@@ -1,0 +1,23 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="广告图片" />	
+	<section class="section">
+		<header class="section-title">会员中心广告设置</header>
+		<div class="flex-content flex-wrap section-row">
+			<!--<a class="index-item" href="{:U('Index/ad_top')}">-->
+			<a class="index-item" href="{:U('Member/ad_top')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/ad.png">
+				</div>
+				<div>顶部广告</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/ad_bottom')}">-->
+			<a class="index-item" href="{:U('Member/ad_bottom')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/ad.png">
+				</div>
+				<div>底部广告</div>
+			</a>
+		</div>
+	</section>
+</block>

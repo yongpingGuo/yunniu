@@ -1,0 +1,10 @@
+<volist name="data" id="v">
+    <div class="classify-list flex-content vertical-flex">
+        <img src="{$v.img_url}" class="icon-sm">
+        <div class="flex-main classify-name">{$v['food_category_name']}</div>
+        <button class="default-btn" onclick="location='{:U(\'Index/classify_edit\')}'">修改</button>
+        <button class="default-btn" onclick="deltype({$v.food_category_id})">删除</button>
+        <button class="default-btn" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="moveup1(this)">上移</button>
+        <button class="default-btn" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="movedown1(this)">下移</button>
+    </div>
+</volist>

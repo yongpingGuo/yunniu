@@ -1,0 +1,145 @@
+<table class="dishes-list-table">
+        <volist name = "info" id = "v">
+        <tr>
+        	<td>{$key+1}</td>
+    		<td>
+    			<button class="rank-up moveup" data-sort="{$v.sort}" data-food_id = "{$v.food_id}" onclick="moveup2(this)"></button>
+        		<button class="rank-down movedown" data-sort="{$v.sort}" data-food_id = "{$v.food_id}" onclick="movedown2(this)"></button>
+			</td>
+			
+			<td><img src = "/{$v.food_img}" class="dishes-list-img"></td>		
+			<td>
+				<span>{$v.food_name}</span>
+				<div class="section-tips">分类：{$v.cateData}</div>
+			</td>
+			<td class="dishes-list-price">{$v.food_price}元</td>
+			<input type="hidden" name="food_category_id" id="food_category_id" value="{$v.food_category_id}"/>  
+			<td class="dishes-list-star">
+                <span class="showStar">
+                    <if condition="$v.star_level eq 1"></if>
+                    <if condition="$v.star_level eq 2">★★</if>
+                    <if condition="$v.star_level eq 3">★★★</if>
+                    <if condition="$v.star_level eq 4">★★★★</if>
+                    <if condition="$v.star_level eq 5">★★★★★</if>
+                </span>
+                         <if condition="$v.hot_level eq 0"></if>
+                                <if condition="$v.hot_level eq 1"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"></if>
+                                <if condition="$v.hot_level eq 2"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"></if>
+                                <if condition="$v.hot_level eq 3"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"> <img src="__PUBLIC__/images/cayenne.png" class="showCayenne"></if>
+            </td>
+			<td class="dishes-list-price">{$v.foods_num_day}份</td>
+			<td class="text-right">
+				<!-- <button class="btn btn-info" onclick="changestatu({$v.food_id})">
+					<eq name = "v.is_sale" value = "1">下架
+						<else/>上架
+					</eq>
+				</button> -->
+			    <div class="checkbox-switch">
+			        <eq name = "v.is_sale" value = "1">
+			            <input type="checkbox" onclick="changestatu({$v.food_id})" checked="checked">
+			            <else/>
+			            <input type="checkbox" onclick="changestatu({$v.food_id})" >
+			        </eq>
+			        <label></label>
+			    </div>
+			</td>
+<!-- 			<eq name = "v.is_prom" value = "0">
+				<td>关闭</td>
+			<else/>
+				<td>开启</td>
+			</eq>
+			<eq name = "v.is_sale" value = "0">
+				<td>下架</td>
+			<else/>
+				<td>上架</td>
+			</eq> -->	
+			<td class="dishes-list-operation">
+				<button class="edit-btn" onclick="modify_food(this)" data-food_id = "{$v.food_id}" data-food_category_id = "{$v.food_category_id}"></button>
+				<button class="remove-btn" onclick = "delfoodinfo1({$v.id})"></button>
+			</td>
+        </tr>
+        </volist>
+    </table>
+    <div class="text-center">
+		<ul class="pagination" id="detail-page">{$page}</ul>
+	</div>
+                    
+<script>	
+ 	//菜品记录表排序，但排序ID是用的(food表),上移数据
+ 	function moveup2(obj){
+ 		var when_sort = $(obj).data('sort');
+ 		var when_food_id = $(obj).data('food_id');
+ 		var page = $(".current").data('page');	//当前页数
+ 		var food_category_id = $("input[name='food_category_id']").val();        //分类名称
+ 		if(page == undefined){
+ 			page = 1;
+ 		}
+ 		$.ajax({
+ 			type:"get",
+ 			url:"/index.php/admin/dishes/moveup2/food_category_id/"+food_category_id+"/when_sort/"+when_sort+"/when_food_id/"+when_food_id,
+ 			async:true,
+ 			dataType:"json",
+ 			success:function(data){
+				if(data.code == 1){
+			    	$.ajax({
+			    		type:"get",
+						url:"/index.php/admin/Dishes/deskInfo2/food_category_id/"+food_category_id+"/page/"+page,
+						success:function(data){
+							$("#all").html(data);
+						},
+						error:function(){
+							alert("出错了");
+						}
+					});	
+		 		}
+ 			}
+ 		});
+ 	}
+ 	
+ 	//菜品记录表排序，但排序ID是用的(food表),下移数据
+ 	function movedown2(obj){
+ 		var when_sort = $(obj).data('sort');
+ 		var when_food_id = $(obj).data('food_id');
+ 		var page = $(".current").data('page');	//当前页数
+ 		var food_category_id = $("input[name='food_category_id']").val();        //分类名称
+ 		if(page == undefined){
+ 			page = 1;
+ 		}
+ 		$.ajax({
+ 			type:"get",
+ 			url:"/index.php/admin/dishes/movedown2/food_category_id/"+food_category_id+"/when_sort/"+when_sort+"/when_food_id/"+when_food_id,
+ 			async:true,
+ 			dataType:"json",
+ 			success:function(data){
+				if(data.code == 1){
+			    	$.ajax({
+			    		type:"get",
+						url:"/index.php/admin/Dishes/deskInfo2/food_category_id/"+food_category_id+"/page/"+page,
+						success:function(data){
+							$("#all").html(data);
+						},
+						error:function(){
+							alert("出错了");
+						}
+					});	
+		 		}
+ 			}
+ 		});
+ 	}
+  
+  	//点击页码的跳转ajax分页操作
+	$("#detail-page").children().children("a").click(function(){
+		var page = parseInt($(this).data("page"));
+		var food_category_id = $("#food_category_id").val();
+		$.ajax({
+			url:"/index.php/admin/Dishes/deskInfo2/page/"+page+"/food_category_id/"+food_category_id,
+			type:"get",
+			success:function(data){
+				$("#all").html(data);
+			},
+			error:function(){
+				alert("出错了");
+			}
+		});	
+	});
+</script>

@@ -1,0 +1,97 @@
+* {
+-webkit-touch-callout:none;
+-webkit-user-select:none;
+-khtml-user-select:none;
+-moz-user-select:none;
+-ms-user-select:none;
+user-select:none;
+}
+input {      
+    -webkit-user-select:auto; /*webkit浏览器*/     
+}
+button,
+button:focus{
+	outline: none !important;
+}
+@media screen and (min-width: 320px) {
+    html,body {font-size: 14px;}
+}
+ 
+@media screen and (min-width: 360px) {
+    html,body {font-size: 16px;}
+}
+ 
+@media screen and (min-width: 400px) {
+    html,body {font-size: 18px;}
+}
+ 
+@media screen and (min-width: 440px) {
+    html,body {font-size: 20px;}
+}
+ 
+@media screen and (min-width: 480px) {
+    html,body {font-size: 22px;}
+}
+ 
+@media screen and (min-width: 640px) {
+    html,body {font-size: 28px;}
+}
+html,body{
+	height: 100%;
+}
+.btn{
+	font-size: 1rem;		
+}
+.form-control{
+	height: 2.4rem;	
+}
+.home-header {
+	width: 100%;
+    height: 50px;
+    color: #fff;
+    padding-left: 10px;
+    line-height: 50px;
+    font-size: 1.5em;
+    background: #e84244;
+    margin-bottom: 30px;
+}
+.activate input{
+	margin-bottom: 1rem;
+}
+
+.loginModal{
+	height: 80%;
+}
+.modal-dialog {
+	/*position: relative;*/
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+.modal-content {
+	position: absolute;
+	bottom: 3em;
+	left: 0;
+	right: 0;
+	width: 90%;
+	height: 50%;
+	margin: 0 auto;
+	background-color: #ffffff;
+	border: 1px solid #ddd;
+}
+
+.modal-close{
+	background-color: transparent;
+	border: 0;
+	font-size: 2em;
+	line-height: 1;
+	padding: 0 5px;
+
+}
+.modal-imgcontent{
+	width: 45%;
+	margin: 20px auto;
+}
+.modal-imgcontent img{
+	width: 100%;
+}

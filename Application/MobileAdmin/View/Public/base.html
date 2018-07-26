@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- css样式表 -->
+    <block name="css"></block>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/iconfont/iconfont.css?v20170926">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/mobileAdmin.css?v20170930">
+    <title>方派商家掌柜</title>
+</head>
+
+<body>
+    <!-- 主体部分 -->
+    <block name="main"></block>
+    <!-- 引入JS -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script type="text/javascript">
+    function bodyPadding() {
+        var headerHeight = $('.header').height() + $(window).width() * 0.025;
+        var footerHeight = $('.footer').height() + $(window).width() * 0.05;
+        $('body').css({
+            'padding-top': headerHeight,
+            'padding-bottom': footerHeight
+        });;
+    }
+    bodyPadding();
+    $(window).resize(function(event) {
+        bodyPadding();
+    });
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/index.js?v20170922"></script>
+    <block name="js"></block>
+</body>
+
+</html>

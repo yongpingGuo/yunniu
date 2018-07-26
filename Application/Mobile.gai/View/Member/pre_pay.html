@@ -1,0 +1,57 @@
+<include file="Public/head"/>
+<!-- 支付页 -->
+<body>
+	<header class="home-header">
+		<a href="javascript:history.back(-1)">
+			<img src="__PUBLIC__/images/lt.png">
+			<b>重新预充值</b>
+		</a>
+	</header>
+	
+	<div class="pay">
+		<h2 class="text-center">共：&yen;<span class="Total">{$total_amount}</span>元</h2>
+		<div class="pay-select">
+			<div class="pay-item" id="weixin">
+				<a href="javascript:void(0)">
+					<img src="__PUBLIC__/images/wechat.png" class="pay-item-img">
+					<span>微信支付</span>
+				</a>
+			</div>
+		</div>
+		<div class="text-center">
+			<button class="btn-none check-pay" onclick="selectPay()">确认支付<span class="larger ml-10">&yen;<span class="Total">{$total_amount}</span>元</span></button>
+		</div>
+	</div>
+	<input type="hidden" value="{$order_sn}" name="order_sn" id="order_sn">
+	<footer class="home-footer text-center">
+		本页面在<span class="footer-time" id="pageCloseTime">70秒</span>后自动关闭
+	</footer>
+</body>
+<script>
+	$(function(){
+		var t = 70;
+		var timeout = setTimeout("autoTimeout("+t+")",1000);
+	});
+
+	function autoTimeout(t){
+		t -= 1;
+		if(t == 0){
+			var restaurant_id = sessionStorage.getItem("restaurant_id");
+			var desk_code = sessionStorage.getItem("desk_code");
+			clearTimeout(timeout);
+			// location.href = "/index.php/mobile/index/index/restaurant_id/"+restaurant_id+"/desk_code/"+desk_code;
+			location.href = "/index.php/mobile/Member/remainder";   // 这里退回去的时候要考虑要不要带参数
+			return;
+		}
+		clearTimeout(timeout);
+		var timeout = setTimeout("autoTimeout("+t+")",1000);
+		$("#pageCloseTime").text(t);
+	}
+
+	function selectPay(){
+		var order_sn = $("#order_sn").val();
+        // wx_prepaid_flag用来区分获取对接信息是查询config表还是wx_prepaid_config表
+        self.location.href = "/index.php/mobile/WxPay/wxPrepaid/order_sn/"+order_sn+"/wx_prepaid_flag/weixin";
+	}
+</script>
+</html>

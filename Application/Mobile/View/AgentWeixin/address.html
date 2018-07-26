@@ -1,0 +1,66 @@
+<extend name="Public:base" />
+<block name="css">
+    <!-- 引入JS -->
+    <script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+</block>
+<block name="main">
+
+    <body class="address-body">
+        <div class="flex-content address-search">
+            <select id="city_list">
+                <option>请选择</option>
+            </select>
+            <input type="text" class="input w100" placeholder="输入搜索地址" id="search_list">
+        </div>
+        <!--<div class="tips">-->
+        <!--登录后可享受会员优惠价，并自动累计K金。-->
+        <!--<a href="#" class="text-active right">去登录</a>-->
+        <!--</div>-->
+        <div id="show">
+        </div>
+    </body>
+</block>
+<block name="js">
+    <!-- <script type="text/javascript" src="https://www.w3cways.com/demo/vconsole/vconsole.min.js?v=2.2.0"></script> -->
+    <!--加载相应的微信js_sdk配置-->
+    <script>
+	    var appId = '{$appId}';
+	    var timestamp = '{$timestamp}';
+	    var nonceStr = '{$nonceStr}';
+	    var signature = '{$signature}';
+        var host = '{$host}';//域名
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/Mobile/address.js"></script>
+    <script>
+        //点击搜索
+        $("#city_list").change(function(){
+            var city_name = $("#city_list").val();
+            var search_list = $('#search_list').val();
+            if(city_name == '请选择'){
+                city_name = '';
+            }
+            var search = city_name + search_list;
+
+            $("#show .for_sear")
+                    .hide()
+                    .filter(":contains('"+search+"')")
+                    .show();
+        })
+
+
+        //监测搜索框是否改变
+        $('#search_list').bind('input propertychange', function() {
+            var city_name = $("#city_list").val();
+            var search_list = $('#search_list').val();
+            if(city_name == '请选择'){
+                city_name = '';
+            }
+            var search = city_name + search_list;
+
+            $("#show .for_sear")
+                    .hide()
+                    .filter(":contains('"+search+"')")
+                    .show();
+        });
+    </script>
+</block>

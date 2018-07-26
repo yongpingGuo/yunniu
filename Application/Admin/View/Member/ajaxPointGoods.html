@@ -1,0 +1,32 @@
+<div class="clearfix" id="ajax-content">
+    <foreach name="img_rules" item="v">
+        <div class="pull-left ">
+            <div class="imgHorizontal showImg">
+                <img src="/Public/Uploads/Goods/{$v[goods_img]}" class="uploadImg">
+                <input type="hidden" name="id" value="{$v['id']}" />
+            </div>
+            <div class="flex-contnet vertical-flex">
+                <span>{{langData.points[lang]}}:{$v[score]}</span>
+                <button class="edit-btn" data-toggle="modal" data-target="#edit-goods" data-goods_id="{$v['id']}" onclick="editInfo(this)"></button>
+                <button class="remove-btn" onclick="return del_img(this,'/index.php/Admin/Member/del_point_img')"></button>
+            </div>
+        </div>
+    </foreach>
+    <div class="pull-left">
+        <button class="imgHorizontal showImg" data-toggle="modal" data-target="#add-goods">
+            <img src="__PUBLIC__/images/add.png" class="uploadImg">
+        </button>
+    </div>
+</div>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>微信支付测试</title>
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+        <!--[if lt IE 9]>
+          <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+          <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div class="container">
+            <div style="height:100px"></div>
+            <h1 style="font-size:16px">微信扫码支付测试</h1>
+            <div class="well" style="margin-top:50px">
+                <form data-callback='create_success' method="post" action="/index.php/home/WxChat/qrc" class="form-horizontal" role="form" data-auto>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">订单号：</label>
+                        <div class="col-sm-10">
+                            <input  class="form-control" name="outer_no" value="{:rand(100000000,999999999)}"  placeholder="请输入订单号">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">支付金额：</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" name="price" value="1" pattern="^[\d]+[\.]?\d*$" title="请输入支付金额"  placeholder="请输入支付金额">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">生成支付二维码</button>
+                            <div id='qrc_img' style='padding:20px 20px 20px 0'></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

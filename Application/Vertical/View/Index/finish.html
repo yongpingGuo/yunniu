@@ -1,0 +1,54 @@
+<include file="Public/head"/>
+<!-- 支付完成页 -->
+<body>
+
+<header class="home-header">
+	<a href="__CONTROLLER__/index">
+		<img src="__PUBLIC__/images/lt.png">
+		<span>重新点餐</span>
+		<input type="hidden" name="shu_tpl" value="{$shu_tpl}" id="shu_tpl"/>
+	</a>
+</header>
+
+<div class="finish">
+	<!-- <h2 class="text-center">已成功下单,请领取小票,到取餐区领餐!</h2> -->
+
+	<!-- 说明:如果后台点餐流程选择的是涉及到餐牌号,即为: -->
+	<div class="finish-content text-center">
+		<h2 class="text-center">{$adv_lang}</h2>
+		<button class="common-btn check-btn" onclick="location='__CONTROLLER__/index'">确定</button>
+	</div>
+
+
+	<!-- 如果厨房此时没有纸张,即提示: -->
+	<!-- <h2 class="text-center">抱歉:厨房未有接收到订单,请前往收银台录入</h2> -->
+</div>
+
+<footer class="home-footer text-center">
+	本页面在<span class="footer-time" id="time">15秒</span>后自动关闭
+</footer>
+</body>
+<script>
+	$(function(){
+		JsObj.CloseVguang();
+	});
+
+	//设定倒数秒数
+
+	var t = 15;
+
+	//显示倒数秒数
+	function showTime(){
+		t -= 1;
+		document.getElementById('time').innerHTML= t;
+		if(t==0){
+			location.href='__CONTROLLER__/index';
+			return;
+		}
+		//每秒执行一次,showTime()
+		setTimeout("showTime()",1000);
+	}
+	//执行showTime()
+	showTime();
+</script>
+</html>

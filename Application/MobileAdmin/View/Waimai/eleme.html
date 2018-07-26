@@ -1,0 +1,44 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="饿了么" />
+    <section class="section">
+        <div class="section-row title">
+            <span>已绑定的饿了么店铺：</span> {$display_content}
+        </div>
+        <input type="hidden" value="{$auth_url}" id="eleme_grant_url" />
+        <input type="hidden" value="{$grant_situation}" id="if_grant" />
+        <a class="danger-btn-lg link-btn" target="_blank" id="eleme_grant">点击这里，前往饿了么官方绑定</a>
+        <div class="metituan-ad">
+            <div class="flex-content section-row">
+                <span>票据广告：</span>
+                <textarea class="flex-main textarea" name="eleme_bill_foot_language" id="eleme_bill_foot_language">{$language_info}</textarea>
+            </div>
+            <button class="danger-btn-lg section-row" onclick="changeadvlang_eleme()">保存广告语</button>
+            <div class="remarks section-row">注：饿了么自动接单、打印机设置等，在收银机上设置</div>
+        </div>
+        <button class="danger-btn-sm">解绑饿了么店铺的方法如下面两种</button>
+        <div class="tips">
+            <div>
+                <span class="tips-icon">*</span>
+                <span>方法一：用户自行在我的应用中解除授权。用户解除授权的路径：服务市场-》我的服务</span>
+            </div>
+            <div>
+                <span class="tips-icon">*</span>
+                <span>方法二：开发者在授权管理页面进行解除授权</span>
+            </div>
+        </div>
+    </section>
+    <div class="tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>对接后，在点餐机上面进入饿了么设置自动接单、打印机。</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>注：自动接单只限一台设备，设备包含手机、点餐机、APP等等。若在收银机上接单，应关闭APP、手机等饿了么自动接单功能。</span>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/waimai.js?20170930"></script>
+</block>

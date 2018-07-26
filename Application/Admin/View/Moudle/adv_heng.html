@@ -1,0 +1,25 @@
+<volist name="info" id="v" offset="0" length='1'>
+    <div class="showImg pull-left">
+        <div class="imgHorizontal" id="{$v.advertisement_id}">
+            <img src="/{$v.advertisement_image_url}" class="uploadImg">
+            <input type="file" name="default" onchange="preview1(this)">
+        </div>
+    </div>
+</volist>
+<volist name="info" id="v" offset="1">
+    <div class="showImg pull-left">
+        <div class="imgHorizontal" id="{$v.advertisement_id}">
+            <img src="/{$v.advertisement_image_url}" class="uploadImg">
+            <button class="delete-btn" onclick="deladver({$v.advertisement_id})">
+                <img src="__PUBLIC__/images/delete.png">
+            </button>
+            <input type="file" name="change" onchange="preview1(this)">
+        </div>
+    </div>
+</volist>
+<div class="showImg pull-left">
+    <div class="imgHorizontal">
+        <img src="__PUBLIC__/images/add.png" class="uploadImg" data-img="add">
+        <input type="file" name="change" onchange="preview1(this)">
+    </div>
+</div>

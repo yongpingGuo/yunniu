@@ -1,0 +1,13 @@
+<?php
+namespace data\service;
+
+/*
+*最基类
+*/
+class BaseService {
+    protected $restaurant_id;//餐厅id
+
+    public function __construct() {
+        $this->restaurant_id = session("restaurant_id");
+    }
+}

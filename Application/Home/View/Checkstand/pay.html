@@ -1,0 +1,410 @@
+<include file="Public/checkstandHead"/>
+<!-- 支付页 -->
+<body>
+	<header class="home-header">
+		<a href="javascript:void(0)" onclick="jpushCloseWeiGuang()">
+			<img src="__PUBLIC__/images/lt.png">
+			<b>&nbsp;重新点餐</b>
+			<input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+		</a>
+	</header>
+	<audio controls="controls" preload id="music" hidden>
+		<source src="__PUBLIC__/wav/支付下单成功.wav" type="audio/mpeg" />
+	</audio>
+	<input type="hidden" id="total_amount" name="total_amount" value="{$order.total_amount}">
+	<input type="hidden" name="order_sn" id="order_sn" value="{$Think.get.order_sn}">
+	
+	<div class="pay-wrapper">
+		<div class="pay text-center">
+			<h2>
+				共：&yen;
+				<span  class="red">{$Think.get.price}</span>
+				元
+			</h2>
+			<div class="pay-select">
+				<!-- <div class="pay-item">
+					<a href="javascript:void(0)">
+						<img src="/index.php/home/WxChat/qrc/order_sn/{$order.order_sn}" id="wxpay" class="pay-item-img">	
+						<p>微信支付</p>
+					</a>
+				</div> -->
+				<div class="pay-item">
+					<a href="#cashModal" data-toggle="modal">
+						<img src="__PUBLIC__/images/pay_02.png" class="pay-item-img">	
+						<p class="cash">
+							银联卡或现金
+							<br>凭小票到收银台支付</p>
+					</a>
+				</div>
+				<div class="pay-item">
+					<a href="#postModal" data-toggle="modal" data-commit_type = '0' onclick="jpush(this)">
+						<img src="__PUBLIC__/images/mricopay.png" class="pay-item-img">	
+						<p class="cash">刷卡支付</p>
+					</a>
+				</div>
+				<!--<div class="pay-item">
+					<a href="#alipay_postModal" data-toggle="modal" data-commit_type = '1' onclick="jpush(this)">
+						<img src="__PUBLIC__/images/mricopay.png" class="pay-item-img">	
+						<p class="cash">支付宝刷卡支付</p>
+					</a>
+				</div>-->
+				<!-- <div class="pay-item">
+					<a href="javascript:void(0)">
+						<div class="pay-iframe-content">
+							<iframe src="/index.php/home/AlipayDirect/index/order_sn/{$order.order_sn}" border="0" id="alipayIframe"></iframe>
+						</div>
+						<p>支付宝支付</p>
+					</a>
+				</div> -->
+			</div>
+		</div>
+	</div>
+
+	<footer class="home-footer text-center">
+		<!--本页面在<span class="footer-time" id="time">120</span>秒后自动关闭-->
+	</footer>
+
+	<div class="modal" id="cashModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="cash-modal-container">
+				<div class="cash-modal-content">
+					<div class="cash-modal-main">
+						<div class="cash-content">
+							<h2 class="text-center cash-head">收银</h2>
+							<div class="row">
+								<div class="col-xs-6">
+									<div class="cash-info">					
+										<div>应收款：
+											<span class="red" id="total-money">{$Think.get.price}</span>元
+										</div>
+										<div>已收款：
+											<span class="red" id="pay-in">1</span>元
+										</div>
+										<div>需找零：
+											<span class="red" id="change-money">--</span>元
+										</div>
+									</div>
+								</div>
+								<div class="col-xs-6">
+									<table class="cash-table">
+										<tr>
+											<td>
+												<button class="num-btn">1</button>
+											</td>
+											<td>
+												<button class="num-btn">2</button>
+											</td>
+											<td>
+												<button class="num-btn">3</button>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button class="num-btn">4</button>
+											</td>
+											<td>
+												<button class="num-btn">5</button>
+											</td>
+											<td>
+												<button class="num-btn">6</button>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button class="num-btn">7</button>
+											</td>
+											<td>
+												<button class="num-btn">8</button>
+											</td>
+											<td>
+												<button class="num-btn">9</button>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<button class="num-btn">.</button>
+											</td>
+											<td>
+												<button class="num-btn">0</button>
+											</td>
+											<td>
+												<button id="del-num">
+													<img src="__PUBLIC__/images/del-btn.png"></button>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</div>
+						</div>
+						<div class="cash-bottom clearfix">
+							<button class="close-btn" data-dismiss="modal">关闭</button>
+							<button class="cash-check" onclick="openCashTable()">确定</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<input type="hidden" name="commit_type">
+
+	<div class="modal" id="postModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="postModal-content">
+					<form action="javascript:void(0)" id="handSaoma" >
+					<h1 class="text-center">订单信息</h1>
+					<div class="row">
+						<span class="col-md-4">订单号：</span>
+						<span class="col-md-8">{$Think.get.order_sn}</span>
+					</div>
+					<div class="row">
+						<span class="col-md-4">订单金额：</span>
+						<span class="col-md-8">{$Think.get.price}元</span>
+					</div>
+					<div class="row">
+						<span class="col-md-4">支付方式：</span>
+						<span class="col-md-8">刷卡支付</span>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<span class="col-sm-4">支付码：</span>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="qr_number" name="qr_number" autofocus="autofocus" />
+							</div>
+							<input type="hidden" name="device_code" id="device_code" value="{$Think.cookie.device_code}">
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--
+    	作者：凯
+    	时间：2017-01-05
+    	描述：支付宝条码支付收银模态框
+    -->
+<!--	<div class="modal" id="alipay_postModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="postModal-content">
+					<form action="javascript:void(0)">
+					<h1 class="text-center">订单信息</h1>
+					<div class="row">
+						<span class="col-md-4">订单号：</span>
+						<span class="col-md-8">{$Think.get.order_sn}</span>
+					</div>
+					<div class="row">
+						<span class="col-md-4">订单金额：</span>
+						<span class="col-md-8">{$Think.get.price}元</span>
+					</div>
+					<div class="row">
+						<span class="col-md-4">支付方式：</span>
+						<span class="col-md-8">支付宝刷卡支付</span>
+					</div>
+					<div class="row">
+						<div class="form-group">
+							<span class="col-sm-4">支付宝支付码：</span>
+							<div class="col-sm-8">
+								<input class="form-control" type="text" id="ali_qr_number" name="qr_number" autofocus="autofocus" />
+							</div>
+							<input type="hidden" name="device_code" id="device_code" value="{$Think.cookie.device_code}">
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>-->
+<script>
+	$(function(){
+		var price = $("#total_amount").val();
+		$('#price').html(price);
+	});
+	//扫码枪扫付款码后会执行点击enter操作
+	$(document).keyup(function(event){
+		if(event.keyCode ==13){
+			submitMoicroPay();
+		}
+	});
+
+	//定时用ajax获取后台订单的状态，当下单的订单状态为已支付时实现页面的跳转
+	var j;
+	window.onload = function myFun(){
+		j = setInterval("getOrderStatus()",3000);
+	};
+
+	//轮循判断订单是否支付成功
+	function getOrderStatus(){
+		var order_sn = $("#order_sn").val();
+		console.log(order_sn);
+		var postData = {"order_sn": order_sn};
+
+		postData = (function(obj){ // 转成post需要的字符串.
+			var str = "";
+
+			for(var prop in obj){
+				str += prop + "=" + obj[prop] + "&"
+			}
+			return str;
+		})(postData);
+		var xhr = new XMLHttpRequest();
+		xhr.open("post","/index.php/Home/Checkstand/getOrderStatus", 'true');
+		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xhr.onreadystatechange = function (){
+			var XMLHttpReq = xhr;
+			if (XMLHttpReq.readyState == 4) {
+				if (XMLHttpReq.status == 200) {
+					var text = XMLHttpReq.responseText;
+					console.log(text);
+					var msg = eval('('+text+')');
+					console.log(msg);
+					if(msg['code'] == 1){
+						clearInterval(j);
+						JsObj.CompletePay(order_sn);
+						jpushCloseWeiGuang();
+						location.href = "__CONTROLLER__/index";
+						
+					}
+				}
+			}
+		};
+		xhr.send(postData);
+	}
+
+	//手持扫码枪的付款方法
+	function submitMoicroPay(){
+		var order_sn = $("#order_sn").val();
+		var device_code = $("input[name='device_code']").val();
+		url ='/index.php/home/WxChat/microPay';
+		var qr_number = $("#qr_number").val();
+		$.ajax({
+			url:url,
+			data:{"order_sn":order_sn,"device_code":device_code,"qr_number":qr_number},
+			type:"post",
+			dataType:"json",
+			success:function(msg){
+				JsObj.CloseSoftInput();
+				console.log(msg);
+			},
+			error:function(){
+				console.log("网络出错");
+			}
+		});
+	}
+
+	//支付宝，微信条码支付时，点击出模态框在付款码input获取焦点
+	function jpush(obj){	
+		var order_sn = $("#order_sn").val();
+		var commit_type = $(obj).data('commit_type');
+		if(commit_type == 0){
+			$("input[name='commit_type']").val(0);
+			$('#postModal').on('shown.bs.modal', function () {
+				$("#qr_number").focus();
+				JsObj.CloseSoftInput();
+			});
+		}else{
+			$("input[name='commit_type']").val(1);
+			$('#alipay_postModal').on('shown.bs.modal', function () {
+				$("#ali_qr_number").focus();
+				JsObj.CloseSoftInput();
+			});
+		}
+		JsObj.OpenVguang(order_sn);
+	}
+
+
+/* ---------------------------------------------- /*
+ * 收银台
+/* ---------------------------------------------- */
+	$('#pay-in').html('');
+	$('.cash-table .num-btn').click(function(){
+		var num=$(this).html();
+		var cashNum='';
+		if($('#pay-in').html().length>8){
+			cashNum=$('#pay-in').html()
+			alert('数字过长');
+		}
+		else{
+			cashNum=$('#pay-in').html()+num;
+		}		
+		$('#pay-in').html(cashNum);
+		var changeNum=Number($('#pay-in').html())-Number($('#total-money').html());
+		changeNum = changeNum.toFixed(2);
+		if (changeNum<0) {
+			$('#change-money').html('');
+		}
+		else{
+			$('#change-money').html(changeNum);
+		}		
+	});
+
+	$('.cash-table #del-num').click(function(){
+		var numStr=$('#pay-in').html();
+		var inputStr=numStr.substring(0,numStr.length-1);
+		$('#pay-in').html(inputStr);
+		var changeNum=Number($('#pay-in').html())-Number($('#total-money').html());
+		if (changeNum<0) {
+			$('#change-money').html('');
+		}
+		else{
+			changeNum = changeNum.toFixed(2);
+			$('#change-money').html(changeNum);
+		}
+	});
+	
+	
+	//现金支付
+	function openCashTable(){
+		var order_sn = $("#order_sn").val();
+		JsObj.OpenMoneyBoard();
+		//console.log(order_sn);
+		$.ajax({
+			url:'/index.php/home/checkstand/jpushOpenCashTable',
+			type:"post",
+			dataType:'json',
+			data:{"order_sn":order_sn},
+			success:function(data){
+				//console.log(data);
+				if(data.code == 1){
+					JsObj.OpenMoneyBoard();
+					//console.log(data);
+				}
+			},
+			error:function(){
+				$("#cashModal").modal('hide');
+			}
+		});
+	}
+	
+	function jpushCloseWeiGuang(){
+		JsObj.CloseVguang();
+		location.href = "/index.php/home/checkstand/index";
+	}
+
+	$('#postModal').on('hidden.bs.modal', function () {
+		JsObj.CloseVguang();
+	});
+
+	$('#alipay_postModal').on('hidden.bs.modal', function () {
+		JsObj.CloseVguang();
+	});
+
+	//	设定倒数秒数
+//var t = 120;
+////显示倒数秒数
+//function showTime(){
+//    t -= 1;
+//    document.getElementById('time').innerHTML= t;
+//    if(t==0){
+//        location.href='/index.php/Home/Checkstand/processRoute/process/select/order_type/1';
+//        return;
+//    }
+//    //每秒执行一次,showTime()
+//    setTimeout("showTime()",1000);
+//}
+////执行showTime()
+//showTime();
+</script>
+</body>
+</html>

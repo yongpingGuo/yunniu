@@ -1,0 +1,68 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.officialAccountSet[lang]}}</div>
+        <div class="section-content" id="officialAccountSet">
+            <form enctype="multipart/form-data" class="form-horizontal" method="post" onSubmit="return save_public_number_set(this)">
+                <div class="form-group">
+                    <label for="appid" class="col-xs-4 text-right">{{langData.officialAccountAPPID[lang]}}:</label>
+                    <div class="col-xs-8">
+                        <input type="text" name="appid" value="{$public_number_set['appid']}" id="appid" dataType="Require" :placeholder="langData.AppIdTips[lang]">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="appsecret" class="col-xs-4 text-right">{{langData.officialAccountKey[lang]}}:</label>
+                    <div class="col-xs-8">
+                        <input type="text" name="appsecret" value="{$public_number_set['appsecret']}" id="appsecret" dataType="Require" :placeholder="langData.AppSecretTips[lang]">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-xs-4 text-right">{{langData.MemberEntrance[lang]}}:</label>
+                    <div class="col-xs-8 section-tips">
+                        <?php foreach ($restaurantData as $k => $v): ?>
+                        <div>
+                            <?php echo $v['restaurant_name'];?>：http://shop.founpad.com/index.php/Mobile/weixin/getUserDetail?&restaurant_flag=1&business_id=
+                            <?php echo $v['business_id'];?>&restaurant_id=
+                            <?php echo $v['restaurant_id'];?>
+                        </div>
+                        <?php endforeach ?>
+                        <span class="text-danger">({{langData.MemberEntranceTips[lang]}})</span>
+                        <input type="hidden" name="restaurant_id" value="{$restaurant_id}" />
+                        <input type="hidden" name="id" value="{$public_number_set['id']}" />
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <button class="blue-btn" type="submit">{{langData.save[lang]}}</button>
+                </div>
+            </form>
+            <form class="flex-content" action="__CONTROLLER__/txt" enctype="multipart/form-data" method="POST">
+                <div class="flex-main vertical-flex">
+                    <span>{{langData.WeChatJSLicense[lang]}}:</span>
+                    <div class="file-content blue-btn">
+                        <span>{{langData.fileUpload[lang]}}</span>
+                        <input type="file" name="file">
+                    </div>
+                </div>
+                <input type="submit" class="btn blue-btn" :value="langData.submit[lang]">
+            </form>
+        </div>
+    </section>
+</block>
+<block name="js">
+    <script>
+    function save_public_number_set(obj) {
+        // 利用“我佛山人”插件进行合法的验证
+        if (Validator.Validate(obj, 3)) {
+            $.post("/index.php/Admin/member/add_public_number_set", $(obj).serialize(), function(data) {
+                alert(data.info);
+                $.get("/index.php/Admin/member/get_public_number_set", function(data) {
+                    $("#officialAccountSet").html(data);
+                });
+            });
+        }
+        return false;
+    }
+    </script>
+    <script src="__PUBLIC__/js/validator.js"></script>
+    <script src="__PUBLIC__/js/lamson.js"></script>
+</block>

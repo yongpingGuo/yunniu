@@ -1,0 +1,34 @@
+<extend name="Public:base" />
+<block name="main">
+    <div class="container-fluid">
+        <table class="table table-bordered table-condensed">
+            <tr>
+                <td></td>
+                <td>{{langData.name[lang]}}</td>
+                <td>{{langData.machineCode[lang]}}</td>
+                <!-- <td>{{langData.dateOfExpiry[lang]}}</td> -->
+                <td>{{langData.lastUsedTime[lang]}}</td>
+                <td>{{langData.status[lang]}}</td>
+            </tr>
+            <volist name="device_list" id="vo">
+                <tr>
+                    <td>{$i}</td>
+                    <td>{$vo.device_name}</td>
+                    <td>{$vo.device_code}</td>
+                    <!-- <td>{$vo.end_time}</td> -->
+                    <td>{$vo.last_time}</td>
+                    <if condition="$vo.device_status eq 1">
+                        <td>{{langData.on[lang]}}</td>
+                        <else/>
+                        <td>{{langData.off[lang]}}</td>
+                    </if>
+                </tr>
+            </volist>
+        </table>
+        <div class="text-center device-page">
+            <ul class="pagination">
+                {$page}
+            </ul>
+        </div>
+    </div>
+</block>

@@ -1,0 +1,180 @@
+<include file="Public/head"/>
+<!-- 支付页 -->
+<body>
+	<header class="home-header">
+		<a href="javascript:void(0)" onclick="jpushCloseWeiGuang()">
+			<img src="__PUBLIC__/images/lt.png">
+			<span>重新点餐</span>
+			<input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+		</a>
+	</header>
+	<input type="hidden" id="total_amount" name="total_amount" value="{$order.total_amount}">
+	<input type="hidden" name="order_sn" id="order_sn" value="{$order.order_sn}">
+	
+	<div class="pay-wrapper">
+		<div class="pay text-center">
+			<h2>
+				共：&yen;
+				<span class="red">{$Think.get.price}</span>
+				元
+			</h2>
+			<div class="pay-select">
+				<volist name="pay_select" id="ps_va">
+					<if condition="$ps_va['s_num'] eq 1">
+						<if condition="$ps_va['value'] eq 1">
+							<div class="pay-item">
+								<a href="javascript:void(0)">
+									<img src="/index.php/home/WxChat/qrc/order_sn/{$order.order_sn}" id="wxpay" class="pay-item-img">
+									<p>微信支付</p>
+								</a>
+							</div>
+						</if>
+					</if>
+					<if condition="$ps_va['s_num'] eq 3">
+							<input type="hidden" value="{$ps_va['value']}" id="mpay">
+					</if>
+					<if condition="$ps_va['s_num'] eq 4">
+						<if condition="$ps_va['value'] eq 1">
+							<div class="pay-item">
+								<a href="javascript:void(0)">
+									<div class="pay-iframe-content" id="zqr_code">
+						<!--				<iframe src="/index.php/home/AlipayDirect/index/order_sn/{$order.order_sn}" border="0" id="alipayIframe"></iframe>-->
+										<img src="/index.php/home/AlipayDirect/alipay_code/order_sn/{$order.order_sn}" id="alipay" class="pay-item-img">
+									</div>
+									<p>支付宝支付</p>
+									<input type="hidden" name="qr_code" value="{$Think.get.qr_code}"/>
+								</a>
+							</div>
+						</if>
+					</if>
+				</volist>
+			</div>
+		</div>
+	</div>
+	<footer class="home-footer text-center">
+		本页面在<span class="footer-time" id="time">70</span>秒后自动关闭
+		<if condition="$ps_va['s_num'] eq 2">
+			<if condition="$ps_va['value'] eq 1">
+				<div class="pay-item">
+					<div class="customer-cash-pay">
+						<button class="common-btn" onclick="cashPay()">我要到收银台支付</button>
+					</div>
+				</div>
+			</if>
+		</if>
+	</footer>
+	<audio controls="controls" preload id="music" hidden>
+		<source src="__PUBLIC__/wav/payFinish.wav" type="audio/mpeg" />
+	</audio>
+	<script>
+		function cashPay(){
+			var order_sn = $("#order_sn").val();
+			console.log(order_sn);
+			$.ajax({
+				url:'/index.php/home/index/jpushCashPay',
+				type:"post",
+				dataType:'json',
+				data:{"order_sn":order_sn},
+				success:function(data){
+					console.log(data);
+					//返回结果code为1时,调用android通知打印及打印
+					if(data.code == 1){
+						JsObj.CompletePay(order_sn);
+						jpushCloseWeiGuang();
+					}else{
+						console.log("处理数据出错");
+					}
+				},
+				error:function(){
+					alert("出错了");
+				}
+			});
+		}
+
+		//定时用ajax获取后台订单的状态，当下单的订单状态为已支付时实现页面的跳转
+		var j;
+		window.onload = function myFun(){
+			var temp = $("#mpay").val();
+			if(temp == 1){
+				jpush();
+			}
+			j = setInterval("getOrderStatus()",3000);
+		};
+
+		function getOrderStatus(){
+			var order_sn = $("#order_sn").val();
+			console.log(order_sn);
+			var postData = {"order_sn": order_sn};
+
+			postData = (function(obj){ // 转成post需要的字符串.
+				var str = "";
+
+				for(var prop in obj){
+					str += prop + "=" + obj[prop] + "&"
+				}
+				return str;
+			})(postData);
+			var xhr = new XMLHttpRequest();
+			xhr.open("post","/index.php/home/index/getOrderStatus", 'true');
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function (){
+				var XMLHttpReq = xhr;
+				if (XMLHttpReq.readyState == 4) {
+					if (XMLHttpReq.status == 200) {
+						var text = XMLHttpReq.responseText;
+						console.log(text);
+						var msg = eval('('+text+')');
+						console.log(msg);
+						if(msg['code'] == 1){
+//							clearInterval(j);
+//							var music = $("#music")[0];
+//							music.addEventListener("ended",function(){
+//								location.href="/index.php/home/index/finish";
+//							});
+//							music.play();
+							JsObj.CompletePay(order_sn);
+							location.href="/index.php/home/index/finish";
+						}
+					}
+				}
+			};
+			xhr.send(postData);
+		}
+
+		//设定倒数秒数
+		var t = 70;
+		//显示倒数秒数
+		function showTime(){
+			t -= 1;
+			document.getElementById('time').innerHTML= t;
+			if(t==3){
+				JsObj.CloseVguang();
+			}
+			if(t==0){
+				location.href='/index.php/Home/Index/processRoute/process/select/order_type/1';
+				return;
+			}
+			//每秒执行一次,showTime()
+			setTimeout("showTime()",1000);
+		}
+		//执行showTime()
+		showTime();
+
+		$(function(){
+			var price = $("#total_amount").val();
+			//alert(pagenum);
+			$('#price').html(price);
+		});
+
+		function jpush(){
+			var order_sn = $("#order_sn").val();
+			JsObj.OpenVguang(order_sn);
+		}
+
+		function jpushCloseWeiGuang(){
+			JsObj.CloseVguang();
+			location.href = "/index.php/home/index/index";
+		}
+	</script>
+</body>
+</html>

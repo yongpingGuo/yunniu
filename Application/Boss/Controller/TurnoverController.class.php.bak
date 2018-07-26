@@ -1,0 +1,150 @@
+<?php
+namespace Boss\Controller;
+use Think\Controller;
+
+class TurnoverController extends CommonController{
+	//菜品营业额统计页
+	public function index(){
+		//判断是否存在session，不存在返回登录页
+		if(!session("adminIDWithBoss")){
+			$this->redirect('Common/login');
+		}
+		
+		//当天开始与结束时间戳
+		$startTimeStamp = $this->getBeginToday();		
+		$endTimeStamp = $this->getEndToday();	
+		
+		//店铺集					
+		$adminType = session("adminTypeWithBoss");	
+		$storeRange = $this->getStoreRange($adminType);			
+			
+		if (is_string($storeRange)) {
+			$Model = M();
+	        //订单信息
+	        $order_list = $Model->query("SELECT SUM(total_amount) total_amount,a.pay_type 
+			FROM (SELECT `total_amount`,pay_type,restaurant_id,order_status,add_time,cashier_id FROM `order` GROUP BY order_sn ) a WHERE
+	 		`restaurant_id` = ".$storeRange." AND `order_status` <> 0 AND a.pay_type IN ('0','1','2','4') AND `add_time` BETWEEN ".$startTimeStamp." AND ".$endTimeStamp." GROUP BY a.pay_type");
+
+	        foreach ($order_list as $k => $v) {
+	            if ($v['pay_type'] == 0) {
+	                $totalAmount_isCashToday = $v['total_amount'];//现金总额
+	            }
+	        }
+		}else{
+			$pay_type = 0;		//现金
+			$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+			$totalAmount_isCashToday = $this->getTurnover_withCondition($conditionSet);
+		}
+
+		//--------------------当天现金、支付宝、微信、总、统计营业额(当日营业额饼状图)----------------------------
+		
+		
+		$pay_type = 1;	    //支付宝
+		$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		$totalAmount_isAlipayToday = $this->getTurnover_withCondition($conditionSet);
+		
+		$pay_type = 2;		//微信
+		$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		$totalAmount_isWeChatToday = $this->getTurnover_withCondition($conditionSet);
+
+        $pay_type = 4;		//新增一个余额
+        $conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+        $totalAmount_isRemainderToday = $this->getTurnover_withCondition($conditionSet);
+
+        // 新增一个余额
+		$totalAmout_whenToday = $totalAmount_isCashToday+$totalAmount_isAlipayToday+$totalAmount_isWeChatToday+$totalAmount_isRemainderToday;
+		
+		//当天的订单数
+		$pay_type = array("in","0,1,2,4");
+		$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		$orderNum_withToday = $this->getOrderNum_withToday($conditionSet);
+		
+		//-----------------------------------------------------------------------------------------------------
+		
+		//-----------------------------当月现金、支付宝、微信、总、统计营业额(月营业额饼状图)----------------------	
+		
+		//当月的开始与结束时间戳
+		$startDate = $this->getWhenMonth_firstday();
+		$endDate = $this->getWhenMonth_lastday();
+		$startTime = "00:00:00";
+		$endTime = "23:59:59";
+		$timeStamp_whenMonth = $this->getWhenMonth_timeStamp($startDate, $endDate, $startTime, $endTime);
+		$startTimeStamp = $timeStamp_whenMonth['startTimeStamp'];
+		$endTimeStamp = $timeStamp_whenMonth['endTimeStamp'];
+			
+
+		if (is_string($storeRange)) {
+			$Model = M();
+	        //订单信息
+	        $order_list = $Model->query("SELECT SUM(total_amount) total_amount,a.pay_type 
+			FROM (SELECT `total_amount`,pay_type,restaurant_id,order_status,add_time,cashier_id FROM `order` GROUP BY order_sn ) a WHERE
+	 		`restaurant_id` = ".$storeRange." AND `order_status` <> 0 AND a.pay_type IN ('0','1','2','4') AND `add_time` BETWEEN ".$startTimeStamp." AND ".$endTimeStamp." GROUP BY a.pay_type");
+
+	        foreach ($order_list as $k => $v) {
+	            if ($v['pay_type'] == 0) {
+	                $totalAmount_isCashMonth = $v['total_amount'];//现金总额
+	            }
+	        }
+		}else{
+			$pay_type = 0;		//现金
+			$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+			$totalAmount_isCashMonth = $this->getTurnover_withCondition($conditionSet);
+		}
+
+		// $pay_type = 0;		//现金
+		// $conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		// $totalAmount_isCashMonth = $this->getTurnover_withCondition($conditionSet);
+		
+		$pay_type = 1;		//支付宝
+		$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		$totalAmount_isAlipayMonth = $this->getTurnover_withCondition($conditionSet);
+		
+		$pay_type = 2;		//微信
+		$conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+		$totalAmount_isWeChatMonth = $this->getTurnover_withCondition($conditionSet);
+
+        $pay_type = 4;		//新增一个余额
+        $conditionSet = $this->getConditionSet_isTurnover($startTimeStamp,$endTimeStamp,$pay_type,$storeRange);
+        $totalAmount_isRemainderMonth = $this->getTurnover_withCondition($conditionSet);
+		
+		$totalAmount_whenMonth = $totalAmount_isCashMonth+$totalAmount_isAlipayMonth+$totalAmount_isWeChatMonth+$totalAmount_isRemainderMonth;
+		
+		//-----------------------------------------------------------------------------------------------------
+		
+		//当天
+		$this->assign("totalAmount_isCashToday",$totalAmount_isCashToday);
+		$this->assign("totalAmount_isAlipayToday",$totalAmount_isAlipayToday);
+		$this->assign("totalAmount_isWeChatToday",$totalAmount_isWeChatToday);
+
+		$this->assign("totalAmount_isRemainderToday",$totalAmount_isRemainderToday);    // 新增余额
+
+		$this->assign("totalAmout_whenToday",$totalAmout_whenToday);
+		
+		//本月
+		$this->assign("totalAmount_isCashMonth",$totalAmount_isCashMonth);
+		$this->assign("totalAmount_isAlipayMonth",$totalAmount_isAlipayMonth);
+		$this->assign("totalAmount_isWeChatMonth",$totalAmount_isWeChatMonth);
+
+		$this->assign("totalAmount_isRemainderMonth",$totalAmount_isRemainderMonth);          // 新增余额
+
+		$this->assign("totalAmount_whenMonth",$totalAmount_whenMonth);
+		
+		//今日订单数
+		$this->assign("orderNum_withToday",$orderNum_withToday);
+
+        $restaurant_model = D("restaurant");
+        $r_where['restaurant_id'] = session("Rid_withBoss");
+        $rel = $restaurant_model->where($r_where)->field("logo")->find();
+        $logo = $rel['logo'];
+        $this->assign("logo",$logo);
+		$this->display();
+	}
+		
+	//当天(今日)的订单份数
+	public function getOrderNum_withToday($conditionSet){
+		$order = order();
+		$orderNum_withToday = $order->where($conditionSet)->count();
+		return $orderNum_withToday;
+	}
+}
+?>

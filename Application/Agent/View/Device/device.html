@@ -1,0 +1,125 @@
+<include file="Public/head"/>
+<body>
+	<section class="clearfix">
+		<aside class="sidebar">
+			<p>查询店铺名称</p>
+			<input type="hidden" name="uuid" id="uuid" />
+			<div class="search-box flex-content">
+				<input type="text" name="key" class="flex-main" />
+				<div class="flex-main text-center">
+					<button class="btn btn-default" type="button" onclick="search()">搜索</button>
+				</div>
+			</div>
+			<ul class="sidebar-list" id="device_left">
+				<volist name = "Arrlist" id = "v">
+				<li>
+					<button class="btn-none">+</button>
+					<span>{$v.restaurant_name}</span>
+					<ul>
+						<volist name = "v['CityArray']" id = "v1">
+						<li>
+							<button class="btn-none">+</button>
+							<span>{$Think.lang.$key}</span>
+							<ul>
+								<volist name = "v1" id = "v2">
+									<li>
+										<a href="javascript:void(0)" style="color: white; text-decoration: none;" onclick="showinfo({$v2.id})">{$v2.address}</a>
+									</li>
+								</volist>
+							</ul>
+						</li>
+						</volist>
+					</ul>
+				</li>
+			</volist>
+			</ul>
+		</aside>
+		<div class="right-content">
+			<div class="container-fluid pre100" id="mytable">
+				<table class="device-table table-hover">
+					<tr>
+						<td>序号</td>
+						<td>设备名称</td>
+						<td>机器ID</td>
+						<td>最后注册时间</td>
+						<!-- <td>到期时间</td> -->
+						<td>所属店铺</td>
+						<td>状态</td>
+						<td></td>
+					</tr>
+					<volist name = "deviceList" id = "v4">
+					<tr>
+						<td>{$key+1}</td>
+						<td>{$v4.device_name}</td>
+						<td>{$v4.device_code}</td>
+						<td>{$v4.start_time|date="Y-m-d",###}</td>
+						<!-- <td>{$v4.end_time|date="Y-m-d",###}</td> -->
+						<td>
+							<select name="bingInfo" id="bindInfo" data-code_id="{$v4.code_id}" onchange="changeBindRes(this)">
+								<volist name="restaurant_list" id="rsl">
+									<if condition="$rsl['restaurant_id'] eq $v4['restaurant_id']">
+										<option value="{$rsl.restaurant_id}" selected>{$rsl.restaurant_name}</option>
+									<else/>
+										<option value="{$rsl.restaurant_id}">{$rsl.restaurant_name}</option>
+									</if>
+								</volist>
+							</select>
+						</td>
+						<eq name = "v4.device_status" value = "1">
+							<td>正常</td>
+						<else/>
+							<td>禁用</td>
+						</eq>
+						
+						<td>
+							<button class="btn btn-black" data-target="#editDevice" data-toggle="modal" onclick="modify({$v4.device_id})">编辑</button>
+							<button class="btn btn-default" onclick="del({$v4.device_id})">删除</button>
+							
+						</td>
+					</tr>
+					</volist>
+				</table>
+				<div>
+				    <ul class="pagination" id="detail-page">
+				        {$page}
+				    </ul>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="modal fade" id="editDevice" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-head">编辑品牌商</div>
+				<table class="table-condensed">
+					<tr>
+						<input type="hidden" name="device_id">
+						<input type="hidden" name="restaurant_id">
+						<td>设备名称:</td>
+						<td>
+							<input type="text" name="device_name">
+						</td>
+					</tr>
+					<tr>
+						<td>状态</td>
+						<td>
+							<input type="radio" name="state" value="1">正常
+							<input type="radio" name="state" value="0">禁用
+						</td>
+					</tr>
+				</table>
+				<div class="text-center">
+					<button class="btn btn-black" onclick="commit()">保存</button>
+					<button class="btn btn-default" data-dismiss="modal">关闭</button>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__PUBLIC__/js/dateSelect.js"></script>
+	<script src="__PUBLIC__/js/Agent/device.js"></script>
+</body>
+</html>

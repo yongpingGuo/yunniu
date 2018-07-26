@@ -1,0 +1,182 @@
+<div class="pull-left section stats-detail">
+    <div class="section-header text-center">订单详细</div>
+    <div class="section-content">
+        <table>
+            <tbody>
+                <tr class="text-center">
+                    <td></td>
+                    <td>订单号</td>
+                    <td>菜品</td>
+                    <td>日期时间</td>
+                    <td>就餐方式</td>
+                    <td>支付方式</td>
+                    <td>单价</td>
+                    <td>数量</td>
+                    <td>总价</td>
+                </tr>
+                <volist name="order_list" id="vo" key="k">
+                    <tr>
+                        <td style="padding-right: 0px">{$k}</td>
+                        <td>{$vo.order_sn}</td>
+                        <td>{$vo.food_name}<if condition = '$vo.f_type eq 2'><span style="color: red;">(属性)</span><else/></if></td>
+                        <td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+                        <td>
+                            <if condition="$vo.order_type eq 0">
+                                店内点餐
+                                <else/>
+                                微信外卖
+                            </if>
+                        </td>
+                        <td class="text-center">
+                            <if condition="$vo.pay_type eq 2">
+                                    <img src="__PUBLIC__/images/wechat_icon.png">
+                                    <elseif condition="$vo.pay_type eq 1" />
+                                    <img src="__PUBLIC__/images/alipay_icon.png">
+                                    <elseif condition="$vo.pay_type eq 4" />
+                                    <img src="__PUBLIC__/images/cash_icon.png">
+                                    <else/>
+                                    <img src="__PUBLIC__/images/cash_icon.png">
+                                </if>
+                        </td>
+                        <td class="text-center">{$vo[food_price2]/$vo[food_num]}</td>
+                        <td class="text-center">{$vo.food_num}</td>
+                        <td>{$vo.food_price2}</td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <input type="hidden" id="total_amount" value="{$total_amount}">
+        <input type="hidden" id="pay_str" value="{$pay_str}">
+        <input type="hidden" id="order_str" value="{$order_str}">
+    </div>
+</div>
+<div class="pull-left">
+  <div id="container" style="height:300px"></div>
+    <div class="stats-detail-info">
+        <div class="flex-content summary-info-item">
+            <div class="flex-main">
+                <span class="summary-info-icon cash"></span>
+                <span>现金</span>
+            </div>
+            <span><?php echo $statisData['cash'];?></span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <div class="flex-main">
+                <span class="summary-info-icon wechat"></span>
+                <span>微信</span>
+            </div>
+            <span><?php echo $statisData['wechat'];?></span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <div class="flex-main">
+                <span class="summary-info-icon alipay"></span>
+                <span>支付宝</span>
+            </div>
+            <span><?php echo $statisData['alipay'];?></span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <div class="flex-main">
+                <span class="summary-info-icon member"></span>
+                <span>会员</span>
+            </div>
+            <span><?php echo $statisData['member'];?></span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <div class="flex-main">
+                <span class="summary-info-icon card"></span>
+                <span>第四方</span>
+            </div>
+            <span><?php echo $statisData['fourth'];?></span>
+        </div>
+    </div>
+    <div class="stats-detail-total">共：
+        <?php echo $statisData['total'];?>元</div>
+    <div class="stats-detail-info">
+        <div class="flex-content summary-info-item">
+            <span class="flex-main">订单数：</span>
+            <span><?php echo $statisData['count'];?>单</span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <span class="flex-main">退菜单数：</span>
+            <span>单</span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <span class="flex-main">退菜份数：</span>
+            <span>份</span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <span class="flex-main">退款金额：</span>
+            <span>元</span>
+        </div>
+        <div class="flex-content summary-info-item">
+            <span class="flex-main">菜品份数：</span>
+            <span><?php echo $statisData['dishes_data_totle'];?>份</span>
+        </div>
+    </div>
+</div>
+<script>
+var chart = null;
+$(function () {
+    $('#container').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            spacing : [10, 0 , 10, 0]
+        },
+        credits: {
+            enabled: false
+        },
+        title: {
+            floating:true,
+            text: '占比'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false,
+                },
+                point: {
+                    events: {
+                        mouseOver: function(e) {  
+                            chart.setTitle({
+                                text: e.target.name+ '\t'+ e.target.y
+                            });
+                        }
+                    }
+                },
+            }
+        },
+        series: [{
+            type: 'pie',
+            innerSize: '85%',
+            name: '占比',
+            data: [
+                ['支付宝',    <?php echo $statisData['alipay'];?>],
+                {name:'会员',   y:<?php echo $statisData['member'];?> , url : '',color:'#ffcc80'},
+                {
+                    name: '微信',
+                    y: <?php echo $statisData['wechat'];?>,
+                    selected: true,
+                    url: ''
+                },
+                {name:'第四方',   y:<?php echo $statisData['fourth'];?> , color:'#ff4da6'},
+                {name:'现金',   y:<?php echo $statisData['cash'];?> , color:'red'}
+            ]
+        }]
+    }, function(c) {
+        // 环形图圆心
+        var centerY = c.series[0].center[1],
+            titleHeight = parseInt(c.title.styles.fontSize);
+        c.setTitle({
+            y:centerY + titleHeight/2
+        });
+        chart = c;
+    });
+});
+</script>

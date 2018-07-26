@@ -1,0 +1,3004 @@
+var langData={
+	"language":{
+		"zh-CN":"中文简体",
+		"zh-TW":"中文繁體",
+		"en":"English"
+	},
+	"add":{
+		"zh-CN":"增加",
+		"zh-TW":"增加",
+		"en":"add"
+	},
+	"edit":{
+		"zh-CN":"编辑",
+		"zh-TW":"編輯",
+		"en":"edit"
+	},
+	"save":{
+		"zh-CN":"保存",
+		"zh-TW":"保存",
+		"en":"save"
+	},
+	"success":{
+		"zh-CN":"成功",
+		"zh-TW":"成功",
+		"en":"success"
+	},
+	"failed":{
+		"zh-CN":"失败",
+		"zh-TW":"失敗",
+		"en":"Failed "
+	},
+	"error":{
+		"zh-CN":"错误",
+		"zh-TW":"錯誤",
+		"en":"error "
+	},
+	"networkError":{
+		"zh-CN":"网络出错了",
+		"zh-TW":"網絡出錯了",
+		"en":"Network error!"
+	},
+	"delete":{
+		"zh-CN":"删除",
+		"zh-TW":"刪除",
+		"en":"delete"
+	},
+	"deleteConfirm":{
+		"zh-CN":"确定要删除吗？",
+		"zh-TW":"確定要刪除嗎？",
+		"en":"You sure you want to delete it?"
+	},
+	"successfullyDeleted":{
+		"zh-CN":"删除成功！",
+		"zh-TW":"刪除成功！",
+		"en":"successfully deleted!"
+	},	
+	"status":{
+		"zh-CN":"状态",
+		"zh-TW":"狀態",
+		"en":"status"
+	},
+	"on":{
+		"zh-CN":"开启",
+		"zh-TW":"開啟",
+		"en":"on"
+	},
+	"off":{
+		"zh-CN":"关闭",
+		"zh-TW":"關閉",
+		"en":"off"
+	},
+	"import":{
+		"zh-CN":"导入",
+		"zh-TW":"導入",
+		"en":"import"
+	},
+	"export":{
+		"zh-CN":"导出",
+		"zh-TW":"導出",
+		"en":"export"
+	},
+	"notEmpty":{
+		"zh-CN":"不能为空",
+		"zh-TW":"不能為空",
+		"en":"Not be empty"
+	},
+	"today":{
+		"zh-CN":"今天",
+		"zh-TW":"今天",
+		"en":"today"
+	},
+	"tomorrow":{
+		"zh-CN":"明天",
+		"zh-TW":"明天",
+		"en":"tomorrow"
+	},
+	"Monday":{
+		"zh-CN":"星期一",
+		"zh-TW":"星期一",
+		"en":"Monday"
+	},
+	"Tuesday":{
+		"zh-CN":"星期二",
+		"zh-TW":"星期二",
+		"en":"Tuesday"
+	},
+	"Wednesday":{
+		"zh-CN":"星期三",
+		"zh-TW":"星期三",
+		"en":"Wednesday"
+	},
+	"Thursday":{
+		"zh-CN":"星期四",
+		"zh-TW":"星期四",
+		"en":"Thursday"
+	},
+	"Friday":{
+		"zh-CN":"星期五",
+		"zh-TW":"星期五",
+		"en":"Friday"
+	},
+	"Saturday":{
+		"zh-CN":"星期六",
+		"zh-TW":"星期六",
+		"en":"Saturday"
+	},
+	"Sunday":{
+		"zh-CN":"星期日",
+		"zh-TW":"星期日",
+		"en":"Sunday"
+	},
+	"January":{
+		"zh-CN":"一月",
+		"zh-TW":"一月",
+		"en":"January"
+	},
+	"February":{
+		"zh-CN":"二月",
+		"zh-TW":"二月",
+		"en":"February"
+	},
+	"March":{
+		"zh-CN":"三月",
+		"zh-TW":"三月",
+		"en":"March"
+	},
+	"April":{
+		"zh-CN":"四月",
+		"zh-TW":"四月",
+		"en":"April"
+	},
+	"May":{
+		"zh-CN":"五月",
+		"zh-TW":"五月",
+		"en":"May"
+	},
+	"June":{
+		"zh-CN":"六月",
+		"zh-TW":"六月",
+		"en":"June"
+	},
+	"July":{
+		"zh-CN":"七月",
+		"zh-TW":"七月",
+		"en":"July"
+	},
+	"August":{
+		"zh-CN":"八月",
+		"zh-TW":"八月",
+		"en":"August"
+	},
+	"September":{
+		"zh-CN":"九月",
+		"zh-TW":"九月",
+		"en":"September"
+	},
+	"October":{
+		"zh-CN":"十月",
+		"zh-TW":"十月",
+		"en":"October"
+	},
+	"November":{
+		"zh-CN":"十一月",
+		"zh-TW":"十一月",
+		"en":"November"
+	},
+	"December":{
+		"zh-CN":"十二月",
+		"zh-TW":"十二月",
+		"en":"December"
+	},
+	"founpadAdmin":{
+		"zh-CN":"方派店铺后台",
+		"zh-TW":"方派店鋪後台",
+		"en":"Shop management system"
+	},
+	"LoginTitle":{
+		"zh-CN":"欢迎登录",
+		"zh-TW":"歡迎登錄",
+		"en":"Login please"
+	},
+	"rememberPassword":{
+		"zh-CN":"记住密码",
+		"zh-TW":"記住密碼",
+		"en":"Remember the password"
+	},
+	"verificationCode":{
+		"zh-CN":"验证码",
+		"zh-TW":"驗證碼",
+		"en":"Verification code"
+	},
+	"verificationCodeError":{
+		"zh-CN":"验证码错误",
+		"zh-TW":"驗證碼錯誤",
+		"en":"Verification code error"
+	},
+	"logIn":{
+		"zh-CN":"登录",
+		"zh-TW":"登錄",
+		"en":"log in"
+	},
+	"MobileAPPDownload":{
+		"zh-CN":"手机APP下载",
+		"zh-TW":"手機APP下載",
+		"en":"Mobile APP download"
+	},
+	"headerTitle":{
+		"zh-CN":"餐饮系统 • 店铺后台",
+		"zh-TW":"餐飲系統 • 店鋪後台",
+		"en":"Catering System • Store Controller System"
+	},
+	"signOut":{
+		"zh-CN":"退出",
+		"zh-TW":"退出",
+		"en":"Sign out"
+	},
+	"sureSignOut":{
+		"zh-CN":"确定要退出？",
+		"zh-TW":"確定要退出？",
+		"en":"Are you sure you want to quit?"
+	},
+	"shopSet":{
+		"zh-CN":"店铺基础设置",
+		"zh-TW":"店鋪基礎設置",
+		"en":"Shop Settings"
+	},
+	"shopInfo":{
+		"zh-CN":"店铺信息",
+		"zh-TW":"店鋪信息",
+		"en":"Shop Information"
+	},
+	"selfServiceDeviceSet":{
+		"zh-CN":"自助设备设置",
+		"zh-TW":"自助設備設置",
+		"en":"Self-service device settings"
+	},
+	"billSet":{
+		"zh-CN":"票据设置",
+		"zh-TW":"票據設置",
+		"en":"Print Settings"
+	},
+	"paymentSet":{
+		"zh-CN":"收款对接",
+		"zh-TW":"收款對接",
+		"en":"Payment Settings"
+	},
+	"roleAccount":{
+		"zh-CN":"角色账号",
+		"zh-TW":"角色賬號",
+		"en":"Role account"
+	},
+	"equipment":{
+		"zh-CN":"点餐机信息",
+		"zh-TW":"點餐機信息",
+		"en":"Equipment"
+	},
+	"importExport":{
+		"zh-CN":"菜品导入导出",
+		"zh-TW":"菜品導入導出",
+		"en":"Import & Export"
+	},
+	"disheSet":{
+		"zh-CN":"菜品设置",
+		"zh-TW":"菜品設置",
+		"en":"Dishes Settings"
+	},
+	"timeClassify":{
+		"zh-CN":"菜时分类",
+		"zh-TW":"菜時分類",
+		"en":"Temporal Classification"
+	},
+	"booking":{
+		"zh-CN":"提前预点餐",
+		"zh-TW":"提前預點餐",
+		"en":"Booking"
+	},
+	"statistics":{
+		"zh-CN":"数据统计",
+		"zh-TW":"數據統計",
+		"en":"Data Statistics"
+	},
+	"foodSales":{
+		"zh-CN":"菜品销售",
+		"zh-TW":"菜品銷售",
+		"en":"Food Sales"
+	},
+	"detailEnquiry":{
+		"zh-CN":"明细查询",
+		"zh-TW":"明細查詢",
+		"en":"Detail enquiry"
+	},
+	"yearlyReport":{
+		"zh-CN":"年月报表",
+		"zh-TW":"年月報表",
+		"en":"Yearly & monthly"
+	},
+	"takeOutReport":{
+		"zh-CN":"外卖报表",
+		"zh-TW":"外賣報表",
+		"en":"take-out Report"
+	},
+	"officialAccount":{
+		"zh-CN":"公众号",
+		"zh-TW":"公眾號",
+		"en":"official account"
+	},
+	"customizeMenus":{
+		"zh-CN":"自定义菜单",
+		"zh-TW":"自定義菜單",
+		"en":"Customize Menus"
+	},
+	"takeOutDocking":{
+		"zh-CN":"外卖对接",
+		"zh-TW":"外賣對接",
+		"en":"Take-out docking"
+	},
+	"memberSettings":{
+		"zh-CN":"会员设置",
+		"zh-TW":"會員設置",
+		"en":"Member Set"
+	},
+	"memberGroupSet":{
+		"zh-CN":"会员组设置",
+		"zh-TW":"會員組設置",
+		"en":"Member group settings"
+	},
+	"preRecharge":{
+		"zh-CN":"预充值",
+		"zh-TW":"預充值",
+		"en":"Pre-recharge"
+	},
+	"pointsSet":{
+		"zh-CN":"积分设置",
+		"zh-TW":"積分設置",
+		"en":"Points setting"
+	},
+	"memberInfo":{
+		"zh-CN":"会员信息",
+		"zh-TW":"會員信息",
+		"en":"member information"
+	},
+	"SMSDocking":{
+		"zh-CN":"短信对接",
+		"zh-TW":"短信對接",
+		"en":"SMS docking"
+	},
+	"officialAccountSet":{
+		"zh-CN":"公众号设置",
+		"zh-TW":"公眾號設置",
+		"en":"official account set"
+	},
+	"consumptionPoints":{
+		"zh-CN":"积分消费",
+		"zh-TW":"積分消費",
+		"en":"Consumption Points"
+	},
+	"memberAdvertising":{
+		"zh-CN":"会员广告设置",
+		"zh-TW":"會員廣告設置",
+		"en":"advertising"
+	},
+	"electronicMenu":{
+		"zh-CN":"电子餐牌",
+		"zh-TW":"電子餐牌",
+		"en":"Electronic menu"
+	},
+	"callNumberDevice":{
+		"zh-CN":"取餐叫号屏",
+		"zh-TW":"取餐叫號屏",
+		"en":"Call Number Device"
+	},
+	"scanToOrder":{
+		"zh-CN":"餐桌扫码点餐",
+		"zh-TW":"餐桌掃碼點餐",
+		"en":"Scan To Order"
+	},
+	"logo":{
+		"zh-CN":"商家图标",
+		"zh-TW":"商家圖標",
+		"en":"Shop's Logo"
+	},
+	"upload":{
+		"zh-CN":"上传",
+		"zh-TW":"上傳",
+		"en":"upload"
+	},
+	"logoUploadTips":{
+		"zh-CN":"建议：分辨率：90x90；图形：PNG图标",
+		"zh-TW":"建議：分辨率：90x90；圖形：PNG圖標",
+		"en":"Recommended: Resolution: 90x90; Graphics: PNG icon"
+	},
+	"information":{
+		"zh-CN":"基本信息",
+		"zh-TW":"基本信息",
+		"en":"information"
+	},
+	"shopName":{
+		"zh-CN":"店铺名称",
+		"zh-TW":"店鋪名稱",
+		"en":"Shop's Name"
+	},
+	"tel":{
+		"zh-CN":"外卖电话",
+		"zh-TW":"外賣電話",
+		"en":"Tel"
+	},
+	"takeAwayTel":{
+		"zh-CN":"外卖电话",
+		"zh-TW":"外賣電話",
+		"en":"Take away tel"
+	},
+	"ERPAnnotation":{
+		"zh-CN":"输入长青腾店铺id",
+		"zh-TW":"外賣電話",
+		"en":"ERPAnnotation"
+	},
+	"address":{
+		"zh-CN":"地址",
+		"zh-TW":"地址",
+		"en":"Address"
+	},
+	"account":{
+		"zh-CN":"账号",
+		"zh-TW":"賬號",
+		"en":"account"
+	},
+	"erp_card":{
+		"zh-CN":"长青腾对接",
+		"zh-TW":"长青腾对接",
+		"en":"erp_card"
+	},
+	"password":{
+		"zh-CN":"密码",
+		"zh-TW":"密碼",
+		"en":"password"
+	},
+	"confirmPassword":{
+		"zh-CN":" 确认密码",
+		"zh-TW":"確認密碼",
+		"en":"Confirm password"
+	},
+
+	"psdMatch":{
+		"zh-CN":"两次密码不一致",
+		"zh-TW":"兩次密碼不一致",
+		"en":"The two passwords you typed do not match."
+	},
+	"browserUpload":{
+		"zh-CN":"浏览器不支持图片上传，请换个浏览器试试",
+		"zh-TW":"瀏覽器不支持圖片上傳，請換個瀏覽器試試",
+		"en":"The browser does not support uploading"
+	},
+	"imageType":{
+		"zh-CN":"上传的不是图片",
+		"zh-TW":"上傳的不是圖片",
+		"en":"Please upload the image file"
+	},
+	"uploadSuccess":{
+		"zh-CN":"logo替换成功",
+		"zh-TW":"logo替換成功",
+		"en":"The logo replaces success"
+	},
+	"modeChange":{
+		"zh-CN":"模式切换",
+		"zh-TW":"模式切換",
+		"en":"Mode switching"
+	},
+	"modeType1":{
+		"zh-CN":"默认模式（店铺内没有取餐柜、没有核销屏）",
+		"zh-TW":"默認模式（店鋪內沒有取餐櫃、沒有核銷屏）",
+		"en":"Default mode(There are no dining cabinets in the store, no checkout screen)"
+	},
+	"modeType2":{
+		"zh-CN":"标版叫号核销模式（店铺内使用叫号屏、核销屏）",
+		"zh-TW":"標版叫號核銷模式（店鋪內使用叫號屏、核銷屏）",
+		"en":"Standard version number verification mode (Stores use number screens, checkout screen)"
+	},
+	"modeType3":{
+		"zh-CN":"标版取餐柜模式（店铺内使用叫号屏、取餐柜）",
+		"zh-TW":"標版取餐櫃模式（店鋪內使用叫號屏、取餐櫃）",
+		"en":"Standard version the meal cabinet model (Stores use number screens, takes the meal cabinet)"
+	},
+	"advertiseSetting":{
+		"zh-CN":"广告设置",
+		"zh-TW":"廣告設置",
+		"en":"Advertising settings"
+	},
+	"orderProcess":{
+		"zh-CN":"点餐流程",
+		"zh-TW":"點餐流程",
+		"en":"Order Process"
+	},
+	"orderProcessTips":{
+		"zh-CN":" 只限于自助设备。请根据店铺的实际情况设置，当有餐牌号时，为服务员送餐到餐桌，没有餐牌号时，为顾客到取餐区取餐",
+		"zh-TW":"只限於自助設備。請根據店鋪的實際情況設定，當有餐牌號時，為服務員送餐到餐桌，沒有餐牌號時，為顧客到取餐區取餐",
+		"en":"Only self-service equipment.Please, according to the actual situation of the store, when there is a plate number, serve the waiter to the table, no plate number, to pick up the meal for the customer"
+	},
+	"adPage":{
+		"zh-CN":"广告页",
+		"zh-TW":"廣告頁",
+		"en":"Advertising page"
+	},
+	"adPageTips":{
+		"zh-CN":"只限于竖屏自助点餐机",
+		"zh-TW":"只限於豎屏自助點餐機",
+		"en":"Only for vertical screen self-service ordering machine"
+	},
+	"eatWayTips":{
+		"zh-CN":"建议关闭，可在菜品上增加",
+		"zh-TW":"建議關閉，可在菜品上新增",
+		"en":"uggest to close, can increase in dishes"
+	},
+	"orderPage":{
+		"zh-CN":"点餐页",
+		"zh-TW":"點餐頁",
+		"en":"Order page"
+	},
+	"numberPage":{
+		"zh-CN":"餐牌号页",
+		"zh-TW":"餐牌號頁",
+		"en":"number page"
+	},
+	"paymentPage":{
+		"zh-CN":"支付页",
+		"zh-TW":"支付頁",
+		"en":"Payment page"
+	},
+	"DeliveryMode":{
+		"zh-CN":"送餐模式（餐牌号/取餐号）",
+		"zh-TW":"送餐模式（餐牌號/取餐號）",
+		"en":"Delivery mode (restaurant number / take meal number)"
+	},
+	"OrdersuccessfulHint":{
+		"zh-CN":"下单成功提示语：",
+		"zh-TW":"下單成功提示語：",
+		"en":"Order a successful hint:"
+	},
+	"horizontalAD":{
+		"zh-CN":"横屏点餐机广告",
+		"zh-TW":"橫屏點餐機廣告",
+		"en":"Horizontal screen ordering machine ad"
+	},
+	"horizontalAdClaim":{
+		"zh-CN":"<分辨率：1920x1080；颜色：RGB色； 大小：2M以内；> <非标功能，只应用于定制项目>",
+		"zh-TW":"<分辯率：1920x1080；顏色：RGB色；大小：2M以內；> <非標功能，只應用於定制項目>",
+		"en":"< resolution: 1920x1080; color: RGB color; Size: 2M or less; > <Non-standard features, only applied to custom items>"
+	},
+	"pictureIntervals":{
+		"zh-CN":"图片停留间隔时间",
+		"zh-TW":"圖片停留間隔時間",
+		"en":"Picture stays at intervals"
+	},
+	"seconds":{
+		"zh-CN":"秒",
+		"zh-TW":"秒",
+		"en":"seconds"
+	},
+	"VerticalAD":{
+		"zh-CN":"竖屏点餐机广告",
+		"zh-TW":"豎屏點餐機廣告",
+		"en":"Vertical screen ordering machine ad"
+	},
+	"VerticalAdClaim":{
+		"zh-CN":"< 分辨率：1080x1920；颜色：RGB色； 大小：2M以内；>",
+		"zh-TW":"< 分辨率：1080x1920；顏色：RGB色； 大小：2M以內；>",
+		"en":"<Resolution: 1080x1920; Color: RGB color; Size: 2M or less;>"
+	},
+	"deviceAdClaim":{
+		"zh-CN":"<点餐流程开启广告页才有效>",
+		"zh-TW":"<點餐流程開啟廣告頁才有效>",
+		"en":"<Ordering process open page ad is effective>"
+	},
+	"doubleScreenAds":{
+		"zh-CN":"双屏客显广告",
+		"zh-TW":"豎屏廣告語",
+		"en":"Double screen guest ads"
+	},
+	"doubleAdClaim":{
+		"zh-CN":"< 分辨率：500x500；颜色：RGB色； 大小：2M以内；>",
+		"zh-TW":"< 分辨率：500x500；顏色：RGB色； 大小：2M以內；>",
+		"en":"<Resolution: 500x500; Color: RGB color; Size: 2M or less;>"
+	},
+	"doubleScreenSlogan":{
+		"zh-CN":"双屏客显广告语",
+		"zh-TW":"雙屏客顯廣告語",
+		"en":"Double screen guest display slogan"
+	},
+	"verticalScreenSlogan":{
+		"zh-CN":"竖屏广告语：",
+		"zh-TW":"雙屏客顯廣告",
+		"en":"Vertical screen slogan:"
+	},
+	"customerTicketSet":{
+		"zh-CN":"顾客小票设置",
+		"zh-TW":"顧客小票設置",
+		"en":"Customer ticket settings"
+	},
+	"kitchenPrintSet":{
+		"zh-CN":"后厨打印设置",
+		"zh-TW":"後廚打印設置",
+		"en":"Kitchen print setting"
+	},
+	"customerTicketTemplate":{
+		"zh-CN":"顾客小票模板",
+		"zh-TW":"顧客小票模板",
+		"en":"Customer ticket template"
+	},
+	"ticketTips":{
+		"zh-CN":"票据仅供参考，请以实际打印为准",
+		"zh-TW":"票據僅供參考，請以實際打印為準",
+		"en":"For reference only, please take actual printing as the standard"
+	},
+	"time":{
+		"zh-CN":"时间",
+		"zh-TW":"時間",
+		"en":"Time"
+	},
+	"orderNumber":{
+		"zh-CN":"订单号",
+		"zh-TW":"訂單號",
+		"en":"Order Number"
+	},
+	"dishName":{
+		"zh-CN":"菜名",
+		"zh-TW":"菜名",
+		"en":"Dish name"
+	},
+	"quantity":{
+		"zh-CN":"数量",
+		"zh-TW":"數量",
+		"en":"Quantity"
+	},
+	"price":{
+		"zh-CN":"价格",
+		"zh-TW":"價格",
+		"en":"price"
+	},
+	"unitPrice":{
+		"zh-CN":"单价",
+		"zh-TW":"單價",
+		"en":"unit price"
+	},
+	"dish1":{
+		"zh-CN":"红烧牛肉饭",
+		"zh-TW":"紅燒牛肉飯",
+		"en":"Braised beef rice"
+	},
+	"CocaCola":{
+		"zh-CN":"可口可乐",
+		"zh-TW":"可口可樂",
+		"en":"Coca Cola"
+	},
+	"total":{
+		"zh-CN":"总计",
+		"zh-TW":"總計",
+		"en":"total"
+	},
+	"paymentTypes":{
+		"zh-CN":"支付类型",
+		"zh-TW":"支付類型",
+		"en":"Payment Types"
+	},
+	"orderType":{
+		"zh-CN":"订单类型",
+		"zh-TW":"訂單類型",
+		"en":"Order Type"
+	},
+	"officialOrder":{
+		"zh-CN":"公众号点餐",
+		"zh-TW":"公眾號點餐",
+		"en":"Official Accounts order"
+	},
+	"topLogo":{
+		"zh-CN":"顶部图片",
+		"zh-TW":"顶部图片",
+		"en":"Top Logo"
+	},
+	"ticketLogoTips":{
+		"zh-CN":"注：黑白图片，BMP格式，宽度小于200px，图案上下不能留有空白",
+		"zh-TW":"注：黑白圖片，BMP格式，寬度小於200px，圖案上下不能留有空白",
+		"en":"Note: black and white pictures, BMP format, width less than 200px, the pattern can not be left blank"
+	},
+	"bottomLogo":{
+		"zh-CN":"底部图片",
+		"zh-TW":"底部圖片",
+		"en":"Bottom Logo"
+	},
+	"restaurantName":{
+		"zh-CN":"餐厅名称",
+		"zh-TW":"餐廳名稱",
+		"en":"Restaurant name"
+	},
+	"sevenWords":{
+		"zh-CN":"建议不超7个字",
+		"zh-TW":"建議不超7個字",
+		"en":"Suggest no more than 7 words"
+	},
+	"takeMealNumber":{
+		"zh-CN":"取餐号",
+		"zh-TW":"取餐號",
+		"en":"Take the meal number"
+	},
+	"takeMealNumberTips":{
+		"zh-CN":"注：点餐流程-餐牌号关时：建议 <开启>",
+		"zh-TW":"注：點餐流程-餐牌號關時：建議 <開啟>",
+		"en":"Note: ordering process - when the restaurant number is off: it is recommended"
+	},
+	"hint":{
+		"zh-CN":"提示语",
+		"zh-TW":"提示語",
+		"en":"hint"
+	},
+	"fifteenWords":{
+		"zh-CN":"建议在15个字以内",
+		"zh-TW":"建議在15個字以內",
+		"en":"Recommended within 15 words"
+	},
+	"restaurantNumber":{
+		"zh-CN":"餐牌号",
+		"zh-TW":"餐牌號",
+		"en":"Restaurant number"
+	},
+	"restaurantNumberTips":{
+		"zh-CN":"注：点餐流程-餐牌号关时：建议 <关闭>",
+		"zh-TW":"注：點餐流程-餐牌號關時：建議 <關閉>",
+		"en":"Note: ordering process - when the restaurant number is off: it is recommended"
+	},
+	"paymentNumber":{
+		"zh-CN":"支付号",
+		"zh-TW":"支付號",
+		"en":"Payment number"
+	},
+	"paymentNumberTips":{
+		"zh-CN":"建议 <关闭>",
+		"zh-TW":"建議 <關閉>",
+		"en":"Suggest <closed>"
+	},
+	"packageHall":{
+		"zh-CN":"打包/堂吃",
+		"zh-TW":"打包/堂吃",
+		"en":"Package / Eat in the shop"
+	},
+	"package":{
+		"zh-CN":"打包",
+		"zh-TW":"打包",
+		"en":"package"
+	},
+	"eatInShop":{
+		"zh-CN":"堂吃",
+		"zh-TW":"堂吃",
+		"en":"Eat in the shop"
+	},
+	"WeChatTakeout":{
+		"zh-CN":"微信外卖",
+		"zh-TW":"微信外賣",
+		"en":"WeChat takeout"
+	},
+	"packageHallTips":{
+		"zh-CN":"注：点餐流程-关闭时，即选择 <关闭>",
+		"zh-TW":"注：點餐流程-關閉時，即選擇 <關閉>",
+		"en":"Note: Order Process - When closed, select <Close>"
+	},
+	"addressTips":{
+		"zh-CN":"建议13个字内，过长换行，可用空格补充对齐",
+		"zh-TW":"建議13個字內，過長換行，可用空格補充對齊",
+		"en":"Proposed 13 words, too long wrap, the available space to add alignment"
+	},
+	"advertisingSlogan":{
+		"zh-CN":"广告语",
+		"zh-TW":"廣告語",
+		"en":"Advertising slogan"
+	},
+	"kitchenLabelPrinter":{
+		"zh-CN":"厨房/标签 打印机",
+		"zh-TW":"廚房/標籤 打印機",
+		"en":"Kitchen / Label Printer"
+	},
+	"name":{
+		"zh-CN":"名称",
+		"zh-TW":"名稱",
+		"en":"name"
+	},
+	"template":{
+		"zh-CN":"模板",
+		"zh-TW":"模板",
+		"en":"template"
+	},
+	"IP":{
+		"zh-CN":"IP地址",
+		"zh-TW":"IP地址",
+		"en":"IP address"
+	},
+	"IPInfo":{
+		"zh-CN":"若使用USB标签打印机，IP填入：192.168.10.10",
+		"zh-TW":"若使用USB標籤打印機，IP填入：192.168.10.10",
+		"en":"If using a USB label printer, Fill in IP:192.168.10.10"
+	},
+	"port":{
+		"zh-CN":"端口",
+		"zh-TW":"端口",
+		"en":"port"
+	},
+	"remarks":{
+		"zh-CN":"备注",
+		"zh-TW":"備註",
+		"en":"Remarks"
+	},
+	"mainKitchen":{
+		"zh-CN":"主厨房",
+		"zh-TW":"主廚房",
+		"en":"Main kitchen"
+	},
+	"deputyKitchen":{
+		"zh-CN":"副厨房",
+		"zh-TW":"副廚房",
+		"en":"Deputy Kitchen"
+	},
+	"label":{
+		"zh-CN":"标签",
+		"zh-TW":"標籤",
+		"en":"label"
+	},
+	"addPrinter":{
+		"zh-CN":"新增打印机",
+		"zh-TW":"新增打印機",
+		"en":"Add a printer"
+	},
+	"printerTips":{
+		"zh-CN":"注：使用中的打印机，切勿删除，若须删除，先修改菜品关联的打印机",
+		"zh-TW":"使用中的打印機，切勿刪除，若須刪除，先修改菜品關聯的打印機",
+		"en":"In use of the printer, do not delete, if you want to delete, first modify the dishes related to the printer"
+	},
+	"ticketPrinter":{
+		"zh-CN":"票据打印机",
+		"zh-TW":"票據打印機",
+		"en":"ticket printer"
+	},
+	"labelPrinter":{
+		"zh-CN":"标签打印机",
+		"zh-TW":"標籤打印機",
+		"en":"label printer"
+	},
+	"statusSwitch":{
+		"zh-CN":"状态开启",
+		"zh-TW":"狀態開啟",
+		"en":"Status switch"
+	},
+	"WeChatPayment":{
+		"zh-CN":"微信支付",
+		"zh-TW":"微信支付",
+		"en":"WeChat payment"
+	},
+	"WeChatBusinessNumber":{
+		"zh-CN":"微信商户号",
+		"zh-TW":"微信商戶號",
+		"en":"WeChat business number"
+	},
+	"subBusiness":{
+		"zh-CN":"子商户号（用于代理）",
+		"zh-TW":"子商戶號（用於代理）",
+		"en":"Sub-business number (for agents)"
+	},
+	"subBusinessTips":{
+		"zh-CN":"填入对接方派所用的商家微信商户号",
+		"zh-TW":"填入對接方派所用的商家微信商戶號",
+		"en":"Enter the merchant WeChat account number used by the docking party"
+	},
+	"officialAccountAPPID":{
+		"zh-CN":"公众号APPID",
+		"zh-TW":"公眾號APPID",
+		"en":"Official Account APPID"
+	},
+	"officialAccountKey":{
+		"zh-CN":"公众号密钥APPSECRET",
+		"zh-TW":"公眾號密鑰APPSECRET",
+		"en":"Official Account Key APPSECRET"
+	},
+	"officialAccountAPPIDKeyTips":{
+		"zh-CN":"餐桌二维码、支付关注、微信外卖等使用（点餐机可不设置）",
+		"zh-TW":"餐桌二維碼、支付關注、微信外賣等使用（點餐機可不設置）",
+		"en":"Table QR code, pay attention, wechat takeout, etc. (ordering machine may not be set)"
+	},
+	"note":{
+		"zh-CN":"注",
+		"zh-TW":"注",
+		"en":"Note"
+	},
+	"WeChatDataDockTips1":{
+		"zh-CN":"微信官方对接，安全性100%。微信官方要求商家须有营业执照才可申请。申请入口请将资料递交给方派。",
+		"zh-TW":"微信官方對接，安全性100%。微信官方要求商家須有營業執照才可申請。申請入口請將資料遞交給方派。",
+		"en":"WeChat official docking, security 100%. WeChat official requires businesses to have a business license before applying. Please submit the information to founpad."
+	},
+	"WeChatDataDockTips2":{
+		"zh-CN":"方派不接触商家的资金，用户交易为直接经过微信到商家帐号上，交易流程全由微信官方处理，本系统只起对接作用",
+		"zh-TW":"方派不接觸商家的資金，用戶交易為直接經過微信到商家帳號上，交易流程全由微信官方處理，本系統只起對接作用",
+		"en":"Founpad does not contact the merchant's funds, user transactions directly to WeChat to the merchant account, the transaction process by the WeChat official processing, the system only play a docking role"
+	},
+	"WeChatDataDockTips3":{
+		"zh-CN":"微信官方将收取手续费为交易额的0.6%（100元=0.6元手续费），（按菜品20元计算，只须0.12元）",
+		"zh-TW":"微信官方將收取手續費為交易額的0.6%（100元=0.6元手續費），（按菜品20元計算，只須0.12元）",
+		"en":"WeChat official fee will be charged 0.6% of the transaction amount (100 yuan = 0.6 yuan fee), (20 yuan by dishes, only 0.12 yuan)"
+	},
+	"WeChatDataDockTips4":{
+		"zh-CN":"公众号需商家自行申请",
+		"zh-TW":"公眾號需商家自行申請",
+		"en":"Official Account required businesses to apply"
+	},
+	"WeChatDataDockTips5":{
+		"zh-CN":"微信官方手续费查询",
+		"zh-TW":"微信官方手續費查詢",
+		"en":"WeChat official fee inquiry"
+	},
+	"AlipayPayment":{
+		"zh-CN":"支付宝支付",
+		"zh-TW":"支付寶支付",
+		"en":"Alipay payment"
+	},
+	"AlipayPayApply":{
+		"zh-CN":"申请对接支付宝当面付",
+		"zh-TW":"申請對接支付寶當面付",
+		"en":"Apply for docking Alipay face to face pay"
+	},
+	"goToAlipayApply":{
+		"zh-CN":"前往官方申请当面付",
+		"zh-TW":"前往官方申請當面付",
+		"en":"Go to the official application to pay in person"
+	},
+	"aliApplyTips1":{
+		"zh-CN":"准备资料",
+		"zh-TW":"準備資料",
+		"en":"prepare materials"
+	},
+	"aliApplyTips2":{
+		"zh-CN":"照片：营业执照、身份证正反面、店铺门前与店内照片",
+		"zh-TW":"照片：營業執照、身份證正反面、店鋪門前與店內照片",
+		"en":"Photo: business license, ID front and back, store front and store photos"
+	},
+	"aliApplyTips3":{
+		"zh-CN":"资料：银联卡卡号、支付宝账号",
+		"zh-TW":"資料：銀聯卡卡號、支付寶賬號",
+		"en":"Information: CUP card number, Alipay account"
+	},
+	"alipayPID":{
+		"zh-CN":"支付宝PID",
+		"zh-TW":"支付寶PID",
+		"en":"Alipay PID"
+	},
+	"officialAuthorization":{
+		"zh-CN":"前往官方授权",
+		"zh-TW":"前往官方授權",
+		"en":"Go to the official authorization"
+	},
+	"alipayPIDTips":{
+		"zh-CN":"注：申请对接当面付后，授权才能生效，否则无效。",
+		"zh-TW":"注：申請對接當面付後，授權才能生效，否則無效。",
+		"en":"Note: Apply for docking face pay, the mandate to take effect, otherwise invalid."
+	},
+	"statement":{
+		"zh-CN":"声明",
+		"zh-TW":"聲明",
+		"en":"statement"
+	},
+	"aliDataDockTips1":{
+		"zh-CN":"支付宝官方对接，安全性100%。支付宝官方要求商家须有营业执照才可申请。",
+		"zh-TW":"支付寶官方對接，安全性100%。支付寶官方要求商家須有營業執照才可申請。",
+		"en":"Alipay official docking, security 100%. Alipay official requirements businesses must have a business license before applying."
+	},
+	"aliDataDockTips2":{
+		"zh-CN":"方派不接触商家的资金，用户交易为直接由支付宝处理，交易资金直接到商家帐号上，本系统只起对接作用。",
+		"zh-TW":"方派不接觸商家的資金，用戶交易為直接由支付寶處理，交易資金直接到商家帳號上，本系統只起對接作用。",
+		"en":"Founpad does not contact the business funds, user transactions directly from Alipay processing, trading funds directly to the merchant account, the system only play a docking effect."
+	},
+	"aliDataDockTips3":{
+		"zh-CN":"支付宝官方将收取手续费为交易额的0.55%（100元=0.55元手续费），（按菜品20元计算，只须0.11元）",
+		"zh-TW":"支付寶官方將收取手續費為交易額的0.55%（100元=0.55元手續費），（按菜品20元計算，只須0.11元）",
+		"en":"Alipay official will charge a transaction fee of 0.55% of the transaction amount (100 yuan = 0.55 yuan fee), (20 yuan by dishes, only 0.11 yuan)"
+	},
+	"aliDataDockTips4":{
+		"zh-CN":"支付宝官方手续费查询",
+		"zh-TW":"支付寶官方手續費查詢",
+		"en":"Alipay official fee query"
+	},
+	"businessNumber":{
+		"zh-CN":"商户号",
+		"zh-TW":"商戶號",
+		"en":"business number"
+	},
+	"advantage":{
+		"zh-CN":"优点",
+		"zh-TW":"優點",
+		"en":"advantage"
+	},
+	"bankReceiptAdvantage":{
+		"zh-CN":"商家无须营业执照、收款可以为个人银行卡",
+		"zh-TW":"商家無需營業執照、收款可以為個人銀行卡",
+		"en":"Business without a business license, payment can be a personal bank card"
+	},
+	"disadvantage":{
+		"zh-CN":"缺点",
+		"zh-TW":"缺點",
+		"en":"Disadvantage"
+	},
+	"bankReceiptDisadvantage":{
+		"zh-CN":"微信与支付宝，单个每天上限为5万元，单个每月上限为20万元。（例微信每个月最高只能收20万，支付宝同样）",
+		"zh-TW":"微信與支付寶，單個每天上限為5萬元，單個每月上限為20萬元。 （例微信每個月最高只能收20萬，支付寶同樣）",
+		"en":"WeChat and Alipay, a single daily limit of 50,000 yuan, a single monthly limit of 200,000 yuan. (For example, wechat can only receive up to 200,000 per month, Alipay the same)"
+	},
+	"bankReceiptTips1":{
+		"zh-CN":"用户支付，并非到微信与支付宝官方，而是由中国民生银行代收。由民生银行与微信和支付宝结算。",
+		"zh-TW":"用戶支付，並非到微信與支付寶官方，而是由中國民生銀行代收。由民生銀行與微信和支付寶結算。",
+		"en":"Users pay, not to WeChat and Alipay official, but collected by China Minsheng Bank. By Minsheng Bank and WeChat and Alipay settlement."
+	},
+	"bankReceiptTips2":{
+		"zh-CN":"由中国民生银行代收，再转给商家的方式，资金与结算全由民生银行处理，方派不接触资金，只做对接。",
+		"zh-TW":"由中國民生銀行代收，再轉給商家的方式，資金與結算全由民生銀行處理，方派不接觸資金，只做對接。",
+		"en":"Minsheng Bank by China Minsheng Bank, and then transferred to the business approach, the funds and settlement by the Minsheng Bank handled, the parties do not contact the funds, only docking."
+	},
+	"bankReceiptTips3":{
+		"zh-CN":"民生银行收取手续费0.55%（1000元=5.5元手续费），（按菜品20元计算，只须0.11元）。",
+		"zh-TW":"民生銀行收取手續費0.55%（1000元=5.5元手續費），（按菜品20元計算，只須0.11元）。",
+		"en":"Minsheng Bank charge fees 0.55% (1,000 yuan = 5.5 yuan fee), (20 dishes by the dishes, only 0.11 yuan)."
+	},
+	"bankReceiptTips4":{
+		"zh-CN":"到帐：T+1（用户支付后，商家次日到帐）",
+		"zh-TW":"到賬:T+1(用戶支付後,商家次日到賬)",
+		"en":"Arrival: T +1 (after the payment, the merchant next day credited)"
+	},
+	"bankReceiptTips5":{
+		"zh-CN":"本后台统计，为银行卡（不区分微信与支付宝）",
+		"zh-TW":"本後台統計，為銀行卡（不區分微信與支付寶）",
+		"en":"The background statistics for the bank card (do not distinguish between WeChat and Alipay)"
+	},
+	"officialPayment":{
+		"zh-CN":"微信、支付宝：官方支付",
+		"zh-TW":"微信、支付寶：官方支付",
+		"en":"WeChat, Alipay: "
+	},
+	"payMethodSuggest":{
+		"zh-CN":"建议：使用官方支付",
+		"zh-TW":"建議：使用官方支付",
+		"en":"Suggestion: Use official payment"
+	},
+	"selfServiceCash":{
+		"zh-CN":"自助终端现金支付",
+		"zh-TW":"自助終端現金支付",
+		"en":"Self-service terminal cash payment"
+	},
+	"selfServiceCashSuggest":{
+		"zh-CN":"建议：关闭",
+		"zh-TW":"建議：關閉",
+		"en":"Suggestions: closed"
+	},
+	"selfServiceCashTips":{
+		"zh-CN":"用户操作流程：下单 〉选择到前台支付 〉自助点餐机打印小票 〉用户恁小票到收银台支付现金",
+		"zh-TW":"用戶操作流程：下單 〉選擇到前台支付 〉自助點餐機打印小票 〉用戶恁小票到收銀台支付現金",
+		"en":"User Operation Flow: Place an Order> Choose to Pay at the Front Desk> Self-Order Printer Print a Small Ticket> User 恁 Small Ticket Pay Cash at the Checkout Counter"
+	},
+	"manager":{
+		"zh-CN":"店长",
+		"zh-TW":"店長",
+		"en":"Manager"
+	},
+	"roleManagement":{
+		"zh-CN":"角色管理",
+		"zh-TW":"角色管理",
+		"en":"Role management"
+	},
+	"gender":{
+		"zh-CN":"性別",
+		"zh-TW":"性別",
+		"en":"gender"
+	},
+	"role":{
+		"zh-CN":"角色",
+		"zh-TW":"角色",
+		"en":"role"
+	},
+	"addRole":{
+		"zh-CN":"新增角色",
+		"zh-TW":"新增角色",
+		"en":"Add Role"
+	},
+	"male":{
+		"zh-CN":"男",
+		"zh-TW":"男",
+		"en":"male"
+	},
+	"female":{
+		"zh-CN":"女",
+		"zh-TW":"女",
+		"en":"female"
+	},
+	"editRole":{
+		"zh-CN":"角色编辑",
+		"zh-TW":"角色編輯",
+		"en":"edit Role"
+	},
+	"accountTips1":{
+		"zh-CN":"收银员：数据统计",
+		"zh-TW":"收銀員：數據統計",
+		"en":"Cashier: Statistics"
+	},
+	"accountTips2":{
+		"zh-CN":"店长： 数据统计、退菜，（财务可归为此角色）",
+		"zh-TW":"店長： 數據統計、退菜，（財務可歸為此角色）",
+		"en":"Manager: data statistics, retreat food (financial can be attributed to this role)"
+	},
+	"accountTips3":{
+		"zh-CN":"管理员：商家信息、店铺模版、终端设备、菜品设置、角色管理、会员管理，（不含数据统计、第三方对接）",
+		"zh-TW":"管理員：商家信息、店鋪模版、終端設備、菜品設置、角色管理、會員管理，（不含數據統計、第三方對接）",
+		"en":"Administrator: business information, store templates, terminal equipment, dishes settings, role management, membership management (excluding data statistics, third-party docking)"
+	},
+	"accountTips4":{
+		"zh-CN":"老板： 所有功能",
+		"zh-TW":"老闆： 所有功能",
+		"en":"Boss: all functions"
+	},
+	"accountNameTips":{
+		"zh-CN":"建议：真实姓名，易于管理",
+		"zh-TW":"建議：真實姓名，易於管理",
+		"en":"Suggestions: real name, easy to manage"
+	},
+	"phoneTips":{
+		"zh-CN":"建议：使用手机号，若手机号被使用，例：13888888888",
+		"zh-TW":"建議：使用手機號，若手機號被使用，例：13888888888",
+		"en":"Recommendation: use the phone number, if the phone number is used, for example: 13888888888"
+	},
+	"wrongFormat":{
+		"zh-CN":"格式错误,必须是纯数字组合!",
+		"zh-TW":"格式錯誤,必須是純數字組合!",
+		"en":"Wrong format, must be pure digital combination!"
+	},
+	"asteriskWarn":{
+		"zh-CN":"星号项不能为空",
+		"zh-TW":"星號不能為空",
+		"en":"Asterisk can not be empty"
+	},
+	"machineCode":{
+		"zh-CN":"机器码",
+		"zh-TW":"機器碼",
+		"en":"Machine code"
+	},
+	"dateOfExpiry":{
+		"zh-CN":"到期时间",
+		"zh-TW":"到期時間",
+		"en":"Date of Expiry"
+	},
+	"lastUsedTime":{
+		"zh-CN":"上次使用时间",
+		"zh-TW":"上次使用時間",
+		"en":"Last used time"
+	},
+	"foodInfoImportExport":{
+		"zh-CN":"菜品信息的导入导出",
+		"zh-TW":"菜品信息的導入導出",
+		"en":"Import and export of food information"
+	},
+	"menuModificationInstructions":{
+		"zh-CN":"菜品修改说明",
+		"zh-TW":"菜品修改說明",
+		"en":"Menu modification instructions"
+	},
+	"food_id":{
+		"zh-CN":"食物id(不能修改,新增数据时切勿添加food_id)",
+		"zh-TW":"食物id(不能修改,新增數據時切勿添加food_id)",
+		"en":"Food id (can not be modified, do not add food_id when adding data)"
+	},
+	"food_name":{
+		"zh-CN":"菜品名称(必填)",
+		"zh-TW":"菜品名稱(必填)",
+		"en":"Name of dish (required)"
+	},
+	"food_name_en":{
+		"zh-CN":"菜品英文名",
+		"zh-TW":"菜品英文名",
+		"en":"English name dishes"
+	},
+	"time_category":{
+		"zh-CN":"时间段类别id",
+		"zh-TW":"時間段類別id",
+		"en":"Time period category id"
+	},
+	"second_price":{
+		"zh-CN":"第二份起的价格",
+		"zh-TW":"第二份起的價格",
+		"en":"The second starting price"
+	},
+	"food_price":{
+		"zh-CN":"菜品价格(必填)",
+		"zh-TW":"菜品價格(必填)",
+		"en":"Dishes price (required)"
+	},
+	"star_level":{
+		"zh-CN":"星级水平(必填)",
+		"zh-TW":"星級水平(必填)",
+		"en":"Star level (required)"
+	},
+	"hot_level":{
+		"zh-CN":"辣程度(必填)",
+		"zh-TW":"辣程度(必填)",
+		"en":"Spicy degree (required)"
+	},
+	"is_prom":{
+		"zh-CN":"是否开启时价",
+		"zh-TW":"是否開啟時價",
+		"en":"Whether to open the current price"
+	},
+	"is_tax":{
+		"zh-CN":"是否含税(0不含1含税)",
+		"zh-TW":"是否含稅(0不含1含稅)",
+		"en":"Whether tax (0 does not include 1 tax)"
+	},
+	"foods_num_day":{
+		"zh-CN":"每天供应量",
+		"zh-TW":"每天供應量",
+		"en":"Daily supply"
+	},
+	"food_desc":{
+		"zh-CN":"食物的描述",
+		"zh-TW":"食物的描述",
+		"en":"Description of the food"
+	},
+	"restaurant_id":{
+		"zh-CN":"店铺id(修改及添加数据都可以省略此数据)",
+		"zh-TW":"店鋪id(修改及添加數據都可以省略此數據)",
+		"en":"Store id (modify and add data can omit this data)"
+	},
+	"is_sale":{
+		"zh-CN":"是否上架（1表示上架，0否）",
+		"zh-TW":"是否上架（1表示上架，0否）",
+		"en":"Whether the shelves (1 that shelves, 0 no)"
+	},
+	"print_id":{
+		"zh-CN":"打印机id",
+		"zh-TW":"打印機id",
+		"en":"Printer id"
+	},
+	"sort":{
+		"zh-CN":"排序",
+		"zh-TW":"排序",
+		"en":"sort"
+	},
+	"district_id":{
+		"zh-CN":"分区id",
+		"zh-TW":"分區id",
+		"en":"Partition id"
+	},
+	"tag_print_id":{
+		"zh-CN":"标签打印机id(0表示没有)",
+		"zh-TW":"標籤打印機id(0表示沒有)",
+		"en":"Label printer id (0 means no)"
+	},
+	"dianzan":{
+		"zh-CN":"点赞，0不赞，1赞",
+		"zh-TW":"點贊，0不贊，1贊",
+		"en":"Like, 0 not liked, 1 like"
+	},
+	"category_names":{
+		"zh-CN":"分类名称",
+		"zh-TW":"分類名稱",
+		"en":"Category Name"
+	},
+	"attribute_type_str":{
+		"zh-CN":"菜品类别名(eg:口味,饮料,饮料 格式:用英文的逗号','隔开",
+		"zh-TW":"菜品類別名(eg:口味,飲料,飲料 格式:用英文的逗號','隔開",
+		"en":"Dishes category name (eg: flavors, beverages, beverages format: separated by commas ','"
+	},
+	"print_id_str":{
+		"zh-CN":"打印机id集",
+		"zh-TW":"打印機id集",
+		"en":"Printer id set"
+	},
+	"select_type_str":{
+		"zh-CN":"该类型下的属性(0单选，1多选 ;格式:用英文的逗号','隔开)",
+		"zh-TW":"該類型下的屬性(0單選，1多選 ;格式:用英文的逗號','隔開)",
+		"en":"Properties under this type (0 radio, 1 multiple choice; format: separated by English comma ',')"
+	},
+	"count_type_str":{
+		"zh-CN":"类别下的属性是否列入统计（0 : 否，1：是）(格式:用英文的逗号','隔开)",
+		"zh-TW":"類別下的屬性是否列入統計（0 : 否，1：是）(格式:用英文的逗號','隔開)",
+		"en":"Category attribute is included in the statistics (0: no, 1: yes) (format: comma ',')"
+	},
+	"tag_print_id_str":{
+		"zh-CN":"标签打印机id集(格式:用英文的逗号','隔开)",
+		"zh-TW":"標籤打印機id集(格式:用英文的逗號','隔開)",
+		"en":"Label printer id set (format: comma ',' separated by English)"
+	},
+	"attribute_val":{
+		"zh-CN":"类别值和价格集合(格式:用'|'隔开,值与值之间用英文的','隔开,值和价格用'_'符隔开 ;eg:少辣_0.00,中辣_0.00,超辣_0.00|水_0.00,茶_0.00,可乐_0.00,豆奶_0.00)",
+		"zh-TW":"類別值和價格集合(格式:用'|'隔開,值與值之間用英文的','隔開,值和價格用'_'符隔開;eg:少辣_0.00,中辣_ 0.00,超辣_0.00|水_0.00,茶_0.00,可樂_0.00,豆奶_0.00)",
+		"en":"Category Value and Price Collection (Format: separated by '|', separated by English ',' between value and value, value separated by '_'; eg: spicy _0.00, spicy _ 0.00, super spicy _0.00 | water _0.00, tea _0.00, Coke _0.00, soy milk _0.00)"
+	},
+	"food_img":{
+		"zh-CN":"菜品图片(不能修改)",
+		"zh-TW":"菜品圖片(不能修改)",
+		"en":"Dishes pictures (can not be modified)"
+	},
+	"img_urls":{
+		"zh-CN":"菜品分类图标路径集(不能修改,格式:用'|'隔开)",
+		"zh-TW":"菜品分類圖標路徑集(不能修改,格式:用'|'隔開)",
+		"en":"Food Category Icon Path Set (can not be modified, format: separated by '|')"
+	},
+	"ico_category_types":{
+		"zh-CN":"图标分类，0为默认图标，1为系统图标，2为自定义，默认为0(格式:用'|'隔开)",
+		"zh-TW":"圖標分類，0為默認圖標，1為系統圖標，2為自定義，默認為0(格式:用'|'隔開)",
+		"en":"Icon classification, 0 is the default icon, 1 for the system icon, 2 for the custom, the default is 0 (format: separated by '|')"
+	},
+	"dishesCategory":{
+		"zh-CN":"菜品分类",
+		"zh-TW":"菜品分類",
+		"en":"Dishes category"
+	},
+	"addCategory":{
+		"zh-CN":"添加分类",
+		"zh-TW":"添加分類",
+		"en":"add category"
+	},
+	"dishesSet":{
+		"zh-CN":"菜品设置",
+		"zh-TW":"菜品設置",
+		"en":"DishesSet"
+	},
+	"addDishes":{
+		"zh-CN":"添加菜品",
+		"zh-TW":"添加菜品",
+		"en":"Add dishes"
+	},
+	"classification":{
+		"zh-CN":"分类",
+		"zh-TW":"分類",
+		"en":"classification"
+	},
+	"yuan":{
+		"zh-CN":"元",
+		"zh-TW":"元",
+		"en":"yuan"
+	},
+	"copies":{
+		"zh-CN":"份",
+		"zh-TW":"份",
+		"en":"Copies"
+	},
+	"dishesCategorySettings":{
+		"zh-CN":"菜品分类设置",
+		"zh-TW":"菜品分類設置",
+		"en":"Dishes category settings"
+	},
+	"CategoryChineseName":{
+		"zh-CN":"分类中文名称",
+		"zh-TW":"分類中文名稱",
+		"en":"Category Chinese name"
+	},
+	"categoryEnglishName":{
+		"zh-CN":"分类英文名称",
+		"zh-TW":"分類英文名稱",
+		"en":"Category English name"
+	},
+	"noChanges":{
+		"zh-CN":"没有任何修改",
+		"zh-TW":"分類英文名稱",
+		"en":"No changes"
+	},
+	"customIcon":{
+		"zh-CN":"自定义图标",
+		"zh-TW":"自定義圖標",
+		"en":"Custom icon"
+	},
+	"iconPreview":{
+		"zh-CN":"图标预览",
+		"zh-TW":"图标预览",
+		"en":"Icon preview"
+	},
+	"setAsTiming":{
+		"zh-CN":"设为定时",
+		"zh-TW":"設為定時",
+		"en":"Set as timing"
+	},
+	"weekTiming":{
+		"zh-CN":"星期定时",
+		"zh-TW":"星期定時",
+		"en":"week timing"
+	},
+	"dateTiming":{
+		"zh-CN":"日期定时",
+		"zh-TW":"日期定時",
+		"en":"Date timing"
+	},
+	"yes":{
+		"zh-CN":"确定",
+		"zh-TW":"確定",
+		"en":"yes"
+	},
+	"cancel":{
+		"zh-CN":"取消",
+		"zh-TW":"取消",
+		"en":"cancel"
+	},
+	"canNotDeleteCategory":{
+		"zh-CN":"无法删除拥有子集的分类",
+		"zh-TW":"無法刪除擁有子集的分類",
+		"en":"Could not delete the category that owns the subset"
+	},
+	"start":{
+		"zh-CN":"开始",
+		"zh-TW":"開始",
+		"en":"Start"
+	},
+	"end":{
+		"zh-CN":"结束",
+		"zh-TW":"結束",
+		"en":"End"
+	},
+	"changeDishStatus":{
+		"zh-CN":"确定要更改菜品状态吗？",
+		"zh-TW":"確定要更改菜品狀態嗎？",
+		"en":"Are you sure you want to change the status?"
+	},
+	"dishesCategoryEmpty":{
+		"zh-CN":"菜品分类不能为空",
+		"zh-TW":"菜品分類不能為空",
+		"en":"Dishes category can not be empty"
+	},
+	"dishesBasicSet":{
+		"zh-CN":"菜品基本设置",
+		"zh-TW":"菜品基本設置",
+		"en":"Dishes basic settings"
+	},
+	"dishImgSize":{
+		"zh-CN":"建议:<分辨率：500x300>< RGB色>",
+		"zh-TW":"建議:<分辨率：500x300>< RGB色>",
+		"en":"Suggestion: <Resolution: 500x300> <RGB Color>"
+	},
+	"chineseName":{
+		"zh-CN":"中文名称",
+		"zh-TW":"中文名稱",
+		"en":"Chinese name"
+	},
+	"ErpFoodid":{
+		"zh-CN":"非必填(只限特定功能)",
+		"zh-TW":"非必填(只限特定功能)",
+		"en":"Erp Food id"
+	},
+	"englishName":{
+		"zh-CN":"英文名称",
+		"zh-TW":"英文名稱",
+		"en":"English name"
+	},
+	"dishesDescription":{
+		"zh-CN":"菜品描述",
+		"zh-TW":"菜品描述",
+		"en":"Description of the dishes"
+	},
+	"dishprice":{
+		"zh-CN":"价格",
+		"zh-TW":"價格",
+		"en":"price"
+	},
+	"diserp":{
+		"zh-CN":"条码",
+		"zh-TW":"条码",
+		"en":"erp"
+	},
+	"dailyLimit":{
+		"zh-CN":"每日限量",
+		"zh-TW":"每日限量",
+		"en":"Daily limit"
+	},
+	"todaySold":{
+		"zh-CN":"今天已售",
+		"zh-TW":"soldToday",
+		"en":"Sold today"
+	},
+	"taste":{
+		"zh-CN":"口味",
+		"zh-TW":"口味",
+		"en":"Taste"
+	},
+	"recommend":{
+		"zh-CN":"推荐",
+		"zh-TW":"推薦",
+		"en":"recommend"
+	},
+	"printerSettings":{
+		"zh-CN":"打印机设置",
+		"zh-TW":"打印機設置",
+		"en":"Printer settings"
+	},
+	"kitchenPrinter":{
+		"zh-CN":"厨房打印机",
+		"zh-TW":"廚房打印機",
+		"en":"Kitchen printer"
+	},
+	"noPrint":{
+		"zh-CN":"不设打印",
+		"zh-TW":"不設打印",
+		"en":"No print"
+	},
+	"calledScreenPartition":{
+		"zh-CN":"叫号屏分区",
+		"zh-TW":"叫號屏分區",
+		"en":"Called the screen partition"
+	},
+	"dishesSpecificationSet":{
+		"zh-CN":"菜品规格设置",
+		"zh-TW":"菜品規格設置",
+		"en":"Dishes specification setting"
+	},
+	"specificationName":{
+		"zh-CN":"规格名称",
+		"zh-TW":"規格名稱",
+		"en":"Specification name"
+	},
+	"newSpecCategory":{
+		"zh-CN":"新增规格类别",
+		"zh-TW":"新增規格類別",
+		"en":"New spec category"
+	},
+	"attrPrinterTips":{
+		"zh-CN":"同一类别下的规格，将在同一台厨房打印机打出",
+		"zh-TW":"同一類別下的規格，將在同一台廚房打印機打出",
+		"en":"The same category under the specifications, will be in the same kitchen printer hit"
+	},
+	"dishesSpecCategorySet":{
+		"zh-CN":"菜品规格类别设置",
+		"zh-TW":"菜品規格類別設置",
+		"en":"Dishes specifications category settings"
+	},
+	"classificationName":{
+		"zh-CN":"类别名称",
+		"zh-TW":"類別名稱",
+		"en":"classification name"
+	},
+	"statistics_title":{
+		"zh-CN":"数据统计",
+		"zh-TW":"數據統計",
+		"en":"statistics"
+	},
+	"statistics":{
+		"zh-CN":"统计",
+		"zh-TW":"統計",
+		"en":"statistics"
+	},
+	"select":{
+		"zh-CN":"选择",
+		"zh-TW":"選擇",
+		"en":"select"
+	},
+	"singleChoice":{
+		"zh-CN":"单选",
+		"zh-TW":"單選",
+		"en":"Single choice"
+	},
+	"multipleChoice":{
+		"zh-CN":"多选",
+		"zh-TW":"多選",
+		"en":"Multiple choice"
+	},
+	"overlayPrice":{
+		"zh-CN":"叠加价格",
+		"zh-TW":"疊加價格",
+		"en":"Overlay the price"
+	},
+	"uploadLimit":{
+		"zh-CN":"您上传的文件超过1M！",
+		"zh-TW":"您上傳的文件超過1M！",
+		"en":"You upload more than 1M!"
+	},
+	"notChooseDishesCategory":{
+		"zh-CN":"没有选择菜品分类",
+		"zh-TW":"沒有選擇菜品分類",
+		"en":"Did not choose dishes category"
+	},
+	"noPrinter":{
+		"zh-CN":"没有打印机，请选对接打印机!",
+		"zh-TW":"沒有打印機，請選對接打印機!",
+		"en":"No printer, please choose the docking printer!"
+	},
+	"editDishNext":{
+		"zh-CN":"菜品修改成功，要继续添加菜品类别及属性？",
+		"zh-TW":"菜品修改成功，要繼續添加菜品類別及屬性？",
+		"en":"Dishes modified successfully, continue to add dishes categories and attributes?"
+	},
+	"dishesAdded":{
+		"zh-CN":"菜品已添加！",
+		"zh-TW":"菜品已添加！",
+		"en":"Dishes have been added!"
+	},
+	"pleaseSaveDish":{
+		"zh-CN":"请先保存菜品的基本信息！",
+		"zh-TW":"請先保存菜品的基本信息！",
+		"en":"Please save the basic information of dishes!"
+	},
+	"operating":{
+		"zh-CN":"操作",
+		"zh-TW":"操作",
+		"en":"operating"
+	},
+	"PleaseEnterChineseClassification":{
+		"zh-CN":"请输入中文分类名称",
+		"zh-TW":"請輸入中文分類名稱",
+		"en":"Please enter the Chinese classification name"
+	},
+	"PleaseEnterEnglishClassification":{
+		"zh-CN":"请输入英文分类名称",
+		"zh-TW":"請輸入英文分類名稱",
+		"en":"Please enter the English classification name"
+	},
+	"typeSetting":{
+		"zh-CN":"类型设定",
+		"zh-TW":"類型設定",
+		"en":"Type setting"
+	},
+	"bookMealTips":{
+		"zh-CN":"本功能建议配套叫号屏+核销屏，或取餐柜一起使用，必备方派收银机（接单作用，自助设备可增加一个接单盒子）。",
+		"zh-TW":"本功能建議配套叫號屏+核銷屏，或取餐櫃一起使用，必備方派收銀機（接單作用，自助設備可增加一個接單盒子）。",
+		"en":"This function is recommended supporting the called screen + verification screen, or take the dining table together, the necessary party to send the machine (the role of orders, self-service equipment to increase a pick-up box)."
+	},
+	"mealOnTime":{
+		"zh-CN":"准时用餐",
+		"zh-TW":"準時用餐",
+		"en":"Meal on time"
+	},
+	"freeToEat":{
+		"zh-CN":"自由用餐时间",
+		"zh-TW":"自由用餐時間",
+		"en":"Free meal time"
+	},
+	"mealOnTimeTips":{
+		"zh-CN":"准时用餐：常用于食堂模式，如：用户早上订餐、晚上用餐。食堂即可集中提前配餐，节省浪费。",
+		"zh-TW":"準時用餐：常用於食堂模式，如：用戶早上訂餐、晚上用餐。食堂即可集中提前配餐，節省浪費。",
+		"en":"Meal on time: commonly used in canteen mode, such as: users order food in the morning and evening meal. Canteen can be concentrated in advance catering, save waste."
+	},
+	"freeToEatTips":{
+		"zh-CN":"自由时间：常用于店铺模式，如：用户在下班前先订餐，下班后到店铺直接取餐享用。",
+		"zh-TW":"自由時間：常用於店鋪模式，如：用戶在下班前先訂餐，下班後到店鋪直接取餐享用。",
+		"en":"Free time: commonly used in store mode, such as: users before ordering food, after work to shop directly enjoy the food."
+	},
+	"printTime":{
+		"zh-CN":"打单时间：与用餐时间提前",
+		"zh-TW":"打單時間：與用餐時間提前",
+		"en":"Print time: with meal time in advance"
+	},
+	"printTimeTips":{
+		"zh-CN":"注：打单时间应小于下单时间。",
+		"zh-TW":"注：打單時間應小於下單時間。",
+		"en":"Note: playing a single time should be less than the order time."
+	},
+	"printTimeTips1":{
+		"zh-CN":"例1：设置10分钟，用户用餐时间12：00,即厨房打单为11：50分（提前10分钟做餐）",
+		"zh-TW":"例1：設置10分鐘，用戶用餐時間12：00,即廚房打單為11：50分（提前10分鐘做餐）",
+		"en":"Example 1: Set 10 minutes, the user dining time 12:00, that is, the kitchen play a single 11:50 points (10 minutes in advance to do meal)"
+	},
+	"printTimeTips2":{
+		"zh-CN":"例2：自由用餐时间：下单时间加10分钟，即打单时间，应该为10分钟以下（建议8分钟以下）",
+		"zh-TW":"例2：自由用餐時間：下單時間加10分鐘，即打單時間，應該為10分鐘以​​下（建議8分鐘以下）",
+		"en":"Example 2: free meal time: order time plus 10 minutes, that is playing a single time, it should be less than 10 minutes (recommended 8 minutes or less)"
+	},
+	"printTimeTips3":{
+		"zh-CN":"例3：准时用餐：建议为0, 0代表用户在下单时，立即打单。",
+		"zh-TW":"例3：準時用餐：建議為0, 0代表用戶在下單時，立即打單。",
+		"en":"Example 3: Meal on time: The proposal is 0, 0 on behalf of the user when the next single, immediately play a single."
+	},
+	"stopOrderingTime":{
+		"zh-CN":"停止点餐时间",
+		"zh-TW":"停止點餐時間",
+		"en":"Stop ordering time"
+	},
+	"stopOrderingTimeTips":{
+		"zh-CN":"如：设置60分钟，用户点餐时间为11:30，选择用餐时间只能是12:30以上的时间。",
+		"zh-TW":"如：設置60分鐘，用戶點餐時間為11:30，選擇用餐時間只能是12:30以上的時間。",
+		"en":"Such as: set 60 minutes, the user ordering time is 11:30, select the dining time can only be more than 12:30 time."
+	},
+	"advance":{
+		"zh-CN":"提前",
+		"zh-TW":"提前",
+		"en":"advance"
+	},
+	"minute":{
+		"zh-CN":"分钟",
+		"zh-TW":"分鐘",
+		"en":"minute"
+	},
+	"todayOrder":{
+		"zh-CN":"当天预点餐",
+		"zh-TW":"當天預點餐",
+		"en":"Pre-order meal the same day"
+	},
+	"tomorrowOrder":{
+		"zh-CN":"明天预点餐",
+		"zh-TW":"明天預點餐",
+		"en":"Pre-order tomorrow"
+	},
+	"todayOrderTips":{
+		"zh-CN":"建议开启",
+		"zh-TW":"建議開啟",
+		"en":"Recommended to open"
+	},
+	"tomorrowOrderTips":{
+		"zh-CN":"用户可提前预定明天餐品",
+		"zh-TW":"用戶可提前預定明天餐品",
+		"en":"Users can order tomorrow's meal in advance"
+	},
+	"plus":{
+		"zh-CN":"加",
+		"zh-TW":"加",
+		"en":"plus"
+	},
+	"orderTime":{
+		"zh-CN":"下单时间",
+		"zh-TW":"下單時間",
+		"en":"order time"
+	},
+	"orderTimeTips":{
+		"zh-CN":"如：设置10分钟，用户点餐时间为11:30，选择到达时间只能选择11:40以上。",
+		"zh-TW":"如：設置10分鐘，用戶點餐時間為11:30，選擇到達時間只能選擇11:40以上。",
+		"en":"Such as: set 10 minutes, the user ordering time is 11:30, select the arrival time can only choose 11:40 above."
+	},
+	"minutesOrMore":{
+		"zh-CN":"分钟以上",
+		"zh-TW":"分鐘以上",
+		"en":"Minutes or more"
+	},
+	"businessHours":{
+		"zh-CN":"营业时间",
+		"zh-TW":"營業時間",
+		"en":"Business hours"
+	},
+	"to":{
+		"zh-CN":"至",
+		"zh-TW":"至",
+		"en":"to"
+	},
+	"pleaseAddTime":{
+		"zh-CN":"请添加时间",
+		"zh-TW":"請添加時間",
+		"en":"Please add time"
+	},
+	"selectTypeSet":{
+		"zh-CN":"请选择类型设定",
+		"zh-TW":"請選擇類型設定",
+		"en":"Please select the type setting"
+	},
+	"cashier":{
+		"zh-CN":"收银员",
+		"zh-TW":"收銀員",
+		"en":"Cashier"
+	},
+	"all":{
+		"zh-CN":"所有",
+		"zh-TW":"所有",
+		"en":"all"
+	},
+	"date":{
+		"zh-CN":"日期",
+		"zh-TW":"日期",
+		"en":"date"
+	},
+	"search":{
+		"zh-CN":"搜索",
+		"zh-TW":"搜索",
+		"en":"search"
+	},
+	"mainCourse":{
+		"zh-CN":"主菜",
+		"zh-TW":"主菜",
+		"en":"main course"
+	},
+	"specification":{
+		"zh-CN":"规格",
+		"zh-TW":"規格",
+		"en":"specification"
+	},
+	"payMethod":{
+		"zh-CN":"支付方式",
+		"zh-TW":"支付方式",
+		"en":"payment method"
+	},
+	"WeChat":{
+		"zh-CN":"微信",
+		"zh-TW":"微信",
+		"en":"WeChat"
+	},
+	"Alipay":{
+		"zh-CN":"支付宝",
+		"zh-TW":"支付寶",
+		"en":"Alipay"
+	},
+	"cash":{
+		"zh-CN":"现金",
+		"zh-TW":"現金",
+		"en":"cash"
+	},
+	"member":{
+		"zh-CN":"会员",
+		"zh-TW":"會員",
+		"en":"member"
+	},
+	"bankReceipt":{
+		"zh-CN":"银行代收",
+		"zh-TW":"銀行代收",
+		"en":"Bank receipt"
+	},
+	"mealStyle":{
+		"zh-CN":"就餐方式",
+		"zh-TW":"就餐方式",
+		"en":"Meal style"
+	},
+	"orderStatus":{
+		"zh-CN":"订单状态",
+		"zh-TW":"訂單狀態",
+		"en":"Order Status"
+	},
+	"normal":{
+		"zh-CN":"正常",
+		"zh-TW":"正常",
+		"en":"normal"
+	},
+	"refund":{
+		"zh-CN":"退菜",
+		"zh-TW":"退菜",
+		"en":"refund"
+	},
+	"turnover":{
+		"zh-CN":"营业金额",
+		"zh-TW":"營業金額",
+		"en":"turnover"
+	},
+	"dishes":{
+		"zh-CN":"菜品",
+		"zh-TW":"菜品",
+		"en":"dishes"
+	},
+	"annualReport":{
+		"zh-CN":"年报表",
+		"zh-TW":"年報表",
+		"en":"Annual Report"
+	},
+	"monthlyReport":{
+		"zh-CN":"月报表",
+		"zh-TW":"月報表",
+		"en":"Monthly report"
+	},
+	"sales":{
+		"zh-CN":"销量",
+		"zh-TW":"銷量",
+		"en":"Sales"
+	},
+	"orderDetails":{
+		"zh-CN":"订单详细",
+		"zh-TW":"訂單詳細",
+		"en":"Order details"
+	},
+	"dateAndTime":{
+		"zh-CN":"日期时间",
+		"zh-TW":"日期時間",
+		"en":"Date and time"
+	},
+	"originalPrice":{
+		"zh-CN":"原价",
+		"zh-TW":"原價",
+		"en":"Original price"
+	},
+	"discount":{
+		"zh-CN":"优惠",
+		"zh-TW":"優惠",
+		"en":"discount"
+	},
+	"additionalFee":{
+		"zh-CN":"附加费",
+		"zh-TW":"附加費",
+		"en":"Additional fee"
+	},
+	"unpaid":{
+		"zh-CN":"未支付",
+		"zh-TW":"未支付",
+		"en":"unpaid"
+	},
+	"attributes":{
+		"zh-CN":"属性",
+		"zh-TW":"屬性",
+		"en":"attributes"
+	},
+	"revenueAmount":{
+		"zh-CN":"收入金额",
+		"zh-TW":"收入金額",
+		"en":"Revenue amount"
+	},
+	"numberOfOrder":{
+		"zh-CN":"订单数",
+		"zh-TW":"訂單數",
+		"en":"number of order"
+	},
+	"RetreatMenuNumber":{
+		"zh-CN":"退菜单数",
+		"zh-TW":"退菜單數",
+		"en":"Retreat menu number"
+	},
+	"retreatCopies":{
+		"zh-CN":"退菜份数",
+		"zh-TW":"退菜份數",
+		"en":"Retreat copies"
+	},
+	"refundAmount":{
+		"zh-CN":"退款金额",
+		"zh-TW":"退款金額",
+		"en":"Refund amount"
+	},
+	"NumberOfDishes":{
+		"zh-CN":"菜品份数",
+		"zh-TW":"菜品份數",
+		"en":"The number of dishes"
+	},
+	"list":{
+		"zh-CN":"单",
+		"zh-TW":"單",
+		"en":"list"
+	},
+	"meituan":{
+		"zh-CN":"美团",
+		"zh-TW":"美團",
+		"en":"meituan"
+	},
+	"eleme":{
+		"zh-CN":"饿了么",
+		"zh-TW":"餓了麼",
+		"en":"eleme"
+	},
+	"serialNumber":{
+		"zh-CN":"流水号",
+		"zh-TW":"流水號",
+		"en":"serial number"
+	},
+	"AmountOfGoods":{
+		"zh-CN":"商品金额",
+		"zh-TW":"商品金額",
+		"en":"The amount of goods"
+	},
+	"commissionAmount":{
+		"zh-CN":"抽佣金额",
+		"zh-TW":"抽佣金額",
+		"en":"The commission amount"
+	},
+	"deliveryFee":{
+		"zh-CN":"配送费",
+		"zh-TW":"配送費",
+		"en":"Delivery fee"
+	},
+	"totalActivities":{
+		"zh-CN":"总活动款",
+		"zh-TW":"總活動款",
+		"en":"Total activities"
+	},
+	"businessIncome":{
+		"zh-CN":"商家收入",
+		"zh-TW":"商家收入",
+		"en":"Business income"
+	},
+	"cashOnDelivery":{
+		"zh-CN":"货到付款",
+		"zh-TW":"貨到付款",
+		"en":"Cash on delivery"
+	},
+	"onlinePayment":{
+		"zh-CN":"在线支付",
+		"zh-TW":"在線支付",
+		"en":"Online Payment"
+	},
+	"MerchantIncomeTips":{
+		"zh-CN":"（商家收入=商品金额-抽佣金额-总活动款（商家承担的部分））",
+		"zh-TW":"（商家收入=商品金額-抽佣金額-總活動款（商家承擔的部分））",
+		"en":"(Merchant income = amount of goods - ransack amount - the total activities section (the business commitment section))"
+	},
+	"statisticalResults":{
+		"zh-CN":"统计结果",
+		"zh-TW":"統計結果",
+		"en":"statistical results"
+	},
+	"totalMerchantRevenue":{
+		"zh-CN":"总商家收入",
+		"zh-TW":"總商家收入",
+		"en":"Total merchant revenue"
+	},
+	"totalAmountGoods":{
+		"zh-CN":"总商品金额",
+		"zh-TW":"總商品金額",
+		"en":"The total amount of goods"
+	},
+	"totalCommissionAmount":{
+		"zh-CN":"总抽佣金额",
+		"zh-TW":"總抽佣金額",
+		"en":"Total commission amount"
+	},
+	"totalDeliveryAmount":{
+		"zh-CN":"总配送金额",
+		"zh-TW":"總配送金額",
+		"en":"Total delivery amount"
+	},
+	"totalActivities":{
+		"zh-CN":"总活动款",
+		"zh-TW":"總活動款",
+		"en":"Total activities"
+	},
+	"serviceFee":{
+		"zh-CN":"服务费",
+		"zh-TW":"服務費",
+		"en":"Service fee"
+	},
+	"totalServiceFee":{
+		"zh-CN":"总服务费",
+		"zh-TW":"總服務費",
+		"en":"Total service fee"
+	},
+	"customerActualPaymentPrice":{
+		"zh-CN":"客户实际支付价",
+		"zh-TW":"客戶實際支付價",
+		"en":"Customer actual payment price"
+	},
+	"actualBusinessReceivables":{
+		"zh-CN":"商家实收",
+		"zh-TW":"商家實收",
+		"en":"The actual business receivables"
+	},
+	"lunchBoxesNum":{
+		"zh-CN":"餐盒个数",
+		"zh-TW":"餐盒個數",
+		"en":"The number of lunch boxes"
+	},
+	"mealPrice":{
+		"zh-CN":"餐盒单价",
+		"zh-TW":"餐盒單價",
+		"en":"Meal price"
+	},
+	"mealFee":{
+		"zh-CN":"餐盒费",
+		"zh-TW":"餐盒費",
+		"en":"Meal fee"
+	},
+	"specValue":{
+		"zh-CN":"规格值",
+		"zh-TW":"規格值",
+		"en":"Specification Value"
+	},
+	"propertyValue":{
+		"zh-CN":"属性值",
+		"zh-TW":"屬性值",
+		"en":"Property value"
+	},
+	"fillOfficialAccountsName":{
+		"zh-CN":"填写公众号的账号名称",
+		"zh-TW":"填寫公眾號的賬號名稱",
+		"en":"Fill in the official accounts name"
+	},
+	"description":{
+		"zh-CN":"描述",
+		"zh-TW":"描述",
+		"en":"description"
+	},
+	"officialDescriptionTips":{
+		"zh-CN":"用于说明此公众号的功能及用途。",
+		"zh-TW":"用於說明此公眾號的功能及用途。",
+		"en":"Used to describe the function and purpose of this public number."
+	},
+	"officialAccountsUsername":{
+		"zh-CN":"公众号账号",
+		"zh-TW":"公眾號賬號",
+		"en":"official accounts username"
+	},
+	"officialAccountsUsernameTips":{
+		"zh-CN":"填写公众号的账号,一般为英文账号",
+		"zh-TW":"填寫公眾號的賬號,一般為英文賬號",
+		"en":"Fill in the official account username, usually an English account"
+	},
+	"originalID":{
+		"zh-CN":"原始ID",
+		"zh-TW":"原始ID",
+		"en":"Original ID"
+	},
+	"originalIDTips":{
+		"zh-CN":"原始ID不能修改,请谨慎填写",
+		"zh-TW":"原始ID不能修改,請謹慎填寫",
+		"en":"The original ID can not be modified, please fill it carefully"
+	},
+	"type":{
+		"zh-CN":"类型",
+		"zh-TW":"類型",
+		"en":"type"
+	},
+	"ordinarySubscriptionAccount":{
+		"zh-CN":"普通订阅号",
+		"zh-TW":"普通訂閱號",
+		"en":"Ordinary subscription account"
+	},
+	"ordinaryServiceAccount":{
+		"zh-CN":"普通服务号",
+		"zh-TW":"普通服務號",
+		"en":"Ordinary service account"
+	},
+	"certificationSubscriptionAccount":{
+		"zh-CN":"认证订阅号",
+		"zh-TW":"認證訂閱號",
+		"en":"certification subscription account"
+	},
+	"certificationServiceAccount":{
+		"zh-CN":"认证服务号/认证媒体/政府订阅号",
+		"zh-TW":"認證服務號/認證媒體/政府訂閱號",
+		"en":"Certification Service account/ Certification Media / Government Subscription account"
+	},
+	"certificationTips":{
+		"zh-CN":"注意:即使公众平台显示为“未认证”, 但只要【公众号设置】/【账号详情】下【认证情况】显示资质审核通过, 即可认定为认证号。",
+		"zh-TW":"注意:即使公眾平台顯示為“未認證”, 但只要【公眾號設置】/【賬號詳情】下【認證情況】顯示資質審核通過, 即可認定為認證號。",
+		"en":"Note: Even if the public platform displays 'Unauthenticated', but as long as the [public account settings] / [account details] under the [certification status] shows the qualification approval, you can be identified as the certification number."
+	},
+	"AppIdTips":{
+		"zh-CN":"请填写微信公众平台后台的AppId",
+		"zh-TW":"請填寫微信公眾平台後台的AppId",
+		"en":"Please fill in WeChat Official Account Platform management system AppId"
+	},
+	"AppSecretTips":{
+		"zh-CN":"请填写微信公众平台后台的AppSecret",
+		"zh-TW":"請填寫微信公眾平台後台的AppSecret",
+		"en":"Please fill in WeChat Official Account Platform management system AppSecret"
+	},
+	"wechatIndex":{
+		"zh-CN":"微信公众号首页",
+		"zh-TW":"微信公眾號首頁",
+		"en":"WeChat public number home page"
+	},
+	"wechatURLTips":{
+		"zh-CN":"请填写微信公众号首页的URL地址",
+		"zh-TW":"請填寫微信公眾號首頁的URL地址",
+		"en":"Please fill in the URL of the WeChat public account home page"
+	},
+	"serverAddress":{
+		"zh-CN":"服务器地址",
+		"zh-TW":"服務器地址",
+		"en":"server address"
+	},
+	"copy":{
+		"zh-CN":"复制",
+		"zh-TW":"複製",
+		"en":"copy"
+	},
+	"IPWhitelist":{
+		"zh-CN":"IP白名单",
+		"zh-TW":"IP白名單",
+		"en":"IP whitelist"
+	},
+	"fileUpload":{
+		"zh-CN":"文件上传",
+		"zh-TW":"文件上傳",
+		"en":"File Upload"
+	},
+	"authorizedUploadTips":{
+		"zh-CN":"填写网页授权域名之前请先上传指定文件",
+		"zh-TW":"填寫網頁授權域名之前請先上傳指定文件",
+		"en":"Please fill in the website authorized domain name before you upload the specified file"
+	},
+	"WebAuthorization":{
+		"zh-CN":"网页授权域名",
+		"zh-TW":"網頁授權域名",
+		"en":"Web authorization domain name"
+	},
+	"authorizationTips":{
+		"zh-CN":"在微信公众号请求用户网页授权之前，开发者需要先到公众平台网站的【开发者中心】网页服务中配置授权回调域名。",
+		"zh-TW":"在微信公眾號請求用戶網頁授權之前，開發者需要先到公眾平台網站的【開發者中心】網頁服務中配置授權回調域名。",
+		"en":"Before WeChat official account requests user web authorization, developers need to first configure the authorization callback domain name in the [Developer Center] web service on the official account platform website."
+	},
+	"deleteMenu":{
+		"zh-CN":"删除此菜单",
+		"zh-TW":"刪除此菜單",
+		"en":"Delete this menu"
+	},
+	"addSubmenu":{
+		"zh-CN":"添加子菜单",
+		"zh-TW":"添加子菜單",
+		"en":"Add submenu"
+	},
+	"setMenuAction":{
+		"zh-CN":"设置此菜单动作",
+		"zh-TW":"設置此菜單動作",
+		"en":"Set this menu action"
+	},
+	"addMenu":{
+		"zh-CN":"新增菜单",
+		"zh-TW":"新增菜單",
+		"en":"Add menu"
+	},
+	"saveMenuStructure":{
+		"zh-CN":"保存菜单结构",
+		"zh-TW":"保存菜單結構",
+		"en":"Save the menu structure"
+	},
+	"myOrder":{
+		"zh-CN":"我的订单",
+		"zh-TW":"我的訂單",
+		"en":"My Order"
+	},
+	"order":{
+		"zh-CN":"点餐",
+		"zh-TW":"點餐",
+		"en":"order"
+	},
+	"selectMenuAction":{
+		"zh-CN":"选择菜单【未命名菜单】要执行的操作",
+		"zh-TW":"選擇菜單【未命名菜單】要執行的操作",
+		"en":"Select menu [Unnamed menu] to perform the operation"
+	},
+	"link":{
+		"zh-CN":"链接",
+		"zh-TW":"鏈接",
+		"en":"link"
+	},
+	"menuLinkTips":{
+		"zh-CN":"指定点击此菜单时跳转的链接（注：链接需加http://）",
+		"zh-TW":"指定點擊此菜單時跳轉的鏈接（注：鏈接需加http://）",
+		"en":"Specify the link to jump when clicking this menu (Note: the link need to add http: //)"
+	},
+	"submenusTips":{
+		"zh-CN":"最多五个子菜单",
+		"zh-TW":"最多五個子菜單",
+		"en":"No more than five submenus"
+	},
+	"mainMenuTips":{
+		"zh-CN":"最多三个主菜单",
+		"zh-TW":"最多三個主菜單",
+		"en":"No more than three main menus"
+	},
+	"mainMenuLink":{
+		"zh-CN":"主菜单链接",
+		"zh-TW":"主菜單鏈接",
+		"en":"Main menu link"
+	},
+	"subMenuLink":{
+		"zh-CN":"子菜单链接",
+		"zh-TW":"子菜單鏈接",
+		"en":"Sub menu link"
+	},
+	"boundShop":{
+		"zh-CN":"已绑定的店铺",
+		"zh-TW":"已綁定的店鋪",
+		"en":"Bound shop"
+	},
+	"notBound":{
+		"zh-CN":"未绑定",
+		"zh-TW":"未綁定",
+		"en":"Not bound"
+	},
+	"goAuthorization":{
+		"zh-CN":"前往授权",
+		"zh-TW":"前往授權",
+		"en":"Go to authorization"
+	},
+	"reauthorize":{
+		"zh-CN":"重新授权",
+		"zh-TW":"重新授權",
+		"en":"reauthorize"
+	},
+	"takeoutadBoundTips":{
+		"zh-CN":"注：绑定店铺后，不可修改",
+		"zh-TW":"注：綁定店鋪後，不可修改",
+		"en":"Note: After binding the shop, can not be modified"
+	},
+	"goUnzip":{
+		"zh-CN":"前往解绑",
+		"zh-TW":"前往解綁",
+		"en":"Go unzip"
+	},
+	"billBottomAds":{
+		"zh-CN":"票据底部广告",
+		"zh-TW":"票據底部廣告",
+		"en":"Bill bottom ads"
+	},
+	"takeoutadBoundSaveTips":{
+		"zh-CN":"温馨提示：鼠标离开即可自动保存",
+		"zh-TW":"溫馨提示：鼠標離開即可自動保存",
+		"en":"Tips: the mouse left to be automatically saved"
+	},
+	"takeoutadBoundOperatTips":{
+		"zh-CN":"注：自动接单、打印机设置等，在收银机上设置",
+		"zh-TW":"注：自動接單、打印機設置等，在收銀機上設置",
+		"en":"Note: Automatic orders, printer settings, set up at the cash register"
+	},
+	"advertisingSloganNotEmpty":{
+		"zh-CN":"广告语不能为空",
+		"zh-TW":"廣告語不能為空",
+		"en":"Advertising slogan can not be empty"
+	},
+	"meituanUnbindTips":{
+		"zh-CN":"该店铺还未绑定美团外卖",
+		"zh-TW":"該店鋪還未綁定美團外賣",
+		"en":"The store has not bound the meituan takeaway"
+	},
+	"memberDiscountSet":{
+		"zh-CN":"会员折扣设置",
+		"zh-TW":"會員折扣設置",
+		"en":"Member discount setting"
+	},
+	"storeDiscountSet":{
+		"zh-CN":"店铺折扣设置",
+		"zh-TW":"店鋪折扣設置",
+		"en":"Store discount set"
+	},
+	"rechargeInfo":{
+		"zh-CN":"充值信息",
+		"zh-TW":"充值信息",
+		"en":"Recharge info"
+	},
+	"memberGroup":{
+		"zh-CN":"会员组",
+		"zh-TW":"會員組",
+		"en":"member group"
+	},
+	"balanceSwitch":{
+		"zh-CN":"余额开关",
+		"zh-TW":"餘額開關",
+		"en":"Balance switch"
+	},
+	"dishDiscountLegislation":{
+		"zh-CN":"整单或菜品打折立减",
+		"zh-TW":"整單或菜品打折立減",
+		"en":"discount legislation"
+	},
+	"memberDiscounts":{
+		"zh-CN":"会员优惠折扣",
+		"zh-TW":"會員優惠折扣",
+		"en":"Member discounts"
+	},
+	"full":{
+		"zh-CN":"满",
+		"zh-TW":"滿",
+		"en":"full"
+	},
+	"discount2":{
+		"zh-CN":"折扣",
+		"zh-TW":"折扣",
+		"en":"discount"
+	},
+	"discount3":{
+		"zh-CN":"折",
+		"zh-TW":"折",
+		"en":"discount"
+	},
+	"legislative":{
+		"zh-CN":"立减",
+		"zh-TW":"立減",
+		"en":"legislative"
+	},
+	"addDiscount":{
+		"zh-CN":"新增折扣",
+		"zh-TW":"新增折扣",
+		"en":"Add discount"
+	},
+	"discountExist":{
+		"zh-CN":"当前添加的会员组已经有了对应的折扣信息，请勿重复添加",
+		"zh-TW":"當前添加的會員組已經有了對應的折扣信息，請勿重複添加",
+		"en":"The currently added member group already has the corresponding discount information, do not add it repeatedly"
+	},
+	"shopDiscounts":{
+		"zh-CN":"店铺优惠折扣",
+		"zh-TW":"店鋪優惠折扣",
+		"en":"Shop discounts"
+	},
+	"rechargeDiscount":{
+		"zh-CN":"充值优惠",
+		"zh-TW":"充值優惠",
+		"en":"Recharge Discount"
+	},
+	"rechargeSetTips":{
+		"zh-CN":"充值设置可到品牌总部后台设置",
+		"zh-TW":"充值設置可到品牌總部後台設置",
+		"en":"Recharge settings to the brand headquarters background settings"
+	},
+	"rechargeAmount":{
+		"zh-CN":"充值金额",
+		"zh-TW":"充值金額",
+		"en":"Recharge amount"
+	},
+	"giftAmount":{
+		"zh-CN":"赠送金额",
+		"zh-TW":"贈送金額",
+		"en":"Gift amount"
+	},
+	"datedAmount":{
+		"zh-CN":"到账金额",
+		"zh-TW":"到賬金額",
+		"en":"Dated amount"
+	},
+	"memberGroupInfo":{
+		"zh-CN":"会员组信息",
+		"zh-TW":"會員組信息",
+		"en":"Member group information"
+	},
+	"memberGroupTips":{
+		"zh-CN":"会员可到品牌总部后台设置",
+		"zh-TW":"會員可到品牌總部後台設置",
+		"en":"Members can set the brand headquarters backstage"
+	},
+	"addLegislation":{
+		"zh-CN":"新增立减",
+		"zh-TW":"新增立減",
+		"en":"Add legislation"
+	},
+	"legislationExist":{
+		"zh-CN":"当前店铺已有对应信息，只需修改，不需添加",
+		"zh-TW":"當前店鋪已有對應信息，只需修改，不需添加",
+		"en":"Add The current shop has the corresponding information, just modify, do not need to add"
+	},
+	"pointsDonated":{
+		"zh-CN":"积分赠送",
+		"zh-TW":"積分贈送",
+		"en":"points donated"
+	},
+	"pointsDonatedTips":{
+		"zh-CN":"注：积分设置从品牌总部后台编辑。店铺只能设置开启与关闭！",
+		"zh-TW":"注：積分設置從品牌總部後台編輯。店鋪只能設置開啟與關閉！",
+		"en":"Note: Credits set backstage editing from the brand headquarters. Shop can only be set to open and close!"
+	},
+	"pointsGifts":{
+		"zh-CN":"积分礼品",
+		"zh-TW":"積分禮品",
+		"en":"points gifts"
+	},
+	"spendingFull":{
+		"zh-CN":"消费满",
+		"zh-TW":"消費滿",
+		"en":"Spending is full"
+	},
+	"points":{
+		"zh-CN":"积分",
+		"zh-TW":"積分",
+		"en":"points"
+	},
+	"point":{
+		"zh-CN":"分",
+		"zh-TW":"分",
+		"en":"point"
+	},
+	"redeemPoints":{
+		"zh-CN":"积分兑换",
+		"zh-TW":"積分兌換",
+		"en":"Redeem points"
+	},
+	"redeemPointsTips":{
+		"zh-CN":"注：物品的设置可从品牌商后台管理",
+		"zh-TW":"注：物品的設置可從品牌商後台管理",
+		"en":"Note: Items can be set up from the brand manager backstage management"
+	},
+	"memberCentre":{
+		"zh-CN":"会员中心",
+		"zh-TW":"會員中心",
+		"en":"Member Centre"
+	},
+	"topAds":{
+		"zh-CN":"顶部广告",
+		"zh-TW":"頂部廣告",
+		"en":"Top ads"
+	},
+	"bottomAds":{
+		"zh-CN":"底部广告",
+		"zh-TW":"底部廣告",
+		"en":"Bottom ads"
+	},
+	"memberCentreAdTips":{
+		"zh-CN":"分辨率：720x480；颜色：RGB色； 大小：1M以内；",
+		"zh-TW":"分辨率：720x480；顏色：RGB色； 大小：1M以內；",
+		"en":"Resolution: 720x480; Color: RGB color; Size: 1M or less;"
+	},
+
+	"defaultMemberGroup":{
+		"zh-CN":"默认会员组",
+		"zh-TW":"默認會員組",
+		"en":"default member group"
+	},
+	"unchangeable":{
+		"zh-CN":"不可修改",
+		"zh-TW":"不可修改",
+		"en":"unchangeable"
+	},
+	"addMemberGroup":{
+		"zh-CN":"新增会员组",
+		"zh-TW":"新增會員組",
+		"en":"add member group"
+	},
+	"memberGroupNotEmpty":{
+		"zh-CN":"会员组不能为空",
+		"zh-TW":"會員組不能為空",
+		"en":"Member group can not be empty"
+	},
+	"memberGroupExists":{
+		"zh-CN":"此分组信息已经存在，请勿重复添加",
+		"zh-TW":"此分組信息已經存在，請勿重複添加",
+		"en":"This group information already exists, please do not add it repeatedly"
+	},
+	"recharge":{
+		"zh-CN":"充",
+		"zh-TW":"充",
+		"en":"recharge"
+	},
+	"handsel":{
+		"zh-CN":"送",
+		"zh-TW":"送",
+		"en":"handsel"
+	},
+	"preChargeInfoNotEmpty":{
+		"zh-CN":"预充值信息不能为空",
+		"zh-TW":"預充值信息不能為空",
+		"en":"Pre-charge information can not be empty"
+	},
+	"preChargeExists":{
+		"zh-CN":"已存在相同的预充值信息，请勿重复编辑",
+		"zh-TW":"已存在相同的預充值信息，請勿重複編輯",
+		"en":"The same pre-charge information already exists. Do not edit it again"
+	},
+	"consumptionAmount":{
+		"zh-CN":"消费金额",
+		"zh-TW":"消費金額",
+		"en":"Amount of consumption"
+	},
+	"pointsSetNotBeEmpty":{
+		"zh-CN":"积分设置信息不能为空",
+		"zh-TW":"積分設置信息不能為空",
+		"en":"Point setting information can not be empty"
+	},
+	"editMemberDiscount":{
+		"zh-CN":"会员折扣编辑",
+		"zh-TW":"會員折扣編輯",
+		"en":"Member discount edit"
+	},
+	"defaultMemberGroup":{
+		"zh-CN":"默认会员组",
+		"zh-TW":"默認會員組",
+		"en":"Default member group"
+	},
+	"discountTips1":{
+		"zh-CN":"折扣和立减同时有效！",
+		"zh-TW":"折扣和立減同時有效！",
+		"en":"Discount and legislation at the same time effective!"
+	},
+	"discountTips2":{
+		"zh-CN":"折扣值的填写规范如下：如打8折，则填写8；打8.5折，则填写8.5",
+		"zh-TW":"折扣值的填寫規範如下：如打8折，則填寫8；打8.5折，則填寫8.5",
+		"en":"Fill in the norms of the norms are as follows: If hit 8 fold, then fill in 8; hit 8.5 fold, then fill in 8.5"
+	},
+	"discountTips3":{
+		"zh-CN":"不打折扣时，折扣值请填写：10",
+		"zh-TW":"不打折扣時，折扣值請填寫：10",
+		"en":"Do not discount, the discount please fill in: 10"
+	},
+	"discountTips4":{
+		"zh-CN":"不设置立减时，立减请填写：0",
+		"zh-TW":"不設置立減時,立減請填寫:0",
+		"en":"If you do not set the reduction, please fill in the following: 0"
+	},
+	"discountTips5":{
+		"zh-CN":"折扣值的填写范围为：大于等于1，小于等于10",
+		"zh-TW":"折扣值的填寫範圍為：大於等於1，小於等於10",
+		"en":"The range of the discount value is: greater than or equal to 1, less than or equal to 10"
+	},
+	"shopDiscountEdit":{
+		"zh-CN":"店铺折扣编辑",
+		"zh-TW":"店鋪折扣編輯",
+		"en":"Shop discount edit"
+	},
+	"discountOperation":{
+		"zh-CN":"折扣操作",
+		"zh-TW":"折扣操作",
+		"en":"Discount operation"
+	},	
+	"reduceOperation":{
+		"zh-CN":"立减操作",
+		"zh-TW":"立減操作",
+		"en":"Reduce operation"
+	},
+	"fourRulesTips":{
+		"zh-CN":"不能超过四个规则",
+		"zh-TW":"不能超過四個規則",
+		"en":"Can not exceed four rules"
+	},
+	"notBeEmpty":{
+		"zh-CN":"所填内容不能为空",
+		"zh-TW":"所填內容不能為空",
+		"en":"Fill in the content can not be empty"
+	},
+	"yuanIsNumber":{
+		"zh-CN":"请确保“满多少元”为数字",
+		"zh-TW":"請確保“滿多少元”為數字",
+		"en":"Please ensure that \"full number of dollars\" as a figure"
+	},
+	"yuanGreater":{
+		"zh-CN":"请确保“满多少元”大于等于0",
+		"zh-TW":"請確保“滿多少元”大於等於0",
+		"en":"Please ensure that \"full number of dollars\" is greater than or equal to 0"
+	},
+	"discountIsNumber":{
+		"zh-CN":"请确保“折扣”为数字",
+		"zh-TW":"請確保“折扣”為數字",
+		"en":"Please make sure the \"discount\" is a number"
+	},
+	"discountRange":{
+		"zh-CN":"请确保“折扣值”在1到10之间（包含1和10），如：8折为8,8.5折为8.5",
+		"zh-TW":"請確保“折扣值”在1到10之間（包含1和10），如：8折為8,8.5折為8.5",
+		"en":"Please make sure the \"discount value\" is between 1 and 10 (including 1 and 10), for example: 8 for 8, 8.5 for 8.5"
+	},
+	"reduceIsNumber":{
+		"zh-CN":"请确保“立减”为数字",
+		"zh-TW":"請確保“立減”為數字",
+		"en":"Please make sure to \"cut\" is a number"
+	},
+	"reduceGreater":{
+		"zh-CN":"请确保“立减值”大于等于0",
+		"zh-TW":"請確保“立減值”大於等於0",
+		"en":"Please make sure the \"set value\" is greater than or equal to 0"
+	},
+	"integralTemplate":{
+		"zh-CN":"积分模板",
+		"zh-TW":"積分模板",
+		"en":"Integral template"
+	},
+	"officialAccountPoint":{
+		"zh-CN":"微信公众号积分公示",
+		"zh-TW":"微信公眾號積分公示",
+		"en":"WeChat official account point show"
+	},
+	"officialPointTips":{
+		"zh-CN":"请将下面的链接地址加入到公众号菜单中",
+		"zh-TW":"請將下面的鏈接地址加入到公眾號菜單中",
+		"en":"Please add the link to the public menu"
+	},
+	"redeemSet":{
+		"zh-CN":"积分兑换物品设置",
+		"zh-TW":"積分兌換物品設置",
+		"en":"Redeem item settings"
+	},
+	"image":{
+		"zh-CN":"图片",
+		"zh-TW":"圖片",
+		"en":"image"
+	},
+	"pointsNotBeEmpty":{
+		"zh-CN":"积分现金信息不能为空",
+		"zh-TW":"積分現金信息不能為空",
+		"en":"Points cash information can not be empty"
+	},
+	"itemInfoNotBeEmpty":{
+		"zh-CN":"物品信息不能为空",
+		"zh-TW":"物品信息不能為空",
+		"en":"Item information can not be empty"
+	},
+	"phoneNum":{
+		"zh-CN":"手机号",
+		"zh-TW":"手機號",
+		"en":"phone number"
+	},
+	"compellation":{
+		"zh-CN":"姓名",
+		"zh-TW":"姓名",
+		"en":"compellation"
+	},
+	"username":{
+		"zh-CN":"用户名",
+		"zh-TW":"用戶名",
+		"en":"username"
+	},
+	"age":{
+		"zh-CN":"年龄",
+		"zh-TW":"年齡",
+		"en":"age"
+	},
+	"birthday":{
+		"zh-CN":"生日",
+		"zh-TW":"生日",
+		"en":"birthday"
+	},
+	"balance":{
+		"zh-CN":"余额",
+		"zh-TW":"餘額",
+		"en":"balance"
+	},	
+	"totalConsumption":{
+		"zh-CN":"消费总计",
+		"zh-TW":"消費總計",
+		"en":"Total consumption"
+	},
+	"membership":{
+		"zh-CN":"所属会员组",
+		"zh-TW":"所屬會員組",
+		"en":"Membership"
+	},
+	"signatureName":{
+		"zh-CN":"签名名称",
+		"zh-TW":"簽名名稱",
+		"en":"Signature name"
+	},
+	"templateCODE":{
+		"zh-CN":"模版CODE",
+		"zh-TW":"模版CODE",
+		"en":"Template CODE"
+	},
+	"AliSMSLinkEntrance":{
+		"zh-CN":"阿里短信的链接入口",
+		"zh-TW":"阿里短信的鏈接入口",
+		"en":"Ali SMS link entrance"
+	},
+	"AliSMSLinkEntranceTips":{
+		"zh-CN":"如果已经做好了阿里短信相关业务工作，则可以忽略以下“点击这里进入阿里短信”步骤，直接填以上参数即可）",
+		"zh-TW":"如果已經做好了阿里短信相關業務工作，則可以忽略以下“點擊這裡進入阿里短信”步驟，直接填以上參數即可）",
+		"en":"If you have done Aliban SMS related business, you can ignore the following \"click here to enter Ali SMS\" steps, you can directly fill in the above parameters)"
+	},
+	"SMSTemplatesTips":{
+		"zh-CN":"注意：短信模板填写参考：",
+		"zh-TW":"注意：短信模板填寫參考：",
+		"en":"Note: SMS templates fill in reference:"
+	},
+	"SMSTemplates":{
+		"zh-CN":"尊敬的客户，您的验证码是",
+		"zh-TW":"尊敬的客戶，您的驗證碼是",
+		"en":"Dear customer, your verification code is"
+	},
+	"oldUser":{
+		"zh-CN":"老用户",
+		"zh-TW":"老用戶",
+		"en":"Old users"
+	},
+	"newUser":{
+		"zh-CN":"新用户",
+		"zh-TW":"新用戶",
+		"en":"new user"
+	},
+	"enterSMSPlatform":{
+		"zh-CN":"点击这里进入阿里大于短信平台",
+		"zh-TW":"Click here to enter Ali than SMS platform",
+		"en":"Click here to enter Ali than SMS platform"
+	},
+	"enterMessagingPlatform":{
+		"zh-CN":"点击这里进入阿里云通信短信平台",
+		"zh-TW":"點擊這裡進入阿里云通信短信平台",
+		"en":"Click here to enter Ali cloud messaging platform"
+	},
+	"obtainAccessKey":{
+		"zh-CN":"如何获取Access Key ID和Access Key Secret",
+		"zh-TW":"如何獲取Access Key ID和Access Key Secret",
+		"en":"How to obtain Access Key ID and Access Key Secret"
+	},
+	"logAliCloudAccess":{
+		"zh-CN":"点击这里登录阿里云获取",
+		"zh-TW":"點擊這裡登錄阿里雲獲取",
+		"en":"Click here to log in Ali cloud access"
+	},
+	"MemberEntrance":{
+		"zh-CN":"会员入口",
+		"zh-TW":"會員入口",
+		"en":"Member entrance"
+	},
+	"MemberEntranceTips":{
+		"zh-CN":"请勿填写或者更改链接入口地址，只需复制粘贴至微信公众号设置即可",
+		"zh-TW":"請勿填寫或者更改鏈接入口地址，只需複制粘貼至微信公眾號設置即可",
+		"en":"Do not fill in or change the link entry address, just copy and paste into the WeChat official account set"
+	},
+	"WeChatJSLicense":{
+		"zh-CN":"微信JS授权文件（txt格式）",
+		"zh-TW":"微信JS授權文件（txt格式）",
+		"en":"WeChat JS license file (txt format)"
+	},
+	"submit":{
+		"zh-CN":"提交",
+		"zh-TW":"提交",
+		"en":"submit"
+	},
+	"renewFee":{
+		"zh-CN":"续费",
+		"zh-TW":"續費",
+		"en":"Renew fee"
+	},
+	"electronicMenuInfo":{
+		"zh-CN":"电子餐牌信息",
+		"zh-TW":"電子餐牌信息",
+		"en":"Electronic menu information"
+	},
+	"switchOnOffTime":{
+		"zh-CN":"开关机时间",
+		"zh-TW":"開關機時間",
+		"en":"Switch on and off time"
+	},
+	"bootTime":{
+		"zh-CN":"开机时间",
+		"zh-TW":"開機時間",
+		"en":"boot time"
+	},
+	"shutdownTime":{
+		"zh-CN":"关机时间",
+		"zh-TW":"關機時間",
+		"en":"Shutdown time"
+	},
+	"selectAll":{
+		"zh-CN":"全选",
+		"zh-TW":"全選",
+		"en":"select all"
+	},
+	"available":{
+		"zh-CN":"可用",
+		"zh-TW":"可用",
+		"en":"available"
+	},
+	"electronicMenuSet":{
+		"zh-CN":"电子餐牌设置",
+		"zh-TW":"電子餐牌設置",
+		"en":"Electronic menu setting"
+	},
+	"startDate":{
+		"zh-CN":"开始日期",
+		"zh-TW":"開始日期",
+		"en":"start date"
+	},
+	"endDate":{
+		"zh-CN":"结束日期",
+		"zh-TW":"結束日期",
+		"en":"end date"
+	},
+	"week":{
+		"zh-CN":"星期",
+		"zh-TW":"星期",
+		"en":"week"
+	},
+	"startTime":{
+		"zh-CN":"开始时间",
+		"zh-TW":"開始時間",
+		"en":"start time"
+	},
+	"endTime":{
+		"zh-CN":"结束时间",
+		"zh-TW":"結束時間",
+		"en":"End Time"
+	},
+	"carouselTime":{
+		"zh-CN":"轮播时间",
+		"zh-TW":"輪播時間",
+		"en":"Carousel time"
+	},
+	"electronicMenuTips":{
+		"zh-CN":"备注：当同一时间内，同时有多条信息时，显示靠前的为准",
+		"zh-TW":"备注：当同一时间内，同时有多条信息时，显示靠前的为准",
+		"en":"Note: When the same time, when there are multiple pieces of information, the front of the subject"
+	},
+	"electronicMenuLimit":{
+		"zh-CN":"同一天只允许一个定时",
+		"zh-TW":"同一天只允許一個定時",
+		"en":"Only one timer is allowed on the same day"
+	},
+	"eatingDinnerScreenAdvertising":{
+		"zh-CN":"取餐叫号屏广告",
+		"zh-TW":"取餐叫號屏廣告",
+		"en":"Eating dinner screen advertising"
+	},
+	"divisionCalledScreenNumber":{
+		"zh-CN":"分区叫号屏",
+		"zh-TW":"分區叫號屏",
+		"en":"Division called screen number"
+	},
+	"partitionCalledScreenFeatures":{
+		"zh-CN":"分区叫号屏功能",
+		"zh-TW":"分區叫號屏功能",
+		"en":"Partition called screen features"
+	},
+	"deviceName":{
+		"zh-CN":"设备名称",
+		"zh-TW":"設備名稱",
+		"en":"Device name"
+	},
+	"callScreenEquipment":{
+		"zh-CN":"叫号屏设备",
+		"zh-TW":"叫號屏設備",
+		"en":"Call screen equipment"
+	},
+	"CorrespondingDiningArea":{
+		"zh-CN":"对应取餐区",
+		"zh-TW":"對應取餐區",
+		"en":"Corresponding to the dining area"
+	},
+	"verificationEquipment":{
+		"zh-CN":"核销设备",
+		"zh-TW":"核銷設備",
+		"en":"Verification equipment"
+	},
+	"correspondsCallScreen":{
+		"zh-CN":"对应叫号屏",
+		"zh-TW":"對應叫號屏",
+		"en":"Corresponds to the call screen"
+	},
+	"summaryCallNumberScreen":{
+		"zh-CN":"汇总叫号屏",
+		"zh-TW":"匯總叫號屏",
+		"en":"Summary call number screen"
+	},
+	"diningArea":{
+		"zh-CN":"取餐区",
+		"zh-TW":"取餐區",
+		"en":"Dining area"
+	},
+	"pleaseEnterPartitionName":{
+		"zh-CN":"请输入分区名",
+		"zh-TW":"請輸入分區名",
+		"en":"Please enter the partition name"
+	},
+	"addPartition":{
+		"zh-CN":"添加分区",
+		"zh-TW":"添加分區",
+		"en":"Add a partition"
+	},
+	"partitionNotEmpty":{
+		"zh-CN":"分区不能为空！",
+		"zh-TW":"分區不能為空！",
+		"en":"Partition can not be empty!"
+	},
+	"tableSet":{
+		"zh-CN":"餐桌设置",
+		"zh-TW":"餐桌設置",
+		"en":"Table setting"
+	},
+	"styleSet":{
+		"zh-CN":"风格设置",
+		"zh-TW":"風格設置",
+		"en":"Style set"
+	},
+	"orderTitle":{
+		"zh-CN":"点餐标题",
+		"zh-TW":"點餐標題",
+		"en":"Order title"
+	},
+	"addTableNumber":{
+		"zh-CN":"新增餐桌号",
+		"zh-TW":"新增餐桌號",
+		"en":"Add table number"
+	},
+	"tableNumber":{
+		"zh-CN":"餐桌号",
+		"zh-TW":"餐桌號",
+		"en":"Table number"
+	},
+	"downloadPicture":{
+		"zh-CN":"下载图片",
+		"zh-TW":"下載圖片",
+		"en":"Download pictures"
+	},
+	"tableNumberTips":{
+		"zh-CN":"建议使用字母开头",
+		"zh-TW":"建議使用字母開頭",
+		"en":"It is recommended to use the letters at the beginning"
+	},
+	"nonactivated":{
+		"zh-CN":"未开通",
+		"zh-TW":"未開通",
+		"en":"nonactivated"
+	},
+	"customTemplates":{
+		"zh-CN":"订制模板",
+		"zh-TW":"訂製模板",
+		"en":"Custom templates"
+	},
+	"PrintChart":{
+		"zh-CN":"打印图表",
+		"zh-TW":"打印圖表",
+		"en":"Print chart"
+	},
+	"DownloadPNG":{
+		"zh-CN":"下载PNG文件",
+		"zh-TW":"下載PNG文件",
+		"en":"Download PNG image"
+	},
+	"DownloadJPEG":{
+		"zh-CN":"下载JPEG图片",
+		"zh-TW":"下載JPEG圖片",
+		"en":"Download JPEG image"
+	},
+	"DownloadPDF":{
+		"zh-CN":"下载PDF文件",
+		"zh-TW":"下載PDF文件",
+		"en":"Download PDF document"
+	},
+	"DownloadSVG":{
+		"zh-CN":"下载SVG文件",
+		"zh-TW":"下載SVG文件",
+		"en":"Download SVG vector image"
+	},
+}

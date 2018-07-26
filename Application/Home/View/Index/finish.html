@@ -1,0 +1,85 @@
+<include file="Public/head"/>
+<!-- 支付完成页 -->
+<body>
+	<header class="home-header">
+		<a href="/index.php/Home/Index/index">
+			<img src="__PUBLIC__/images/lt.png">
+			<span>重新点餐</span>
+			<input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+		</a>
+	</header>
+
+	<div class="finish">
+		<!-- <h2 class="text-center">已成功下单,请领取小票,到取餐区领餐!</h2> -->
+		
+		<!-- 说明:如果后台点餐流程选择的是涉及到餐牌号,即为: -->
+		<div class="finish-content text-center">
+			<h2 class="text-center">{$adv_lang}</h2>
+			<button class="common-btn check-btn" onclick="location='/index.php/Home/Index/index'">确定</button>
+		</div>
+		
+		
+
+		<!-- 如果厨房此时没有纸张,即提示: -->
+		<!-- <h2 class="text-center">抱歉:厨房未有接收到订单,请前往收银台录入</h2> -->
+	</div>
+
+	<footer class="home-footer text-center">
+		本页面在<span class="footer-time" id="time">15秒</span>后自动关闭
+	</footer>
+</body>
+<script src='__PUBLIC__/js/socket.io.js'></script>
+<script src='__PUBLIC__/js/notify.js'></script>
+<script src='__PUBLIC__/js/websocket.js'></script>
+<script>
+	$(document).ready(function () {
+		console.log("domain:");
+		console.log(document.domain);
+		// 连接服务端
+		var socket = io('http://'+document.domain+':2120');
+		// 连接后登录
+		socket.on('connect', function(){
+			var uid = $("#compress_device_code").val();
+			console.log("uid:");
+			console.log(uid);
+			socket.emit('login', uid);
+		});
+		// 后端推送来消息时
+		socket.on('new_msg', function(msg){
+			console.log("msg:");
+			console.log(msg);
+
+			msg = msg.replace(/&quot;/g, '"');
+			console.log(msg);
+			//将推送过来的msg(json字符串转json对象)
+			var msgObj = JSON.parse(msg);
+
+			//判断status的值来决定到底做哪一种行为
+			if(msgObj){
+				console.log("纸尽");
+				layer.msg("纸尽");
+			}
+		});
+	});
+
+	$(function(){
+		//关闭微光
+		JsObj.CloseVguang();
+	});
+	//设定倒数秒数
+	var t = 15;
+	//显示倒数秒数
+	function showTime(){
+		t -= 1;
+		document.getElementById('time').innerHTML= t;
+		if(t==0){
+			location.href='__CONTROLLER__/index';
+			exit;
+		}
+		//每秒执行一次,showTime()
+		setTimeout("showTime()",1000);
+	}
+	//执行showTime()
+	showTime();
+</script>
+</html>

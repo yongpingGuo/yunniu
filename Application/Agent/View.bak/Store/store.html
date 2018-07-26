@@ -1,0 +1,196 @@
+<include file="Public/head" />
+
+<body onload="init()">
+    <section class="container-fluid" id="comment_list">
+        <div class="main-content">
+            <div class="store-head">
+                <button class="btn-black add-agent" onclick="addStore()">新增店铺</button>
+                <form action="/index.php/agent/Store/store" method="get">
+                    <input type="text" placeholder="请输入店铺名称" name="restaurant_name_key">
+                    <input type="submit" name="submit" value="搜索" style="padding-left: 20px;padding-right: 20px;" />
+                </form>
+                <label>
+                    <input type="radio" name="store" id="0" class="radio-circle store_type" <?php if($type == 0) echo checked?> >
+                    <i></i>
+                    <span>单店铺</span>
+                </label>
+                <label>
+                    <input type="radio" name="store" id="1" class="radio-circle store_type" <?php if($type == 1) echo checked?>>
+                    <i></i>
+                    <span>多店铺</span>
+                </label>
+            </div>
+            <div id="mytable">
+                <table class="agent-table table-hover">
+                    <thead>
+                        <tr class="text-center">
+                            <td>序号</td>
+                            <td>店铺名称</td>
+                            <td>店铺区域</td>
+                            <td>店铺详细地址</td>
+                            <td>店铺管理员</td>
+                            <td>外卖电话1</td>
+                            <td>外卖电话2</td>
+                            <td>操作</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <volist name="Arrlist2" id="vo">
+                            <tr>
+                                <td>{$i}</td>
+                                <td>{$vo.restaurant_name}</td>
+                                <td>{$vo.city3_name}</td>
+                                <td>
+                                    <span class="store-address">
+									{$vo.address}
+								</span>
+                                </td>
+                                <td>{$vo.login_account}</td>
+                                <td>{$vo.telephone1}</td>
+                                <td>{$vo.telephone2}</td>
+                                <td>
+                                    <button class="btn btn-black" data-toggle="modal" data-target="#storeModal" onclick="modify_store({$vo.restaurant_id})">编辑</button>
+                                    <button class="btn btn-default" onclick="delstore({$vo.restaurant_id})">删除</button>
+                                </td>
+                            </tr>
+                        </volist>
+                    </tbody>
+                </table>
+                <div>
+                    <ul class="pagination" id="detail-page">
+                        {$page}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade storeModal" id="storeModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-head" id="myModalLabel">新增店铺</div>
+                <form action="javascript:void(0)" id="add_restaurant">
+                    <input type="hidden" name="form_id">
+                    <input type="hidden" name="restaurant_id">
+                    <input type="hidden" value="lat" id="lat">
+                    <input type="hidden" value="lng" id="lng">
+                    <input id="latLng" type="hidden" value="">
+                    <input type="hidden" name="session_id" value="{$Think.session.business_id}">
+                    <div class="form-group">
+                        <label for="storeName">店铺名称:</label>
+                        <input type="text" id="storeName" name="restaurant_name" placeholder="店铺名称">
+                    </div>
+                    <div class="form-group">
+                        <label for="managerName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;地区:</label>
+                        <select name="province" id="province" onchange="changercity()">
+                            <option value="0">请选择</option>
+                        </select>
+                        <select name="city" id="city" onchange="changerarea()">
+                            <option value="0">请选择</option>
+                        </select>
+                        <select name="area" id="area" onchange="codeAddress()">
+                            <option value="0">请选择</option>
+                        </select>
+                        
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">详细地址:</label>
+                        <input type="text" id="address" name="address" placeholder="详细地址">
+                        <button class="btn btn-black" onclick="codeAddress()">地图定位</button>
+                        <div id="container" style="width: 30em;height: 200px;"></div>
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">外卖电话:</label>
+                        <input type="text" id="telephone1" name="telephone1" placeholder="外卖电话1">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">外卖电话:</label>
+                        <input type="text" id="telephone2" name="telephone2" placeholder="外卖电话2">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;帐号:</label>
+                        <input type="text" id="login_account" name="login_account" placeholder="管理员帐号">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp密码:</label>
+                        <input type="password" id="password" name="password" placeholder="管理员密码">
+                    </div>
+                    <div class="form-group">
+                        <label for="storeName">确认密码:</label>
+                        <input type="password" id="passwords" name="passwords" placeholder="管理员密码">
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-black" onclick="commit()">提交</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <input type="reset" name="reset" style="display: none;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp"></script>
+    <script>
+    var geocoder, citylocation, map, marker = null;
+    var init = function() {
+        var center = new qq.maps.LatLng(23.116717, 113.388027);
+        map = new qq.maps.Map(document.getElementById('container'), {
+            center: center,
+            zoom: 13
+        });
+        marker = new qq.maps.Marker({
+            position: center,
+            draggable: true,
+            map: map
+
+        });
+        //调用地址解析类
+        geocoder = new qq.maps.Geocoder({
+            complete: function(result) {
+                map.setCenter(result.detail.location);
+                marker.setPosition(result.detail.location)
+                lat = result.detail.location.lat;
+                lng = result.detail.location.lng;
+                console.log(lat);
+                console.log(lng);
+            }
+        });
+
+        //获取城市列表接口设置中心点
+        citylocation = new qq.maps.CityService({
+            complete: function(result) {
+                map.setCenter(result.detail.latLng);
+                marker.setPosition(result.detail.latLng);
+            }
+        });
+        //调用searchLocalCity();方法  根据用户IP查询城市信息。
+        citylocation.searchLocalCity();
+        //设置Marker停止拖动事件
+        // qq.maps.event.addListener(marker, 'dragend', function() {
+        //     var latLng=marker.getPosition();
+        //     geocoder.getAddress(latLng);
+        //     console.log(geocoder.getAddress(latLng))
+        // });
+    }
+
+    function codeAddress() {
+        var address = $('#province option:selected').html() + $('#city option:selected').html() +
+            $('#area option:selected').html() + document.getElementById("address").value;
+        //通过getLocation();方法获取位置信息值
+        geocoder.getLocation(address);
+    }
+
+    //格局经纬度定位
+    function codeLatLng(lat,lng) {
+        //获取经纬度数值
+        var latLng = new qq.maps.LatLng(lat, lng);
+
+        //调用信息窗口
+        var info = new qq.maps.InfoWindow({map: map});
+        //调用获取位置方法
+        geocoder.getAddress(latLng);
+    }
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/js/BusinessManager.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/Agent/store.js"></script>
+</body>
+
+</html>

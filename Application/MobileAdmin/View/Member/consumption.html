@@ -1,0 +1,23 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="积分消费"/>
+	<section class="section">
+		<header class="section-title">积分消费</header>
+		<div class="flex-content flex-wrap section-row">
+			<!--<a class="index-item" href="{:U('Index/consumption_integral')}">-->
+			<a class="index-item" href="{:U('Member/consumption_integral')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/integral.png">
+				</div>
+				<div>积分赠送</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/consumption_gift')}">-->
+			<a class="index-item" href="{:U('Member/consumption_gift')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/gift.png">
+				</div>
+				<div>积分兑换</div>
+			</a>
+		</div>
+	</section>
+</block>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<style>
+    .vertical-center{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -webkit-transform:translate(-50%,-50%);
+     }
+    .qrcode{
+        width: 50%;
+    }
+</style>
+<body>
+    <input type="hidden" value="{$info}" name="device_code" id="device_code">
+    <div CLASS="container">
+        <img id="qrcode" class="vertical-center qrcode" src="/index.php/allAgent/activate/createQrcode/action/qrcActivate/info/{$info}" alt="">
+    </div>
+</body>
+<script>
+    var j;
+
+    $(function(){
+        j = setInterval("qrcActivateStatus()",3000);
+    });
+
+    function qrcActivateStatus(){
+        var device_code = $("#device_code").val();
+        $.ajax({
+            url:"/index.php/allAgent/activate/qrcActivateStatus",
+            type:'post',
+            data:{"device_code":device_code,"activate_type":"2"},
+            dataType:"json",
+            success:function(msg){
+                if(msg["code"] == 1){
+                    JSObj.close();
+                    //关闭安卓程序。
+                    clearInterval(j);
+                    location.href = "/index.php/allAgent/activate/success";
+                }
+            }
+        });
+    }
+
+
+</script>
+</html>

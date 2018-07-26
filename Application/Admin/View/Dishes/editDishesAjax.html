@@ -1,0 +1,123 @@
+<form action="javascript:void(0)" id="editDishesType">
+    <input type="hidden" name="attribute_type_id" value="{$attr_type.attribute_type_id}">
+    <table class="table-condensed">
+        <tr>
+            <td>类别名称：</td>
+            <td>
+                <input type="text" name="type_name" value="{$attr_type.type_name}">
+            </td>
+        </tr>
+        <tr>
+            <td>厨房打印机：</td>
+            <td>
+                <div class="select-reset">
+                    <select name="print_id" id="print_id">
+                        <option value="0">不设打印</option>
+                        <?php foreach ($printerList as $k => $v): 
+                            if ($v['printer_id'] == $attr_type['print_id']) {
+                                $selected = "selected='selected'";
+                            }else{
+                                $selected = "";
+                            }
+                        ?>
+                        <?php if ($v['print_type'] !=2) {
+                            echo "<option value='".$v['printer_id']."'".$selected.">".$v['printer_name']."</option>";
+                        };?>
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>标签打印机：</td>
+            <td>
+                <div class="select-reset">
+                    <select name="tag_print_id" id="sel2">
+                        <option value="0">不设打印</option>
+                        <?php foreach ($printerList as $k => $v): 
+                            if ($v['printer_id'] == $attr_type['tag_print_id']) {
+                                $selected = "selected='selected'";
+                            }else{
+                                $selected = "";
+                            }
+                        ?>
+                        <?php if ($v['print_type'] ==2) {
+                            echo "<option value='".$v['printer_id']."'".$selected.">".$v['printer_name']."</option>";
+                        };?>                
+                        <?php endforeach ?>
+                    </select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>统计：</td>
+            <td>
+
+                        <input type="hidden" name="count_type" value="{$attr_type['count_type']}">
+                <if condition="$attr_type['count_type'] eq 0">
+                    <div class="checkbox-switch">
+                        <input type="checkbox" name="count_types" onclick="changestatu(this)">
+                        <label></label>
+                    </div>
+                    <!-- <input type="radio" name="count_type" value="0" checked>否
+                    <input type="radio" name="count_type" value="1">是 -->
+                    <else/>
+                    <div class="checkbox-switch">
+                        <input type="checkbox" name="count_types" onclick="changestatu(this)" checked="checked">
+                        <label></label>
+                    </div>
+                    <!-- <input type="radio" name="count_type" value="0">否
+                    <input type="radio" name="count_type" value="1" checked>是 -->
+                </if>
+            </td>
+        </tr>
+        <tr>
+            <td>选择：</td>
+            <td>
+                <if condition="$attr_type['select_type'] eq 0">
+                    <label>
+                        <input class="radio-circle" type="radio" name="select_type" value="0" checked>
+                        <i></i>
+                        <span>单选</span>
+                    </label>
+                    <label>
+                        <input class="radio-circle" type="radio" name="select_type" value="1">
+                        <i></i>
+                        <span>多选</span>
+                    </label>
+                    <else/>
+                    <label>
+                        <input class="radio-circle" type="radio" name="select_type" value="0">
+                        <i></i>
+                        <span>单选</span>
+                    </label>
+                    <label>
+                        <input class="radio-circle" type="radio" name="select_type" value="1" checked>
+                        <i></i>
+                        <span>多选</span>
+                    </label>
+                </if>
+            </td>
+        </tr>
+<!--         <tr>
+            <td>属性：</td>
+            <td>
+                <ul class="attr-list">
+                    <volist name="attr_type.attrs" id="vo">
+                        <li class="attr-item">
+                            <div>{$vo.attribute_name}</div>
+                            <div>{$vo.attribute_price}元</div>
+                            <button class="attr-item-del" data-attr_id="{$vo.food_attribute_id}" onclick="deleteAttr(this)">
+                                <span>&times;</span>
+                            </button>
+                        </li>
+                    </volist>
+                </ul>
+            </td>
+        </tr> -->
+    </table>
+</form>
+<div class="text-center">
+    <!-- <button class="blue-btn" data-type_id="{$attr_type.attribute_type_id}" onclick="deleteType(this)">删除本类</button> -->
+    <button type="button" class="blue-btn" onclick="editDishesType()">保存</button>
+</div>

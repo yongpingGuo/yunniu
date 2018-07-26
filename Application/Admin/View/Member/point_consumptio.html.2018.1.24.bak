@@ -1,0 +1,291 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/wangEditor/css/wangEditor.min.css">
+</block>
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a href="#home" data-toggle="tab">{{langData.pointsDonated[lang]}}</a>
+        </li>
+        <li><a href="#present" data-toggle="tab">{{langData.pointsGifts[lang]}}</a></li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab tab-pane active in" id="home">
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.pointsDonated[lang]}}</span>
+                    <div class="checkbox-switch">
+                        <if condition="$if_open eq 1">
+                            <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/Admin/Member/discount_set1')" checked>
+                            <else/>
+                            <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/Admin/Member/discount_set1')">
+                        </if>
+
+                        <label></label>
+                    </div>
+                </div>
+                <div class="section-content" id="memberList">
+                    <form class="flex-content">
+                        <div class="flex-main">
+                            <span>{{langData.points[lang]}}:</span>
+                            <input class="small-input" type="text" name="account" value="{$point_cash_rules[account]}" id="man">
+                            <span>{{langData.point[lang]}}={{langData.cash[lang]}}：</span>
+                            <input class="small-input" type="text" name="benefit" value="{$score}" id="zhe">
+                            <span>{{langData.cash[lang]}}</span>
+                            <input type="hidden" name="id" value="{$point_cash_rules[id]}" />
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary" onclick="return save_point_cash(this)">{{langData.save[lang]}}</button>
+                            <button class="btn btn-sm btn-danger" onclick="return shanchu_point_cash(this,'/index.php/Admin/Member/del_point_cash')">{{langData.delete[lang]}}</button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+        <div class="tab tab-pane" id="present">
+            <section class="section point_consumptio-content">
+                <div class="section-header">
+                    <span>{{langData.redeemPoints[lang]}}</span>
+                    <!-- <span class="section-tips">{{langData.redeemPointsTips [lang]}}</span> -->
+                </div>
+                <div class="section-content" id="photo">
+                    <div class="clearfix">
+                        <foreach name="img_rules" item="v">
+                            <div class="pull-left ">
+                                <div class="imgHorizontal showImg">
+                                    <img src="/Public/Uploads/Goods/{$v[goods_img]}" class="uploadImg">
+                                    <input type="hidden" name="id" value="{$v['id']}" />
+                                </div>
+                                <div class="flex-contnet vertical-flex">
+                                    <span>{{langData.points[lang]}}:{$v[score]}</span>
+                                    <button class="edit-btn" data-toggle="modal" data-target="#edit-goods" data-goods_id="{$v['id']}" onclick="editInfo(this)"></button>
+                                    <button class="remove-btn" onclick="return del_img(this,'/index.php/Admin/Member/del_point_img')"></button>
+                                </div>
+                            </div>
+                        </foreach>
+                        <div class="pull-left">
+                            <button class="imgHorizontal showImg" data-toggle="modal" data-target="#add-goods">
+                                <img src="__PUBLIC__/images/add.png" class="uploadImg">
+                            </button>
+                        </div>                    
+                    </div>
+                </div>
+            </section>
+            <section class="section">
+                <div class="section-header">
+                    <span>{{langData.integralTemplate[lang]}}</span>
+                    <span class="section-tips">({{langData.officialPointTips[lang]}})</span>
+                </div>
+                <div class="section-content">
+                    <img src="__PUBLIC__/images/screenshot.png">
+                    <span>{{langData.redeemPoints[lang]}}</span>
+                    <span>URL:http://shop.fouya.com/id...</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</block>
+<block name="modal">
+    <!-- 新增积分兑换物品 -->
+    <div class="modal fade" id="add-goods">
+        <form id="uploadForm" action="javascript:void(0)">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close-btn" data-dismiss="modal"></button>
+                        <h4 class="modal-title">{{langData.redeemSet[lang]}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-item">
+                            <span>{{langData.image[lang]}}</span>
+                            <div class="file-content inline-block imgHorizontal">
+                                <img src="__PUBLIC__/images/dishes01.png" class="uploadImg" id="add-goods-img">
+                                <input type="file" name="goods_img" id="_goods_img" onchange="change(this,'add-goods-img')">
+                                <input type="hidden" name="_rootpath" value="__UP_GOODS__">
+                            </div>
+                        </div>
+                        <p class="modal-item">
+                            <span>{{langData.name[lang]}}:</span>
+                            <input type="text" name="goods_name" id="_goods_name">
+                        </p>
+                        <p class="modal-item">
+                            <span>{{langData.points[lang]}}:</span>
+                            <input type="text" name="score" id="_score">
+                        </p>
+                        <div id="add-content" class="editor-content">
+                            <p>请输入内容...</p>
+                        </div>
+                        <input type="hidden" name="goods_desc" value="" id="goods_desc" />
+                        <div class="text-center modal-item">
+                            <button type="button" class="blue-btn" onclick="doUpload()">{{langData.save[lang]}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- 编辑积分兑换物品 -->
+    <div class="modal fade" id="edit-goods">
+        <form action="javascript:void(0)" id="uploadForm1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close-btn" data-dismiss="modal"></button>
+                        <h4 class="modal-title">{{langData.redeemSet[lang]}}</h4>
+                    </div>
+                    <div class="modal-body" id="goods_edit"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/wangEditor/js/wangEditor.min.js"></script>
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <script src="__PUBLIC__/js/placeImg.js"></script>
+    <script>
+    //模态框消失后清空表单
+    $('#add-goods').on('hidden.bs.modal', function() {
+        // 执行一些动作...
+        $('#add-goods-img').attr('src', '');
+        $("#_goods_img").val("");
+        $("#_goods_name").val("");
+        $("#_score").val("");
+        $("#_money").val("");
+        // 不能传入空字符串，而必须传入如下参数
+        addEditor.$txt.html('<p><br></p>');
+    })
+
+
+    var addEditor = new wangEditor('add-content');
+    // 上传图片
+    addEditor.config.uploadImgUrl = '/index.php/Admin/member/img_upload';
+    // 隐藏掉插入网络图片功能。该配置，只有在你正确配置了图片上传功能之后才可用。
+    addEditor.config.hideLinkImg = true;
+    addEditor.create();
+    addEditor.$editorContainer.css('z-index', 1001)
+
+
+    // 积分现金后面的保存
+    function save_point_cash(obj) {
+        var account = $('[name="account"]').val();
+        var benefit = $('[name="benefit"]').val();
+        var id = $(obj).siblings().children('[name="id"]').val();
+        if (account == "" || benefit == "") {
+            layer.msg(vm.langData.pointsNotBeEmpty[vm.lang]);
+        } else {
+            // ajax提交
+            $.post('/index.php/Admin/Member/save_point_cash', { "account": account, "benefit": benefit, "id": id }, function(data) {
+                $.post('/index.php/Admin/Member/get_point_cash', "", function(data) {
+                    layer.msg(vm.langData.success[vm.lang]);
+                    $("#memberList").html(data);
+                });
+            });
+        }
+        return false;
+    }
+
+    // 积分现金后面的删除
+    function shanchu_point_cash(obj, url) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        },function(index){
+            // 获取到它的ID，然后删除掉即可
+            var hid = $("[name='id']").val();
+            // ajax提交
+            $.post(url, { "id": hid }, function(data) {
+                // console.log(data);
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(vm.langData.failed[vm.lang]);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+
+    // 模态框文件上传
+    function doUpload() {
+        var img = $("#_goods_img").val();
+        var goods_name = $("#_goods_name").val();
+        var score = $("#_score").val();
+        // 获取编辑器纯文本内容
+        var text = addEditor.$txt.html();
+        $("#goods_desc").val(text);
+        if (img == "" || goods_name == "" || score == "") {
+            layer.msg(vm.langData.itemInfoNotBeEmpty[vm.lang]);
+        } else {
+            var formData = new FormData($("#uploadForm")[0]);
+            $.ajax({
+                url: "/index.php/Admin/Member/add_goods",
+                type: 'POST',
+                data: formData,
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function(returndata) {
+                    $("#add-goods").modal("hide");
+                    // 清除富文本编辑器里面的内容
+                    addEditor.$txt.html('<p><br></p>');
+
+                    $.post('/index.php/Admin/Member/get_img', "", function(data) {
+                        // 成功添加了就实时获取
+                        $("#photo").html(data);
+                    });
+                },
+                error: function(returndata) {
+                    $("#add-goods").modal("hide");
+                    // 清除富文本编辑器里面的内容
+                    addEditor.$txt.html('<p><br></p>');
+                    layer.msg(vm.langData.failed[vm.lang]);
+                }
+            });
+        }
+    }
+
+
+    // 删除积分兑换物品
+    function del_img(obj, url) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        },function(index){
+            // 获取到它的ID，然后删除掉即可
+            var hid = $(obj).parent().siblings().find('[name="id"]').val();
+            // ajax提交
+            $.post(url, { "id": hid }, function(data) {
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(vm.langData.failed[vm.lang]);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#photo").html(data);
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+
+
+
+    function editInfo(obj) {
+        var goods_id = $(obj).data('goods_id');
+        $.ajax({
+            url: "/index.php/Admin/member/getGoodsInfos",
+            type: "post",
+            data: { "goods_id": goods_id },
+            //            dataType:"json",
+            success: function(data) {
+                $("#goods_edit").html(data);
+            },
+        });
+    }
+    </script>
+</block>

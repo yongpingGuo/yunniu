@@ -1,0 +1,93 @@
+<extend name="Public:base" />
+<block name="main">
+	<header class="header">年营业额</header>
+	<section class="content">
+		<div class="select-none">
+			<select>
+				<option>2017</option>
+			</select>
+		</div>	
+		<span>年</span>
+		<button class="danger-btn-sm">查询</button>
+	</section>
+	<section class="section">
+		<table class="w100 chart-table">
+			<tbody>
+				<tr onclick="showDetail()">
+					<td>1月</td>
+					<td>
+						<span class="chart-length" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">100000.00元</td>
+				</tr>
+				<tr onclick="showDetail()">
+					<td>2月</td>
+					<td>
+						<span class="chart-length" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">100000.00元</td>
+				</tr>
+				<tr onclick="showDetail()">
+					<td>10月</td>
+					<td>
+						<span class="chart-length" style="width: 180px;"></span>
+					</td>
+					<td class="text-right">100000.00元</td>
+				</tr>
+				<tr onclick="showDetail()">
+					<td>11月</td>
+					<td>
+						<span class="chart-length" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">100000.00元</td>
+				</tr>
+				<tr onclick="showDetail()">
+					<td>12月</td>
+					<td>
+						<span class="chart-length" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">100000.00元</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+	<section class="content text-center">共计：10000.00元</section>
+	<div class="chart-msg">
+		<div>1月</div>
+		<div class="flex-content">
+			<div class="flex-main">微信</div>
+			<div>1000.02元</div>
+		</div>
+		<div class="flex-content">
+			<div class="flex-main">支付宝</div>
+			<div>1000.02元</div>
+		</div>
+		<div class="flex-content">
+			<div class="flex-main">银行代收</div>
+			<div>1000.02元</div>
+		</div>
+		<div class="flex-content">
+			<div class="flex-main">会员</div>
+			<div>1000.02元</div>
+		</div>
+		<div class="flex-content">
+			<div class="flex-main">现金</div>
+			<div>1000.02元</div>
+		</div>
+	</div>
+</block>
+<block name="js">
+	<script type="text/javascript">
+		$(window).click(function(event) {
+			$('.chart-msg').hide();
+		});
+		function showDetail() {
+			event.stopPropagation(); 
+			$('.chart-msg').css({
+				'top': event.pageY,
+				'display': 'block'
+			});;
+		}
+		
+	</script>
+</block>

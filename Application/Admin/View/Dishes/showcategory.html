@@ -1,0 +1,20 @@
+<table class="dishes-classify-table">
+    <volist name="data" id="v">
+        <tr>
+            <td class="text-right">{$key+1}</td>
+            <td>
+                <button class="rank-up" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="moveup1(this)"></button>
+                <button class="rank-down movedown" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="movedown1(this)"></button>
+            </td>
+            <td>
+                <button data-id="{$v.food_category_id}" onclick="showinfo(this)">{$v['food_category_name']}</button>
+                <br/>{$v.food_category_name_en}
+            </td>
+            <td class="text-right">
+                <button class="edit-btn" data-toggle="modal" data-target="#addSort" onclick="modify1({$v.food_category_id})" id="modify">
+                </button>
+                <button class="remove-btn" onclick="deltype({$v.food_category_id})"></button>
+            </td>
+        </tr>
+    </volist>
+</table>

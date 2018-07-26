@@ -1,0 +1,140 @@
+<extend name="Public:base" />
+<block name="main">
+    <header class="header">明细报表</header>
+    <div class="content flex-content vertical-flex">
+        <div class="flex-main food-chart-head">
+            <div class="section-row flex-content vertical-flex">
+                <span>日期：</span>
+                <input type="text" class="input flex-main datepicker-start">
+                <span class="text-2 text-center">至</span>
+                <input type="text" class="input flex-main datepicker-end">
+            </div>
+            <div class="section-row flex-content vertical-flex">
+                <span>时间：</span>
+                <input type="text" class="input flex-main timepicker">
+                <span class="text-2 text-center">至</span>
+                <input type="text" class="input flex-main timepicker">
+            </div>
+        </div>
+        <button class="danger-btn-default">查询</button>
+    </div>
+    <section class="section flex-content vertical-flex">
+        <div id="cahrtCanvas"></div>
+        <div class="chart-legend">
+            <div class="section-row">
+                <span class="chart-icon wechat"></span>
+                <span>微信</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon alipay"></span>
+                <span>支付宝</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon cash"></span>
+                <span>现金</span>
+            </div>
+            <div class="section-row">
+                <span class="chart-icon member"></span>
+                <span>会员</span>
+            </div>
+            <div>
+                <span class="chart-icon card"></span>
+                <span>银行代收</span>
+            </div>
+        </div>
+    </section>
+    <div class="section-row">
+        <div class="chart-content">
+            <div>实际营业额</div>
+            <div>500.00</div>
+        </div>
+        <div class="chart-content">
+            <div>有效订单</div>
+            <div>100单</div>
+        </div>
+        <div class="chart-content chart-detail">
+            <div class="flex-content">
+                <span>退单数：</span>
+                <span class="flex-main text-right">0单</span>
+            </div>
+            <div class="flex-content">
+                <span>退菜：</span>
+                <span class="flex-main text-right">0份</span>
+            </div>
+            <div class="flex-content">
+                <span>退款：</span>
+                <span class="flex-main text-right">0.00元</span>
+            </div>
+        </div>
+    </div>
+    <div class="remarks">*通过电脑端进入，可查订单明细与导出明细报表。</div>
+</block>
+<block name="js">
+    <include file="Public:date" />
+    <include file="Public:highcharts" />
+    <script>
+    var chart = null;
+    $('#cahrtCanvas').css({
+        "width": $('.section').width() - 7*14,
+        "height": $('.section').width() - 9*14
+    });;
+    $(function() {
+        $('#cahrtCanvas').highcharts({
+            chart: {
+                backgroundColor: "rgba(0,0,0,0)",
+                spacing: [10, 0, 10, 0]
+            },
+            credits: {
+                enabled: false
+            },
+            title: {
+                text: null
+            },
+            tooltip: {
+                pointFormat: '<b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: false,
+                    },
+                }
+            },
+            series: [{
+                type: 'pie',
+                innerSize: '80%',
+                data: [{
+                        name: '微信',
+                        y: 12,
+                        color: '#00ff01'
+                    },
+                    {
+                        name: '支付宝',
+                        y: 22,
+                        color: '#00a0ea'
+                    },
+                    {
+                        name: '现金',
+                        y: 20,
+                        color: '#fe0000'
+                    },
+                    {
+                        name: '会员',
+                        y: 10,
+                        color: '#ff7e00'
+                    },
+                    {
+                        name: '银行代收',
+                        y: 10,
+                        color: '#fe00dd'
+                    }
+                ]
+            }],
+            exporting: {
+				enabled:false
+			}
+        });
+    });
+
+    </script>
+</block>

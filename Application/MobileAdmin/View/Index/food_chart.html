@@ -1,0 +1,70 @@
+<extend name="Public:base" />
+<block name="main">
+	<header class="header">菜品统计</header>
+	<div class="content flex-content vertical-flex">
+		<div class="flex-main food-chart-head">
+			<div class="section-row flex-content vertical-flex">
+				<span class="text-4 text-right">日期：</span>
+				<input type="text" class="input flex-main datepicker-start">
+				<span class="text-2 text-center">至</span>
+				<input type="text" class="input flex-main datepicker-end">
+			</div>
+			<div class="section-row flex-content vertical-flex">
+				<span class="text-4 text-right">时间：</span>
+				<input type="text" class="input flex-main timepicker">
+				<span class="text-2 text-center">至</span>
+				<input type="text" class="input flex-main timepicker">
+			</div>
+			<div class="section-row flex-content">
+				<span class="text-4 text-right">收银员：</span>
+				<div class="select-reset">
+					<select>
+						<option>全部</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<button class="danger-btn-default">查询</button>
+	</div>
+	<div class="flex-content food-chart-tab">
+		<div class="flex-main active">主菜统计</div>
+		<div class="flex-main">规格统计</div>
+	</div>
+	<section class="section">
+		<table class="w100 chart-table">
+			<tbody>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>
+</block>
+<block name="js">
+	<include file="Public:date" />
+</block>

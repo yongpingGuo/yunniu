@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table class="sale-table">
+    <tbody>
+    <tr class="text-center">
+        <td></td>
+        <td>订单号</td>
+        <td>菜品</td>
+        <td>日期时间</td>
+        <td>就餐方式</td>
+        <td>支付方式</td>
+        <td>单价</td>
+        <td>数量</td>
+        <td>总价</td>
+    </tr>
+    <volist name="order_list" id="vo" key="k">
+        <tr>
+            <td style="padding-right: 0px">{$k}</td>
+            <td>{$vo.order_sn}</td>
+            <td>{$vo.food_name}<if condition = '$vo.f_type eq 2'><span style="color: red;">(属性)</span><else/></if></td>
+            <td>{$vo.pay_time|date="Y-m-d H:i:s",###}</td>
+            <td>
+                <if condition="$vo.order_type eq 0">
+                    店内点餐
+                    <else/>
+                    微信外卖
+                </if>
+            </td>
+            <td class="text-center">
+                <if condition="$vo.pay_type eq 0">
+          	现金
+                    <elseif  condition="$vo.pay_type eq 1"/>
+                    支付宝
+                    <else/>
+                    微信
+                </if>
+            </td>
+            <td>{$vo.food_price2}</td>
+            <td>{$vo.food_num}</td>
+            <td>{$vo.total_amount}</td>
+        </tr>
+    </volist>
+    </tbody>
+</table>
+<input type="hidden" id="total_amount" value="{$total_amount}">
+<input type="hidden" id="pay_str" value="{$pay_str}">
+<input type="hidden" id="order_str" value="{$order_str}">
+</body>
+</html>

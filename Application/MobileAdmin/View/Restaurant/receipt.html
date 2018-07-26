@@ -1,0 +1,296 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="顾客小票" />
+    <form action="javascript:void(0)" id="restaurant_form2">
+        <section class="section">
+            <!-- <div class="flex-content vertical-flex section-row">
+                <span class="text-4">店铺Logo：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.is_take_logo eq 1">
+                        <input type="checkbox" name="name" class="is_take_logo" onchange="is_open('is_take_logo',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="name" class="is_take_logo" onchange="is_open('is_take_logo',this)">
+                    </if>
+                    <label></label>
+                </div>
+            </div> -->
+            <div class="flex-content section-row">
+                <span class="text-4">顶部图片：</span>
+                <div class="flex-main">
+                    <div class="flex-content vertical-flex">
+                        <div class="checkbox-switch">
+                            <if condition="$restaurant_bill.top_logo eq 1">
+                                <input type="checkbox" name="name" class="top_logo" onchange="is_open('top_logo',this)" checked>
+                                <else/>
+                                <input type="checkbox" name="name" class="top_logo" onchange="is_open('top_logo',this)">
+                            </if>
+                            <label></label>
+                        </div>
+                        <input type="file" id="top_file" style="display:none">
+                        <button class="danger-btn-sm" onclick="F_Open_dialog(1)">上传顶部图片</button>
+                    </div>
+                    <div class="remarks">注：黑白图片，BMP格式，宽度小于200px，图案上下不能留有空白</div>
+                </div>
+            </div>
+            <div class="flex-content section-row">
+                <span class="text-4">底部图片：</span>
+                <div class="flex-main">
+                    <div class="flex-content vertical-flex">
+                        <div class="checkbox-switch">
+                            <if condition="$restaurant_bill.next_logo eq 1">
+                                <input type="checkbox" name="name" class="next_logo" onchange="is_open('next_logo',this)" checked>
+                                <else/>
+                                <input type="checkbox" name="name" class="next_logo" onchange="is_open('next_logo',this)">
+                            </if>
+                            <label></label>
+                        </div>
+                        <input type="file" id="next_file" style="display:none">
+                        <button class="danger-btn-sm" onclick="F_Open_dialog(2)">上传底部图片</button>
+                    </div>
+                    <div class="remarks">注：黑白图片，BMP格式，宽度小于200px，图案上下不能留有空白</div>
+                </div>
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">店铺名称：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.restaurant_name eq 1">
+                        <input type="checkbox" name="name" class="restaurant_name" onchange="is_open('restaurant_name',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="name" class="restaurant_name" onchange="is_open('restaurant_name',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <input class="input flex-main" type="text" name="restaurant_name" value="{$restaurant.restaurant_name}">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">外卖电话：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.take_out_phone eq 1">
+                        <input type="checkbox" name="take_out_phone" class="take_out_phone" onchange="is_open('take_out_phone',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="take_out_phone" class="take_out_phone" onchange="is_open('take_out_phone',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <input class="input flex-main" type="tel" name="telephone2" value="{$restaurant.telephone2}">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">服务电话：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.restaurant_phone eq 1">
+                        <input type="checkbox" name="restaurant_phone" class="restaurant_phone" onchange="is_open('restaurant_phone',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="restaurant_phone" class="restaurant_phone" onchange="is_open('restaurant_phone',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <input class="input flex-main" type="tel" name="telephone1" value="{$restaurant.telephone1}">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">公众号点餐：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.subscription eq 1">
+                        <input type="checkbox" name="subscription" class="subscription" onchange="is_open('subscription',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="subscription" class="subscription" onchange="is_open('subscription',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <input class="input flex-main" type="text" name="subscription" value="{$restaurant.subscription}">
+            </div>
+            <div class="flex-content section-row">
+                <span class="text-4">地址：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.address eq 1">
+                        <input type="checkbox" name="address" class="address" onchange="is_open('address',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="address" class="address" onchange="is_open('address',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <textarea class="flex-main textarea" rows="2" name="address">{$restaurant.address}</textarea>
+            </div>
+            <div class="flex-content section-row">
+                <span class="text-4">营销广告：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.down_prompt eq 1">
+                        <input type="checkbox" name="down_prompt" class="down_prompt" onchange="is_open('down_prompt',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="down_prompt" class="down_prompt" onchange="is_open('down_prompt',this)">
+                    </if>
+                    <label></label>
+                </div>
+                <textarea class="flex-main textarea" rows="2" name="down_prompt">{$restaurant.down_prompt}</textarea>
+            </div>
+            <div class="flex-content section-row">
+                <span class="text-4">外卖堂吃：</span>
+                <div class="checkbox-switch">
+                    <if condition="$restaurant_bill.order_type eq 1">
+                        <input type="checkbox" name="order_type" class="order_type" onchange="is_open('order_type',this)" checked>
+                        <else/>
+                        <input type="checkbox" name="order_type" class="order_type" onchange="is_open('order_type',this)">
+                    </if>
+                    <label></label>
+                </div>
+            </div>
+            <hr class="hr-dashed">
+            <div class="flex-content section-row">
+                <span class="text-4">餐牌号：</span>
+                <div class="flex-main">
+                    <div class="flex-content">
+                        <div class="checkbox-switch">
+                            <if condition="$restaurant_bill.qrcode eq 1">
+                                <input type="checkbox" name="take" class="qrcode" onchange="is_open('qrcode',this)" checked>
+                                <else/>
+                                <input type="checkbox" name="take" class="qrcode" onchange="is_open('qrcode',this)">
+                            </if>
+                            <label></label>
+                        </div>
+                        <input class="input flex-main" type="tel" name="desk_num" value="{$restaurant.desk_num}" placeholder="标题名称，例：餐桌号">
+                    </div>
+                    <div class="remarks">点餐流程关闭餐牌号时，建议设置为关</div>
+                    <div class="flex-content vertical-flex">
+                        <span>提示语：</span>
+                        <textarea class="flex-main textarea" rows="2" name="forward_prompt">{$restaurant.forward_prompt}</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-dashed">
+            <div class="flex-content section-row">
+                <span class="text-4">取餐号：</span>
+                <div class="flex-main">
+                    <div class="flex-content">
+                        <div class="checkbox-switch">
+                            <if condition="$restaurant_bill.take_num eq 1">
+                                <input type="checkbox" name="take_num" class="take_num" onchange="is_open('take_num',this)" checked>
+                                <else/>
+                                <input type="checkbox" name="take_num" class="take_num" onchange="is_open('take_num',this)">
+                            </if>
+                            <label></label>
+                        </div>
+                        <input class="input flex-main" type="tel" name="take_num" value="{$restaurant.take_num}" placeholder="标题名称，例：取餐号">
+                    </div>
+                    <div class="remarks">点餐流程关闭餐牌号时，建议设置为开</div>
+                    <div class="flex-content vertical-flex">
+                        <span>提示语：</span>
+                        <textarea class="flex-main textarea" rows="2" name="pay_prompt">{$restaurant.pay_prompt}</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-dashed">
+            <div class="flex-content section-row">
+                <span class="text-4">支付号：</span>
+                <div class="flex-main">
+                    <div class="flex-content">
+                        <div class="checkbox-switch">
+                            <if condition="$restaurant_bill.pay_num eq 1">
+                                <input type="checkbox" name="pay_num" class="pay_num" onchange="is_open('pay_num',this)" checked>
+                                <else/>
+                                <input type="checkbox" name="pay_num" class="pay_num" onchange="is_open('pay_num',this)">
+                            </if>
+                            <label></label>
+                        </div>
+                        <input class="input flex-main" type="tel" name="pay_num" value="{$restaurant.pay_num}" placeholder="标题名称，例：支付号">
+                    </div>
+                    <div class="remarks">自助点餐机，设有现金支付时，建议设置为开</div>
+                    <div class="flex-content vertical-flex">
+                        <span>提示语：</span>
+                        <textarea class="flex-main textarea" rows="2" name="pay_prompt2">{$restaurant.pay_prompt2}</textarea>
+                    </div>
+                </div>
+            </div>
+            <hr class="hr-dashed">
+        </section>
+    </form>
+    <div class="receipt-header">小票预览</div>
+    <div class="receipt-preview">
+        <input id="restaurant_id" name="restaurant_id" value="{$restaurant_id}" type="hidden">
+        <if condition="$restaurant.top_logo neq '' ">
+            <img src="{$top_logo_url}" class="receipt-logo" id="top_logo">
+        </if>
+        <div class="text-center" id="restaurant_name">{$restaurant.restaurant_name}</div>
+        <div>下单时间：2017-08-01 11:20:20</div>
+        <div>订单号：DC1CCAE33581B11529111</div>
+        <hr class="hr-dashed">
+        <table class="receipt-food">
+            <tbody>
+                <tr>
+                    <td class="text-center">菜单</td>
+                    <td class="text-center">数量</td>
+                    <td class="text-right">价格</td>
+                </tr>
+                <tr>
+                    <td>红烧肉饭</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right">18.00</td>
+                </tr>
+                <tr>
+                    <td>红烧肉饭</td>
+                    <td class="text-center">1</td>
+                    <td class="text-right">18.00</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr class="hr-dashed">
+        <div class="text-right">
+            <div>原价：48.00</div>
+            <div>优惠：-5.00</div>
+            <div>实付：43.00</div>
+            <div>微信支付</div>
+        </div>
+        <hr class="hr-dashed">
+        <div id="take_num">
+            <div class="receipt-num">{$restaurant.take_num}：1001</div>
+            <div class="text-center">请留意叫号，恁取餐号到取餐区领餐</div>
+            <hr class="hr-dashed">
+        </div>
+        <div class="receipt-num" id="desk_num">{$restaurant.desk_num}：99</div>
+        <div id="forward_prompt">
+            <div class="text-center">{$restaurant.forward_prompt}</div>
+            <hr class="hr-dashed">
+        </div>
+        <div class="receipt-num" id="pay_num">{$restaurant.pay_num}：1001</div>
+        <div id="pay_prompt2">
+            <div class="text-center">{$restaurant.pay_prompt2}</div>
+            <hr class="hr-dashed">
+        </div>
+        <div id="order_type">
+            <div class="receipt-num">订单类型：外带</div>
+            <hr class="hr-dashed">
+        </div>
+        <div id="address">地址:{$restaurant.address}</div>
+        <div id="take_out_phone">外卖电话:{$restaurant.telephone2}</div>
+        <div id="restaurant_phone">服务电话:{$restaurant.telephone1}</div>
+        <div id="subscription">公众号点餐:{$restaurant.subscription}</div>
+        <div class="text-center" id="down_prompt">{$restaurant.down_prompt}</div>
+        <if condition="$restaurant.next_logo neq '' ">
+            <img src="{$next_logo_url}" class="receipt-logo" id="next_logo">
+        </if>
+    </div>
+    <footer class="footer">
+        <button class="danger-btn-lg" onclick="submit_form()">保存设置</button>
+        <input type="hidden" value="{$restaurant.restaurant_id}" name="restaurant_id">
+    </footer>
+</block>
+<block name="js">
+    <script>
+        is_next_logo = {$is_next_logo};
+        is_top_logo = {$is_top_logo};
+        //上logo
+        if(is_top_logo == 1){
+            $("#top_logo").show();
+        }else if(is_top_logo == 0){
+            $("#top_logo").hide();
+        }
+
+        //下logo
+        if(is_next_logo == 1){
+            $("#next_logo").show();
+
+        }else if(is_next_logo == 0){
+            $("#next_logo").hide();
+        }
+    </script>
+    <!--顾客小票-->
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/receipt.js?2017"></script>
+</block>

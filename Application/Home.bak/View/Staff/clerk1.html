@@ -1,0 +1,41 @@
+<div class="content">
+	<div class="modal-header text-center">
+		<button type="button" class="close-btn" data-dismiss="modal">
+			<span aria-hidden="true">&times;</span>
+		</button>
+		<!--<span>{$info1.order_sn|substr=-5,5}</span>-->
+		<!--<span>{$info1.take_num}</span>-->
+
+        <?php if($info1['take_num']):?>
+            <span>{$info1.take_num}</span>
+        <?php else: ?>
+            <span>{$info1.order_sn|substr=-5,5}</span>
+        <?php endif; ?>
+	</div>
+	<div class="modal-body">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-xs-8">
+					<table class="modal-table">
+						<volist name="info2" id = "v">
+							<tr>
+								<td>{$v.food_name}</td>
+								<td>&yen;{$v.food_price2}</td>
+							</tr>
+						</volist>
+					</table>
+				</div>
+				<div class="col-xs-4">
+					<div class="modal-button-content">
+						<if condition="$info1.order_status eq 11">
+							<button id="cancel" class="modal-btn none-btn" onclick="changestatu1({$v.order_id})">核销</button>
+							<else/>
+							<button id="takeMeal" class="modal-btn none-btn" onclick="changestatu({$v.order_id})">请取餐</button>
+						</if>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	

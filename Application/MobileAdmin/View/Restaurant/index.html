@@ -1,0 +1,50 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="商家信息"/>
+    <section class="section">
+        <div class="flex-content vertical-flex">
+            <img src="{$Restaurant.logo}" id="imghead" class="store-icon">
+            <div class="file-content">
+                <button class="danger-btn-sm">上传LOGO</button>
+                <input type="file" onchange="previewImage(event)">
+            </div>
+        </div>
+    </section>
+    <form action="javascript:void(0)" id="restaurant_form">
+        <section class="section">
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">店铺名称：</span>
+                <input type="text" class="flex-main input" value="{$Restaurant.restaurant_name}" id="restaurant_name" name="restaurant_name" placeholder="请输入店铺名称">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">外卖电话：</span>
+                <input type="text" class="flex-main input" value="{$Restaurant.telephone1}" id="telephone1" name="telephone1" placeholder="请输入外卖电话">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">服务电话：</span>
+                <input type="text" class="flex-main input" value="{$Restaurant.telephone2}" id="telephone2" name="telephone2" placeholder="请输入服务电话">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">地址：</span>
+                <textarea class="flex-main textarea" rows="2" id="address" name="address" placeholder="请输入地址">{$Restaurant.address}</textarea>
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">账号：</span>
+                <input type="text" class="flex-main input" readonly name="login_account" value="{$object.login_account}">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">修改密码：</span>
+                <input type="password" class="flex-main input" value="{$object.password}" name="password">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-4">确认密码：</span>
+                <input type="password" class="flex-main input" value="{$object.password}" name="passwords">
+            </div>
+        </section>
+    </form>
+    <button class="danger-btn-lg" onclick="submit_form()">保存设置</button>
+</block>
+<block name="js">
+    <!--商家信息-->
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/restaurant_index.js?20170929"></script>
+</block>

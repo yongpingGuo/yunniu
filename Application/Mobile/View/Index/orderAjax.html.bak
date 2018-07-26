@@ -1,0 +1,30 @@
+<volist name = "info2" id = "v1">
+    <div class="dish-item flex-content vertical-flex">
+        <img src="/{$v1.food_img}" class="dish-icon">
+        <div class="dish-right flex-main">
+            <div class="dish-name">{$v1.food_name}</div>
+            <div class="dish-price">
+                <span>&yen;</span>
+                <b class="price-num">{$v1.food_price}</b>
+            </div>
+            <!--<button class="plus-btn" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" onclick="findfoodinfo(this)">
+                <i class="iconfont icon-plus"></i>
+            </button>-->
+            <?php if($v1['have_attribute']>0): ?>
+            <!--<button class="selectAttr-btn" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" data-have_attribute="1" onclick="findfoodinfo(this)">选规格</button>-->
+
+            <button class="selectAttr-btn" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" data-have_attribute="1" onclick="findfoodinfo(this)">
+                选规格
+            </button>
+            <?php else: ?>
+            <button class="plus-btn" data-toggle="modal" data-food_id="{$v1.food_id}" data-have_attribute="0" onclick="findfoodinfo(this)">
+                <i class="iconfont icon-plus"></i>
+            </button>
+            <?php endif; ?>
+        </div>
+    </div>
+</volist>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/Mobile/orderAjax.js?v20171016"></script>
+</block>

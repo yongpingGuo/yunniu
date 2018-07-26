@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>微信安全支付</title>
+    <meta name="keywords" content="" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="cleartype" content="on">
+    <meta id="viewport" name="viewport" content="width=320, initial-scale=1.0,maximum-scale=1.0, user-scalable=0," />
+    <script type="text/javascript">
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {$jsApiParameters},
+                    function(res){
+                        WeixinJSBridge.log(res.err_msg);
+                        if(res.err_msg == 'get_brand_wcpay_request:cancel') {
+                            alert("您已取消了此次支付");
+                            return;
+                        } else if(res.err_msg == 'get_brand_wcpay_request:fail') {
+                            alert("支付失败");
+                            return;
+                        } else if(res.err_msg == 'get_brand_wcpay_request:ok') {
+                            var restaurant_id = $("#restaurant_id").val();
+                            var desk_code = $("#desk_code").val();
+                            location.href="/index.php/mobile/index/index/restaurant_id/"+restaurant_id+"/desk_code/"+desk_code;
+                        } else {
+                            alert("未知错误"+res.error_msg);
+                            return;
+                        }
+                    }
+            );
+        }
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+
+		function getOrderStatus(){
+			var dom_order_sn = document.getElementById("order_sn");
+			var order_sn = dom_order_sn.value;
+			var postData = {"order_sn": order_sn};
+
+			postData = (function(obj){ // 转成post需要的字符串.
+				var str = "";
+
+				for(var prop in obj){
+					str += prop + "=" + obj[prop] + "&"
+				}
+				return str;
+			})(postData);
+			var xhr = new XMLHttpRequest();
+			xhr.open("post","/index.php/home/index/getOrderStatus", 'true');
+			xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhr.onreadystatechange = function (){
+				var XMLHttpReq = xhr;
+				if (XMLHttpReq.readyState == 4) {
+					if (XMLHttpReq.status == 200) {
+						var text = XMLHttpReq.responseText;
+						var msg = eval('('+text+')');
+						if(msg['code'] == 1){
+							var dom_restaurant_id = document.getElementById("restaurant_id");
+							var restaurant_id = dom_restaurant_id.value;
+							var dom_desk_code = document.getElementById("desk_code");
+							var desk_code = dom_desk_code.value;
+							//location.href="/index.php/mobile/index/index/restaurant_id/"+restaurant_id+"/desk_code/"+desk_code;
+							location.href="/index.php/mobile/index/finish/restaurant_id/"+restaurant_id+"/desk_code/"+desk_code;
+						}
+					}
+				}
+			};
+			xhr.send(postData);
+		}
+
+    </script>
+</head>
+<body>
+<input type="hidden" value="{$Think.session.restaurant_id}" name="restaurant_id" id="restaurant_id">
+<input type="hidden" value="{$Think.session.desk_code}" name="desk_code" id="desk_code">
+<input type="hidden" value="{$order_sn}" name="order_sn" id="order_sn">
+</body>
+<script>
+	var j;
+	window.onload = function(){
+		callpay();
+		j = setInterval("getOrderStatus()",3000);
+	};
+</script>
+</html>

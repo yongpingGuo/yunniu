@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- Bootstrap 核心 CSS 文件 -->
+		<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+		<!-- <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/calendar.min.css">
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/member.css">
+
+		<!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+		<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+		<![endif]-->
+
+		<title>会员信息</title>
+	</head>
+
+	<body class="member-info">
+        <header class="common-header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-4 text-left">
+                        <a href="/index.php/Mobile/Member/index" class="return">
+                            <img src="__PUBLIC__/images/lt.png">
+                        </a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                        会员信息
+                    </div>
+                </div>
+            </div>
+        </header>
+		<div class="member-info-content">
+            <form action="?" onsubmit="return keep(this)">
+                <table class="table">
+                    <tbody>
+                    
+                    <tr>
+                        <td class="text-right">手机号：</td>
+                        <td>{$info['phone']}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">姓名：</td>
+                        <td>
+                            <input type="text" name="username" value="{$info['username']}" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">生日：</td>
+                        <td>
+                            <input type="text" name="birthday" value="{$info['birthday']}" class="form-control calendars">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">性别：</td>
+                        <td>
+                            <select class="form-control" name="sex" id="xingbie">
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <div class="container-fluid">
+                    <input type="hidden" name="id" value="{$info['id']}"/>
+                    <button class="form-control btn btn-success" >保存</button>
+                </div>
+            </form>
+		</div>
+		
+		<!-- <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+		<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script> -->
+		<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+		<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+		<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+		<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+		<script src="__PUBLIC__/js/calendar.min.js"></script>
+
+
+        <script>
+            $('#xingbie').val({$info['sex']});
+
+            function keep(obj){
+                $.post(obj.action,$(obj).serialize(),function(data){
+                    if(data.status == 1){
+                        alert(data.info);
+                    }else{
+                        alert(data.info);
+                    }
+                });
+                return false;
+            }
+        </script>
+
+
+	</body>

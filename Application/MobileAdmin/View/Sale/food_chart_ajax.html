@@ -1,0 +1,73 @@
+<section class="section">
+    <table class="w100 chart-table" id="food">
+        <tbody>
+        <volist name="all_foodinfo" id="v">
+            <tr>
+                <td>{$v.food_name}</td>
+                <td>
+                    <span class="chart-length blue" style="width: {$v[num]*$step_length}px;"></span>
+                </td>
+                <td class="text-right">{$v.num}份</td>
+            </tr>
+        </volist>
+
+        <!--<tr>
+            <td>菜品名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>
+        <tr>
+            <td>菜品名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>
+        <tr>
+            <td>菜品名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>-->
+        </tbody>
+    </table>
+    <table class="w100 chart-table hide" id="attr">
+        <tbody>
+
+        <volist name="all_attributeArr" id="v">
+            <tr>
+                <td>{$v.food_attribute_name}</td>
+                <td>
+                    <span class="chart-length blue" style="width:{$v[num]*$step_length_attr}px;"></span>
+                </td>
+                <td class="text-right">{$v[num]}份</td>
+            </tr>
+        </volist>
+
+        <!--<tr>
+            <td>规格名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>
+        <tr>
+            <td>规格名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>
+        <tr>
+            <td>规格名称五六七八九</td>
+            <td>
+                <span class="chart-length blue" style="width: 120px;"></span>
+            </td>
+            <td class="text-right">12份</td>
+        </tr>-->
+        </tbody>
+    </table>
+</section>

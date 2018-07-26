@@ -1,0 +1,35 @@
+<div id="serverCarousel" class="carousel slide" data-ride="carousel" data-interval="2000">
+	<div class="carousel-inner" role="listbox" id="item2">
+		<div class="item active" >
+			<ul>
+				<volist name = "resultArr1" id = "v1" offset="0" length='5'>
+					<!--<li>{$v1.order_sn|substr=-5,5}</li>-->
+					<!--<li>{$v1.take_num}</li>-->
+
+                    <?php if($v1['take_num']):?>
+                    <li>{$v1.take_num}</li>
+                    <?php else: ?>
+                    <li>{$v1.order_sn|substr=-5,5}</li>
+                    <?php endif; ?>
+				</volist>
+			</ul>
+		</div>
+		<for start="1" end="$total1" name="b">
+			<div class="item">
+				<ul>
+					<volist name = "resultArr1" id = "v1" offset="$b*5" length='5'>
+						<!--<li>{$v1.order_sn|substr=-5,5}</li>-->
+                        <!--<li>{$v1.take_num}</li>-->
+
+                        <?php if($v1['take_num']):?>
+                        <li>{$v1.take_num}</li>
+                        <?php else: ?>
+                        <li>{$v1.order_sn|substr=-5,5}</li>
+                        <?php endif; ?>
+					</volist>
+				</ul>
+			</div>
+		</for>
+	</div>
+	<input type="hidden" id="resultArrLen1" value="{$resultArrLen1}">
+</div>

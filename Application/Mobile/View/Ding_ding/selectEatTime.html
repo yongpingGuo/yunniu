@@ -1,0 +1,180 @@
+<extend name="Public:canteen" />
+<block name="css">
+    <link rel="stylesheet" href="__PUBLIC__/css/Mobile/select.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/mobiscroll-datetime/css/mobiscroll.javascript.min.css">
+</block>
+<block name="main">
+    <body class="time-body">
+        <div class="text-center time-title">选择用餐时间</div>
+        <div class="time-content">
+            <eq name="timeInfo.types" value="1">
+                <div class="list-item flex-content vertical-flex">
+                    <span class="flex-main">用餐时间：</span>
+                    <div>
+                        <eq name="timeInfo.is_today" value="1">
+                            <label class="radio-rect">
+                                <input type="radio" class="radio" name="date" value="1" checked="checked">
+                                <span class="radio-name">今天</span>
+                            </label>
+                        </eq>
+                        <eq name="timeInfo.is_tomorrow" value="1">
+                            <label class="radio-rect">
+                                <input type="radio" class="radio" name="date" value="2">
+                                <span class="radio-name">明天</span>
+                            </label>
+                        </eq>
+                    </div>
+                </div>
+                <div class="list-item flex-content vertical-flex">
+                    <span>预计用餐时间：</span>
+                    <span id="time" class="flex-main text-right">
+                        <span class="text-grey">请选择时间</span>
+                    </span>
+                     <span id="timeTips" class="flex-main text-right text-grey" hidden="hidden">没有可选时间</span>
+                    <i class="iconfont icon-more"></i>
+                </div>
+            </eq>
+            <!-- 类型为自由食用-->
+            <eq name="timeInfo.types" value="2">
+                <div class="list-item flex-content vertical-flex">
+                    <span class="flex-main">用餐时间：</span>
+                    <div>
+                        <eq name="timeInfo.is_free_today" value="1">
+                            <label class="radio-rect">
+                                <input type="radio" class="radio" name="date" value="1">
+                                <span class="radio-name">今天</span>
+                            </label>
+                        </eq>
+                        <eq name="timeInfo.is_free_tomorrow" value="1">
+                            <label class="radio-rect">
+                                <input type="radio" class="radio" name="date" value="2">
+                                <span class="radio-name">明天</span>
+                            </label>
+                        </eq>
+                    </div>
+                </div>
+                <div class="list-item flex-content vertical-flex">
+                    <span>预计用餐时间：</span>
+                    <input type="text" id="time" class="flex-main text-right">
+                    <i class="iconfont icon-more"></i>
+                </div>
+            </eq>
+        </div>
+        <p class="container text-danger text-xs">温馨提示：我们准时出餐，为使食品质量更好，请提前到店</p>
+        <input type="hidden" name="types" id="types" value='{$timeInfo.types}' />
+        <input type="hidden" name="order_sn" id="order_sn" value='{$order_sn}' />
+        <button type="button" id="goPay" class="flex-content blue-btn-lg">
+            <span class="flex-main text-center">前去支付</span>
+            <i class="iconfont icon-more"></i>
+        </button>
+    </body>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/Mobile/mobileSelect.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/mobiscroll-datetime/js/mobiscroll.javascript.min.js"></script>
+    <script type="text/javascript">
+    var timeArr_today = new Array();//今天时间数组
+    <volist name="timeInfo.ext" id="vo">
+            <eq name="vo['is_use']" value="1">timeArr_today.push('{$vo.times}');</eq>
+    </volist>
+    var timeArr_tomorrow = new Array();//明天时间数组
+    <volist name="timeInfo.ext_tomo" id="vo">
+            <eq name="vo['is_use']" value="1">timeArr_tomorrow.push('{$vo.times}');</eq>
+    </volist>
+
+    var types = $("#types").val(); //1为限定时间，2为自由时间
+
+    var time1 = "{$timeInfo.time1}";
+    var time2 = "{$timeInfo.time2}";
+    var mobileSelect;
+    if (types == 1) { //限定时间
+        //types为1表示使用限定时间模式，今天的时间数组为timeArr_today，明天时间数组为timeArr_tomorrow 
+        dateArr($('[name="date"]').val());       
+
+    } else { //自由时间
+        var time1Hour = time1.split(":")[0];
+        var time1Minutes = time1.split(":")[1];
+        var time2Hour = time2.split(":")[0];
+        var time2Minutes = time2.split(":")[1];
+        mobiscroll.settings = {
+            lang: 'zh',
+            display: 'bottom'
+        };
+        var minTime = new Date(new Date().setHours(time1Hour, time1Minutes));
+        var maxTime = new Date(new Date().setHours(time2Hour, time2Minutes));
+        mobiscroll.time('#time', {
+            min: minTime,
+            max: maxTime,
+        });
+
+    }
+    // 限定时间：根据日期绑定对应时间
+    function dateArr(val) {
+        $('#time').show();
+        $('#timeTips').hide();
+        var timeArr;
+        if (val == 1) {
+            // 今天
+            timeArr=timeArr_today;
+        } else {
+            // 明天
+            timeArr=timeArr_tomorrow;
+        }
+        if(timeArr.length==0){
+            $('#timeTips').show();
+            layer.msg("没有可选时间");
+            $('#time').text("没有可选时间").hide();
+            return;
+        }
+        // 判断是否初始化mobileSelect控件
+        if(mobileSelect){
+            mobileSelect.updateWheel(0,timeArr);
+            $('#time').text('选择时间')
+        }else{            
+            mobileSelect = new MobileSelect({
+                trigger: '#time',
+                title: '选择时间',
+                wheels: [{
+                    data: timeArr
+                }],
+                position: [0]
+            });
+        }
+    }
+    $('[name="date"]').change(function(event) {
+        if (types == 1) {
+            dateArr($(this).val());
+        }
+    });
+
+    $("#goPay").click(function() {
+        var time = "";
+        if (types == 1) {
+            time = $("#time").text();
+        } else {
+            time = $("#time").val();
+        }
+        var check = $(":radio:checked").val();
+
+        var order_sn = $("#order_sn").val();
+
+        if (typeof(check) == 'undefined') { //没有选择时间
+            var check = 1;
+            layer.msg("日期已默认选择今天");
+//            return false;
+        }
+        if(!(time.indexOf(":") > 0 )){
+            layer.msg("请选择时间");
+            return false;
+        }
+        $.post("{:U('Index/updateOrder')}", { use_time: time, use_day: check, order_sn: order_sn }, function(data) {
+            if (data.code == 1) {
+                layer.msg(data.msg);
+                return false;
+            }
+            location = "{:U('ding_ding/pay', array('order_sn'=>$order_sn))}";
+        });
+    });
+    </script>
+</block>

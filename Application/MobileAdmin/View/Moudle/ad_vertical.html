@@ -1,0 +1,65 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="竖屏广告设置"/>
+	<section class="content flex-content vertical-flex">
+		<span>广告语：</span>
+        <input type="text" name="shuping_adv_lang" value="{$info5}" class="input flex-main" placeholder="请输入广告语">
+		<button class="danger-btn-sm" onclick="changeShuPingLang()">保存</button>
+	</section>	
+	<section class="content flex-content">
+		<div class="flex-main"> 
+			<span>图片停留时间：</span>
+			<input type="text" class="input-xs" value="{$info3}" id="interval">
+			<span>秒/张</span>
+		</div>
+		<button class="danger-btn-sm" onclick="changetime()">保存</button>
+	</section>
+
+    <section id="vertical_list">
+        <volist name="info1" id="v1" offset="0" length='1'>
+            <div class="section flex-content vertical-flex">
+                <div class="flex-main">
+                    <div class="img_vertical" id="{$v1.advertisement_id}">
+                        <img src="/{$v1.advertisement_image_url}">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="section-row">
+                        <div class="file-content">
+                            <button class="danger-btn-sm">选择图片</button>
+                            <input type="hidden" value="{$v1.advertisement_id}"/>
+                            <input type="file" name="default" onchange="preview(this,2)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </volist>
+        <volist name="info1" id="v1" offset="1">
+            <div class="section flex-content vertical-flex">
+                <div class="flex-main">
+                    <div class="img_vertical" id="{$v1.advertisement_id}">
+                        <img src="/{$v1.advertisement_image_url}">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="section-row">
+                        <div class="file-content">
+                            <button class="danger-btn-sm">选择图片</button>
+                            <input type="hidden" value="{$v1.advertisement_id}"/>
+                            <input type="file" name="change" onchange="preview(this,2)">
+                        </div> 
+                    </div>
+                    <button class="danger-btn-sm" onclick="deladver1({$v1.advertisement_id},2,this)">删除图片</button>
+                </div>
+            </div>
+        </volist>
+    </section>
+
+	<button class="danger-btn">
+		<i class="iconfont icon-plus" onclick="add_vertical()"></i>
+	</button>
+</block>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/ad.js?20171027"></script>
+</block>

@@ -1,0 +1,25 @@
+<include file="Public/head"/>
+<body>
+	<header class="home-header">
+		<a href="__CONTROLLER__/index">
+			<img src="__PUBLIC__/images/lt.png">
+			<span>返回</span>
+		</a>
+		<input type="hidden" name="shu_tpl" value="{$shu_tpl}" id="shu_tpl"/>
+	</header>
+	<div class="select">
+		<div class="container-fluid">
+			<h1 class="text-center green">请选择</h1>
+			<div class="row">
+				<div class="col-xs-6 forHere">
+					<a href="__CONTROLLER__/processRoute/process/select/order_type/1"><img src="__PUBLIC__/images/restaurant.png"></a>
+				</div>
+				<div class="col-xs-6 goTo">
+					<a href="__CONTROLLER__/processRoute/process/select/order_type/2"><img src="__PUBLIC__/images/take_out.png"></a>
+				</div>
+			</div>
+		</div>
+	</div>	
+	<footer class="home-footer"></footer>
+</body>
+</html>

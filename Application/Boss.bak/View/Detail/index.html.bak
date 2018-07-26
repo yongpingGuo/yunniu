@@ -1,0 +1,102 @@
+<include file = "Public/head"/>
+	<body>
+		<div class="chart-section datet-search">
+			<form action="__CONTROLLER__/index" method="post" id="searchForm">
+				<if condition = "$Think.session.adminTypeWithBoss eq 1">
+				<div>
+					店铺:
+					<select name = "restaurant_id">
+						<option value="">所有</option>
+						<volist name = "restaurantArr" id = "rA">
+							<if condition = "$Think.lang.$key eq $searchRestaurant">
+								<option value="{$Think.lang.$key}" selected="selected">{$rA}</option>
+							<else/>
+								<option value="{$Think.lang.$key}">{$rA}</option>
+							</if>
+						</volist>
+					</select>
+				</div>
+				<else/>
+				</if>
+				<div class="container-fluid">
+					<select id="checkedYear" name = "checkedYear">
+						<volist name = "payTimeArr" id = "pTA" >
+							<if condition = "$pTA eq $whenYear">
+								<option value="{$pTA}" selected="selected">{$pTA}</option>
+							<else/>
+								<option value="{$pTA}">{$pTA}</option>
+							</if>		
+						</volist>
+					</select>年
+					<select id="checkedMonth" name = "checkedMonth" onchange="monthChange()">
+						<volist name = "monthList" id = "mL" >
+							<if condition = "$mL eq $whenMonth">
+								<option value="{$mL}" selected="selected">{$mL}</option>
+							<else/>
+								<option value="{$mL}">{$mL}</option>
+							</if>		
+						</volist>
+					</select>月
+					<select id="checkDay" name = "checkDay">
+						<volist name = "dayList" id = "dL" >
+							<if condition = "$dL eq $whenDay">
+								<option value="{$dL}" selected="selected">{$dL}</option>
+							<else/>
+								<option value="{$dL}">{$dL}</option>
+							</if>		
+						</volist>
+					</select>日 
+					<button type="submit" class="btn btn-sm btn-primary">查询</button>
+					<!-- <input type="submit" value="查询" /> -->
+				</div>
+			</form>
+		</div>
+
+		<!--日报表饼状图-->
+		<div class="chart-section">
+			<div id="dayTurnover" class="chart_data" data-cashtoday = "{$totalAmount_isCashSearchDay}" data-alipaytoday = "{$totalAmount_isAlipaySearchDay}" data-wechattoday = "{$totalAmount_isWeChatSearchDay}" data-remaindertoday = "{$totalAmount_isRemainderSearchDay}"></div>
+
+			<div class="turnover-total">
+				共：<span>{$totalAmout_searchDay}</span>元
+			</div>
+		</div>
+		
+		<!--月报表柱状图-->
+		<div class="chart-section">
+			<div id="monthTurnover" class="chart_data" data-monthcash = '{$everyDayTurnover_isCash}' data-monthalipay = '{$everyDayTurnover_isAlipay}' data-monthwechat = '{$everyDayTurnover_isWeChat}' data-monthRemainder = '{$everyDayTurnover_isRemainder}'></div>
+			<div class="text-center">
+				共：<span>{$totalAmountSearchMonth}</span>元
+			</div>
+		</div>
+		
+		
+		<!--年报表柱状图-->
+		<div id="yearTurnover" class="chart_data" data-yearcash = '{$everyMonthTurnover_isCash}' data-yearalipay = '{$everyMonthTurnover_isAlipay}' data-yearwechat = '{$everyMonthTurnover_isWeChat}' data-yearremainder = '{$everyMonthTurnover_isRemainder}'></div>
+
+		<div class="text-center">
+			共：<span>{$totalAmountSearchYear}</span>元
+		</div>
+		
+		<footer class="clearfix boss-footer">
+			<button class="btn-none" onclick="window.history.go(-1);">
+				<span>返回</span>
+			</button>
+			<div class="pull-right boss-footer-right">
+				<button class="btn-none" onclick="location='/index.php/Boss/Score/index'">
+					<img src="__PUBLIC__/images/dishes-icon.png">
+					<div>菜品</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Turnover/index'">
+					<img src="__PUBLIC__/images/score-icon.png">
+					<div>营业额</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Detail/index'">
+					<img src="__PUBLIC__/images/detail-icon.png">
+					<div>明细</div>
+				</button>
+			</div>
+		</footer>
+		
+		<script src="__PUBLIC__/js/Boss/Detail.js"></script>
+	</body>
+</html>

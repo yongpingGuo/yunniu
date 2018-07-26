@@ -1,0 +1,121 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" href="__PUBLIC__/css/Mobile/select.css">
+</block>
+<block name="main">
+    <body class="time-page">
+        <eq name="timeInfo.types" value="1">
+            <div class="list-item flex-content vertical-flex">
+                <span class="flex-main text-grey">选择日期</span>
+                <div>
+                    <eq name="timeInfo.is_today" value="1">
+                        <div class="radio">
+                            <input type="radio" name="date" value="1">
+                            <i class="circle"></i>
+                            <span>今天</span>
+                        </div>
+                    </eq>
+                    <eq name="timeInfo.is_tomorrow" value="1">
+                        <div class="radio">
+                            <input type="radio" name="date" value="2">
+                            <i class="circle"></i>
+                            <span>明天</span>
+                        </div>
+                    </eq>
+                </div>
+            </div>
+        </eq>
+        <div class="list-item flex-content vertical-flex">
+            <span class="text-grey">预计到店时间</span>
+            <span id="time" class="flex-main text-right">请选择时间</span>
+            <i class="iconfont icon-more"></i>
+        </div>
+        <p class="time-tips text-center text-active">注：选择后不可修改与退款</p>
+        <div class="footer text-center">
+            <input type="hidden" name="types" id="types" value='{$timeInfo.types}' />
+            <input type="hidden" name="order_sn" id="order_sn" value='{$order_sn}' />
+            <button type="button" id="goPay" class="danger-btn">前去支付</button>
+        </div>
+
+    </body>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/Mobile/mobileSelect.min.js"></script>
+    <script type="text/javascript">
+        var timeArr = new Array();//时间数组
+        <volist name="timeInfo.ext" id="vo">
+            <eq name="vo['is_use']" value="1">timeArr.push('{$vo.times}');</eq>
+        </volist>
+        var mobileSelect1 = new MobileSelect({
+            trigger: '#time',
+            title: '选择使用时间',
+            wheels: [{ 
+                data: timeArr
+            }],
+            position: [0]
+        });
+        $(function(){
+            $("#goPay").click(function(){
+               var time = $("#time").text();
+               var check = $(":radio:checked").val();
+               var types = $("#types").val();
+               var order_sn = $("#order_sn").val();
+               if(types == 1 && typeof(check) == 'undefined'){
+                    layer.msg("请选择今天还是明天");
+                    return false;
+               }
+               if(time == '请选择时间'){
+                    layer.msg("请选择时间");
+                    return false;
+               }
+               $.post("{:U('Index/updateOrder')}", {use_time:time, use_day:check, order_sn:order_sn}, function(data){
+                    if(data.code == 1){
+                        layer.msg(data.msg);
+                        return false;
+                    }
+                    callpay();
+                    //location = '/index.php/Mobile/Index/pay_old/order_sn/'+data.order_sn+'';
+               });
+            });
+        });
+        //调用微信JS api 支付
+        function jsApiCall()
+        {
+            WeixinJSBridge.invoke(
+                    'getBrandWCPayRequest',
+                    {$jsApiParameters},
+                    function(res){
+                        WeixinJSBridge.log(res.err_msg);
+                        if(res.err_msg == 'get_brand_wcpay_request:cancel') {
+                            alert("您已取消了此次支付");
+                            return;
+                        } else if(res.err_msg == 'get_brand_wcpay_request:fail') {
+                            alert("支付失败");
+                            return;
+                        } else if(res.err_msg == 'get_brand_wcpay_request:ok') {
+                            var restaurant_id = $("#restaurant_id").val();
+                            var desk_code = $("#desk_code").val();
+                            location.href="{:U('Order/index')}";
+                        } else {
+                            alert("未知错误"+res.error_msg);
+                            return;
+                        }
+                    }
+            );
+        }
+        function callpay()
+        {
+            if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                }else if (document.attachEvent){
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            }else{
+                jsApiCall();
+            }
+        }
+    </script>
+</block>

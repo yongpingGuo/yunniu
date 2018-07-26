@@ -1,0 +1,38 @@
+<div id="comingCarousel" class="carousel slide" data-ride="carousel" data-interval="3000">
+	<div class="carousel-inner" id="item1" >
+		<div class="item active" >
+			<ul>
+				<if condition="$resultArrLen eq 0">
+					<li style="opacity: 0">qweqwe</li>
+				</if>
+				<volist name = "resultArr" id = "v" offset="0" length='16'>
+					<!--<li>{$v.order_sn|substr=-5,5}</li>-->
+					<!--<li>{$v.take_num}</li>-->
+
+                    <?php if($v['take_num']):?>
+                        <li>{$v.take_num}</li>
+                    <?php else: ?>
+                        <li>{$v.order_sn|substr=-5,5}</li>
+                    <?php endif; ?>
+				</volist>
+			</ul>
+		</div>
+		<for start="1" end="$total" name="k">
+			<div class="item">
+				<ul>
+					<volist name = "resultArr" id = "v" offset="$k*16" length='16'>
+						<!--<li>{$v.order_sn|substr=-5,5}</li>-->
+                        <!--<li>{$v.take_num}</li>-->
+
+                        <?php if($v['take_num']):?>
+                        <li>{$v.take_num}</li>
+                        <?php else: ?>
+                        <li>{$v.order_sn|substr=-5,5}</li>
+                        <?php endif; ?>
+					</volist>
+				</ul>
+			</div>
+		</for>
+	</div>
+	<input type="hidden" id="resultArrLen" value="{$resultArrLen}">
+</div>

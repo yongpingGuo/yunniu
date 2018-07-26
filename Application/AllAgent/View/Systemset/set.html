@@ -1,0 +1,33 @@
+<include file="Public/head"/>
+<body>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+
+	<section class="clearfix">
+		<aside class="set-sidebar">
+			<h3 class="text-center">系统设置</h3>
+			
+			<ul class="sidebar-list">
+				<!--<li>
+					<a target="iframe">系统设置1</a>
+				</li>-->
+				<li class="active">
+					<a href="{:U('systemset/show_renew')}" target="iframe">设备续费属性修改</a>
+				</li>
+				<!--<li>
+					<a target="iframe">其它设置</a>
+				</li>
+				<li>
+					<a target="iframe">系统设置4</a>
+				</li>-->
+				<li>
+					<a href="{:U('Systemset/ico_manager')}" target="iframe">图标管理</a>
+				</li>
+			</ul>
+		</aside>
+		<div class="iframe-content">
+			<iframe src="{:U('systemset/show_renew')}" name="iframe"></iframe>
+		</div>
+	</section>
+	<script type="text/javascript" src="__PUBLIC__/js/AllAgent/systemset.js"></script>
+</body>
+</html>

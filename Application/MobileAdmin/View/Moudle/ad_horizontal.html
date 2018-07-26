@@ -1,0 +1,56 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="横屏广告设置"/>
+	<section class="content">
+		<span>图片停留时间：</span>
+        <input type="text" value="{$info3}" id="interval" class="input-xs">
+		<span>秒/张</span>
+        <button class="danger-btn-sm" onclick="changetime()">保存图片停留时间</button>
+	</section>
+	<div id="ad_list">
+        <volist name="info" id="v" offset="0" length='1'>
+            <div class="section flex-content vertical-flex">
+                <div class="flex-main">
+                    <div class="img_horizontal" id="{$v.advertisement_id}">
+                        <img src="/{$v.advertisement_image_url}">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="section-row">
+                        <div class="file-content">
+                            <button class="danger-btn-sm">选择图片</button>
+                            <input type="hidden" value="{$v.advertisement_id}"/>
+                            <input type="file" name="default" onchange="preview1(this,2)">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </volist>
+        <volist name="info" id="v" offset="1">
+            <div class="section flex-content vertical-flex">
+                <div class="flex-main">
+                    <div class="img_horizontal" id="{$v.advertisement_id}">
+                        <img src="/{$v.advertisement_image_url}">
+                    </div>
+                </div>
+                <div class="text-right">
+                    <div class="section-row">
+                        <div class="file-content">
+                            <button class="danger-btn-sm">选择图片</button>
+                            <input type="hidden" value="{$v.advertisement_id}"/>
+                            <input type="file" name="change" onchange="preview1(this,2)">
+                        </div>
+                    </div>
+                    <button class="danger-btn-sm" onclick="deladver({$v.advertisement_id},2,this)">删除图片</button>
+                </div>
+            </div>
+        </volist>
+	</div>
+    <button class="danger-btn file-content">
+        <i class="iconfont icon-plus" onclick="add_ad()"></i>
+    </button>
+</block>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/ad.js?20171027"></script>
+</block>

@@ -1,0 +1,162 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="规格" />
+    <input type="hidden" id="food_id" value="{$food_id}" />
+    <div id="list">
+        <volist name="attr_type_list" id="at_vo">
+            <section class="section">
+                <form action="javascript:void(0)">
+                    <div class="flex-content vertical-flex section-row">
+                        <div class="flex-main">
+                            <span class="text-6">规格分类名称：</span>
+                            <input type="text" class="input-sm" name="type_name" value="{$at_vo.type_name}">
+                        </div>
+                        <button class="default-btn" onclick="keep_type(this,0)">保存</button>
+                        <input type="hidden" name="attribute_type_id" value="{$at_vo.attribute_type_id}" />
+                        <button class="default-btn" onclick="del_type(this,0)">删除</button>
+                    </div>
+                    <div class="section-row">
+                        <span class="text-6">厨房打印机：</span>
+                        <div class="select-reset">
+                            <select name="print_id">
+                                <option value="0">不设打印</option>
+                                <?php foreach ($printerList as $k => $v):
+                                if ($v['printer_id'] == $at_vo['print_id']) {
+                                $selected = "selected='selected'";
+                                }else{
+                                $selected = "";
+                                }
+                                ?>
+                                <?php if ($v['print_type'] !=2) {
+                                echo "<option value='".$v['printer_id']."'".$selected.">".$v['printer_name']."</option>";
+                                };?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="section-row">
+                        <span class="text-6">标签打印机：</span>
+                        <div class="select-reset">
+                            <select name="tag_print_id">
+                                <option value="0">不设打印</option>
+                                <?php foreach ($printerList as $k => $v):
+                                if ($v['printer_id'] == $at_vo['tag_print_id']) {
+                                $selected = "selected='selected'";
+                                }else{
+                                $selected = "";
+                                }
+                                ?>
+                                <?php if ($v['print_type'] ==2) {
+                                echo "<option value='".$v['printer_id']."'".$selected.">".$v['printer_name']."</option>";
+                                };?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="section-row">
+                        <span class="text-6">统计：</span>
+                        <if condition="$at_vo['count_type'] eq 0">
+                            <div class="checkbox-switch">
+                                <input type="hidden" name="count_type" value="0" />
+                                <input type="checkbox" name="count_types" onchange="change_status(this)">
+                                <label></label>
+                            </div>
+                            <else/>
+                            <div class="checkbox-switch">
+                                <input type="hidden" name="count_type" value="1" />
+                                <input type="checkbox" name="count_types" onchange="change_status(this)" checked="checked">
+                                <label></label>
+                            </div>
+                        </if>
+                    </div>
+                    <div class="section-row">
+                        <if condition="$at_vo['select_type'] eq 0">
+                            <label class="radio">
+                                <input type="radio" name="select_type{$key}" value="0" checked onclick="radio_check(this)">
+                                <i class="circle-icon"></i>
+                                <span>单选</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="select_type{$key}" value="1" onclick="radio_check(this)">
+                                <i class="circle-icon"></i>
+                                <span>多选</span>
+                            </label>
+                            <input type="hidden" name="select_type" value="0" />
+                            <else/>
+                            <label class="radio">
+                                <input type="radio" name="select_type{$key}" value="0" onclick="radio_check(this)">
+                                <i class="circle-icon"></i>
+                                <span>单选</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="select_type{$key}" value="1" checked onclick="radio_check(this)">
+                                <i class="circle-icon"></i>
+                                <span>多选</span>
+                            </label>
+                            <input type="hidden" name="select_type" value="1" />
+                        </if>
+                    </div>
+                </form>
+                <hr class="hr">
+                <volist name="at_vo['attr_list']" id="vo2">
+                    <form action="javascript:void(0)">
+                        <div class="flex-content vertical-flex section-row">
+                            <span>规格：</span>
+                            <input type="text" class="input flex-main" name="attribute_name" value="{$vo2.attribute_name}">
+                            <span>+</span>
+                            <input type="text" class="input-xs" name="attribute_price" value="{$vo2.attribute_price}">
+                            <span class="text-2 text-center">元</span>
+                            <button class="default-btn" data-food_attribute_id="{$vo2.food_attribute_id}" data-attribute_type_id="{$vo2.attribute_type_id}" onclick="keep_attr(this,0)">保存</button>
+                            <button class="default-btn" onclick="del_attr(this)">删除</button>
+                        </div>
+                    </form>
+                </volist>
+                <button class="danger-btn" data-attribute_type_id="{$at_vo.attribute_type_id}" data-if_save="1" onclick="add_attr(this)" type="button">
+                    <i class="iconfont icon-plus"></i>
+                </button>
+            </section>
+        </volist>
+    </div>
+    <button class="danger-btn-sm" onclick="add_type()">新增规格分类</button>
+    <div class="tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>打印机：须要与菜品的打印机一致（同一台打印机打出）</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>单选：必选一个，多选一</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>多选：默认不选，可以多选/不选</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>统计：建议涉及到加钱的，打开统计（后台会统计规格销售量）</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>例子</span>
+        </div>
+        <hr class="hr hr-lg hr-dashed">      
+        <div>规格分类名称：口味</div>
+        <div>厨房打印机：80网口打印机</div>
+        <div>标签打印机：不设打印</div>
+        <div>统计：关闭</div>
+        <div>单选</div>
+        <div>规格1：不辣 +0.00元 （这里将是默认选择）</div>
+        <div>规格2：加辣 +0.00元 </div>
+        <hr class="hr hr-lg hr-dashed">   
+        <div>规格分类名称：饮料</div>
+        <div>厨房打印机：80网口打印机</div>
+        <div>标签打印机：不设打印</div>
+        <div>统计：开启</div>
+        <div>多选</div>
+        <div>规格1：可乐 +3 元</div>
+        <div>规格2：雪碧 +3 元</div> 
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/type_and_attr.js?v20171024"></script>
+</block>

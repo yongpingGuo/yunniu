@@ -1,0 +1,69 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="银行代收" />
+    <form action="javascript:void(0)" id="othersForm">
+        <section class="section">
+            <div class="section-row flex-content">
+                <span class="text-6">一码通商户号：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" value="{$fourth.account}" name="account" placeholder="请输入商户号">
+                </div>
+            </div>
+            <div class="section-row flex-content">
+                <span class="text-6 text-right">密码：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" value="{$fourth.pwd}" name="pwd" placeholder="请输入密码">
+                </div>
+            </div>
+            <div class="remarks section-row">本商户号为一码通的帐号密码。</div>
+        </section>
+    </form>
+    <button class="danger-btn-lg" data-paytype="others" onclick="submitPayInfo_fourth(this)">保存设置</button>
+    <div class="remarks tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>手续费：由民生银行一码通标准，现微信与支付宝都为0.55%。</span>
+        </div>
+        <div>商家达到20万时，自动降为0.48%。
+        </div>
+        <div>商家达到50万时，自动降为0.38%。</div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>对接申请方便快捷，即时当天上线，请联系客服申请。</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>银行代收不支持餐桌扫码点餐、会员。</span>
+        </div>
+    </div>
+    <section class="section">
+        <div class="flex-content flex-wrap section-row">
+            <a class="index-item" href="http://svc.founya.com/home/user/login.html">
+                <div class="section-icon">
+                    <img src="/Public/images/mobile/wechatAndAlipay.png">
+                </div>
+                <div>申请收款</div>
+            </a>
+            <a class="index-item" href="http://8.498.net/soft_update/app_h5/Pay_MS_SH_APP_2017/PayeeApp.apk">
+                <div class="section-icon">
+                    <img src="/Public/images/mobile/android.png">
+                </div>
+                <div>民生安卓</div>
+            </a>
+            <!--<a class="index-item" href="/index.php/MobileAdmin/Index/bank.html">-->
+            <a class="index-item" href="https://itunes.apple.com/us/app/民生一码通商户版/id1207732162?l=zh&ls=1&mt=8">
+                <div class="section-icon">
+                    <img src="/Public/images/mobile/ios.png">
+                </div>
+                <div>民生苹果</div>
+            </a>
+        </div>
+    </section>
+    <div class="remarks">
+        <div>*在使用之前，商家须先申请！</div>
+        <div>*民生APP可用于对帐、收款通知</div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/dataForPay.js"></script>
+</block>

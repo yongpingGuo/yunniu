@@ -1,0 +1,43 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="积分兑换"/>
+	<div class="content">
+		<span class="text-4">积分兑换：</span>
+		<div class="checkbox-switch">
+            <if condition="$goods_open eq 1">
+                <input type="checkbox" name="change" class="change" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/goods_set')" checked>
+                <else/>
+                <input type="checkbox" name="change" class="change" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/goods_set')">
+            </if>
+		    <label></label>
+		</div>
+	</div>	
+	<section class="section">
+		<header class="section-title">积分礼品</header>
+		<div class="gift-list clear">
+            <foreach name="img_rules" item="v">
+                <div class="gift-item">
+                    <img src="/Public/Uploads/Goods/{$v[goods_img]}">
+                    <div class="flex-content">
+                        <span class="flex-main">{$v['goods_name']}</span>
+                        <span>{$v[score]}分</span>
+                    </div>
+                </div>
+            </foreach>
+		</div>
+	</section>
+</block>
+<block name="js">
+	<script type="text/javascript">
+		function giftImgSize() {
+			var height=$('.gift-item').width()*0.6;
+			$('.gift-item img').css('height', height);
+		}
+		giftImgSize();
+		$(window).resize(function(){
+			giftImgSize();
+		});
+	</script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/consumption_vip.js"></script>
+</block>

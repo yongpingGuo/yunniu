@@ -1,0 +1,410 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+</block>
+<block name="main">
+    <form action="javascript:void(0)" id="food_info">
+        <section class="section">
+            <div class="section-header">{{langData.dishesBasicSet[lang]}}</div>
+            <div class="section-content dishes-info">
+                <div class="clearfix">
+                    <div class="pull-left dishes-info-left">
+                        <div id="preview" class="img-preview">
+                            <img src="/Application/Admin/Uploads/default/unupload.png" />
+                        </div>
+                        <div class="text-center">
+                            <div class="section-tips">{{langData.dishImgSize[lang]}}</div>
+                            <div class="file-content blue-btn">
+                                <span>{{langData.upload[lang]}}</span>
+                                <input type="file" name="food_pic" onchange="preview(this)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-left dishes-info-right">
+                        <table>
+                            <tbody>
+                                <tr>
+                                    <td>*{{langData.chineseName[lang]}}:</td>
+                                    <td colspan="3">
+                                        <input type="text" name="food_name" :placeholder="langData.chineseName[lang]" class="large-input">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{langData.diserp[lang]}}:</td>
+                                    <td colspan="3">
+                                        <input type="text" name="erp_number" :placeholder="langData.ErpFoodid[lang]" class="large-input">
+                                    </td>
+                                </tr>
+                                <if condition="$is_en">
+                                    <tr>
+                                        <td>{{langData.englishName[lang]}}:</td>
+                                        <td colspan="3">
+                                            <input type="text" name="food_name_en" :placeholder="langData.englishName[lang]" class="large-input">
+                                        </td>
+                                    </tr>
+                                </if>
+                                <tr>
+                                    <td>{{langData.dishesDescription[lang]}}:</td>
+                                    <td colspan="3">
+                                        <textarea name="food_desc" cols="30" rows="4" :placeholder="langData.dishesDescription[lang]"></textarea>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*{{langData.dishprice[lang]}}:</td>
+                                    <td colspan="3">
+                                        <input type="text" name="food_price" :placeholder="100.00" class="small-input">
+                                        <span>{{langData.yuan[lang]}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>*{{langData.dailyLimit[lang]}}:</td>
+                                    <td colspan="3">
+                                        <input type="text" name="foods_num_day" value="10000" class="small-input">
+                                        <span>{{langData.copies[lang]}}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>{{langData.taste[lang]}}</td>
+                                    <td>
+                                        <div class="cayenne">
+                                            <input type="hidden" name="cayenne" />
+                                            <span id="notSpicy" class="hide active" data-index="0"></span>
+                                            <!-- 不辣与微辣 -->
+                                            <span data-index="1"></span>
+                                            <!-- 中辣 -->
+                                            <span data-index="2"></span>
+                                            <!-- 大辣 -->
+                                            <span data-index="3"></span>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td class="textR">
+                                        <span>{{langData.recommend[lang]}}:</span>
+                                        <div class="star inline">
+                                            <input type="radio" name="star_level" value="1" />
+                                            <span>★</span>
+                                            <input type="radio" name="star_level" value="2" />
+                                            <span>★</span>
+                                            <input type="radio" name="star_level" value="3" />
+                                            <span>★</span>
+                                            <input type="radio" name="star_level" value="4" />
+                                            <span>★</span>
+                                            <input type="radio" name="star_level" value="5" checked="checked" />
+                                            <span>★</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <fieldset>
+                    <legend>{{langData.dishesCategorySettings[lang]}}</legend>
+                    <volist name="data" id="v">
+                        <label class="classifySelect">
+                            <input class="menu_input" type="checkbox" name="sort1[]" value="{$v.food_category_id}">
+                            <span>{$v.food_category_name}</span>
+                        </label>
+                    </volist>
+                </fieldset>
+                <if condition="$is_en">
+                    <fieldset>
+                        <legend>{{langData.timeClassify[lang]}}</legend>
+                        <volist name="time_category_list" id="v">
+                            <label class="classifySelect">
+                                <input class="menu_input" type="checkbox" name="time_category[]" value="{$v.food_time_category_id}">
+                                <span>{$v.food_timcate_name}</span>
+                            </label>
+                        </volist>
+                    </fieldset>
+                </if>
+                <fieldset>
+                    <legend>{{langData.printerSettings[lang]}}:</legend>
+                    <div class="inline-block">
+                        <span>{{langData.kitchenPrinter[lang]}}:</span>
+                        <select name="print_id" id="print_id" class="select-grey">
+                            <option value="0">{{langData.noPrint[lang]}}</option>
+                            <?php foreach ($printerList as $k => $v): ?>
+                            <?php if ($v['print_type'] !=2) {
+                                echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+                            };?>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="inline-block">
+                        <span>{{langData.labelPrinter[lang]}}:</span>
+                        <select name="tag_print_id" id="sel" class="select-grey">
+                            <option value="0">{{langData.noPrint[lang]}}</option>
+                            <?php foreach ($printerList as $k => $v): ?>
+                            <?php if ($v['print_type'] ==2) {
+                                    echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+                                };?>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                    <div class="inline-block">
+                        <span>{{langData.calledScreenPartition[lang]}}:</span>
+                        <select name="district" id="district" class="select-grey">
+                            <volist name="district_list" id="district_vo">
+                                <if condition="$district_vo['district_id'] eq 0">
+                                    <option value="{$district_vo['district_id']}" selected>
+                                        {$district_vo.district_name}
+                                    </option>
+                                    <else/>
+                                    <option value="{$district_vo['district_id']}">
+                                        {$district_vo.district_name}
+                                    </option>
+                                </if>
+                            </volist>
+                        </select>
+                    </div>
+                </fieldset>
+                <div class="text-center">
+                    <input type="hidden" name="is_en" id="is_en" value='{$is_en}' />
+                    <button class="blue-btn" id="save_food">{{langData.save[lang]}}</button>
+                    <input type="hidden" name="save_status" id="save_status">
+                </div>
+            </div>
+        </section>
+    </form>
+    <section class="section">
+        <div class="section-header">{{langData.dishesSpecificationSet[lang]}}</div>
+        <div class="section-content">
+            <div id="dishesAttrList"> </div>
+            <button class="blue-btn" data-toggle="modal" onclick="add_food_type()">{{langData.newSpecCategory[lang]}}</button>
+            <span class="section-tips">{{langData.attrPrinterTips[lang]}}</span>
+        </div>
+    </section>
+</block>
+<block name="modal">
+    <!-- 新增分类Modal -->
+    <div class="modal fade" id="add-dishes-sort" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">{{langData.dishesSpecCategorySet[lang]}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" id="addDishesAttrType">
+                        <input type="hidden" name="food_id" id="type_form">
+                        <table class="table-condensed">
+                            <tr>
+                                <td>{{langData.classificationName[lang]}}:</td>
+                                <td>
+                                    <input type="text" name="type_name" placeholder="例：饮料">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.kitchenPrinter[lang]}}:</td>
+                                <td>
+                                    <select name="print_id" class="select-grey">
+                                        <option value="0">{{langData.noPrinter[lang]}}</option>
+                                        <?php foreach ($printerList as $k => $v): ?>
+                                        <?php if ($v['print_type'] !=2) {
+                                                        echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+                                                    };?>
+                                        <?php endforeach ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.labelPrinter[lang]}}:</td>
+                                <td>
+                                    <select name="tag_print_id" class="select-grey">
+                                        <option value="0">不设打印</option>
+                                        <?php foreach ($printerList as $k => $v): ?>
+                                        <?php if ($v['print_type'] ==2) {
+                                                    echo "<option value='".$v['printer_id']."'>".$v['printer_name']."</option>";
+                                                };?>
+                                        <?php endforeach ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.statistics[lang]}}:</td>
+                                <td>
+                                    <input type="hidden" name="count_type" value="0">
+                                    <div class="checkbox-switch">
+                                        <input type="checkbox" name="count_types" onclick="changestatu(this)">
+                                        <label></label>
+                                    </div>
+                                    <!-- <input type="radio" name="count_type" value="0" checked>否
+                                        <input type="radio" name="count_type" value="1">是
+                                        <span style="color: red;">(是否列入数据统计)</span> -->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.select[lang]}}:</td>
+                                <td>
+                                    <label>
+                                        <input class="radio-circle" type="radio" name="select_type" value="0" checked>
+                                        <i></i>
+                                        <span>单选</span>
+                                    </label>
+                                    <label>
+                                        <input class="radio-circle" type="radio" name="select_type" value="1">
+                                        <i></i>
+                                        <span>多选</span>
+                                    </label>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <button type="button" class="blue-btn" onclick="addDishesAttrType()">{{langData.add[lang]}}</button>
+                            <input type="reset" name="reset1" id="reset1" style="display:none;" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 修改分类Modal -->
+    <div class="modal fade" id="edit-dishes-sort" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">{{langData.dishesSpecCategorySet[lang]}}</h4>
+                </div>
+                <div class="modal-body" id="attr_content_byId">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 编辑属性Modal -->
+    <div class="modal fade" id="edit-attr" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title">{{langData.dishesSpecCategorySet[lang]}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" id="add_attr">
+                        <input type="hidden" name="attribute_type_id" id="attribute_type_id">
+                        <input type="hidden" name="food_attribute_id" id="food_attribute_id">
+                        <input type="hidden" name="type" id="type" value="add">
+                        <table class="table-condensed">
+                            <tr>
+                                <td>{{langData.specificationName[lang]}}:</td>
+                                <td>
+                                    <input type="text" name="attribute_name" :placeholder="langData.CocaCola[lang]">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.overlayPrice[lang]}}:</td>
+                                <td>
+                                    <input type="text" name="attribute_price" value="0.00" class="small-input">
+                                    <span>{{langData.yuan[lang]}}</span>
+                                </td>
+                            </tr>
+                        </table>
+                        <div class="text-center">
+                            <button type="button" class="blue-btn" onclick="addDishesAttr()">{{langData.save[lang]}}</button>
+                            <input type="reset" class="hidden">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <include file="Public/datetimepicker"/>
+    <script src="__PUBLIC__/js/addDishes.js?20170928"></script>
+    <script>
+    var publicURL = "__PUBLIC__";
+    // 口味
+    var index;
+    $(".cayenne span").click(function(event) {
+        if ($(this).data('index') == 1 && $(this).attr('class') == "active") {
+            $('#notSpicy').addClass('active').siblings().removeClass('active');
+            index = 0;
+        } else {
+            index = $(this).data('index');
+            $(this).addClass('active').siblings().removeClass('active');
+        }
+        // console.log(index);  
+    });
+
+    function changestatu(obj) {
+        var hschek = $(obj).closest("form").find("input[name='count_types']").is(':checked');
+        if (hschek) {
+            $(obj).closest("form").find("input[name='count_type']").val(1);
+        } else {
+            $(obj).closest("form").find("input[name='count_type']").val(0);
+        }
+    }
+
+    $("#save_food").click(function() {
+        var hschek = $(".is_prom").is(':checked');
+        if (hschek) {
+            status = 1;
+        } else {
+            status = 0;
+        }
+        var is_en = parseInt($("#is_en").val());
+        var img_src = $("input[name='food_pic']").val();
+        var food_name = $("input[name='food_name']").val();
+        var food_price = $("input[name='food_price']").val();
+        //var discount  = $("input[name='discount']").val();
+        var foods_num_day = $("input[name='foods_num_day']").val();
+        var sort1 = $("input:checkbox[name='sort1[]']:checked").length;
+        var time_category = $("input:checkbox[name='time_category[]']:checked").length;
+        var print_id = $("#print_id").children('option').length;
+        var save_status = $("#save_status").val();
+        var is_prom = status;
+        var prom_price = $("input[name='prom_price']").val();
+        //var prom_discount = $("input[name='prom_discount']").val();
+        var prom_goods_num = $("input[name='prom_goods_num']").val();
+        var prom_start_time = $("input[name='prom_start_time']").val();
+        var prom_end_time = $("input[name='prom_end_time']").val();
+        var erp_number = $("input[name='erp_number']").val();
+        $("input[name='cayenne']").val(index);
+        $("input[name='is_prom']").val(status);
+        console.log(prom_start_time);
+        if (save_status != 1) {
+            if (is_prom != 0) {
+                if (!(prom_price && prom_goods_num && prom_start_time && prom_end_time)) {
+                    layer.msg(vm.langData.asteriskWarn[vm.lang]);
+                    return false;
+                }
+            }
+            if (!(food_name && food_price && foods_num_day)) {
+                layer.msg(vm.langData.asteriskWarn[vm.lang]);
+            }
+            else if (!sort1 > 0) {
+                layer.msg(vm.langData.notChooseDishesCategory[vm.lang]);
+            } else if (print_id == 0) {
+                layer.msg(vm.langData.noPrinter[vm.lang]);
+            } else {
+                var formData = new FormData($("#food_info")[0]);
+                //                console.log(formData);
+                $.ajax({
+                    url: "/index.php/admin/dishes/createfoodinfo",
+                    type: "post",
+                    data: formData,
+                    async: false,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    dataType: "json",
+                    success: function(data) {
+                        console.log(data);
+                        $("#save_status").val(1);
+                        $("#type_form").data('id', data.food_id);
+                        layer.confirm('', { title: vm.langData.editDishNext[vm.lang], btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]] },function(index){
+                            layer.close(index)
+                        },function(index) {
+                            location.href = '/index.php/admin/Dishes/index/page/' + data.page_Num;
+                        });
+                    }
+                });
+            }
+        } else {
+            layer.msg(vm.langData.dishesAdded[vm.lang]);
+        }
+    });
+    </script>
+</block>

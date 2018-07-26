@@ -1,0 +1,158 @@
+<extend name="Public:base" />
+<block name="main">
+	<section class="section">
+		<div class="flex-content vertical-flex section-row">
+			<span class="text-4">店铺名称：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span class="text-4">外卖电话：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content vertical-flex section-row">
+			<span class="text-4">服务电话：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<input type="text" class="flex-main input">
+		</div>
+		<div class="flex-content section-row">
+			<span class="text-4">地址：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<textarea class="flex-main textarea" rows="2"></textarea>
+		</div>
+		<div class="flex-content section-row">
+			<span class="text-4">营销广告：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<textarea class="flex-main textarea" rows="2"></textarea>
+		</div>
+		<div class="flex-content section-row">
+			<span class="text-4">外卖堂吃：</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<hr class="hr-dashed">
+		<div class="flex-content section-row">
+			<span class="text-4">餐牌号：</span>
+			<div class="flex-main">
+				<div class="flex-content">
+					<div class="checkbox-switch">
+						<input type="checkbox">
+						<label></label>
+					</div>
+					<input type="text" class="flex-main input">
+				</div>
+				<div class="remarks">点餐流程关闭餐牌号时，建议设置为关</div>
+				<div class="flex-content vertical-flex">
+					<span>提示语：</span>
+					<textarea class="flex-main textarea" rows="2"></textarea>
+				</div>
+			</div>
+		</div>
+		<hr class="hr-dashed">
+		<div class="flex-content section-row">
+			<span class="text-4">取餐号：</span>
+			<div class="flex-main">
+				<div class="flex-content">
+					<div class="checkbox-switch">
+						<input type="checkbox">
+						<label></label>
+					</div>
+					<input type="text" class="flex-main input">
+				</div>
+				<div class="remarks">点餐流程关闭餐牌号时，建议设置为开</div>
+				<div class="flex-content vertical-flex">
+					<span>提示语：</span>
+					<textarea class="flex-main textarea" rows="2"></textarea>
+				</div>
+			</div>
+		</div>
+		<hr class="hr-dashed">
+		<div class="flex-content section-row">
+			<span class="text-4">支付号：</span>
+			<div class="flex-main">
+				<div class="flex-content">
+					<div class="checkbox-switch">
+						<input type="checkbox">
+						<label></label>
+					</div>
+					<input type="text" class="flex-main input">
+				</div>
+				<div class="remarks">自助点餐机，设有现金支付时，建议设置为开</div>
+				<div class="flex-content vertical-flex">
+					<span>提示语：</span>
+					<textarea class="flex-main textarea" rows="2"></textarea>
+				</div>
+			</div>
+		</div>
+		<hr class="hr-dashed">
+	</section>
+	<button class="danger-btn-lg">保存设置</button>
+	<div class="receipt-header">小票预览</div>
+	<div class="receipt-preview">
+		<div class="text-center">方派餐饮系统</div>
+		<div>下单时间：2017-08-01 11:20:20</div>
+		<div>订单号：XXXXXXXXXXXXXXXXXXXXXXXX</div>
+		<hr class="hr-dashed">
+		<table class="receipt-food">
+			<tbody>
+				<tr>
+					<td class="text-center">菜单</td>
+					<td class="text-center">数量</td>
+					<td class="text-right">价格</td>
+				</tr>
+				<tr>
+					<td>红烧肉饭</td>
+					<td class="text-center">1</td>
+					<td class="text-right">18.00</td>
+				</tr>
+				<tr>
+					<td>红烧肉饭</td>
+					<td class="text-center">1</td>
+					<td class="text-right">18.00</td>
+				</tr>
+			</tbody>
+		</table>
+		<hr class="hr-dashed">
+		<div class="text-right">
+			<div>原价：48.00</div>
+			<div>优惠：-5.00</div>
+			<div>实付：43.00</div>
+			<div>微信支付</div>
+		</div>
+		<hr class="hr-dashed">
+		<div class="receipt-num">取餐号：1001</div>
+		<div class="text-center">请留意叫号，恁取餐号到取餐区领餐</div>
+		<hr class="hr-dashed">
+		<div class="receipt-num">餐牌号：99</div>
+		<div class="text-center">请将餐牌号放置在餐桌显眼位置</div>
+		<hr class="hr-dashed">
+		<div class="receipt-num">支付号：1001</div>
+		<div class="text-center">恁本票，到前台支付，才能完成下单</div>
+		<hr class="hr-dashed">
+		<div class="receipt-num">订单类型：外带</div>
+		<hr class="hr-dashed">
+		<div>地址：广州市XXXXXXXXXX</div>
+		<div>外卖电话：1380000000000</div>
+		<div>服务电话：1380000000000</div>
+		<div class="text-center">谢谢惠顾，注册会员，获更多优惠</div>
+	</div>
+	<button class="danger-btn-lg">保存设置</button>
+</block>

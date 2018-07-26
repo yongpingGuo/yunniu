@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="tab-pane fade in active" id="recommend">
+			<div class="row">
+				<volist name = "info2" id = "v1">
+					<div class="col-sm-6 col-md-4">
+						<a class="food-item" href="javascript:void(0)"  data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" onclick="findfoodinfo(this)">
+							<div class="food-box">
+								<div class="food-box-img">
+									<img src="/{$v1.food_img}"></div>
+								<div class="clearfix">
+									<div class="pull-left">
+										<div class="star">
+											<if condition = "$v1.star_level eq 1">
+												<span></span>
+											</if>
+											<if condition = "$v1.star_level eq 2">
+												<span>★★</span>
+											</if>
+											<if condition = "$v1.star_level eq 3">
+												<span>★★★</span>
+											</if>
+											<if condition = "$v1.star_level eq 4">
+												<span>★★★★</span>
+											</if>
+											<if condition = "$v1.star_level eq 5">
+												<span>★★★★★</span>
+											</if>
+										</div>
+									</div>
+									<div class="pull-right text-right">
+										<div class="cayenne">
+											<if condition = "$v1.hot_level eq 0"></if>
+											<if condition = "$v1.hot_level eq 1"></if>
+											<if condition = "$v1.hot_level eq 2">
+												<img src="__PUBLIC__/images/cayenne.png">
+												<img src="__PUBLIC__/images/cayenne.png">
+											</if>
+											<if condition = "$v1.hot_level eq 3">
+												<img src="__PUBLIC__/images/cayenne.png">
+												<img src="__PUBLIC__/images/cayenne.png">
+												<img src="__PUBLIC__/images/cayenne.png">
+											</if>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="food-details">
+								<div class="food-name">{$v1.food_name}</div>
+								<div class="food-price">&yen;{$v1.food_price}</div>
+							</div>
+						</a>
+					</div>
+				</volist>
+			</div>
+		</div>
+	</body>
+</html>

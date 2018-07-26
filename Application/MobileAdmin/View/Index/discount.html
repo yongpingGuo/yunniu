@@ -1,0 +1,36 @@
+<extend name="Public:base" />
+<block name="main">
+	<header class="header">折扣设置</header>
+	<section class="content">
+		<div class="section-row flex-content vertical-flex">
+			<span class="text-4">折扣类型：</span>
+			<div class="select-reset flex-main">
+				<select>
+					<option>只限会员、所有、关闭折扣</option>
+				</select>
+			</div>
+		</div>
+		<div class="remarks section-row">
+			<div>* 所有顾客与会员折扣，只能选择一项。</div>
+			<div>* 会员折扣须要依赖微信公从号。</div>
+		</div>
+	</section>	
+	
+	<section class="section">
+		<header class="section-title">折扣设置</header>
+		<div class="flex-content flex-wrap section-row">
+			<a class="index-item" href="{:U('Index/discount_all')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/all.png">
+				</div>
+				<div>所有顾客</div>
+			</a>
+			<a class="index-item" href="{:U('Index/discount_vip')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/vip.png">
+				</div>
+				<div>会员折扣</div>
+			</a>
+		</div>
+	</section>
+</block>

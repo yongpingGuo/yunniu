@@ -1,0 +1,26 @@
+<form class="flex-content" id="ajax-content">
+    <div class="flex-main">
+        <span>{{langData.points[lang]}}:</span>
+        <input class="small-input" type="text" name="account" value="{$point_cash_rules[account]}" id="man">
+        <span>{{langData.point[lang]}}={{langData.cash[lang]}}：</span>
+        <input class="small-input" type="text" name="benefit" value="{$score}" id="zhe">
+        <span>{{langData.cash[lang]}}</span>
+        <input type="hidden" name="id" value="{$point_cash_rules[id]}" />
+    </div>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="return save_point_cash(this)">保存</button>
+        <button class="btn btn-sm btn-danger" onclick="return shanchu_point_cash(this,'/index.php/Admin/Member/del_point_cash')">删除</button>
+    </div>
+</form>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

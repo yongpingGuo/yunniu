@@ -1,0 +1,115 @@
+<extend name="Public:base" />
+<block name="main">
+	<ul class="nav nav-tabs">
+		<li class="active">
+			<a href="#meituan" data-toggle="tab">{{langData.meituan[lang]}}</a>
+		</li>
+		<li>
+			<a href="#eleme" data-toggle="tab">{{langData.eleme[lang]}}</a>
+		</li>
+	</ul>
+	<div class="tab-content">
+		<div class="tab-pane fade in active" id="meituan">
+			<div class="section-content">
+				<div>
+					<span>{{langData.boundShop[lang]}}:</span>
+                    <?php if(empty($restaurant_name)):?>
+                        <span>{{langData.notBound[lang]}}</span>
+                        <?php else: ?>
+                            {$restaurant_name}
+                    <?php endif; ?>
+				</div>
+                <input type="hidden" value="{$url}" id="grant_url"/>
+                <input type="hidden" value="{$unbind_url}" id="unbind_url"/>
+                <input type="hidden" value="{$has_bind}" id="has_bind"/>
+				<button type="button" class="blue-btn" id="meituan_grant">{{langData.goAuthorization[lang]}}</button>
+				<div class="section-tips">{{langData.takeoutadBoundTips[lang]}}</div><br>
+                <button type="button" class="blue-btn" id="meituan_unbind" style="background: #FF0000">{{langData.goUnzip[lang]}}</button>
+			</div>
+			<div class="section-content">
+				<span>{{langData.billBottomAds[lang]}}:</span>
+				<input type="text" name="bill_foot_language" value="{$language_info['bill_foot_language']}" id="bill_foot_language" class="large-input" onchange="changeadvlang_meituan()">      <span class="text-danger">({{langData.takeoutadBoundSaveTips[lang]}})</span>
+                <div class="section-tips">{{langData.takeoutadBoundOperatTips[lang]}}</div>
+			</div>
+		</div>
+
+		<div class="tab-pane fade" id="eleme">
+            <div class="section-content">
+                <div>
+                    <span>{{langData.boundShop[lang]}}:</span>
+                    <if condition="$display_content['code'] eq 1">{{langData.notBound[lang]}}
+                        <elseif condition="$display_content['code'] eq 3"/>{{langData.reauthorize[lang]}}
+                        <else /> {$display_content['msg']}
+                    </if>
+                </div>
+                <input type="hidden" value="{$auth_url}" id="eleme_grant_url"/>
+                <input type="hidden" value="{$grant_situation}" id="if_grant"/>
+                <button type="button" class="blue-btn" id="eleme_grant">{{langData.goAuthorization[lang]}}</button>
+                <div class="section-tips">{{langData.takeoutadBoundTips[lang]}}</div>
+            </div>
+            <div class="section-content">
+                <span>{{langData.billBottomAds[lang]}}:</span>
+                <input type="text" name="eleme_bill_foot_language" value="{$language_info['eleme_bill_foot_language']}" id="eleme_bill_foot_language" class="large-input" onchange="changeadvlang_eleme()"><span class="text-danger">({{langData.takeoutadBoundSaveTips[lang]}})</span>
+                <div class="section-tips">{{langData.takeoutadBoundOperatTips[lang]}}</div>
+            </div>
+		</div>
+	</div>
+</block>
+<block name="js">
+<script>
+    //改变票据底部美团广告语
+    function changeadvlang_meituan(){
+        var value = $("#bill_foot_language").val();
+        if(!value){
+            layer.msg(vm.langData.advertisingSloganNotEmpty[vm.lang]);
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"/index.php/admin/DataDock/adv_langSet",
+            data:{"bill_foot_language":value,type:'meituan'},
+            dataType:"json",
+            success:function(data){
+                layer.tips(vm.langData.success[vm.lang],'#bill_foot_language');
+            }
+        });
+    }
+    //改变票据底部饿了么广告语
+    function changeadvlang_eleme(){
+        var value = $("#eleme_bill_foot_language").val();
+        if(!value){
+            layer.msg(vm.langData.advertisingSloganNotEmpty[vm.lang]);
+            return false;
+        }
+        $.ajax({
+            type:"post",
+            url:"/index.php/admin/DataDock/adv_langSet",
+            data:{"eleme_bill_foot_language":value,type:'eleme'},
+            dataType:"json",
+            success:function(data){
+                layer.tips(vm.langData.success[vm.lang],'#eleme_bill_foot_language');
+            }
+        });
+    }
+    $('#meituan_grant').click(function(){
+        var url = $('#grant_url').val();
+        window.open(url);
+    });
+    $('#eleme_grant').click(function(){
+        var if_grant = $('#if_grant').val();
+        var auth_url = $('#eleme_grant_url').val();
+        window.open(auth_url);
+    });
+
+    $('#meituan_unbind').click(function(){
+        var has_bind = $('#has_bind' ).val();
+        if(has_bind == 0){
+            layer.msg(vm.langData.meituanUnbindTips[vm.lang]);
+            return false;
+        }
+        var url = $('#unbind_url').val();
+        window.open(url);
+    });
+
+</script>
+</block>

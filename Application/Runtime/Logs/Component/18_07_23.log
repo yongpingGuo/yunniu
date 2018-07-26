@@ -1,0 +1,61 @@
+[ 2018-07-23T17:02:05+08:00 ] 116.23.19.200 /index.php/Component/Interface/rotate_yuansheng
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000026s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000389s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000609s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000673s ]
+
+[ 2018-07-23T17:02:09+08:00 ] 116.23.19.200 /Component/Interface/ishttp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000556s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000886s ]
+
+[ 2018-07-23T17:02:44+08:00 ] 116.23.19.200 /index.php/component/Login/clearDeviceRecord
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000024s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000474s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000493s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:80:c2:e3:4a:fb' LIMIT 1   [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `code` [ RunTime:0.0020s ]
+SQL: DELETE FROM `code` WHERE `code_id` = 4535 [ RunTime:0.0049s ]
+SQL: DELETE FROM `device` WHERE `device_code` = '00:80:c2:e3:4a:fb' [ RunTime:0.0051s ]
+
+[ 2018-07-23T17:02:52+08:00 ] 116.23.19.200 /index.php/Component/Interface/rotate_yuansheng
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000402s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000461s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000525s ]
+
+[ 2018-07-23T17:03:50+08:00 ] 116.23.19.200 /Component/Interface/ishttp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000379s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000457s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000531s ]
+
+[ 2018-07-23T17:03:59+08:00 ] 116.23.19.200 /Component/Interface/ishttp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000434s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+
+[ 2018-07-23T17:06:09+08:00 ] 116.23.19.200 /Component/Interface/ishttp
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000427s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000472s ]
+

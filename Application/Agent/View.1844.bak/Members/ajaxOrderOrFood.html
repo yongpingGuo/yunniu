@@ -1,0 +1,47 @@
+<section class="section">
+    <div class="section-content flex-content">
+        <div class="flex-main">
+            <table class="member-discount-table">
+                <tbody>
+                <?php foreach ($discount as $K1 => $v): ?>
+                <tr id="tr<?php echo $v['id'];?>">
+                    <td><?php echo ++$k1;?></td>
+                    <td>折扣：<?php echo $v['val'];?>折</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#OrderOrFoodDiscountModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'discount')">
+                            <img src="__PUBLIC__/images/edit.png">
+                        </button>
+                        <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                            <img src="__PUBLIC__/images/remove.png">
+                        </button>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <button class="blue-btn" data-toggle="modal" data-target="#OrderOrFoodDiscountModal" onclick="reset()">新增折扣</button>
+        </div>
+        <div class="flex-main">
+            <table class="member-discount-table">
+                <tbody>
+                <?php foreach ($reduce as $K2 => $v): ?>
+                <tr id="tr<?php echo $v['id'];?>">
+                    <td><?php echo ++$k2;?></td>
+                    <td>立减：<?php echo $v['val'];?>元</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#OrderOrFoodReduceModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'reduce')">
+                            <img src="__PUBLIC__/images/edit.png">
+                        </button>
+                        <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                            <img src="__PUBLIC__/images/remove.png">
+                        </button>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <button class="blue-btn" data-toggle="modal" data-target="#OrderOrFoodReduceModal" onclick="reset()">新增立减</button>
+        </div>
+    </div>
+</section>
+

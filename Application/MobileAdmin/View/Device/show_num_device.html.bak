@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="app">
+        <el-row>
+            <el-col>分区叫号屏功能
+                <el-switch
+                        v-model="is_open"
+                        on-color="#13ce66"
+                        off-color="#ff4949"
+                        @change="openOrClose()">
+                </el-switch>
+            </el-col>
+        </el-row>
+        <el-row v-if="is_open">
+            <el-col>
+                <el-tabs v-model="activeName" @tab-click="handleClick">
+                    <el-tab-pane label="叫号屏设备" name="yell" >
+                        <el-row>
+                            <el-table
+                                    :data="yellEquipment"
+                                    style="width: 100%">
+                                <el-table-column
+                                        prop="equipment_name"
+                                        label="设备名称"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="equipment_code"
+                                        label="机器码"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="terminal_time"
+                                        label="到期时间">
+                                </el-table-column>
+                                <el-table-column
+                                        label="对应取餐区">
+                                    <template scope="scope">
+                                        <el-select v-model="scope.row.district" placeholder="请选择" clearable  @change="updateDistricts(scope.row.equipment_id,scope.row.district)">
+                                            <el-option
+                                                    v-for="item in districts"
+                                                    :label="item.district_name"
+                                                    :value="item.district_id"
+                                                    :disabled="item.disabled"
+                                                    >
+                                            </el-option>
+                                        </el-select>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-row>
+                    </el-tab-pane>
+                    <el-tab-pane label="核销设备" name="cancel">
+                        <el-row>
+                            <el-table
+                                    :data="cancelEquipment"
+                                    style="width: 100%">
+                                <el-table-column
+                                        prop="equipment_name"
+                                        label="设备名称"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="equipment_code"
+                                        label="机器码"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="terminal_time"
+                                        label="到期时间">
+                                </el-table-column>
+                                <el-table-column
+                                        label="对应叫号屏">
+                                    <template scope="scope">
+                                        <el-select v-model="scope.row.yell_equipment_id" placeholder="请选择" clearable  @change="changeYellCancelRelation(scope.row.equipment_id,scope.row.yell_equipment_id)">
+                                            <el-option
+                                                    v-for="item in yellEquipment"
+                                                    :label="item.equipment_name"
+                                                    :value="item.equipment_id"
+                                                    :disabled="item.disabled"
+                                                    >
+                                            </el-option>
+                                        </el-select>
+                                    </template>
+                                </el-table-column>
+                            </el-table>
+                        </el-row>
+                    </el-tab-pane>
+                    <el-tab-pane label="汇总叫号屏" name="summary">
+                        <el-row>
+                            <el-table
+                                    :data="summaryEquipment"
+                                    style="width: 100%">
+                                <el-table-column
+                                        prop="equipment_name"
+                                        label="设备名称"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="equipment_code"
+                                        label="机器码"
+                                        width="180">
+                                </el-table-column>
+                                <el-table-column
+                                        prop="terminal_time"
+                                        label="到期时间">
+                                </el-table-column>
+                            </el-table>
+                        </el-row>
+                    </el-tab-pane>
+                    <el-tab-pane label="取餐区" name="district">
+                        <el-row :gutter="10">
+                            <el-col :span="15">
+                                <el-tag
+                                        :key="tag"
+                                        v-for="tag in districts"
+                                        :closable="true"
+                                        :close-transition="false"
+                                        @close="handleClose(tag.district_id)"
+                                        >
+                                    {{tag.district_name}}
+                                </el-tag>
+                            </el-col>
+                            <el-col :span="3">
+                                <el-input
+                                        class="input-new-tag"
+                                        v-model="inputValue"
+                                        ref="saveTagInput"
+                                        size="small"
+                                        placeholder="请输入分区名"
+                                        >
+                                </el-input>
+                            </el-col>
+                            <el-col :span="4">
+                                <el-button class="button-new-tag" size="small" type="success" @click="addDistrict">添加分区</el-button>
+                            </el-col>
+                        </el-row>
+                    </el-tab-pane>
+                </el-tabs>
+            </el-col>
+        </el-row>
+    </div>
+</body>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+<script src="__PUBLIC__/js/vue-router.js"></script>
+<script src="__PUBLIC__/js/vue-axios.js"></script>
+<script>
+    Vue.prototype.$http = axios;
+
+    new Vue({
+        el:"#app",
+        data:{
+            activeName:"yell",
+            inputVisible: false,
+            summaryEquipment:[],
+            yellEquipment: [],
+            cancelEquipment: [],
+            districts:[],
+            inputValue:"",
+            is_open:false
+        },
+        mounted:function(){
+            var _self = this;
+            var is_open = "{$is_open}";
+            if(is_open == "1"){
+                _self.is_open = true;
+                this.$http
+                        .get("/index.php/admin/api/getEquipmentList/equipment_type/yell")
+                        .then(function(rel){
+                            console.log(rel);
+                            _self.yellEquipment = rel.data.data;
+                        });
+                this.$http
+                        .get("/index.php/admin/api/getDistrictList")
+                        .then(function(rel){
+                            console.log(rel);
+                            _self.districts = rel.data.data;
+                        });
+            }
+        },
+        methods:{
+            showInput:function() {
+                this.inputVisible = true;
+            },
+            handleClick:function(){
+                _self = this;
+                var activeName = this.activeName;
+                if(activeName != "district"){
+                    this.$http
+                            .get("/index.php/admin/api/getEquipmentList/equipment_type/"+activeName)
+                            .then(function(rel){
+                                console.log(rel);
+                                var equipment = activeName+"Equipment";
+                                _self[equipment] = rel.data.data;
+                            });
+                }
+            },
+            updateDistricts:function(equipment_id,district_id){
+                _self = this;
+                var formData = new FormData();
+                formData.append("yell_equipment_id",equipment_id);
+                formData.append("district_id",district_id);
+                this.$http
+                        .post("/index.php/admin/api/changeYellEquipmentDistrict",formData)
+                        .then(function(rel){
+                            console.log(rel);
+                            _self.districts = rel.data.data;
+                        });
+            },
+            changeYellCancelRelation:function(cancel_equipment_id,yell_equipment_id){
+                _self = this;
+                var formData = new FormData();
+                formData.append("cancel_equipment_id",cancel_equipment_id);
+                formData.append("yell_equipment_id",yell_equipment_id);
+
+                this.$http
+                        .post("/index.php/admin/api/changeYellCancelRelation",formData)
+                        .then(function(rel){
+                            console.log(rel);
+                            _self.yellEquipment = rel.data.data;
+                        });
+            },
+            addDistrict:function(){
+                var district_name = this.inputValue;
+                var http = this.$http;
+
+                // 发送ajax请求，判断个数是否大于6
+                this.$http.post("/index.php/admin/api/ifSix","")
+                        .then(
+                        function(returnData){
+                            console.log(returnData.data.code);
+                           if(returnData.data.code == 1){
+                               alert("分区数不能大于6个");
+                               return false;
+                           }else{
+                               if(district_name == ""){
+                                   alert("分区不能为空！！！");
+                                   return;
+                               }
+                               var _seft = this;
+                               var formData = new FormData();
+                               formData.append("district_name",district_name);
+                               http.post("/index.php/admin/api/addDistrict",formData)
+                                       .then(
+                                       function(returnData1){
+                                           console.log(returnData1)
+                                           _seft.districts = returnData1.data.data;
+                                       }
+                               );
+                           }
+                        }
+                );
+
+
+
+            },
+            handleClose:function(district_id){
+                var _seft = this;
+                this.$http.get("/index.php/admin/api/delDistrict/district_id/"+district_id)
+                        .then(
+                        function(returnData){
+                            var data = returnData.data;
+                            _seft.districts = data.data;
+                        }
+                );
+            },
+            openOrClose:function(){
+                var _seft = this;
+                var temp = 0;
+                if(_seft.is_open){
+                    temp = 1;
+                }
+                this.$http.get("/index.php/admin/device/openOrCloseShowNum/is_open/"+temp)
+                        .then(
+                        function(returnData){
+                            if(returnData.data.code == 1){
+                                if(temp == 1){
+                                    this.$http
+                                            .get("/index.php/admin/api/getEquipmentList/equipment_type/yell")
+                                            .then(function(rel){
+                                                console.log(rel);
+                                                _self.yellEquipment = rel.data.data;
+                                            });
+                                    this.$http
+                                            .get("/index.php/admin/api/getDistrictList")
+                                            .then(function(rel){
+                                                console.log(rel);
+                                                _self.districts = rel.data.data;
+                                            });
+                                }
+                            }
+                        }
+                );
+            }
+        }
+    });
+</script>
+<style>
+    .el-tag{
+        width: 15%;
+        font-size: 1em;
+        text-align: center;
+        margin-right: 1%;
+        background-color: #20A0FF;
+        height: 40px;
+        line-height: 40px;
+        margin-top: 5px;
+        color: black;
+    }
+</style>
+</html>

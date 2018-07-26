@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="__PUBLIC__/js/BusinessManager.js"></script>
+    <title>店铺列表</title>
+</head>
+<body>
+    <div class="container-fluid" >
+        <div class="col-md-10" id="comment_list">
+            <div>
+                <span>搜索:</span>
+                <form action="javascript:void(0)">
+                    <input type="text" placeholder="请输入搜索关键词">
+                    <button class="btn btn-sm btn-default">确定</button>
+                </form>
+                <button style="float:right;margin-bottom: 5px" class="btn btn-sm btn-default" onclick="addStore()">新增店铺</button>
+            </div>
+            <table class="table table-bordered">
+                <thead>
+                <tr><th>序号</th><th>店铺名称</th><th>店铺管理员</th><th>店铺url</th><th>操作</th></tr>
+                </thead>
+                <tbody>
+                <volist name="resList" id="vo">
+                    <tr><td>{$i}</td><td>{$vo.restaurant_name}</td>
+                        <td>
+                            {$vo.manager_name}
+                        </td><td>{$vo.restaurant_url}</td><td><button class="" data-restaurant_id="{$vo.restaurant_id}" onclick="editInfo(this)">修改</button><button class="" data-restaurant_id="{$vo.restaurant_id}" onclick="deleteInfo(this)">删除</button></tr>
+                    <!-- <button class="  ">开/关</button></td>-->
+                </volist>
+                </tbody>
+                <div>
+                    <ul class="pagination" id="detail-page">
+                        {$page}
+                    </ul>
+                </div>
+            </table>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="storeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="myModalLabel">新增店铺</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0)" id="add_restaurant">
+                        <div class="form-group">
+                            <label for="storeName">店铺名称</label>
+                            <input type="text" id="storeName" name="restaurant_name" class="form-control" placeholder="店铺名称">
+                        </div>
+                        <div class="form-group">
+                            <label for="managerName">店铺管理员</label>
+                            <select name="managerName" id="managerName">
+                                <volist name="managerList" id="vo">
+                                    <option value=" {$vo.id}">
+                                        {$vo.manager_name}
+                                    </option>
+                                </volist>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="submitAddRestaurant()">提交更改</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+    </div>
+</body>
+<script>
+    $("#detail-page").children().children("a").click(function() {
+        var page = parseInt($(this).data("page"));
+        console.log(page);
+        $.ajax({
+            url:"/index.php/business/store/index",
+            data:{"page":page},
+            type:"get",
+            success:function(data){
+                $("#comment_list").html(data);
+            },
+            error:function(){
+                alert("出错了");
+            }
+        });
+    });
+
+    function addStore(){
+        $("#storeModal").modal("show");
+    }
+
+    function submitAddRestaurant(){
+        var formData = new FormData($("#add_restaurant")[0]);
+        $.ajax({
+            url:"/index.php/Business/Store/addStore",
+            type:"post",
+            data:formData,
+            dataType:'json',
+            cache:false,
+            contentType:false,
+            processData:false,
+            success:function(msg){
+                console.log(msg);
+                if(msg.code == 1){
+                    self.location.href = "/index.php/business/store/index"
+                }else{
+                    alert("添加失败！");
+                }
+            },
+            error:function(){
+                console.log("访问出错！！！");
+            }
+        });
+    }
+
+    function editInfo(obj){
+        var restaurant_id = $(obj).data("restaurant_id");
+        $.ajax({
+            url:"/index.php/business/store/editInfo",
+            dataType:"json",
+            data:{"restaurant_id":restaurant_id},
+            type:"post",
+            success:function(msg){
+                console.log(msg);
+                if(msg.code == 1){
+                    self.location.href = "/index.php/business/store/index";
+                }
+            },
+            error:function(){
+                console.log('访问出错');
+            }
+        });
+    }
+
+    function deleteInfo(obj){
+        var restaurant_id = $(obj).data("restaurant_id");
+        console.log(restaurant_id);
+        $.ajax({
+            url:"/index.php/business/store/deleteInfo",
+            dataType:"json",
+            data:{"restaurant_id":restaurant_id},
+            type:"post",
+            success:function(msg){
+                console.log(msg);
+                if(msg.code == 1){
+                    self.location.href = "/index.php/business/store/index";
+                }
+            },
+            error:function(){
+                console.log('访问出错');
+            }
+        });
+    }
+</script>
+</html>

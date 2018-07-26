@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="#content">
+</body>
+<script>
+    $(document).ready(function () {
+        console.log("domain:");
+        console.log(document.domain);
+
+        // 连接服务端
+        var socket = io('http://'+document.domain+':2120');
+
+        // 连接后登录
+        socket.on('connect', function(){
+            console.log("uid:");
+            console.log(uid);
+            socket.emit('login', uid);
+        });
+
+        // 后端推送来消息时
+        socket.on('new_msg', function(msg){
+            console.log("msg:");
+            console.log(msg);
+            $('#content').html('收到消息：'+msg);
+            $('.notification.sticky').notify();
+        });
+
+//        // 后端推送来在线数据时
+//        socket.on('update_online_count', function(online_stat){
+//            console.log("online_stat");
+//            console.log(online_stat);
+//            $('#online_box').html(online_stat);
+//        });
+    });
+</script>
+</html>

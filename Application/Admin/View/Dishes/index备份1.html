@@ -1,0 +1,250 @@
+<include file="Public/head"/>
+<!-- 菜品设置 -->
+<body>
+<link rel="stylesheet" type="text/css"
+      href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<div class="container-fluid">
+    <div class="row">
+        <!-- 菜品分类 start -->
+        <div class="col-xs-3" id="leftcategory">
+            <table  id="mytype" class="dishes-sort table-condensed text-center pre100" id="mytype">
+                <tr>
+                    <td>图片</td>
+                    <td>分类</td>
+                    <td colspan="2">操作</td>
+                </tr>
+                <volist name="data" id="v">
+                    <tr>
+                        <td>
+                            <a href="javascript:void(0)" data-id="{$v.food_category_id}" onclick="showinfo(this)" data-toggle="tab">
+                                <img src="/{$v['image']}"/>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="javascirpt:void(0)" data-id="{$v.food_category_id}"
+                               onclick="showinfo(1,this,1)" data-toggle="tab"><b>{$v['food_category_name']}</b></a>
+                        </td>
+                        <td>
+                            <button class="btn-none" data-toggle="modal" data-target="#addSort"
+                                    onclick="modify1({$v.food_category_id})" id="modify">编辑
+                            </button>
+                        </td>
+                        <td>
+                          <button class="btn-none"  onclick="deltype({$v.food_category_id})">删除 </button>
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+            <div class="text-right mt-30">
+                <button class="btn-none" data-toggle="modal" data-target="#addSort">新增</button>
+            </div>
+        </div>
+        <!-- 菜品分类 end -->
+
+        <!-- 菜品列表 start -->
+        <div class="col-xs-9 dishes-list">
+            <button onclick="location='__CONTROLLER__/add'" class="btn-none ml-10">新增菜品</button>
+            <div class="tab-content mt-10">
+                <!-- 所有菜品 start -->
+                <div class="tab-pane fade in active" id="all">
+                    <table id="mytr">
+                        <tr class="text-center">
+                            <td></td>
+                            <td>排序</td>
+                            <td>名称</td>
+                            <td>图片</td>
+                            <td>价格</td>
+                            <td>类别</td>
+                            <td>星级</td>
+                            <td>时价</td>
+                            <td>状态</td>
+                            <td></td>
+                        </tr>
+                        <volist name = "info" id = "v">
+                        <tr>
+                        	<td>{$key}</td>
+                        	<td><button class="btn-none" onclick = "moveup('+id+')"><img src="__PUBLIC__/images/up.png" ></button>
+                        	<button class="btn-none" onclick = "movedown('+id+')"><img src="__PUBLIC__/images/down.png"></button>
+                    			</td>
+                    			<td>{$v.food_name}</td>
+                    			<td><img src = "/{$v.food_img}" class="dishes-img"></td>
+                    			<td>{$v.food_price}元</td>
+                    			<td>全部</td>
+                    			<if condition = "$v.star_level eq 1">
+                    					<td>★</td>
+                    			</if>
+                  					<if condition = "$v.star_level eq 2">
+                    					<td>★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 3">
+                    					<td>★★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 4">
+                    					<td>★★★★</td>
+                    			</if>
+                    				<if condition = "$v.star_level eq 5">
+                    					<td>★★★★★</td>
+                    			</if>
+                    			<eq name = "v.is_prom" value = "0">
+                    				<td>关闭</td>
+                    			<else/>
+                    				<td>开启</td>
+                    			</eq>
+                  				<eq name = "v.is_sale" value = "0">
+                    				<td>下架</td>
+                    			<else/>
+                    				<td>上架</td>
+                    			</eq>	
+                  				<td>
+                  					<button class="btn-none" onclick="location = '/index.php/admin/Dishes/edit/food_id/{$v.food_id}'">编辑</button><br>
+                    				<button class="btn-none" onclick="changestatu({$v.food_id})"><eq name = "v.is_sale" value = "1">下架<else/>上架</eq></button><br>
+                    				<button class="btn-none" onclick = "delfoodinfo({$v.food_id})">删除</button>
+                  				</td>
+                        </tr>
+                        </volist>
+                    </table>
+                </div>
+                <!-- 所有菜品 end -->
+            </div>
+        </div>
+        <!-- 菜品列表 end -->
+    </div>
+</div>
+
+<!-- 新增分类模态框（Modal） -->
+<div class="modal fade" id="addSort" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+           <!-- <form action="__MODULE__/Dishes/createDishetype" method="post" enctype="multipart/form-data" id="commitform">-->
+           			<form id="myform" action="javascript:void(0)" >
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                		<input type="hidden" name="way" value="add" id="way" />
+                		<input type="hidden" name="food_category_id" id="food_category_id" />
+                		<input type="hidden" name="restaturant_id" id="restaturant_id" value="1" />
+                    <p>
+                        <span>分类名称：</span>
+                        <input type="text" name="food_category_name" id="food_category_name" value="">
+                    </p>
+
+                    <div class="upload-sortImg">
+                        <div><span>图标:</span></div>
+                        <div class="upload-box" id="upload-box2">
+                        		<img style="width: 100%;height: 100%" src="" id="edit_upload_box" alt="">
+                        </div>
+                        <div><input type="file" class="btn-none ml-10" name="img_pic" onchange="preview(this)" id = "commitfile"/></div>
+                        <div><span class="ml-10">建议分辨率：300*300</span></div>
+                    </div>
+                    <p>定时：
+                        <input type="radio" name="is_timing" value="0" onclick="hiddentime2()">关闭
+                        <input type="radio" name="is_timing" value="1" onclick="showtime2()">开启
+                    </p>
+
+                    <div class="container-fluid" style="display: none;" id="show2">
+                        <div>
+                            <ul id="myTab" class="nav nav-tabs">
+                                <li class="active">
+                                    <a href="#day" data-toggle="tab" onclick="changeType(0)">
+                                        星期
+                                    </a>
+                                </li>
+                                <li><a href="#time" data-toggle="tab" onclick="changeType(1)">时段</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content">
+                                <div class="tab-pane fade in active" id="day">
+
+                                </div>
+                                <div class="tab-pane fade" id="time">
+
+                                </div>
+                            </div>
+                            <button class="btn btn-sm btn-default" style="margin-top: 10px" id="add-btn" onclick="addTiming(this)" data-type="0">新增</button>
+                            <!--<button class="btn btn-sm btn-default" id="submit-btn" onclick="submitInfo(this)" data-type="0">提交</button>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn closecommit" data-dismiss="modal" >关闭</button>
+                    <input type="reset" name="reset" style="display: none;" >
+                    <button type="button" class="admin-btn"  data-dismiss="modal" onclick="commit()">提交更改</button>
+                </div>
+            <!--</form>--></form>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<!-- 编辑分类模态框（Modal） -->
+<!--<div class="modal fade" id="updSort" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="__CONTROLLER__/modifyDishestype/" method="post" enctype="multipart/form-data" id="d">
+                <div class="modal-header">
+                </div>
+                <div class="modal-body">
+                		<input type="hidden" name="food_category_id" id="food_category_id"/>
+                		<input type="hidden" name="restaturant_id" value="1" />
+                    <p>
+                        <span>分类名称：</span>
+                        <input type="text" name="food_category_name" id="b" >
+                    </p>
+
+                    <div class="upload-sortImg">
+                        <div>图标：</div>
+                        <div class="upload-box" id="upload-box">
+                            <img style="width: 100%;height: 100%" src="" id="edit_upload_box" alt="">
+                        </div>
+                        <div><input type="file" class="btn-none ml-10" name="img_pic" id="c" onchange="preview(this)"/></div>
+                        <div><span class="ml-10">建议分辨率：300*300</span></div>
+                    </div>
+                    <p>定时：
+                        <input type="radio" name="setTime" value="timeOff" checked="checked" onclick = "hiddentime()">关闭
+                        <input type="radio" name="setTime" value="timeOn" onclick="showtime()">开启
+                    </p>
+
+                    <div class="container-fluid" style="display: none;" id="show1">
+                        <table class="table-condensed timetable">
+                            <tr>
+                                <td class="col-sm-1">
+                                    <button class="btn-none addtime" data-toggle="modal" data-target="#addTime" type="button" >新增</button>
+                                </td>
+                                <td class="col-sm-3">星期/号</td>
+                                <td class="col-sm-3">时间段</td>
+                                <td class="col-sm-2">操作</td>
+                            </tr>
+                            
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="admin-btn closecommit" data-dismiss="modal" >关闭</button>
+                    <button type="submit" class="admin-btn">提交更改</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>-->
+<script src="__PUBLIC__/js/dateSelect.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/Dishes_index.js"></script>
+<!--<script>
+		function changestatu(i){
+			var msg = confirm('确定要更改菜品状态吗？');
+			if(msg == true){
+				$.ajax({
+					type:"get",
+					url:"/index.php/admin/Dishes/updstate/food_id/"+i+"",
+					async:true,
+					success:function(data){
+							$('#all').html(data);
+					}
+				});
+			}
+		}
+</script>-->
+</body>
+</html>

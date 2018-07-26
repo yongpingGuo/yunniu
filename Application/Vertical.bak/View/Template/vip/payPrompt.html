@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<!--弹出窗效果-->
+		<link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/no_pay.css">
+	</head>
+	<body class="member">
+		<div id="member">
+			<header class="template-header">
+				<button class="return-btn" @click="goBack()">
+					<img src="__PUBLIC__/images/return.png">
+					<span>返回</span>
+				</button>
+			</header>
+			<section class="member-content">
+				<el-row :gutter="50">
+					<el-col :span="8">
+						<div class="member-title">1.请扫下面二维码进入公众号</div>
+						<div>
+							<img src="__PUBLIC__/images/number_code.png" class="member-img">
+						</div>
+					</el-col>
+					<el-col :span="8">
+						<div class="member-title">2.打开用户中心</div>
+						<div>
+							<img src="__PUBLIC__/images/wechatMember.png" class="member-img">
+						</div>
+					</el-col>
+					<el-col :span="8">
+						<div class="member-title">3.设备扫码器扫描会员码</div>
+						<div>
+							<img src="__PUBLIC__/images/wechatMember.png" class="member-img">
+						</div>
+					</el-col>
+				</el-row>
+			</section>
+			<footer class="template-footer clear">
+				<button @click="cashPay()">我要到收银台付款</button>
+				本页面在<span id="time">70</span>秒后自动关闭
+			</footer>
+			<audio controls="controls" preload id="music" hidden>
+				<source src="__PUBLIC__/wav/payFinish.wav" type="audio/mpeg" />
+			</audio>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/layer.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script type="text/javascript">
+		//设定倒数秒数
+		var t = 70;
+		//显示倒数秒数
+		function showTime(){
+			t -= 1;
+			document.getElementById('time').innerHTML= t;
+			if(t==3){
+				JsObj.CloseVguang();
+			}
+
+			if(t==0){
+				localStorage.removeItem("order_type");
+				location.href='/index.php/Vertical/Template/serviceRoute';
+				return;
+			}
+			//每秒执行一次,showTime()
+			setTimeout("showTime()",1000);
+		};
+		showTime();
+
+		/*
+		 ** randomWord 产生任意长度随机字母数字组合
+		 ** randomFlag-是否任意长度 min-任意长度最小位[固定位数] max-任意长度最大位
+		 */
+		function randomWord(randomFlag, min, max){
+			var str = "",
+					range = min,
+					arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+
+			// 随机产生
+			if(randomFlag){
+				range = Math.round(Math.random() * (max-min)) + min;
+			}
+			for(var i=0; i<range; i++){
+				pos = Math.round(Math.random() * (arr.length-1));
+				str += arr[pos];
+			}
+			return str;
+		}
+
+		function onOpen(evt) {
+			//连接成功
+			console.log("连接成功");
+		}
+
+		function onMessage(evt) {
+			//接收信息
+			console.log(evt.data);
+			var data = evt.data.replace(/&quot;/g, '"');
+			try{
+				data = JSON.parse(data);
+			}catch(e){
+				console.log(e.name+":"+ e.message)
+			}
+
+			console.log(data);
+			if(data.type == "discount"){
+				var dis_pay_status = data.pay_status;
+				if(dis_pay_status == "1"){
+					order_sn = data.order_sn;
+					location.href='/index.php/Vertical/Template/serviceRoute/current_action/order/order_sn/'+order_sn;
+				}else{
+					layer.msg(data.msg,{
+						skin: 'layer-class',
+						area: '80%'
+					});
+				}
+				console.log(order_sn);
+			}else if(data.type == "balance"){
+				var pay_status = data.pay_status;
+				if(pay_status == "1"){
+					order_sn = data.order_sn;
+					try{
+						JsObj.CompletePay(order_sn);
+						JsObj.CloseVguang();
+					}catch(e){
+						console.log(e.name+":"+ e.message)
+					}
+					location.href='/index.php/Vertical/Template/finish';
+				}else{
+					layer.msg(data.msg,{
+						skin: 'layer-class',
+						area: '80%'
+					});
+				}
+			}
+		}
+
+		function onError(evt) {
+			//出现错误
+			console.log(evt.data);
+		}
+		new Vue({
+			mounted:function(){
+				var pay_info = localStorage.getItem("pay_info");
+				localStorage.removeItem("pay_info");
+				var uid = randomWord(true, 3,6);
+				pay_info = pay_info +"|"+ uid;
+
+				var wsUri ="ws://120.25.99.40:4682/";
+				websocket = new WebSocket(wsUri);
+				websocket.onopen = function(evt) {
+					onOpen(evt);
+					websocket.send(uid);
+				};
+				websocket.onmessage = function(evt) {
+					//接收到后台信息
+					onMessage(evt);
+				};
+				websocket.onerror = function(evt) {
+					onError(evt);
+				};
+				console.log('pay_info:');
+				console.log(pay_info);
+				JsObj.CloseVguang();
+				JsObj.OpenVguang(pay_info);
+			},
+			methods:{
+				goBack:function(){
+					javascript:history.go(-1);
+				},
+				cashPay:function(){
+					var order_sn = localStorage.getItem("order_sn");
+					localStorage.removeItem("order_sn");
+					$.ajax({
+						url:'/index.php/home/index/jpushCashPay',
+						type:"post",
+						dataType:'json',
+						data:{"order_sn":order_sn},
+						success:function(data){
+							console.log(data);
+							if(data.code == 1){
+								JsObj.CompletePay(order_sn);
+								JsObj.CloseVguang();
+								location.href='/index.php/Vertical/Template/serviceRoute';
+							}
+						},
+						error:function(){
+							alert("出错了");
+						}
+					});
+				}
+			}
+		}).$mount('#member');
+	</script>
+</html>

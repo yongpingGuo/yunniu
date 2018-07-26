@@ -1,0 +1,136 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.memberGroupSet[lang]}}</div>
+        <div class="section-content">
+            <form>
+                <div>
+                    {{langData.defaultMemberGroup[lang]}}({{langData.unchangeable[lang]}}):
+                    <input type="text" name="account" :value="langData.defaultMemberGroup[lang]" disabled>
+                </div>
+                <div id="group">
+                    <table class="table-condensed">
+                        <tbody>
+                            <foreach name="group_info" item="v">
+                                <tr>
+                                    <td class="index">{++$key}</td>
+                                    <td>{{langData.memberGroup[lang]}}:</td>
+                                    <td>
+                                        <input type="text" name="group_name1" value="{$v[group_name]}" :placeholder="langData.memberGroup[lang]" id="gm{$key}">
+                                        <input type="hidden" name="group_id" value="{$v[group_id]}" id='hid{$key}' />
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-primary" onclick="return save_group(this,'{$key}','/index.php/Admin/Member/save_group')">{{langData.save[lang]}}</button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-sm btn-danger" onclick="return shanchu_group(this,'{$v[group_id]}','/index.php/Admin/Member/del_group')">{{langData.delete[lang]}}</button>
+                                    </td>
+                                </tr>
+                            </foreach>
+                        </tbody>
+                    </table>
+                </div>
+                
+            </form>
+            <button class="blue-btn" data-toggle="modal" data-target="#addModal">{{langData.add[lang]}}</button>
+        </div>
+    </section>
+</block>
+<block name="modal">
+    <div class="modal fade add-content" id="addModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal"></button>
+                    <h4 class="modal-title">{{langData.addMemberGroup[lang]}}</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="modal-item">
+                        <label>{{langData.memberGroup[lang]}}:</label>
+                        <input type="text" name="group_name" :placeholder="langData.memberGroup[lang]">
+                    </form>
+                    <div class="text-center">
+                        <button type="button" class="blue-btn" onclick="return group_set('/index.php/Admin/Member/add_group')">{{langData.add[lang]}}</button>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <script>
+    // 模态框会员组添加
+    function group_set(url) {
+        var gm = $('[name="group_name"]').val();
+        if (gm == "") {
+            layer.msg(vm.langData.memberGroupNotEmpty[vm.lang]);
+        } else {
+            // ajax提交
+            $.post(url, { "group_name": gm }, function(data) {
+                // console.log(data)
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(vm.langData.memberGroupExists[vm.lang]);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#group").html(data);
+                }
+            });
+            $("#addModal").modal("hide");
+        }
+    }
+
+    //模态框消失后清空表单
+    $('#addModal').on('hidden.bs.modal', function() {
+        // 执行一些动作...
+        $('[name="group_name"]').val("");
+    })
+
+    // 会员组编辑后保存
+    function save_group(obj, index, url) {
+        var str = $("#gm" + index).val();
+        var hid = $("#hid" + index).val();
+        if (str == "") {
+            layer.msg(vm.langData.memberGroupNotEmpty[vm.lang]);
+            $.post("/index.php/Admin/member/get_group", "", function(data) {
+                $("#group").html(data);
+            });
+        } else {
+            // ajax提交
+            $.post(url, { "group_name": str, "group_id": hid }, function(data) {
+                layer.msg(vm.langData.success[vm.lang]);
+                $.post("/index.php/Admin/member/get_group", "", function(data) {
+                    $("#group").html(data);
+                });
+            });
+        }
+        return false;
+    }
+
+    // 会员组删除
+    function shanchu_group(obj, id, url) {
+        var hid = id;
+        console.log(hid)
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        }, function(index) {
+            // ajax提交
+            $.post(url, { "group_id": hid }, function(data) {
+                // console.log(data);
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(data.info);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#group").html(data);
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+    </script>
+</block>

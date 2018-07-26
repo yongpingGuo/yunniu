@@ -1,0 +1,46 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="点餐流程"/>
+	<section class="section">
+        <volist name="info2" id="v2">
+            <div>
+                <span>
+                    {$v2.process_name}：
+                </span>
+                <div class="checkbox-switch">
+                    <if condition = "$v2.process_status eq 1">
+                        <input type="checkbox" name="adPage{$v2.process_id}" class="adPage{$v2.process_id}" onchange="changestatu(this,{$v2.process_id})" checked>
+                        <label></label>
+                        <else/>
+                        <div class="checkbox-switch">
+                            <input type="checkbox" name="adPage{$v2.process_id}" class="adPage{$v2.process_id}" onchange="changestatu(this,{$v2.process_id})">
+                            <label></label>
+                        </div>
+                    </if>
+                </div>
+            </div>
+
+            <if condition="$v2['process_id'] eq 1">
+                <div class="section-row">
+                    <span class="remarks">只限于竖屏自助点餐机。点击屏幕，开始点餐。</span>
+                </div>
+                <elseif condition="$v2['process_id'] eq 2"/>
+                <div class="section-row">
+                    <span class="remarks">只限于竖屏自助点餐机，收银机上默认可选择外带、堂吃</span>
+                </div>
+                <elseif condition="$v2['process_id'] eq 4"/>
+                <div class="section-row">
+                    <span class="remarks">点餐时，将餐牌号给予顾客，服务员按餐牌号送餐</span>
+                </div>
+            </if>
+        </volist>
+
+		<div class="section-row">微信、支付宝，支付成功提示：</div>
+		<textarea class="textarea textarea-lg" rows="2" name="advlang" id="advlang_textarea">{$info4}</textarea>
+	</section>
+    <button class="danger-btn-lg" onclick="changeadvlang()">保存“支付成功提示语”</button>
+</block>
+<block name="js">
+    <!--点餐流程-->
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/Moudle_index.js"></script>
+</block>

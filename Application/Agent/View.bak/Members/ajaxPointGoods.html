@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <foreach name="img_rules" item="v">
+        <div class="pull-left point-exchange-item">
+        <div class="pic-thumbnail">
+            <img src="/Public/Uploads/Goods/{$v[goods_img]}">
+            <input type="hidden" name="id" value="{$v['id']}"/>
+        </div>
+        <p>积分：{$v[score]}</p>
+            <input type="hidden"/>
+        <div class="text-center">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#edit-goods" data-goods_id = "{$v['id']}" onclick="editInfo(this)">编辑</button>
+            <button class="btn btn-danger" onclick="return del_img(this,'/index.php/Agent/Members/del_point_img')">删除</button>
+        </div>
+        </div>
+    </foreach>
+</body>
+</html>

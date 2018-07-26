@@ -1,0 +1,206 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.customizeMenus[lang]}}</div>
+        <div class="section-content">
+            <template v-for="(menuItem,menuIndex) in menu" v-if="menu">
+                <div class="menu-item row">
+                    <div class="col-xs-5">
+                        <input type="text" v-model="menuItem.name">
+                    </div>
+                    <div class="col-xs-7">
+                        <button @click="removeMenu(menuIndex)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>{{langData.deleteMenu[lang]}}</span>
+                        </button>
+                        <span class="text-grey">|</span>
+                        <button @click="addSubMenu(menuIndex)">
+                            <i class="glyphicon glyphicon-plus"></i>
+                            <span>{{langData.addSubmenu[lang]}}</span>
+                        </button>
+                        <span class="text-grey" v-show="!menuItem.sub_button||menuItem.sub_button==''">|</span>
+                        <button @click="setMenu(menuIndex)" v-show="!menuItem.sub_button||menuItem.sub_button==''">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span>{{langData.setMenuAction[lang]}}</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="menu-item row" v-if="menuItem.sub_button" v-for="(menuSub,subIndex) in menuItem.sub_button">
+                    <div class="col-xs-5 col-xs-push-1">
+                        <div class="flex-content">
+                            <span class="menu-left-icon"></span>
+                            <input type="text" v-model="menuSub.name">
+                        </div>
+                    </div>
+                    <div class="col-xs-7">
+                        <button @click="removeSubMenu(menuIndex,subIndex)">
+                            <i class="glyphicon glyphicon-remove"></i>
+                            <span>{{langData.deleteMenu[lang]}}</span>
+                        </button>
+                        <span class="text-grey">|</span>
+                        <button @click="setSubMenu(menuIndex,subIndex)">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                            <span>{{langData.setMenuAction[lang]}}</span>
+                        </button>
+                    </div>
+                </div>
+            </template>
+            <div class="menu-item">
+                <button class="blue-btn" onclick="addMenu()">{{langData.addMenu[lang]}}</button>
+                <button class="blue-btn" onclick="saveMenu()">{{langData.saveMenuStructure[lang]}}</button>
+            </div>
+            <div>预点餐首页:
+                <?php echo C("HOST_NAME"); ?>/index.php/mobile/index/homePage/restaurant_id/{$Think.session.restaurant_id}/pay_status/preparation</div>
+            <div>在线快速点餐:
+                <?php echo C("HOST_NAME"); ?>/index.php/mobile/index/homePage/restaurant_id/{$Think.session.restaurant_id}/pay_status/online</div>
+            <div>{{langData.myOrder[lang]}}:
+                <?php echo C("HOST_NAME"); ?>/index.php/mobile/order/index/restaurant_id/{$Think.session.restaurant_id}</div>
+            <div>{{langData.order[lang]}}:
+                <?php echo C("HOST_NAME"); ?>/index.php/mobile/index/index/restaurant_id/{$Think.session.restaurant_id} </div>
+        </div>
+    </section>
+</block>
+<block name="modal">
+    <div class="modal fade" tabindex="-1" id="setting">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{langData.selectMenuAction[lang]}}</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="flex-content">
+                        <span>{{langData.link[lang]}}:</span>
+                        <input type="text" class="flex-main" id="menuUrl">
+                    </div>
+                    <div class="text-grey">{{langData.menuLinkTips[lang]}}</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="blue-btn" id="saveUrl">{{langData.save[lang]}}</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</block>
+<block name="vue">
+    <script type="text/javascript">
+    var url = "/index.php/Admin/Wechat/menuAjax";
+    var vm = new Vue({
+        data: {
+            lang: language,
+            langData: langData,
+            menu: []
+        },
+        mounted: function() {
+            var that = this;
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success: function(data) {
+                    that.menu = data.button;
+                }
+            });
+        },
+        methods: {
+            removeMenu(index) {
+                //删除主菜单
+                this.menu.splice(index, 1);
+            },
+            addSubMenu(index) {
+                //新增子菜单
+                if (!this.menu[index].sub_button) {
+                    this.menu[index].sub_button = [];
+                }
+                if (this.menu[index].sub_button && this.menu[index].sub_button.length < 5) {
+                    this.menu[index].sub_button.push({
+                        'name': '',
+                        'type': "view",
+                        'url': ''
+                    });
+                } else {
+                    layer.msg(vm.langData.submenusTips[vm.lang]);
+                }
+                var newArr = this.menu[index];
+                Vue.set(this.menu, index, newArr);
+            },
+            setMenu(menuIndex) {
+                // 设置主菜单动作
+                var url = this.menu[menuIndex].url;
+                $('#menuUrl').val(url);
+                $('#saveUrl').data('menuIndex', menuIndex);
+                $('#saveUrl').data('subIndex', '');
+                $('#setting').modal('show');
+            },
+            removeSubMenu(menuIndex, subIndex) {
+                //删除子菜单
+                this.menu[menuIndex].sub_button.splice(subIndex, 1);
+                var newArr = this.menu[menuIndex];
+                Vue.set(this.menu, menuIndex, newArr);
+            },
+            setSubMenu(menuIndex, subIndex) {
+                // 设置子菜单的动作
+                var url = this.menu[menuIndex].sub_button[subIndex].url;
+                $('#menuUrl').val(url);
+                $('#saveUrl').data('menuIndex', menuIndex);
+                $('#saveUrl').data('subIndex', subIndex);
+                $('#setting').modal('show');
+            }
+        }
+    }).$mount('#lang-content');
+
+    //修改链接
+    $('#saveUrl').click(function(event) {
+        var menuIndex = $('#saveUrl').data('menuIndex');
+        var subIndex = $('#saveUrl').data('subIndex');
+        if (subIndex === "") {
+            console.log(vm.langData.mainMenuLink[vm.lang]);
+            vm.menu[menuIndex].url = $('#menuUrl').val();
+        } else {
+            console.log(vm.langData.subMenuLink[vm.lang]);
+            vm.menu[menuIndex].sub_button[subIndex].url = $('#menuUrl').val();
+        }
+        $('#setting').modal('hide');
+    });
+
+    // 新增菜单
+    function addMenu() {
+        if (vm.menu.length < 3) {
+            vm.menu.push({
+                'name': '',
+                'type': "view",
+                'url': ''
+            });
+        } else {
+            layer.msg(vm.langData.mainMenuTips[vm.lang]);
+        }
+    }
+
+    // 保存菜单结构
+    function saveMenu() {
+        var menuData = JSON.stringify(vm.menu);
+        console.log(menuData);
+        var createMenu = "__MODULE__/Wechat/menu";
+        $.ajax({
+            type: 'post',
+            url: createMenu,
+            data: {
+                menu: menuData
+            },
+            success: function(data) {
+                if (data.code == 0) {
+                    layer.msg(data.msg);
+                    setTimeout(function() {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    layer.msg(data.msg);
+                }
+            }
+        })
+    }
+    </script>
+</block>

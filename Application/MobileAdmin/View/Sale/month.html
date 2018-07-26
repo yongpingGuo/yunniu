@@ -1,0 +1,78 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="月营业额" />
+    <section class="content">
+        <form id="postForm">
+            <div class="select-none">
+                <select id="month" name="month">
+                    <for start="1" end="13" name="mo">
+                        <if condition="$mo eq $month">
+                            <option value="{$mo}" selected="selected">{$mo}月</option>
+                            <else/>
+                            <option value="{$mo}">{$mo}月</option>
+                        </if>
+                    </for>
+                </select>
+            </div>
+            <span>月</span>
+            <button class="danger-btn-sm" id="query_button">查询</button>
+        </form>
+    </section>
+    <div id="sale_list">
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript">
+    $(window).bind('touchstart', function() {
+        $('.chart-msg').hide();
+    });
+    $(window).scroll(function() {
+        $('.chart-msg').hide();
+    });
+
+    function showDetail(day_num) {
+        $('#' + day_num).siblings().hide();
+        event.stopPropagation();
+        $('#' + day_num).css({
+            'top': event.clientY,
+            'display': 'block'
+        });;
+    }
+    $(function() {
+        //查询年表
+        $('#postForm').on('submit', function(e) {
+            var ev = window.event || e;
+            window.event ? window.event.returnValue = false : ev.preventDefault();
+            var vs = $('select  option:selected').val();
+            $.ajax({
+                url: '/index.php/MobileAdmin/sale/month',
+                data: { "month": vs },
+                type: 'POST',
+                beforeSend: function() {
+                    layer.open({
+                        type: 3,
+                        icon: 2,
+                        skin: "loading"
+                    });
+                },
+                success: function(data) {
+                    layer.closeAll('loading');
+                    $('#sale_list').html(data);
+                },
+                error: function() {
+                    layer.closeAll('loading');
+                    layer.msg('出错了');
+                }
+            })
+            return false;
+        });
+
+        //            $('form').submit();
+        // 选择月
+        $("#query_button").click(function() {
+            $('#postForm').submit();
+        });
+
+    })
+    </script>
+</block>

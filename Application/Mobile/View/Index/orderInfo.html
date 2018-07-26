@@ -1,0 +1,96 @@
+<extend name="Public:canteen" />
+<block name="main">
+    <body>
+        <div class="container">
+            <P class="order-restaurant">{$order_info.restaurant_name}</P>
+            <p class="text-grey">地址：{$restaurant_info.address}</p>
+            <p class="text-danger">使用时间：{$use_time}</p>
+            <if condition="$order_info.use_time gt 0 ">
+            <p>请提前到达店铺用餐</p>
+            <else /><p></p></if>
+            <div class="coupon">
+                <div class="coupon-header">
+                    <if condition="$order_info.use_time gt 0 ">
+                    <p>
+                        <span>取餐柜：</span>
+                        <!-- <span class="text-danger">配餐中，未可取餐</span> -->
+                        <span>
+                            <if condition="($order_info['push_status'] eq 1) OR ($order_info['push_status'] eq 7) OR ($order_info['push_status'] eq 9) "> 配餐中 未可取餐
+                            <elseif condition="$order_info['push_status'] eq 3"/>{$order_info.desk_code}柜，{$order_info.window_num}号窗
+                            <elseif condition="$order_info['push_status'] eq 5"/>已取餐 <span class="ysy-img"><img src="__PUBLIC__/images/mobile/ysy.png"/></span>
+                            <else />
+                            </if>
+                        </span>
+                    </p>
+                    <p>验证码：{$order_info.cancell_num}</p>
+                    <else/>
+                        <!--<p>-->
+                            <!--&lt;!&ndash;<span>您的订单状态：</span>&ndash;&gt;-->
+                            <!--&lt;!&ndash; <span class="text-danger">配餐中，未可取餐</span> &ndash;&gt;-->
+                        <!--<span>-->
+                            <!--&lt;!&ndash;<if condition="($order_info['push_status'] eq 1) OR ($order_info['push_status'] eq 7) OR ($order_info['push_status'] eq 9) "> 已完成&ndash;&gt;-->
+                                <!--&lt;!&ndash;<elseif condition="$order_info['push_status'] eq 3"/>已做好，请用餐&ndash;&gt;-->
+                                <!--&lt;!&ndash;<elseif condition="$order_info['push_status'] eq 5"/>已完成 <span class="ysy-img"><img src="__PUBLIC__/images/mobile/ysy.png"/></span>&ndash;&gt;-->
+                                <!--&lt;!&ndash;<else />&ndash;&gt;-->
+                            <!--&lt;!&ndash;</if>&ndash;&gt;-->
+                        <!--</span>-->
+                        <!--</p>-->
+                        <if condition="$order_info['desk_code']">
+                            <p>您的餐桌号：{$order_info.desk_code}</p></if></if>
+
+                </div>
+                <if condition="$order_info.use_time gt 0 ">
+                <eq name="vo[push_status]" value="5"><img src="__PUBLIC__/images/used.png" class="coupon-used"></eq>
+                <img src="{$consumpt_code}" class="coupon-code">
+                <p class="text-center">凭消费码到取餐柜取餐</p>
+                <else/><br/></if>
+            </div>
+            <p class="text-right orderInfo-more" onclick="showDetail()">
+                <span>订单详细</span>
+                <i class="iconfont icon-more"></i>
+            </p>
+            <div id="detail" hidden="hidden">
+                <div class="orderInfo-section">
+                    <p>订单号：{$order_info.order_sn}</p>
+                    <p>订单编号：{$order_info.take_num}</p>
+                    <p>下单时间：{$order_info.pay_time|date="Y-m-d H:i:s",###}</p>
+                </div>
+                <div class="orderInfo-section">
+                    <table class="w100">
+                        <tbody>
+                            <tr class="text-center">
+                                <th>菜品名称</th>
+                                <th>数量</th>
+                                <th>金额</th>
+                            </tr>
+                            <volist name="order_info.food" id="vo">
+                                <tr>
+                                    <td>{$vo.food_name}</td>
+                                    <td class="text-center">{$vo.food_num}</td>
+                                    <td class="text-right">&yen;{$vo.food_price2}</td>
+                                </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="orderInfo-section flex-content vertical-flex">
+                    <if condition="($order_info['pay_type']==4)"><img src="__PUBLIC__/images/vip_pay.png" class="img-sm">
+                        <else/><img src="__PUBLIC__/images/mobile/wechat.png" class="img-sm">
+                    </if>
+                    <div class="flex-main text-right">
+                        <p>优惠：&yen;{$order_info.benefit_money}</p>
+                        <p>合计：&yen;{$order_info.total_amount}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</block>
+<block name="js">
+    <script type="text/javascript">
+        function showDetail(){
+            $("#detail").toggle();
+        }
+    </script>
+</block>

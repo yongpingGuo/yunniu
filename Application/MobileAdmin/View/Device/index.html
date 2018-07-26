@@ -1,0 +1,36 @@
+<include file="Public/head"/>
+<!-- 点餐设备管理 -->
+<body>
+<div class="container-fluid">
+	<table class="device-table table-bordered">
+		<tr>
+			<td>序号</td>
+			<td>设备名称</td>
+			<td>机器码</td>
+			<td>到期日期</td>
+			<td>上次使用时间</td>
+			<td>状态</td>
+		</tr>
+		<volist name="device_list" id="vo">
+			<tr>
+				<td>{$i}</td>
+				<td>{$vo.device_name}</td>
+				<td>{$vo.device_code}</td>
+				<td>{$vo.end_time}</td>
+				<td>{$vo.last_time}</td>
+				<if condition="$vo.device_status eq 1">
+					<td>开启</td>
+					<else/>
+					<td>关闭</td>
+				</if>
+			</tr>
+		</volist>
+	</table>
+	<div class="text-center device-page">
+		<ul class="pagination">
+			{$page}
+		</ul>
+	</div>
+</div>
+</body>
+</html>

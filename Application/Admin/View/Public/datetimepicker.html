@@ -1,0 +1,103 @@
+<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-TW.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		var dateLang=vm.lang;
+		$("#form_date").datetimepicker({
+		    format:'yyyy-mm-dd',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    minView: "month", //选择日期后，不会再跳转去选择时分秒 
+		    language:  dateLang
+		});
+		$("#form_starttime").datetimepicker({
+		    format:'hh:ii:00',
+		    autoclose: true,
+		    startView: "hour", //选择时分秒 
+		    language:  dateLang
+		});
+		$("#form_endtime").datetimepicker({
+		    format:'hh:ii:00',
+		    autoclose: true,
+		    startView: "hour", //选择时分秒 
+		    language:  dateLang
+		});
+		$('#startDate').datetimepicker({
+		    format:'yyyy-mm-dd',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    minView: "month", //选择日期后，不会再跳转去选择时分秒 
+		    language:  dateLang
+		}).on("click",function(ev){
+		    $(this).datetimepicker("setEndDate", $("#endtDate").val());
+		});
+		$('#endtDate').datetimepicker({
+		    format:'yyyy-mm-dd',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    minView: "month", //选择日期后，不会再跳转去选择时分秒 
+		    language:  dateLang
+		}).on("click", function (ev) {
+		    $(this).datetimepicker("setStartDate", $("#startDate").val());
+		});
+
+		$('#discount_startDate').datetimepicker({
+		    format:'yyyy-mm-dd hh:ii:00',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    language:  dateLang
+		}).on("click",function(ev){
+		    $(this).datetimepicker("setEndDate", $("#discount_endtDate").val());
+		});
+		$('#discount_endtDate').datetimepicker({
+		    format:'yyyy-mm-dd hh:ii:00',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    language:  dateLang
+		}).on("click", function (ev) {
+		    $(this).datetimepicker("setStartDate", $("#discount_startDate").val());
+		});
+
+		$('#startTime').datetimepicker({
+		    format:'hh:ii:00',
+		    autoclose: true,
+		    startView: "hour", //选择时分秒 
+		    language:  dateLang
+		}).on("click", function (ev) {
+		    $(this).datetimepicker("setStartDate", $("#startDate").val());
+		});
+		$('#endTime').datetimepicker({
+		   format:'hh:ii:00',
+		    autoclose: true,
+		    startView: "hour", //选择时分秒 
+		    language:  dateLang
+		}).on("click", function (ev) {
+		    $(this).datetimepicker("setStartDate", $("#endtDate").val());
+		});
+
+
+		$("#device_start_time").datetimepicker({
+		    format:'yyyy-mm-dd',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    minView: "month", //选择日期后，不会再跳转去选择时分秒 
+		    language:  dateLang
+		});
+
+		$("#device_end_time").datetimepicker({
+		    format:'yyyy-mm-dd',
+		    todayBtn: true,
+		    autoclose: true,
+		    todayHighlight: true,
+		    minView: "month", //选择日期后，不会再跳转去选择时分秒 
+		    language:  dateLang
+		});
+	});
+</script>

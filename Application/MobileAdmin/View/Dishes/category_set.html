@@ -1,0 +1,24 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="分类设置" />
+    <section class="section">
+        <span id="mytype">
+            <volist name="data" id="v">
+                <div class="classify-list flex-content vertical-flex">
+                    <img src="{$v.img_url}" class="icon-sm">
+                    <div class="flex-main classify-name">{$v['food_category_name']}</div>
+                    <button class="default-btn" onclick="food_category_edit({$v.food_category_id})">修改</button>
+                    <button class="default-btn" onclick="deltype({$v.food_category_id})">删除</button>
+                    <button class="default-btn" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="moveup1(this)">上移</button>
+                    <button class="default-btn" data-sort="{$v.sort}" data-food_category_id="{$v.food_category_id}" onclick="movedown1(this)">下移</button>
+                </div>
+            </volist>
+        </span>
+        <button class="danger-btn" onclick="location='{:U(\'Dishes/food_category_add\')}'">
+            <i class="iconfont icon-plus"></i>
+        </button>
+    </section>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/category_set.js"></script>
+</block>

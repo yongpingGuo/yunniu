@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <script src="__PUBLIC__/js/jquery-3.0.1.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <table class="table table-condensed">
+            <thead>
+            <tr>
+                <th>序号</th><th>设备名称</th><th>设备号</th><th>所属店铺</th><th>状态</th><th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="deviceList" id="vo">
+                <tr><td>{$i}</td><td>{$vo.device_name}</td><td>{$vo.device_code}</td><td>{$vo.restaurant_name}</td><td>开启</td><td><button>修改</button></td></tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

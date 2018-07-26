@@ -1,0 +1,187 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="菜品统计" />
+    <form action="javascript:void(0)" id="myform">
+        <div class="content flex-content vertical-flex">
+            <div class="flex-main food-chart-head">
+                <div class="section-row flex-content vertical-flex">
+                    <span class="text-3 text-right">日期：</span>
+                    <input type="text" class="input flex-main datepicker-start" name="startDate" value="{$startDate}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" class="input flex-main datepicker-end" name="endtDate" value="{$endDate}">
+                </div>
+                <div class="section-row flex-content vertical-flex">
+                    <span class="text-3 text-right">时间：</span>
+                    <input type="text" class="input flex-main timepicker" name="startTime" value="{$startTime}">
+                    <span class="text-2 text-center">至</span>
+                    <input type="text" class="input flex-main timepicker" name="endTime" value="{$endTime}">
+                </div>
+                <div class="section-row flex-content">
+                    <span class="text-3 text-right">收银员：</span>
+                    <div class="select-reset">
+                        <!--<select>
+						<option>全部</option>
+					</select>-->
+                        <select name="cashier_id" id="cashier_id">
+                            <option value="">全部</option>
+                            <?php foreach ($cashierList as $k => $v):
+                        if($cashier_id == $v['cashier_id'])	{
+                        $selected = "selected='selected'";
+                        }else{
+                        $selected = "";
+                        }
+                        ?>
+                            <option value="<?php echo $v['cashier_id'];?>" <?php echo $selected;?>>
+                                <?php echo $v['cashier_name'];?>
+                            </option>
+                            <?php endforeach ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <button class="danger-btn-default" onclick="query_submit()">查询</button>
+        </div>
+    </form>
+    <div class="flex-content food-chart-tab">
+        <div class="food-chart-item flex-main active" data-id="food">主菜统计</div>
+        <div class="food-chart-item flex-main" data-id="attr">规格统计</div>
+    </div>
+    <div id="orderInfo">
+    </div>
+    <!--<section class="section">
+		<table class="w100 chart-table" id="food">
+			<tbody>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>菜品名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+			</tbody>
+		</table>
+		<table class="w100 chart-table hide" id="attr">
+			<tbody>
+				<tr>
+					<td>规格名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>规格名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>规格名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+				<tr>
+					<td>规格名称五六七八九</td>
+					<td>
+						<span class="chart-length blue" style="width: 120px;"></span>
+					</td>
+					<td class="text-right">12份</td>
+				</tr>
+			</tbody>
+		</table>
+	</section>-->
+</block>
+<block name="js">
+    <include file="Public:date" />
+    <script type="text/javascript">
+    $('.food-chart-item').click(function(event) {
+        $(this).addClass('active').siblings().removeClass('active');
+        if ($(this).data('id') == 'food') {
+            $('#food').show().siblings().hide();
+        } else {
+            $('#attr').show().siblings().hide();;
+        }
+
+    });
+
+    $(function() {
+        var form = $("#myform")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url: '/index.php/MobileAdmin/sale/food_chart_ajax',
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            beforeSend: function() {
+                layer.open({
+                    type: 3,
+                    icon: 2,
+                    skin: "loading"
+                });
+            },
+            success: function(data) {
+                $("#orderInfo").html(data);
+                // charts(data);
+                layer.closeAll('loading');
+            }
+        });
+
+    });
+
+    function query_submit() {
+        var form = $("#myform")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url: '/index.php/MobileAdmin/sale/food_chart_ajax',
+            data: formData,
+            type: "post",
+            contentType: false,
+            processData: false,
+            async: true,
+            cache: false,
+            beforeSend: function() {
+                layer.open({
+                    type: 3,
+                    icon: 2,
+                    skin: "loading"
+                });
+            },
+            success: function(data) {
+                console.log(data);
+                $("#orderInfo").html(data);
+                // charts(data);
+                layer.closeAll('loading');
+            }
+        });
+    }
+    </script>
+</block>

@@ -1,0 +1,50 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="积分兑换"/>
+	<div class="content">
+		<span class="text-4">积分兑换：</span>
+		<div class="checkbox-switch">
+		    <input type="checkbox">
+		    <label></label>
+		</div>
+	</div>	
+	<section class="section">
+		<header class="section-title">积分礼品</header>
+		
+		<div class="gift-list clear">
+			<div class="gift-item">
+				<img src="/Public/Uploads/Goods/2017-02-28/58b4db7d28ec4.jpg">
+				<div class="flex-content">
+					<span class="flex-main">酸菜鱼</span>
+					<span>8分</span>
+				</div>
+			</div>
+			<div class="gift-item">
+				<img src="/Public/Uploads/Goods/2017-02-28/58b4db7d28ec4.jpg">
+				<div class="flex-content">
+					<span class="flex-main">酸菜鱼</span>
+					<span>8分</span>
+				</div>
+			</div>
+			<div class="gift-item">
+				<img src="/Public/Uploads/Goods/2017-02-28/58b4db7d28ec4.jpg">
+				<div class="flex-content">
+					<span class="flex-main">酸菜鱼</span>
+					<span>8分</span>
+				</div>
+			</div>
+		</div>
+	</section>
+</block>
+<block name="js">
+	<script type="text/javascript">
+		function giftImgSize() {
+			var height=$('.gift-item').width()*0.6;
+			$('.gift-item img').css('height', height);
+		}
+		giftImgSize();
+		$(window).resize(function(){
+			giftImgSize();
+		});
+	</script>
+</block>

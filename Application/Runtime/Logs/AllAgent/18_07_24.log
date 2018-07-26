@@ -1,0 +1,488 @@
+[ 2018-07-24T09:56:59+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000359s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000487s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0371s ]
+
+[ 2018-07-24T09:57:02+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000034s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000489s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:57:05+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000356s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000432s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000479s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:57:09+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000616s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000870s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0020s ]
+
+[ 2018-07-24T09:57:12+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000419s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000438s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000484s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:57:15+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000411s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000599s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000663s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0029s ]
+
+[ 2018-07-24T09:57:18+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000032s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000662s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000824s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000910s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0039s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0030s ]
+
+[ 2018-07-24T09:57:21+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000343s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000432s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000478s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:57:24+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000350s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000437s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000483s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0022s ]
+
+[ 2018-07-24T09:57:28+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000432s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000610s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000656s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:57:31+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000351s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000582s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:57:34+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000464s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:57:37+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000342s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000547s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:57:40+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000502s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000654s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000719s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:57:43+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000413s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000580s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000639s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0038s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0033s ]
+
+[ 2018-07-24T09:57:47+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000035s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000545s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001087s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001158s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:57:51+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000416s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000537s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0030s ]
+
+[ 2018-07-24T09:57:55+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000366s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000583s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000652s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:57:58+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000444s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000430s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000495s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:58:02+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000581s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000629s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0020s ]
+
+[ 2018-07-24T09:58:05+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000384s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000558s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000618s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:58:08+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000515s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000484s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000533s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:58:13+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000330s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000422s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0029s ]
+
+[ 2018-07-24T09:58:16+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000357s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000419s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000465s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0025s ]
+
+[ 2018-07-24T09:58:19+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000338s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000423s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000488s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0023s ]
+
+[ 2018-07-24T09:58:22+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000328s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000415s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000460s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0022s ]
+
+[ 2018-07-24T09:58:25+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000520s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000642s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000716s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0018s ]
+
+[ 2018-07-24T09:58:29+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000400s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000516s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0037s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0032s ]
+
+[ 2018-07-24T09:58:32+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000329s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000454s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000514s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:58:35+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000331s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000424s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000470s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0028s ]
+
+[ 2018-07-24T09:58:38+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000516s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000473s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0018s ]
+
+[ 2018-07-24T09:58:41+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000017s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000548s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000607s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:58:44+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000408s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000467s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000523s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0022s ]
+
+[ 2018-07-24T09:58:47+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000014s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000435s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000556s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0029s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:58:50+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000658s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2018-07-24T09:58:54+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000043s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000491s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000657s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000733s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0026s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0022s ]
+
+[ 2018-07-24T09:58:57+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000426s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000667s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000756s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0028s ]
+
+[ 2018-07-24T09:59:00+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000316s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000418s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000463s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0030s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:59:03+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000015s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000321s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000511s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000558s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0031s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0024s ]
+
+[ 2018-07-24T09:59:05+08:00 ] 116.23.19.200 /index.php/allAgent/activate/activate/device_code/00:08:22:54:B7:A1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000393s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000482s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000133s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.028746s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.028822s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000239s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000616s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000661s ]
+
+[ 2018-07-24T09:59:07+08:00 ] 101.226.86.155 /index.php/allAgent/activate/activate/device_code/00:08:22:54:B7:A1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000037s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000392s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000630s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000063s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000124s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006521s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.006596s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000224s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000261s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000565s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000607s ]
+
+[ 2018-07-24T09:59:07+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000439s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000525s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000573s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0027s ]
+
+[ 2018-07-24T09:59:10+08:00 ] 116.23.19.200 /index.php/allAgent/activate/isActivate
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000020s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000349s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000534s ]
+SQL: SHOW COLUMNS FROM `code` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `code` WHERE `code` = 'E999C6EABD3DC1B5' LIMIT 1   [ RunTime:0.0041s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0031s ]
+SQL: SELECT `device_code` FROM `device` WHERE `code_id` = 4536 LIMIT 1   [ RunTime:0.0034s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0026s ]
+SQL: UPDATE `code` SET `code_status`='0' WHERE `code_id` = 4536 [ RunTime:0.0066s ]
+SQL: INSERT INTO `device` (`code_id`,`device_code`,`start_time`,`end_time`,`device_name`) VALUES ('4536','00:08:22:54:B7:A1','1532397550','1546151279','疾风劲草') [ RunTime:0.0058s ]
+SQL: UPDATE `code` SET `code_status`='0' WHERE ( code_id = 4536 ) [ RunTime:0.0050s ]
+
+[ 2018-07-24T09:59:10+08:00 ] 116.23.19.200 /index.php/allAgent/Activate/qrcActivateStatus
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000474s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000527s ]
+SQL: SHOW COLUMNS FROM `device` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `device` WHERE `device_code` = '00:08:22:54:B7:A1' LIMIT 1   [ RunTime:0.0033s ]
+SQL: SHOW COLUMNS FROM `code` [ RunTime:0.0028s ]
+SQL: SELECT * FROM `code` WHERE `code_id` = 4536 LIMIT 1   [ RunTime:0.0025s ]
+
+[ 2018-07-24T10:00:10+08:00 ] 101.226.79.223 /index.php/allAgent/activate/activate/device_code/00:08:22:54:B7:A1
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000627s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000929s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001029s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000112s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000213s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008797s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008886s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000287s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000344s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000698s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000765s ]
+

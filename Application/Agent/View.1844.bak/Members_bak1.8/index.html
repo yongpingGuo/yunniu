@@ -1,0 +1,52 @@
+<include file="Public/head"/>
+<body class="members-index">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+	<aside class="members-sidebar">
+		<ul class="sidebar-menu">
+			<li class="treeview">
+				<a href="{:U('Members/vip_group')}" target='memberiframe' class="treeview-header active">会员组设置</a>
+			</li>
+			<li class="treeview">
+				<a href="{:U('Members/setting')}" target='memberiframe' class="treeview-header ">会员设置</a>
+			</li>
+			<li class="treeview">
+				<a  href="{:U('Members/prepaid')}" target='memberiframe' class="treeview-header">预充值</a>
+			</li>
+			<li class="treeview">
+				<div class="treeview-header">积分管理</div>
+				<ul class="treeview-menu">
+					<li>
+						<a href="{:U('Members/point_set')}" target='memberiframe'>积分设置</a>					
+					</li>
+					<li>
+						<a href="{:U('Members/point_consumptio')}" target='memberiframe'>积分消费</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<a href="{:U('Members/members')}" target='memberiframe' class="treeview-header">会员信息</a>
+			</li>			
+			<!--<li class="treeview">
+				<a href="{:U('Members/sms_marketing')}" target='memberiframe' class="treeview-header">会员短信营销</a>
+			</li>	-->
+			<li class="treeview">
+				<a href="{:U('Members/sms_docking')}" target='memberiframe' class="treeview-header">短信对接</a>
+			</li>
+			<li class="treeview">
+				<a href="{:U('Members/official_accounts')}" target='memberiframe' class="treeview-header">公众号设置</a>
+			</li>
+			<li class="treeview">
+				<a href="{:U('Members/vip_advertisement')}" target='memberiframe' class="treeview-header">会员广告设置</a>
+			</li>
+		</ul>
+	</aside>
+	<div class="right-content">
+		<iframe src="{:U('Members/vip_group')}" class="member-iframe" name="memberiframe"></iframe>
+	</div>
+
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__PUBLIC__/js/membersManage.js"></script>
+
+</body>
+</html>

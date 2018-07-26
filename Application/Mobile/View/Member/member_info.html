@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/calendar.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/member.css?2017">
+    <title>会员信息</title>
+</head>
+
+<body class="member-info">
+    <header class="common-header">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-4 text-left">
+                    <a href="/index.php/Mobile/Member/index" class="return">
+                        <img src="__PUBLIC__/images/lt.png">
+                    </a>
+                </div>
+                <div class="col-xs-4 text-center">
+                    会员信息
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="member-info-content">
+        <form action="?" onsubmit="return keep(this)">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td class="text-right">手机号：</td>
+                        <td>{$info['phone']}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">姓名：</td>
+                        <td>
+                            <input type="text" name="username" value="{$info['username']}" class="form-control">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">生日：</td>
+                        <td>
+                            <input type="text" name="birthday" value="{$info['birthday']}" class="form-control calendars">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">性别：</td>
+                        <td>
+                            <select class="form-control" name="sex" id="xingbie">
+                                <option value="1">男</option>
+                                <option value="2">女</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">支付密码：</td>
+                        <td>
+                            <input type="tel" name="password" value="{$info['password']}" class="form-control pwd-input" onkeyup="pwdKeyUp(this,1)">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">确认密码：</td>
+                        <td>
+                            <input type="tel" name="confirmPassword" value="{$info['password']}" class="form-control pwd-input" onkeyup="pwdKeyUp(this,2)">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="container-fluid">
+                <input type="hidden" name="id" value="{$info['id']}" />
+                <button class="form-control btn btn-primary">保存</button>
+            </div>
+        </form>
+    </div>
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/calendar.min.js"></script>
+    <script src="__PUBLIC__/layer/mobile/layer.js"></script>
+    <script>
+    function pwdKeyUp(event,type) {
+        var pwd = $(event);
+        if (/[^\d]/.test(pwd.val())) { //替换非数字字符
+            pwd[0].disabled=true; 
+            layer.open({
+                content: '请输入纯数字',
+                btn: '确定',
+                shadeClose:false,
+                yes: function(index){
+                    pwd[0].disabled=false; 
+                    layer.close(index)
+                }
+            });
+            pwd.val("");
+        }
+    }
+    $('#xingbie').val({$info['sex']});
+
+    function keep(obj) {
+        var password = $("input[name='password']").val();
+        var confirmPassword = $("input[name='confirmPassword']").val();
+        if(password == '' || confirmPassword == ''){
+            layer.open({
+                content: '密码不能为空',
+                skin: 'msg',
+                time: 2
+            })
+            return false;
+        }
+        if(password != confirmPassword){
+            layer.open({
+                content: '两次密码不一致',
+                skin: 'msg',
+                time: 2
+            })
+            return false;
+        }
+
+        $.post(obj.action, $(obj).serialize(), function(data) {
+            if (data.status == 1) {
+                layer.open({
+                    content: data.info,
+                    skin: 'msg',
+                    time: 2
+                })
+            } else {
+                layer.open({
+                    content: data.info,
+                    skin: 'msg',
+                    time: 2
+                })
+            }
+        });
+        return false;
+    }
+    </script>
+</body>

@@ -1,0 +1,248 @@
+@media screen and (max-width: 1365px) {
+    html,
+    body{
+    	font-size: 12px !important;
+    }
+}
+@media screen and (min-width: 1365px) and (max-width: 1470px) {
+    html,
+    body{
+    	font-size: 13px !important;
+    }
+}
+@media screen and (min-width: 1580px) and (max-width: 1900px) {
+    html,
+    body{
+    	font-size: 15px !important;
+    }
+}
+@media screen and (width: 1920px) {
+    html,
+    body{
+    	font-size: 18px !important;
+    }
+}
+@media screen and (max-width: 768px) {
+    html,
+    body{
+    	font-size: 8px !important;
+    }
+}
+/* ---------------------------------------------- /*
+ * home 顶部信息
+/* ---------------------------------------------- */
+.home-header{
+	height: 4.5rem;
+	line-height: 4.5rem;
+	font-size: 2rem;
+}
+.order-head{
+	left: 50%;      
+	-ms-transform:translateX(-50%);	/* IE 9 */
+	-moz-transform:translateX(-50%); 	/* Firefox */
+	-webkit-transform:translateX(-50%); /* Safari 和 Chrome */
+	-o-transform:translateX(-50%); 
+	transform: translateX(-50%);
+	font-size: 1.3em;
+}
+/* ---------------------------------------------- /*
+ * home 底部信息
+/* ---------------------------------------------- */
+.home-footer{
+	height: 4.5rem;
+	line-height: 4.5rem;
+	font-size: 2rem;
+}
+
+
+/* ---------------------------------------------- /*
+ * 点餐页
+/* ---------------------------------------------- */
+.order-body{
+	overflow: hidden;
+	padding-top: 4.5rem;
+}
+.order{
+	height: 100%;
+	padding-left: 20rem;
+	padding-right: 23rem;
+	overflow: hidden;
+	position: relative;
+}
+.order-left{
+	left: 0;
+	width: 20rem;	
+	overflow-y: auto;
+	background-color: #f3f3f3;	
+}
+.order-left,
+.order-right{	
+	position: absolute;
+	z-index: 900;
+	top: 0;
+	bottom: 0;
+}
+.order-right{
+	background-color: #fff;
+	right: 0;
+	width: 23rem;
+	height: 100%;
+	font-size:1.9rem;
+}
+.order-right .container-fluid{
+	height: 100%;
+	overflow-y: auto;
+}
+.sorts-list{
+	font-size: 1.6rem;	
+}
+.food-details{
+	font-size: 1.5rem;
+}
+
+.food-select-item{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border-bottom: 2px solid #fff;
+	line-height: 2;
+}
+.food-select-item .food-name{
+	margin-bottom: 10px;
+}
+.select-content{
+	line-height: 4rem;
+}
+.select-content button:first-child{
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.select-content button{
+	background-color: #dc7705;
+	width: 2em;
+	height: 2em;
+	line-height: 1;
+	text-align: center;
+	border-radius: 50%;
+	border: 1px solid #dc7705;
+}
+.select-content button img{
+	width:1em;
+}
+.select-num{
+	display: inline-block;
+	width: 2em;
+	text-align: center;
+}
+.modal-price-content button:first-child{
+	background-color: #fff;
+	border: 1px solid #ddd;
+}
+.modal-price-content button{
+	background-color: #dc7705;
+	width: 4.3rem;
+	height: 4.3rem;
+	line-height: 1;
+	text-align: center;
+	border-radius: 50%;
+	border: 1px solid #dc7705;
+}
+.modal-price-content button img{
+	width:46px;
+}
+.add-num-active{
+	background-color: #ddd;
+}
+.select-content button:active,
+.modal-price-content button:active{
+	background-color: #ff4700;
+}
+.food-select{
+	background-color: #fff;
+}
+.total{
+	font-size: 1.8rem;
+	line-height: 3rem;
+	letter-spacing: 1px;
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	text-align: center;
+}
+.place-order-btn{
+	width: 100%;
+	font-size: 2.4rem;
+	line-height: 6rem;
+}
+.place-order-btn img{
+	height: 0.8em;
+}
+.footer-time{
+	padding-left: 15px;
+	padding-right: 15px;
+}
+#foodModal .modal-dialog{
+	width: auto;
+	position: absolute;
+	top: 50%;
+	left: 0;	
+	-webkit-transform: translateY(-50%);
+	transform: translateY(-50%);
+	margin: 0;
+	width: 100%;
+	padding-left: 20rem;
+	padding-right: 24rem;
+
+}
+#foodModal .modal-content{
+	width: 100%;
+	background-color: #e2830b;
+	padding-top: 8px;
+	padding-left: 8px;
+	padding-right: 8px;
+}
+.food-content{
+	background-color: #fff;
+	padding: 15px;
+}
+/* ---------------------------------------------- /*
+ * 餐牌号modal
+/* ---------------------------------------------- */
+#tableModal table{
+	font-size: 2.3rem;
+}
+#tableModal .number{	
+	min-width: 32rem;	
+	padding: 5rem 8rem;
+}
+.number-input>button{
+	width: 4em;
+}
+
+/* ---------------------------------------------- /*
+ * 支付页
+/* ---------------------------------------------- */
+.pay-select{
+	margin: 50px auto 0;
+	display: table;
+}
+.pay-item{
+	padding-left: 5em;
+	padding-right: 5em;
+	display: table-cell;
+	vertical-align: top;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+
+
+.modal-wrapper{
+	padding: 1rem;
+}
+
+.layer-class .layui-layer-content{
+	font-size: 4rem;
+	line-height: 3;
+}

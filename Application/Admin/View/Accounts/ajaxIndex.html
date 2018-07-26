@@ -1,0 +1,44 @@
+<table class="accounts-table" id="ajax-content">
+    <thead>
+        <tr>
+            <td></td>
+            <td>{{langData.name[lang]}}</td>
+            <td>{{langData.account[lang]}}</td>
+            <td>{{langData.gender[lang]}}</td>
+            <!--<td>{{langData.role[lang]}}</td>-->
+            <td></td>
+        </tr>
+    </thead>
+    <tbody>
+        <volist name="cashierArr" id="v">
+            <tr>
+                <td>{$key+1}</td>
+                <td>{$v.cashier_name}</td>
+                <td>{$v.cashier_phone}</td>
+                <td>
+                    <if condition="$v.cashier_sex eq 1">
+                        {{langData.male[lang]}}
+                        <else />{{langData.female[lang]}}
+                    </if>
+                </td>
+                <!--<td></td>-->
+                <td>
+                    <button class="edit-btn" type="button" data-toggle="modal" data-target="#addRole" onclick="modify({$v.cashier_id})"></button>
+                    <button class="remove-btn" type="button" onclick="del({$v.cashier_id})"></button>
+                </td>
+            </tr>
+        </volist>
+    </tbody>
+</table>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

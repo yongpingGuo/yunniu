@@ -1,0 +1,41 @@
+	<!--
+    	作者：凯
+    	时间：2017-01-10
+    	描述：设备页面，品牌商模糊查询
+    -->
+	<ul class="sidebar-list">
+		<volist name = "Arrlist" id = 'v'>
+			<li>
+				<empty name="v['restaurantNameArr']">
+					<button class="btn-none">-</button>
+				<else/>
+					<button class="btn-none">+</button>
+				</empty>
+				<span>{$v['business_name']}</span>
+				<input type="hidden" name="business_id" value="{$v['business_id']}"/>
+				<ul>
+					<volist name = "v['restaurantNameArr']" id = 'v1'>
+					<li>
+						<button class="btn-none">+</button>
+						<span>{$v1['restaurant_name']}</span>
+						<ul>
+							<volist name = "v1['City1Array']" id = 'v2'>
+								<li>
+									<input type="hidden" name = "restaurant_name" value="{$v1['restaurant_name']}" />
+									<a href="javascript:void(0)" style="color: white; text-decoration: none;" onclick="showinfo({$v['business_id']},{$v2['city3']},this)">{$v2['cityArr']}</a>
+								</li>
+							</volist>
+						</ul>
+					</li>
+					</volist>
+				</ul>
+			</li>
+		</volist>
+	</ul>
+	
+	<!--加号、下拉-->
+	<script type="text/javascript">
+		$('.sidebar-list button').click(function(){
+			$(this).siblings('ul').slideToggle();
+		});
+	</script>

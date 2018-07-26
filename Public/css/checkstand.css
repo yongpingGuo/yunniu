@@ -1,0 +1,390 @@
+/*.common-bg{
+	color: #fff;
+}*/
+/* ---------------------------------------------- /*
+ * home 顶部信息
+/* ---------------------------------------------- */
+.checkstand-head{
+	font-size: 1em;
+}
+.header-right{
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 4rem;
+}
+.header-right a{
+	text-decoration: none;
+	color: #fff;
+	display: inline-block;
+	margin-right: 2rem;
+	font-size: 1.2rem;
+}
+.header-right a img{
+	height: 2em;
+}
+
+/* ---------------------------------------------- /*
+ * 餐牌号modal
+/* ---------------------------------------------- */
+.number-title{
+	color: #fff;
+	line-height: 2;
+	text-align: center;
+	padding-left: 1rem;
+}
+
+/* ---------------------------------------------- /*
+ * 支付modal
+/* ---------------------------------------------- */
+#payModal .number-input>button{
+	height: 2em;
+}
+
+
+/* ---------------------------------------------- /*
+ * 积分modal
+/* ---------------------------------------------- */
+#integralModal .number-table button{
+	height: 6rem;
+	width: 6rem;
+}
+#integralModal .number-table-right button{
+	height: 10rem;
+}
+/* ---------------------------------------------- /*
+ * 点餐页
+/* ---------------------------------------------- */
+.order-right{
+	padding-bottom: 16rem;
+}
+
+/* ---------------------------------------------- /*
+ * 支付页
+/* ---------------------------------------------- */
+#cashModal .modal-dialog{
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+.cash-modal-container{
+	display: table;
+	height: 100%;
+	width: 60rem;
+	margin: 0 auto;
+}
+.cash-modal-content{
+	display: table-cell;
+	vertical-align: middle;
+}
+.cash-modal-main{
+	font-size: 1.6rem;
+	background-color: #e2830b;
+	padding: 1rem 1rem 0 1rem;
+}
+.cash-content{
+	width: 100%;
+	padding:20px 50px 50px;
+	background-color: #fff;
+	line-height: 3;
+}
+.cash-head{
+	margin-top: 0;
+	font-size: 2rem;
+	margin-bottom: 40px;
+}
+.cash-info .red{
+	display: inline-block;
+	margin-left: 10px;
+	margin-right: 10px;
+	font-size: 1.3em;
+}
+.cash-table{
+	width: 100%;
+	font-size: 2.4rem;
+}
+.cash-table td{
+	line-height: 2;
+	width: 33%;
+	text-align: center;
+	border: 1px solid #b3b3b3;
+	background: #fff;
+}
+.cash-table button{
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	width: 100%;
+}
+.cash-table button:active{
+	background-color: #ddd;
+}
+.cash-bottom{
+	line-height: 60px;
+	height: 60px;
+}
+.cash-bottom button{
+	float: left;
+	border: 0;
+	color: #fff;
+	width: 50%;
+	background-color: transparent;
+}
+.cash-bottom .close-btn{
+	background-color: #8c8680;
+}
+
+#postModal .modal-content{
+	background-color: #e2830b;
+	padding: 1rem;
+	font-size: 1.6rem;
+}
+#alipay_postModal .modal-content{
+	background-color: #e2830b;
+	padding: 1rem;
+	font-size: 1.6rem;
+}
+.postModal-content{
+	background-color: #fff;
+	padding: 2rem 2rem 3rem;
+}
+/* ---------------------------------------------- /*
+ * 订单管理
+/* ---------------------------------------------- */
+/*.order-list{
+	font-family: Microsoft Yahei,Arial,Helvetica,sans-serif;
+	font-size: 16px;
+	text-align: center;
+	padding-top: 20px;
+	height: 100%;
+    overflow-y: auto;
+}
+.order-list-header{
+	line-height: 3;
+	background-color: #fff;
+	box-shadow: 3px 1px 3px #888;
+}
+.order-list-header select{
+	border:0;
+}
+.order-list-item{
+	background-color: #fff;
+	color: #666;
+	line-height: 2;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: 1px 1px 2px #999;
+}
+.order-list .col-xs-3{
+	min-width: 20em;
+	padding-left: 20px;
+	padding-right: 5px;
+}
+.order-list .col-xs-1{
+	min-width: 4em;
+	box-sizing: content-box;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.order-number{
+	border-bottom: 1px dotted #ddd;
+	line-height: 3;
+}
+.order-delete{
+	background-color: transparent;
+	border:0;
+	width: 100%;
+}*/
+/* ---------------------------------------------- /*
+ * login
+/* ---------------------------------------------- */
+.cashier{
+	width: 80%;
+	height: 100%;
+	display: table;
+	margin: 0 auto;
+}
+.login{
+	display: table-cell;
+	vertical-align: middle;
+}
+.login_header{
+	font-size: 1.5em;
+	line-height: 2;
+}
+.login-wapper{
+	width: 40%;
+	background-color: #fff;
+	padding: 5px 30px 20px;
+}
+.login-keyboard{
+	width: 50%;
+}
+.login-numtable{
+	width: 100%;
+    font-size: 2.4rem;
+    background-color: #fff;
+}
+
+.login-numtable td{
+    line-height: 2;
+    width: 33%;
+    text-align: center;
+    border: 1px solid #b3b3b3;
+    background: #fff;
+}
+.login-numtable button{
+	border: 0;
+	background-color: transparent;
+	padding: 0;
+	width: 100%;
+}
+.login-numtable button:active{
+	background-color: #bbb;
+}
+.left-input-icon{
+	position: absolute;
+    left: 25px;
+    top: 0;
+    height: 3rem;
+	line-height: 3rem;
+	color: #898989;
+}
+.login-wapper select,
+.login-wapper input[type="password"]{
+	padding-top: 0;
+	padding-bottom: 0;
+	padding-left: 30px;
+	margin-bottom: 1rem;
+	font-size: 1.5rem;
+	height: 3rem;
+	line-height: 3rem;
+	background-color: #fff;
+}
+.login-btn{
+	font-size: 1.5rem;
+	line-height: 2.4;
+	width: 100%;
+	border-radius: 5px;
+}
+
+.modal.in .modal-dialog{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width:auto;
+	margin: 0;
+	transform: translate(-50%, -50%);
+	-ms-transform:translate(-50%, -50%);	/* IE 9 */
+	-moz-transform:translate(-50%, -50%); 	/* Firefox */
+	-webkit-transform:translate(-50%, -50%); /* Safari 和 Chrome */
+	-o-transform:translate(-50%, -50%); 
+}
+#postModal.in .modal-dialog{
+	width:760px;
+	line-height: 3;
+}
+
+#alipay_postModal.in .modal-dialog{
+	width:760px;
+	line-height: 3;
+}
+#payModal{
+	font-size: 2rem;
+}
+.modal-head{
+	border-top-right-radius: 6px;
+	border-top-left-radius: 6px;
+	margin-bottom: 1rem;
+	background-color: #ffa200;
+}
+.modal-head button{
+	color: #fff;
+	line-height: 2.4;
+	margin-left: 1rem;
+} 
+.modal-head button img{
+	height: 1em;
+} 
+#setModal{
+	font-size: 1.4rem;
+}  
+.print-table td{
+	white-space: nowrap;
+	padding: 5px 1em;
+	text-align: center;
+}
+.table-set {
+	display: inline-block;
+	min-width: 6em;
+	line-height: 2;
+	border: 0;
+	background: transparent;
+	padding: 0 5px;	
+	border-radius: 5px;
+	text-align: left;
+}
+.dineWay{
+	font-size: 1.4rem;
+	line-height: 2;		
+	padding: 0 1rem;	
+	border-radius: 6px;
+    margin-bottom: 1rem;
+    background-color: #eee;
+    border: 1px inset #fff;
+}
+.dineWay.active{
+	color: #fff;
+	border: 0;
+	background: #ff555e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#ff9999), to(#ff555e));
+	background: -moz-linear-gradient(top,  #ff9999,  #ff555e);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9999', endColorstr='#ff555e');
+	box-shadow: 2px 2px 1px rgba(0,0,0,0.3);
+}
+#integralModal{
+	font-size: 2rem;
+}
+#integralModal .modal-dialog{
+	width: 72rem;
+}
+.member-input .glyphicon{
+	color: #ffa200;
+}
+.member-input input{
+	background-color: #5c5c5c;
+	color: #fff;
+	border: 0;
+	height: 4rem;
+	line-height: 1;
+}
+.member-input-item{
+	line-height: 7rem;
+}
+#member-name{
+	width: 10em;
+}
+#member-password{
+	width: 5.5em;
+}
+.member-input button,
+.member-scanner{
+	border: none;
+	background-color: #ffa200;
+	color: #fff;
+	padding: 0 1em;
+	height: 4rem;
+	line-height: 1;
+}
+.member-input button:active,
+.member-scanner:active{
+	background-color: #ffb025;
+}
+
+.member-input select{
+	width: 10em;
+}
+.integral-info{
+	font-size: 1.6rem;
+	color: #666;
+}

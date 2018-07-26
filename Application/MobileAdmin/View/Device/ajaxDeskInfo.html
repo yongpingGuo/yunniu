@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<table class="table-code">
+    <tr>
+        <td>序号</td>
+        <td>餐桌号</td>
+        <td class="text-center">机器码</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <volist name="deskInfo" id="vo">
+        <tr>
+            <td>{$i}</td>
+            <td>{$vo.desk_code}</td>
+            <td>
+                <img src="{$vo.code_img}">
+            </td>
+            <td>
+                <button class="btn-none" data-img_path="{$vo.code_img}" onclick="downloadImg(this)">下载图片</button>
+            </td>
+            <td>
+                <button class="btn-none" data-desk_id="{$vo.desk_id}" data-desk_code="{$vo.desk_code}" onclick="editDesk(this)">编辑</button>
+                <button class="btn-none ml-10" data-desk_id="{$vo.desk_id}" onclick="delDesk(this)">删除</button>
+            </td>
+        </tr>
+    </volist>
+</table>
+<div>
+    <ul class="pagination" id="detail-page">
+        {$page}
+    </ul>
+</div>
+</body>
+<script>
+    $("#detail-page").children().children("a").click(function() {
+        var page = parseInt($(this).data("page"));
+        console.log(page);
+        $.ajax({
+            url:"/index.php/admin/device/deskInfo",
+            data:{"page":page},
+            type:"get",
+            success:function(data) {
+                $("#comment_list").html(data);
+            },
+            error:function(){
+                alert("出错了");
+            }
+        });
+    });
+
+    function downloadImg(obj){
+        var img_path = $(obj).data('img_path');
+        location.href = "/index.php/admin/device/downloadImg?imgPath="+img_path;
+    }
+
+    function editDesk(obj){
+        var desk_code = $(obj).data("desk_code");
+        $("#desk_form input").eq(0).val(desk_code);
+        $("#desk_form input").eq(1).val("edit");
+        $("#myModal").modal("show");
+        $('#myModal').on('hidden.bs.modal', function () {
+            $("#desk_form input").eq(0).val("");
+        });
+    }
+
+    function addDesk(){
+        $("#desk_form input").eq(1).val("add");
+        $("#myModal").modal("show");
+    }
+
+    function delDesk(obj){
+        if(confirm("是否要刪除？")){
+        var desk_id = $(obj).data("desk_id");
+        $.ajax({
+            url:"/index.php/admin/device/delDesk",
+            data:{"desk_id":desk_id},
+            dataType:'json',
+            type:"post",
+            success:function(msg){
+                if(msg.code == 1){
+                    alert(msg.msg);
+                    self.location.href = "/index.php/admin/device/deskInfo";
+                }else{
+                    alert(msg.msg);
+                    self.location.href = "/index.php/admin/device/deskInfo";
+                }
+            },
+            error:function(){
+                alert("出错了");
+            }
+        });
+        }
+    }
+</script>
+</html>

@@ -1,0 +1,75 @@
+<extend name="Public:base" />
+<block name="main">
+	<section class="section">
+		<div class="dish-classify flex-content flex-wrap  vertical-flex">
+			<!--<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类一二三四</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类一二三四</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex">菜品分类</div>
+			<div class="dish-classify-item flex-content vertical-flex active">菜品分类</div>-->
+
+            <volist name="data" id="v">
+                <div class="dish-classify-item flex-content vertical-flex">{$v['food_category_name']}</div>
+
+
+            </volist>
+		</div>
+		<hr class="hr">
+		<div class="dish-list">
+			<div class="dish-list-item">
+				<div class="flex-content vertical-flex">
+					<img src="__PUBLIC__/images/burger.png" class="icon-sm">
+					<span class="flex-main">菜品一二三四五六七八</span>
+					<span>100.01元</span>
+				</div>
+				<div class="flex-content vertical-flex">
+					<div class="flex-main">
+						<button class="default-btn">上移</button>
+						<button class="default-btn">下移</button>
+					</div>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_edit\')}'">编辑</button>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_attr\')}'">规格</button>
+					<button class="default-btn">删除</button>
+				</div>
+			</div>
+			<div class="dish-list-item">
+				<div class="flex-content vertical-flex">
+					<img src="__PUBLIC__/images/burger.png" class="icon-sm">
+					<span class="flex-main">菜品一二三四五六七八</span>
+					<span>100.01元</span>
+				</div>
+				<div class="flex-content vertical-flex">
+					<div class="flex-main">
+						<button class="default-btn">上移</button>
+						<button class="default-btn">下移</button>
+					</div>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_edit\')}'">编辑</button>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_attr\')}'">规格</button>
+					<button class="default-btn">删除</button>
+				</div>
+			</div>
+			<div class="dish-list-item">
+				<div class="flex-content vertical-flex">
+					<img src="__PUBLIC__/images/burger.png" class="icon-sm">
+					<span class="flex-main">菜品一二三四五六七八</span>
+					<span>100.01元</span>
+				</div>
+				<div class="flex-content vertical-flex">
+					<div class="flex-main">
+						<button class="default-btn">上移</button>
+						<button class="default-btn">下移</button>
+					</div>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_edit\')}'">编辑</button>
+					<button class="default-btn" onclick="location='{:U(\'Index/dish_attr\')}'">规格</button>
+					<button class="default-btn">删除</button>
+				</div>
+			</div>
+		</div>
+		<button class="danger-btn">
+			<i class="iconfont icon-plus"></i>
+		</button>
+	</section>
+
+</block>

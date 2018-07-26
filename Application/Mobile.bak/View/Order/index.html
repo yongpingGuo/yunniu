@@ -1,0 +1,24 @@
+<include file="Public/head"/>
+<link rel="stylesheet" type="text/css" href="https://at.alicdn.com/t/font_392209_2sj7rini5ygphkt9.css">
+<style type="text/css">
+    p{margin:0px;}
+</style>
+<body style="background-color:white;padding:0px;">
+    <volist name="list" id="vo">
+        <a href='{:U("Order/info", "order_id=$vo[order_id]")}' class="flex-content vertical-flex list-item">
+            <div>
+                <P>
+                    <span>{$vo.restaurant_name}</span><!--
+                    <span class="text-warning">#50072</span>-->
+                </P>
+                <p>{$vo.pay_time|date="Y-m-d H:i:s",###}</p>
+            </div>
+            <div class="text-center flex-main">
+                <span>微信点餐</span>
+                <span class="text-danger">已支付 <eq name="vo[order_status]" value="12">(已完成)</eq></span>
+            </div>
+            <eq name="vo[order_status]" value="3"><i class="iconfont icon-more"></i></eq>
+        </a>
+    </volist>
+</body>
+</html>

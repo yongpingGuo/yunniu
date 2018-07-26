@@ -1,0 +1,59 @@
+<table class="agent-table">
+	<tr>
+		<th>序号</th>
+		<th>管理员名称</th>
+		<th>管理员帐号</th>
+		<th>管理员密码</th>
+		<th>品牌商权限</th>
+		<th>设备权限</th>
+		<th>管理员权限</th>
+		<th>手机号码</th>
+		<th>备注</th>
+	</tr>
+	<volist name = "Arrlist" id = "v">
+		<tr>
+			<td>{$key+1}</td>
+			<td>{$v.business_name}</td>
+			<td>{$v.business_account}</td>
+			<td>
+						<span class="agent-psd">
+							{$v.business_password|md5}
+						</span>
+			</td>
+			<td>品牌商(<volist name="v['power_name1']" id = "v1">{$v1}\</volist>);</td>
+			<td>设备(<volist name="v['power_name2']" id = "v1">{$v1}\</volist>);</td>
+			<td>管理员(<volist name="v['power_name3']" id = "v1">{$v1}\</volist>);</td>
+			<td>{$v.business_phone}</td>
+			<td>{$v.business_ps}</td>
+			<td>
+				<button class="btn btn-black" data-target="#addAdmin" data-toggle="modal" onclick="modify_admin({$v.business_id})">编辑</button>
+				<button class="btn btn-default" onclick="del_admin({$v.business_id})">删除</button>
+			</td>
+		</tr>
+	</volist>
+
+</table>
+<div>
+	<ul class="pagination" id="detail-page">
+		{$page}
+	</ul>
+</div>
+
+<script>
+	//ajax分页
+	$("#detail-page").children().children("a").click(function(){
+		var page = parseInt($(this).data("page"));
+		console.log(page);
+		$.ajax({
+			url:"/index.php/agent/Index/common",
+			data:{"page":page},
+			type:"get",
+			success:function(data){
+				$("#mytable").html(data);
+			},
+			/*error:function(){
+			 alert("出错了");
+			 }*/
+		});
+	});
+</script>

@@ -1,0 +1,37 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="角色设置"/>
+	<section class="section">
+		<table class="w100 text-center table-striped">
+			<tbody>
+				<tr>
+					<td>姓名</td>
+					<td>账号</td>
+					<td>角色</td>
+					<td></td>
+				</tr>
+                <volist name="cashierArr" id="v">
+                    <tr>
+                        <td>{$v.cashier_name}</td>
+                        <td>{$v.cashier_phone}</td>
+                        <td class="accounts-role">店长</td>
+                        <td class="text-right accounts-operate">
+                            <!--<button class="default-btn" onclick="location='{:U(\'Index/role_edit\')}'">修改</button>-->
+                            <button class="default-btn" onclick="edit_role({$v.cashier_id})">修改</button>
+                            <button class="default-btn" data-cashier_id = "{$v.cashier_id}" onclick="del_role(this)">删除</button>
+                        </td>
+                    </tr>
+                </volist>
+
+			</tbody>
+		</table>
+		<button class="danger-btn" onclick="location='{:U(\'Accounts/role_add\')}'">
+			<i class="iconfont icon-plus"></i>
+		</button>
+	</section>
+	<div class="remarks">本帐号用于收银登录。</div>
+</block>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/role.js"></script>
+</block>

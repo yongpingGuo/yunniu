@@ -1,0 +1,713 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f3f3f3;
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-overflow-scrolling: touch;
+    -webkit-touch-callout: none;/*系统默认菜单被禁用*/
+    -webkit-user-select: none;/*webkit浏览器*/
+    -khtml-user-select: none;/*早期浏览器*/
+    -moz-user-select: none;/*火狐*/
+    -ms-user-select: none;/*IE10*/
+    user-select: none
+}
+
+[v-cloak] {
+    display: none;
+}
+
+a,
+a:focus,
+a:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.text-xs {
+    font-size: 12px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-danger {
+    color: #ff0000;
+}
+
+.text-grey {
+    color: #999;
+}
+
+.img-sm {
+    width: 3em;
+}
+
+.radio {
+    display: none;
+}
+
+.radio-rect {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 1em;
+}
+
+.radio-rect .radio-name {
+    display: inline-block;
+    width: 5.5em;
+    text-align: center;
+    line-height: 2.4;
+    background-color: #cfcfcf;
+    color: #fff;
+    border-radius: 3px;
+}
+
+.radio-rect input:checked+.radio-name {
+    background-color: #0090ff;
+    background-position: right bottom;
+    background-repeat: no-repeat;
+    background-image: url(../images/radio_select.png);
+    background-size: 1.4em;
+}
+
+.list-item {
+    padding-top: .5em;
+    padding-bottom: .5em;
+    border-bottom: 1px solid #d3d3d3;
+}
+
+.list-item input {
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+.flex-content {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -ms-touch-action: none;
+}
+
+.vertical-flex {
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flex-main {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+.container {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.iconfont {
+    font-size: 1em;
+}
+
+.minus-btn,
+.plus-btn {
+    width: 3.5em;
+    height: 3.5em;
+    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid #d8d5d5;
+    color: #e02d3f;
+    outline: none;
+}
+
+.selectAttr-btn {
+    width: 4.5em;
+    height: 2.6em;
+    background-color: transparent;
+    border-radius: 2em;
+    border: 1px solid #d8d5d5;
+    color: #e02d3f;
+    outline: none;
+}
+
+.danger-btn {
+    background-color: #d93035;
+    color: #fff;
+    font-size: 1em;
+    width: 100%;
+    border: none;
+    border-radius: .5em;
+    padding: 1em;
+    margin-bottom: 1em;
+    outline: none;
+}
+
+.blue-btn-lg {
+    width: 100%;
+    background-color: #0090ff;
+    border: none;
+    border-radius: 2px;
+    color: #fff;
+    padding: 1rem .5em;
+    margin-top: 1em;
+    font-size: 1.15em;
+}
+.zhifu .iconfont{
+	font-size: 1em;
+	padding-top:  2px;
+}
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer .danger-btn {
+    margin-bottom: 0;
+}
+
+
+/*点餐页面*/
+
+.order-body {
+    font-size: 12px;
+}
+
+.order-header {
+    padding: .5em 1em;
+    background-color: #c63f43;
+    color: #fff;
+}
+
+.header-name {
+    font-size: 1.5em;
+}
+
+.logo {
+    height: 2em;
+    margin-right: .5em;
+}
+
+.order-header-btn {
+    color: inherit;
+}
+
+.order-header-btn img {
+    display: block;
+    width: 2.37em;
+    margin: 0 auto 2px;
+}
+
+.classify-bd {
+    width: 8rem;
+    height: 100%;
+    background-color: #f5f0e9;
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    text-align: center;
+}
+
+.classify-bd .nav>li {
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #f5f0e9;
+    color: inherit;
+    padding: .6em 0;
+}
+
+.classify-bd .nav>li.active {
+    background-color: #fff;
+}
+
+.classify-bd .nav>li>a {
+    padding: 0;
+}
+
+.classify-bd .nav>li>a:hover {
+    background-color: transparent;
+}
+
+.classify-item,
+.classify-item:focus,
+.classify-item:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+.classify-icon {
+    height: 3.3em;
+    margin-bottom: .5em;
+}
+
+.classify-name {
+    color: #808080;
+    line-height: 1.5;
+}
+
+.classify-item.active .classify-name {
+    color: #e02d39;
+}
+
+
+.dish-list {
+    position: relative;
+    height: 100%;
+    background-color: #fff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.dish-item {
+    border-bottom: 1px solid #e7e6e6;
+    padding: 1em 1em 1em 1em;
+}
+
+.dish-icon {
+    width: 11em;
+    height: 6.6em;
+}
+
+.dish-right {
+    min-height: 7em;
+    text-align: right;
+}
+
+.dish-name {
+    margin-left: .5em;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+.dish-list .dish-price {
+    margin-bottom: 1em;
+}
+
+.dish-price {
+    color: #e02d3f;
+}
+
+.price-num {
+    font-size: 2em;
+}
+
+
+
+#foodModal {
+    height: 100%;
+    overflow: hidden;
+}
+
+#foodModal .modal-dialog {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+
+#foodModal .modal-content {
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    border: none;
+    border-radius: 0;
+    padding-bottom: 4.6rem;
+}
+
+.modal-bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+}
+
+.modal-bottom button {
+    height: 4.6rem;
+    font-size: 1.6em;
+    border: none;
+    color: #fff;
+    outline: none;
+}
+
+.modal-bottom button:first-child {
+    background-color: #7a7a7a;
+}
+
+.modal-bottom button:last-child {
+    background-color: #e02d3f;
+}
+
+.modal-dish-icon {
+    width: 100%;
+}
+
+.modal-dish-info {
+    padding: .5em;
+}
+
+.modal-dish-name {
+    font-weight: 800;
+}
+
+.modal-dish-right {
+    padding-left: 1em;
+}
+
+.modal-dish-right .plus-btn {
+    margin-top: 0;
+}
+
+.modal-dish-describe {
+    font-size: 80%;
+    color: #666;
+    padding: 0 .5em 1em;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: .5em;
+}
+
+.attr-list {
+    list-style: none;
+    padding-left: 5em;
+}
+
+.attr-list li {
+    position: relative;
+    margin-right: .2em;
+    margin-bottom: .2em;
+    display: inline-block;
+    vertical-align: middle;
+    width: 5em;
+    border-radius: 4px;
+    line-height: 1.4;
+}
+
+.attr-list .attr-item-name {
+    margin-left: -5em;
+    margin-bottom: 0;
+    width: 4.6em;
+    margin-right: 0.2em;
+    text-align: center;
+}
+
+.attr-name {
+    position: relative;
+    line-height: 1.1;
+    height: 2.2em;
+    margin-top: 5px;
+}
+
+.attr-name span {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    width: 100%;
+    max-height: 100%;
+    overflow: hidden;
+}
+
+.attr-select-item {
+    text-align: center;
+    border: 1px solid #787878;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.attr-list li input {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    z-index: 1100;
+}
+
+.attr-select {
+    background-color: #e68011;
+    color: #fff;
+}
+
+.order-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    width: 100%;
+    height: 6rem;
+    background-color: #c53f43;
+    color: #fff;
+}
+
+.order-footer .icon-up {
+    position: absolute;
+    background-color: #c53f43;
+    top: -.9em;
+    left: 50%;
+    margin-left: -1.4em;
+    width: 2.8em;
+    height: 1.4em;
+    line-height: 1.4em;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 1.4em 1.4em 0 0;
+    font-weight: bolder;
+}
+
+.order-footer-left {
+    position: relative;
+    height: 100%;
+    padding-left: .5em;
+}
+
+.order-footer-icon {
+    font-size: 2em;
+}
+
+.order-footer-num {
+    display: block;
+    position: relative;
+    top: -1em;
+    background-color: #ff7b0f;
+    color: #fff;
+    border-radius: 50%;
+    width: 1.2em;
+    height: 1.2em;
+    line-height: 1.2em;
+    text-align: center;
+    margin-right: 1em;
+}
+
+.order-footer-total {
+    font-size: 2.2em;
+    margin: 0 .1em;
+}
+
+.order-footer-btn {
+    background-color: transparent;
+    border: none;
+    border-left: 1px solid #fff;
+    width: 6em;
+    height: 100%;
+    padding-left: 1em;
+    font-size: 1.6em;
+    outline: none;
+}
+
+.order-footer-btn .icon-more {
+    margin-left: .2em;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.order-cart {
+    position: absolute;
+    top: 0;
+    bottom: 6rem;
+    left: 0;
+    z-index: 200;
+    width: 100%;
+    background-color: rgba(174, 174, 174, 0.6);
+}
+
+.order-cart-content {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+.cart-num {
+    display: inline-block;
+    font-size: 1.4em;
+    min-width: 1.2em;
+    text-align: center;
+}
+
+.order-cart {
+    display: none;
+}
+
+.order-cart .icon-down {
+    position: absolute;
+    background-color: #fff;
+    color: #c53f43;
+    top: -.8em;
+    left: 50%;
+    margin-left: -1.4em;
+    width: 2.8em;
+    height: 1.4em;
+    line-height: 1.4em;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 1.4em 1.4em 0 0;
+    font-weight: bolder;
+}
+
+.order-cart-main {
+    max-height: 28em;
+    overflow-y: auto;
+}
+
+.flyElm {
+    background-color: #c53f43;
+    z-index: 3000;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+
+
+
+/*选择用餐时间*/
+
+.time-body {
+    padding: 0 10px;
+}
+
+.time-title {
+    line-height: 3;
+    font-size: 16px;
+}
+
+.time-content {
+    background-color: #fff;
+    padding: 0 10px;
+    border-radius: 5px;
+    line-height: 2;
+    margin-bottom: 1em;
+}
+
+.time-content .iconfont {
+    color: #0090ff;
+    font-weight: bold;
+}
+
+.time-content .list-item:last-child {
+    border-bottom: none;
+}
+
+.time-content input[type="text"] {
+    height: 100%;
+    color: #0090ff;
+    font-size: 1em;
+}
+
+.mbsc-mobiscroll .mbsc-fr-btn {
+    color: #0090ff;
+}
+
+
+/*订单列表*/
+.container.order-list-body{
+	padding-bottom: 3.6rem;
+}
+.order-restaurant {
+    font-size: 1.2em;
+    line-height: 1.8;
+}
+
+.none-msg {
+    position: absolute;
+    top: 50%;
+    margin-top: -2em;
+    width: 100%;
+    text-align: center;
+    line-height: 2;
+    color: #999;
+}
+.back-order.order-footer{
+	height: 3.5rem;
+}
+.back-order .back-info{
+	font-size: 1.1rem;
+	text-align: center;
+	line-height: 3.5rem;
+	cursor: pointer;
+}
+/*订单详情*/
+
+.coupon {
+    position: relative;
+    font-size: 18px;
+    padding: .5em .7em .7em;
+    background-color: #fff;
+    border-top: 1px solid #999;
+    margin-top: .5em;
+    margin-bottom: .5em;
+}
+
+.coupon-header {
+    padding: .5em 1em;
+    background-color: #f3f3f3;
+}
+
+.coupon-used {
+    position: absolute;
+    top: 45px;
+    right: 15px;
+    width: 5em;
+}
+
+.coupon-code {
+    display: block;
+    width: 8.5em;
+    height: 8.5em;
+    border: 1px solid #999;
+    margin: .7em auto;
+}
+
+.orderInfo-more {
+    font-weight: 700;
+    margin-bottom: .5em;
+}
+
+.orderInfo-more .iconfont {
+    font-size: .8em;
+}
+
+.orderInfo-section {
+    border-bottom: 1px dashed #999;
+    padding-top: .5em;
+    padding-right: 1em;
+    padding-bottom: .5em;
+}
+.ysy-img{
+    position:absolute;
+    width:  50%;
+    right: 0.8rem;
+    text-align: right;
+    top: 2rem;
+}
+.ysy-img img{
+    width: 50%;
+}

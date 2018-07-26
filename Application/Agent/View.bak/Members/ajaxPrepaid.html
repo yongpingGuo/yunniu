@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<foreach name="prepaid_rules" item="v">
+    <div class="member-tab-item1" id="delPrepaid">
+        <span class="index1">{++$key}</span>.充
+        <input type="text" name="account" value="{$v[account]}">元，送
+        <input type="text" name="benefit" value="{$v[benefit]}">元={$v['account']+$v['benefit']}元
+        <input type="hidden" name="id" value="{$v['id']}"/>
+        <div class="tab-item-right">
+            <button class="btn btn-primary" onclick="return save_prepaid(this)">保存</button>
+            <button class="btn btn-danger" onclick="return shanchu_prepaid(this,'/index.php/Agent/Members/del_prepaid')">删除</button>
+        </div>
+    </div>
+</foreach>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="厨房票据" />
+    <form action="javascript:void(0)" id="printerInfo">
+        <input type="hidden" id="print_type" name="print_type" value="0" />
+        <input type="hidden" name="type" value="add" />
+        <section class="section">
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-5">打印机名称：</span>
+                <input type="text" class="input-md" name="printer_name" placeholder="请输入打印机名称">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-5">IP地址：</span>
+                <input type="text" class="input-md" name="printer_ip" placeholder="请输入IP地址">
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-5">端口号：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" name="printer_port" placeholder="请输入端口号">
+                </div>
+                <span class="remarks text-4">&nbsp;默认9100</span>
+            </div>
+            <div class="flex-content vertical-flex section-row">
+                <span class="text-5">备注：</span>
+                <div class="flex-main">
+                    <input type="text" class="input" name="printer_brand" placeholder="请输入备注">
+                </div>
+                <span class="remarks text-4">&nbsp;非必填</span>
+            </div>
+            <div class="clear">
+                <div class="bill-demo-content">
+                    <div class="bill-demo-icon" id="bill">
+                        <img src="__PUBLIC__/images/mobile/bill2.png" onclick="print_type_select('bill')">
+                    </div>
+                    <div class="text-center">80票据</div>
+                </div>
+                <div class="bill-demo-content">
+                    <div class="bill-demo-icon" id="tag">
+                        <img src="__PUBLIC__/images/mobile/bill1.png" onclick="print_type_select('tag')">
+                    </div>
+                    <div class="text-center">40*30标签</div>
+                    <div class="text-center remarks">(适用于饮品店）</div>
+                </div>
+            </div>
+        </section>
+    </form>
+    <button class="danger-btn-lg" onclick="submit_printer()">保存设置</button>
+</block>
+<block name="js">
+    <!--厨房票据-->
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/printer.js?20170927"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/printer_onload.js"></script>
+</block>

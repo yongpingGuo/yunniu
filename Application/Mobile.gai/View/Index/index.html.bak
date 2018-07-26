@@ -1,0 +1,88 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+</block>
+<block name="main">
+    <body class="order-body clear">
+        <header id="restaurantInfo" data-restaurant_id="{$Think.get.restaurant_id}" data-desk_code="{$Think.get.desk_code}">
+        </header>
+        <ul class="classify-bd">
+            <volist name="info" id="v">
+                <li class="classify-item" id="category_type" onclick="showtypefood({$v.food_category_id})">
+                    <img class="classify-icon" src="{$v.img_url}">
+                    <!-- <img class="classify-icon" src="__PUBLIC__/images/avatar.png"> -->
+                    <div class="classify-name">{$v.food_category_name}</div>
+                </li>
+            </volist>
+        </ul>
+        <section class="dish-list" id="food_info">
+
+            <volist name="info1" id="v1">
+                <?php if($v1['have_attribute']>0): ?>
+                    <div class="dish-item flex-content vertical-flex">
+                        <img src="/{$v1.food_img}" class="dish-icon" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" data-have_attribute="1" onclick="findfoodinfo(this)">
+                        <div class="dish-right flex-main">
+                            <div class="dish-name">{$v1.food_name}</div>
+                            <div class="dish-price">
+                                <span>&yen;</span>
+                                <b class="price-num">{$v1.food_price}</b>
+                            </div>
+                            <button class="selectAttr-btn" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" data-have_attribute="1" onclick="findfoodinfo(this)">选规格</button> 
+                        </div>
+                    </div>
+                <?php else: ?>
+                    <div class="dish-item flex-content vertical-flex">
+                        <img src="/{$v1.food_img}" class="dish-icon" data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" data-have_attribute="2" onclick="findfoodinfo(this)">
+                        <div class="dish-right flex-main">
+                            <div class="dish-name">{$v1.food_name}</div>
+                            <div class="dish-price">
+                                <span>&yen;</span>
+                                <b class="price-num">{$v1.food_price}</b>
+                            </div>
+                            <button class="plus-btn" data-toggle="modal" data-food_id="{$v1.food_id}" data-have_attribute="0" onclick="findfoodinfo(this)">
+                                <i class="iconfont icon-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                
+            </volist>
+        </section>
+        <footer class="order-footer flex-content vertical-flex">
+            <i class="iconfont icon-up"></i>
+            <div class="order-footer-left flex-main flex-content vertical-flex" onclick="showCart()">
+                <i class="iconfont icon-canyin order-footer-icon"></i>
+                <span class="order-footer-num" id="numv">0</span>
+                <div>
+                    <span>&yen;</span>
+                    <span class="order-footer-total" id="Total">0.00</span>
+                </div>
+                <small>（优惠前总价）</small>
+            </div>
+            <!--<button class="order-footer-btn flex-content vertical-flex" onclick="location= '{:U(\'Order/pay\')}'">-->
+            <button class="order-footer-btn flex-content vertical-flex" onclick="PlaceOrder()">
+                <span>选好了</span>
+                <i class="iconfont icon-more"></i>
+            </button>
+        </footer>
+        <div class="order-cart">
+            <div class="order-cart-content">
+                <i class="iconfont icon-down" onclick="showCart()"></i>
+                <div class="order-cart-main">
+                    <div id="foodlist">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="foodModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" id="modelfood">
+            </div>
+        </div>
+    </body>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/layer/mobile/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery.fly.min.js"></script>
+    <script src="__PUBLIC__/js/Mobile/order.js?v201710211"></script>
+</block>

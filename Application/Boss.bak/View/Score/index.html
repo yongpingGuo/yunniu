@@ -1,0 +1,90 @@
+<include file ="Public/head"/>
+	<body>
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+		<div class="score">
+			<!--查询框-->
+			<div class="datetime-search clearfix chart-section">
+	    		<form action = "__CONTROLLER__/index" method="post">
+	    			<button class="pull-right">查询</button>
+		    	    <div class="form-group">
+		    	    	<span>日期</span>
+		    	    	<input type="text" id="startDate" name="startDate" value="{$startDate}" class="form-control">
+		    	    	<span>-</span>
+		    	    	<input type="text" id="endtDate" name="endDate" value="{$endDate}" class="form-control">
+		    	    </div>
+		    	    <div class="form-group">
+			    	    <span>时间</span>
+			    	    <input type="text" id="startTime" name="startTime" value="{$startTime}" class="form-control">
+			    	    <span>-</span>
+			    	    <input type="text" id="endTime" name="endTime" value="{$endTime}" class="form-control">
+			    	</div>
+	    	    </form>
+    		</div>
+			<div id="ajax_html">
+				<div class="chart-section dishes-statistics">
+		    		<h4>菜品统计：</h4>
+		    		<volist name="allFoodNameArr" id="aFNA">
+			    		<div class="dishes-sale-item">
+			    			<div class="sale-item-head">
+				    			<div class="clearfix">
+								    <div class="pull-left dishes-name">
+								        <span>{$Think.lang.$key}</span>
+								    </div>
+								    <div class="pull-left">
+								    		<div class="dishes-progress" style="width:{$aFNA*$stepLength}px;"></div>
+								    		<span class="dishes-num"><span>{$aFNA}</span>份</span>
+							    	</div>
+								</div>
+			    			</div>
+			    		</div>
+		    		</volist>
+	    		</div>
+	    		<div class="attr-statistics">
+	    			<h4>菜品属性统计：</h4>
+		    		<volist name="allFoodAttributeArr" id = 'aFAA'>
+			    		<div class="sale-item-head">
+			    			<div class="clearfix">
+							    <div class="pull-left attr-name">
+							        <span>{$Think.lang.$key}</span>
+							    </div>
+							    <div class="pull-left">
+							        <div class="attr-progress" style="width:{$aFAA*$stepLength}px;"></div>
+							        <span class="attr-num"><span>{$aFAA}</span>份</span>
+						    	</div>
+							</div>
+						</div>
+					</volist>
+	    		</div>
+    		</div>
+		</div>
+		<footer class="clearfix boss-footer">
+			<button class="btn-none" onclick="window.history.go(-1);">
+				<img src="__PUBLIC__/images/lt.png">
+				<span>返回</span>
+			</button>
+			<div class="pull-right boss-footer-right">
+				<button class="btn-none" onclick="location='/index.php/Boss/Score/index'">
+					<img src="__PUBLIC__/images/dishes-icon.png">
+					<div>菜品</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Turnover/index'">
+					<img src="__PUBLIC__/images/score-icon.png">
+					<div>营业额</div>
+				</button>
+				<button class="btn-none" onclick="location='/index.php/Boss/Detail/index'">
+					<img src="__PUBLIC__/images/detail-icon.png">
+					<div>明细</div>
+				</button>
+			</div>
+		</footer>
+		<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+		<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+		<script src="__PUBLIC__/js/dateSelect.js"></script>
+		<script type="text/javascript">
+			/*console.log($(window).width());
+			$(window).resize(function (argument) {
+				console.log($(window).width());
+			});*/
+		</script>
+	</body>
+</html>

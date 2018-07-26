@@ -1,0 +1,19 @@
+<extend name="Public:canteen" />
+<block name="main">
+    <body>
+        <!-- 有订单的页面 -->
+        <div class="container">
+        <volist name="list" id="vo">
+            <a class="flex-content list-item" href='{:U("ding_ding/orderInfo", "order_id=$vo[order_id]")}'>
+                <div class="flex-main">
+                    <P class="order-restaurant">{$vo.restaurant_name}</P>
+                    <p class="text-grey">使用时间：{$vo.pay_time|date="Y-m-d H:i:s",###}</p>
+                    <p class="text-grey">消费金额：&yen;{$vo.total_amount}</p>
+                </div>
+                <div class="text-danger">{$vo['push_status']!=5?"未使用":"已使用"}</div>
+            </a>
+    </volist>
+    <empty name="list">
+        <p class="none-msg">您还没有相关订单</p>
+    </empty>
+</block>

@@ -1,0 +1,43 @@
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/pickadate/lib/themes/default.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/pickadate/lib/themes/default.date.css">
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/pickadate/lib/themes/default.time.css">
+
+<script type="text/javascript" src="__PUBLIC__/pickadate/lib/picker.js"></script>
+<script type="text/javascript" src="__PUBLIC__/pickadate/lib/picker.date.js"></script>
+<script type="text/javascript" src="__PUBLIC__/pickadate/lib/picker.time.js"></script>
+<script type="text/javascript" src="__PUBLIC__/pickadate/lib/translations/zh_CN.js"></script>
+<script type="text/javascript">
+	function dateTimePicker() {
+		$('.datepicker').pickadate();
+		$('.datepicker-start').pickadate({
+			format: 'yyyy/mm/dd',
+			onOpen:function() {
+				var endStr=this.$node.siblings('.datepicker-end').val();
+				var end=endStr.split('/');
+				end[1]=end[1]-1;
+				if(endStr){
+					this.set('max', end)
+				}	
+			}
+		});
+		$('.datepicker-end').pickadate({
+			format: 'yyyy/mm/dd',
+			onOpen:function() {
+				var startStr=this.$node.siblings('.datepicker-start').val();
+				var start=startStr.split('/');
+				start[1]=start[1]-1;
+				if(startStr){
+					this.set('min', start)
+				}	
+			}
+		});
+		$('.timepicker').pickatime({
+			format:'HH:i',
+			formatSubmit: 'HH:i',
+			interval: 1
+		})
+	}
+	$(document).ready(function() {
+		dateTimePicker();
+	});
+</script>

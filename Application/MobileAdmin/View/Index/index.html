@@ -1,0 +1,233 @@
+<extend name="Public:base" />
+<block name="main">
+	<header class="header">方派商家掌柜</header>
+	<section class="section">
+		<header class="section-title">基本设置</header>
+		<div class="flex-content flex-wrap">
+			<a class="index-item" href="{:U('Restaurant/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/store.png">
+				</div>
+				<div>商家信息</div>
+			</a>
+			<a class="index-item" href="{:U('Moudle/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/process.png">
+				</div>
+				<div>点餐流程</div>
+			</a>
+            <a class="index-item" href="{:U('Restaurant/receipt')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/receipt.png">
+				</div>
+				<div>顾客小票</div>
+			</a>
+			<a class="index-item" href="{:U('DataDock/printer')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/bill.png">
+				</div>
+				<div>厨房票据</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/pay')}">-->
+			<a class="index-item" href="{:U('DataDock/dataForPay')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/alipay.png">
+				</div>
+				<div>收款对接</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/role')}">-->
+			<a class="index-item" href="{:U('Accounts/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/role.png">
+				</div>
+				<div>角色设置</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/ad')}">-->
+			<a class="index-item" href="{:U('Moudle/ad')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/ad.png">
+				</div>
+				<div>广告设置</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/discount')}">-->
+			<a class="index-item" href="{:U('Member/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/discount.png">
+				</div>
+				<div>折扣设置</div>
+			</a>
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/equipment.png">
+				</div>
+				<div>设备信息</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">菜品设置</header>
+		<div class="flex-content flex-wrap">
+			<!--<a class="index-item" href="{:U('Index/classify')}">-->
+			<a class="index-item" href="{:U('Dishes/category_set')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/classify.png">
+				</div>
+				<div>分类设置</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/dish')}">-->
+			<a class="index-item" href="{:U('Dishes/food_set')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/dish.png">
+				</div>
+				<div>菜品设置</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">数据统计</header>
+		<div class="flex-content flex-wrap">
+			<!--<a class="index-item" href="{:U('index/date')}">-->
+			<a class="index-item" href="{:U('Sale/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/simplification.png">
+				</div>
+				<div>明细报表</div>
+			</a>
+			<!--<a class="index-item" href="{:U('index/food_chart')}">-->
+			<a class="index-item" href="{:U('Sale/food_chart')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/dishStatistics.png">
+				</div>
+				<div>菜品统计</div>
+			</a>
+			<!-- <a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/detail.png">
+				</div>
+				<div>明细统计</div>
+			</a> -->
+			<!--<a class="index-item" href="{:U('index/year')}">-->
+			<a class="index-item" href="{:U('Sale/year')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/year.png">
+				</div>
+				<div>年营业额</div>
+			</a>
+			<!--<a class="index-item" href="{:U('index/month')}">-->
+			<a class="index-item" href="{:U('Sale/month')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/month.png">
+				</div>
+				<div>月营业额</div>
+			</a>
+			<!--<a class="index-item" href="{:U('index/meituan')}">-->
+			<a class="index-item" href="{:U('Sale/meituan')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/meituanStatistics.png">
+				</div>
+				<div>美团</div>
+			</a>
+			<!--<a class="index-item" href="{:U('index/eleme')}">-->
+			<a class="index-item" href="{:U('Sale/eleme')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/elemeStatistics.png">
+				</div>
+				<div>饿了么</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">外卖对接</header>
+		<div class="flex-content flex-wrap">
+			<!--<a class="index-item" href="{:U('DataDock/meituan')}">-->
+			<a class="index-item" href="{:U('Waimai/index')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/meituan.png">
+				</div>
+				<div>美团</div>
+			</a>
+			<a class="index-item"  href="{:U('Waimai/eleme')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/eleme.png">
+				</div>
+				<div>饿了么</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">会员管理</header>
+		<div class="flex-content flex-wrap">
+			<!--<a class="index-item" href="{:U('Member/discount_vip')}">-->
+			<a class="index-item" href="{:U('Member/discount_vip')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/memberDiscount.png">
+				</div>
+				<div>会员折扣</div>
+			</a>
+			<!--<a class="index-item" href="{:U('Index/ad_vip')}">-->
+			<a class="index-item" href="{:U('Member/ad_vip')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/ad.png">
+				</div>
+				<div>广告图片</div>
+			</a>
+			<a class="index-item" href="{:U('Member/consumption')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/integral.png">
+				</div>
+				<div>积分设置</div>
+			</a>
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/role.png">
+				</div>
+				<div>会员信息</div>
+			</a>
+			<a class="index-item" href="{:U('Member/recharge')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/recharge.png">
+				</div>
+				<div>充值信息</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">电子餐牌</header>
+		<div class="flex-content flex-wrap">
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/menu.png">
+				</div>
+				<div>电子餐牌</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">核销叫号屏</header>
+		<div class="flex-content flex-wrap">
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/callNumber.png">
+				</div>
+				<div>叫号屏</div>
+			</a>
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/chargeOff.png">
+				</div>
+				<div>核销屏</div>
+			</a>
+		</div>
+	</section>
+	<section class="section">
+		<header class="section-title">餐桌扫码点餐</header>
+		<div class="flex-content flex-wrap">
+			<a class="index-item" href="#">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/code.png">
+				</div>
+				<div>餐桌设置</div>
+			</a>
+		</div>
+	</section>
+</block>

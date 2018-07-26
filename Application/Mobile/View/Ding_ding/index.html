@@ -1,0 +1,137 @@
+<extend name="Public:canteen" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+</block>
+<block name="main">
+    <body class="order-body" >
+        <div id="con" style="display:none;">
+        <header class="flex-content vertical-flex order-header">
+            <img src="__PUBLIC__/images/ali.png" class="logo">
+            <div class="flex-main">
+                <div class="header-name">阿里食堂</div>
+                <div>鸿业工业园</div>
+            </div>
+            <a href="{:U('ding_ding/orderList')}" class="order-header-btn">
+                <img src="__PUBLIC__/images/user_circle.png">
+                <span>我的订单</span>
+            </a>
+        </header>
+        <span id="restaurantInfo" data-restaurant_id="{$Think.get.restaurant_id}" data-desk_code="{$Think.get.desk_code}">
+        </span>
+        <div id="menu" class="flex-content" v-cloak>
+            <div class="classify-bd" id="classify">
+                <ul class="nav">
+                    <li v-for="item in classify">
+                        <a class="classify-item" :href="'#classify'+item.food_category_id">
+                                <img class="classify-icon" :src="item.img_url">
+                                <!-- <img class="classify-icon" src="__PUBLIC__/images/avatar.png"> -->
+                                <div class="classify-name">{{item.food_category_name}}</div>
+                            </a>
+                    </li>
+                </ul>
+            </div>
+            <section class="dish-list flex-main" data-spy="scroll" data-target="#classify">
+                <div :id="'classify'+item.food_category_id" v-for="item in classify">
+                        <div v-for="infoItem in info[item.food_category_id]" class="dish-item flex-content vertical-flex">
+                                <img :src="'/'+infoItem.food_img" class="dish-icon" data-toggle="modal" data-target="#foodModal" :data-food_id="infoItem.food_id" :data-have_attribute="infoItem.have_attribute>0?1:2" onclick="findfoodinfo(this)">
+                                <div class="dish-right flex-main">
+                                    <div class="dish-name">{{infoItem.food_name}}</div>
+                                    <div class="dish-price">
+                                        <span>&yen;</span>
+                                        <b class="price-num">{{infoItem.food_price}}</b>
+                                    </div>
+                                    <button v-if="infoItem.have_attribute>0" class="selectAttr-btn" data-toggle="modal" data-target="#foodModal" :data-food_id="infoItem.food_id" data-have_attribute="1" onclick="findfoodinfo(this)">选规格</button>
+                                    <button v-else class="plus-btn" data-toggle="modal" :data-food_id="infoItem.food_id" data-have_attribute="0" onclick="findfoodinfo(this)">
+                                        <i class="iconfont icon-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+            </section>
+        </div>
+        <footer class="order-footer flex-content vertical-flex">
+            <i class="iconfont icon-up"></i>
+            <div class="order-footer-left flex-main flex-content vertical-flex" onclick="showCart()">
+                <i class="iconfont icon-canyin order-footer-icon"></i>
+                <span class="order-footer-num" id="numv">0</span>
+                <div>
+                    <span>&yen;</span>
+                    <span class="order-footer-total" id="Total">0.00</span>
+                </div>
+                <small>（优惠前总价）</small>
+            </div>
+            <button class="order-footer-btn flex-content vertical-flex" onclick="PlaceOrder()">
+                <span>选好了</span>
+                <i class="iconfont icon-more"></i>
+            </button>
+        </footer>
+        <div class="order-cart">
+            <div class="order-cart-content">
+                <i class="iconfont icon-down" onclick="showCart()"></i>
+                <div class="order-cart-main">
+                    <div id="foodlist">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal" id="foodModal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" id="modelfood">
+            </div>
+        </div>
+        </div>
+        <!--<h3 id="worring" style="display:none">抱歉，非工作组员工不可进行点餐抱歉，非工作组员工不可进行点餐。</h3>-->
+    </body>
+
+</block>
+<block name="js">
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/layer/mobile/layer.js"></script>
+    <script src="__PUBLIC__/js/vue.js"></script>
+    <script src="__PUBLIC__/js/jquery.fly.min.js"></script>
+    <!-- <script src="__PUBLIC__/js/lazyload.min.js"></script> -->
+
+    <script src="https://g.alicdn.com/dingding/open-develop/1.9.0/dingtalk.js"></script>
+    <!--  <script type="text/javascript" src="http://wechatfe.github.io/vconsole/lib/vconsole.min.js?v=3.0.0.0"></script> -->
+    <script src="__PUBLIC__/js/Mobile/dingding_order.js?v20180109"></script>
+    <script type="text/javascript">
+       // var vConsole = new VConsole();
+        $('#menu').height(function() {
+            return $(window).height()-$(".order-header").innerHeight()-$(".order-footer").innerHeight();
+        })
+        dd.config({
+            agentId: '{$dingding_config.agent_id}', // 必填，微应用ID
+            corpId: '{$dingding_config.corp_id}',//必填，企业ID
+            timeStamp: {$dingding_config.time_stamp}, // 必填，生成签名的时间戳
+            nonceStr: '{$dingding_config.nonceStr}', // 必填，生成签名的随机串
+            signature: '{$dingding_config.signature}', // 必填，签名
+            jsApiList : [ 'runtime.permission.requestAuthCode' ] // 必填，需要使用的jsapi列表，注意：不要带dd。
+        });
+        dd.ready(function(){
+                dd.runtime.permission.requestAuthCode({
+                    corpId: "{$dingding_config.corp_id}",
+                    onSuccess: function(result) {
+                        $.post("{:U('ding_ding/getUserId')}", {code:result}, function(msg){
+//                            $('#worring').hide();
+                            $("#con").show();
+                        }, 'text');/*通过code获取userid*/
+                    },
+                    onFail : function(err) {
+                        for(i in error ){
+                          alert(error[i]);  //获得属性值
+
+                        }
+                    }
+                });
+        });
+        dd.error(function(error){
+            location.reload();
+            return;
+            for(i in error ){
+              alert(error[i]);  //获得属性值
+
+            }
+        });
+
+
+    </script>
+</block>

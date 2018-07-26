@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/swiper.min.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/css/member.css">
+
+    <!-- HTML5 Shim 和 Respond.js 用于让 IE8 支持 HTML5元素和媒体查询 -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+
+    <title>会员中心</title>
+</head>
+
+<body class="index-bd">
+    <div class="ad-content">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <?php foreach ($info as $k => $v): ?>
+                    <div class="swiper-slide">
+                        <img src="/<?php echo $v['advertisement_image_url'];?>">
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+        <img src="__PUBLIC__/images/curve_top.png" class="curve-top">
+    </div>
+
+    <div class="member-center">
+        <div class="member-center-item">
+            <img src="{$data['headimgurl']}" class="img-icon">
+            <div>{$data['username']}</div>
+        </div>
+        <div class="member-center-item">
+            <a href="#member-code" data-toggle="modal" onclick="my_qrcode()">
+                <img src="__PUBLIC__/images/member_code.png" class="img-icon">
+                <div>我的二维码{$test}</div>
+            </a>
+        </div>
+        <div class="member-center-item">
+            <a href="{:U('member/integration')}">
+                <img src="__PUBLIC__/images/integration.png" class="img-icon">
+                <div>{$total_score}</div>
+            </a>
+        </div>
+        <div class="member-center-item">
+            <a href="{:U('member/member_info')}">
+                <img src="__PUBLIC__/images/member_user.png" class="img-icon">
+                <div>个人信息</div>
+            </a>
+        </div>
+        <div class="member-center-item">
+            <a href="{:U('member/goods_list')}">
+                <img src="__PUBLIC__/images/mall.png" class="img-icon">
+                <div>积分商城</div>
+            </a>
+        </div>
+        <div class="member-center-item">
+            <a href="{:U('member/remainder')}">
+                <img src="__PUBLIC__/images/fund.png" class="img-icon">
+                <div>我的余额</div>
+            </a>
+        </div>
+    </div>
+
+    <div class="ad-content">
+        <img src="__PUBLIC__/images/curve_bottom.png" class="curve-bottom">
+        <div class="swiper-container">
+            <div class="swiper-wrapper">
+                <?php foreach ($info1 as $k => $v): ?>
+                    <div class="swiper-slide">
+                        <img src="/<?php echo $v['advertisement_image_url'];?>">
+                    </div>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal code-modal" id="member-code1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="clearfix">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    </div>
+                    <div class="text-center" id="myQrcode"></div>
+                    <div class="text-center">会员余额支付</div>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <script src="__PUBLIC__/js/swiper.jquery.min.js"></script>
+    <script>
+        var mySwiper = new Swiper('.swiper-container', {
+            autoplay: 5000,//可选选项，自动滑动
+        });
+        $('.swiper-container img').height(function(){
+            return $('.ad-content').height();
+        });  
+        function my_qrcode(){
+            $("#myQrcode").empty();
+            var str = '<img src="/index.php/mobile/member/vip_code" class="member-code">';
+            $("#myQrcode").append(str);
+            $("#member-code1").modal("show");
+        }
+    </script>
+</body>
+
+</html>

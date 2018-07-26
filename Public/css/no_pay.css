@@ -1,0 +1,13 @@
+.template-header{
+	background-image:none;
+}
+.select-bd{
+	background-image:url(../images/no_pay_bg.jpg);
+}
+#flyEle{
+	width: 3em;
+	height: 3em;
+	background-image: none;
+	border-radius: 50%;
+	background-color: #049e44;
+}

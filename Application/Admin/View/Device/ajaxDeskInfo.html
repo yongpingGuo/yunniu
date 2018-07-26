@@ -1,0 +1,61 @@
+<div id="ajax-content">
+    <div id="comment_list">
+    	<table class="table-code table-condensed">
+	        <tbody>
+	            <tr>
+	                <td></td>
+	                <td>{{langData.tableNumber[lang]}}</td>
+	                <td class="text-center">{{langData.machineCode[lang]}}</td>
+	                <td></td>
+	                <td></td>
+	            </tr>
+	            <volist name="deskInfo" id="vo">
+	                <tr>
+	                    <td>{$i}</td>
+	                    <td>{$vo.desk_code}</td>
+	                    <td class="text-center">
+	                        <img src="{$vo.code_img}" class="table-code-img">
+	                    </td>
+	                    <td>
+	                        <button class="blue-btn" data-img_path="{$vo.code_img}" onclick="downloadImg(this)">{{langData.downloadPicture[lang]}}</button>
+	                    </td>
+	                    <td>
+	                        <button class="edit-btn" data-desk_id="{$vo.desk_id}" data-desk_code="{$vo.desk_code}" onclick="editDesk(this)"></button>
+	                        <button class="remove-btn" data-desk_id="{$vo.desk_id}" onclick="delDesk(this)"></button>
+	                    </td>
+	                </tr>
+	            </volist>
+	            <tr>
+	                <td colspan="5" class="text-center">
+	                    <ul class="pagination" id="detail-page">{$page}</ul>
+	                </td>
+	            </tr>
+	        </tbody>
+	    </table>
+    </div>
+</div>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+$("#detail-page").click(function(event) {
+      var page = parseInt($(event.target).data("page"));
+      console.log(page);
+      $.ajax({
+          url: "/index.php/admin/device/deskInfo",
+          data: { "page": page },
+          type: "get",
+          success: function(data) {
+              $("#comment_list").html(data);
+          },
+          error: function() {
+              layer.msg(vm.langData.error[vm.lang]);
+          }
+      });
+ });
+</script>

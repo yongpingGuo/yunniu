@@ -1,0 +1,8 @@
+sub_mchid:,time:2018-01-18 14:32:11,session_id:25
+
+result:,time:2018-01-18 14:32:11,session_id:25
+
+sub_mchid:1463034402,time:2018-01-18 14:46:20,session_id:25
+
+result:Array,time:2018-01-18 14:46:22,session_id:25
+

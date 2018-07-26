@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/no_pay.css">
+	</head>
+	<body>
+		<header class="select-header">
+			<button class="return-btn" onclick="location='/index.php/Vertical/Template/serviceRoute'">
+				<img src="__PUBLIC__/images/return.png">
+				<span>重新点餐</span>
+			</button>
+		</header>
+		<div class="select-bd" id="app">
+			<div class="select-content">
+				<button class="select-item" @click="skipNext(1)">
+					<img src="__PUBLIC__/images/fork.png">
+					<span>餐厅用餐</span>
+				</button>
+				<button class="select-item" @click="skipNext(2)">
+					<img src="__PUBLIC__/images/bag.png">
+					<span>打包带走</span>
+				</button>
+			</div>
+		</div>
+	</body>
+	 <!-- 先引入 Vue -->
+	 <script src="__PUBLIC__/js/vue.js"></script>
+	 <!-- 引入组件库 -->
+	 <script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	 <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	 <script>
+		 new Vue({
+			 el:"#app",
+			 mounted:function(){
+				$('iframe').hide();
+			},
+			 methods:{
+				skipNext:function(order_type){
+					localStorage.setItem("order_type",order_type);
+					location.href='/index.php/Vertical/Template/serviceRoute/current_action/select'
+				},
+				orderAgain:function(){
+					localStorage.removeItem("order_type");
+					location.href='/index.php/Vertical/Template/serviceRoute';
+				}
+			 }
+		 });
+	 </script>
+</html>

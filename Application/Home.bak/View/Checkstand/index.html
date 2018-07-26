@@ -1,0 +1,15 @@
+<include file="Public/head"/>
+
+<body class="no-padding" >
+	<div id="ad-carousel" class="carousel" data-ride="carousel" data-interval="{$time}" onclick="location='/index.php/home/checkstand/processRoute/process/index'">
+		
+		<div class="carousel-inner" role="listbox" id="listbox">
+			<volist name = "info" id = "v">
+				<div class="item">
+					<img src="/{$v.advertisement_image_url}" alt="点击开始点餐">
+				</div>
+			</volist>
+		</div>
+	</div>
+</body>
+</html>

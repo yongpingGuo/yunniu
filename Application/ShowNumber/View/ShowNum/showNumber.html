@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/showNumber.css">
+	</head>
+	<body>
+		<div id="showNumber" class="clear" v-cloak>
+				<div class="coming">
+					<div class="coming-header">准备中coming</div>
+					<div class="coming-content" v-if="showComing">
+						<el-carousel :interval="show_time" arrow="never" indicator-position="none" :autoplay="true">
+							<el-carousel-item v-for="page in comingNum">
+					  			<el-row>
+					  			  <el-col  v-for="num in page" :span="12">{{num}}</el-col>
+					  			</el-row>
+						  	</el-carousel-item>
+						</el-carousel>
+					</div>
+				</div>
+				<div class="take">
+					<div class="take-header">请以下号码到取餐区取餐</div>				
+					<div class="take-content">
+						<div class="take-content-item" v-if="showFinish"  v-for="district in district_list">
+							<div class="take-title">
+								<div class="title-letter">{{district.district_name}}</div>
+								<div class="title-right">
+									<span class="title-chinese">取餐区</span>
+									<span class="title-english">Take meals</span>
+								</div>
+							</div>
+							<div class="take-carousel">
+								<el-carousel :interval="show_time" arrow="never" indicator-position="none" :autoplay="true">
+								<el-carousel-item v-for="page in district.finishNum">
+						  			  <div v-for="Num in page">{{Num}}</div>
+							  	</el-carousel-item>
+							</el-carousel>
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<script src="__PUBLIC__/js/vue-axios.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script>
+		var device_code = "{$Think.session.device_code}";
+		var district_mark = "{$Think.session.district_mark}";
+
+		var wsUri ="ws://shop.founpad.com:9218/";
+
+		function init() {
+			testWebSocket();
+		}
+
+		function testWebSocket() {
+			websocket = new WebSocket(wsUri);
+			websocket.onopen = function(evt) {
+				onOpen(evt)
+			};
+			websocket.onmessage = function(evt) {
+				onMessage(evt)
+			};
+			websocket.onerror = function(evt) {
+				onError(evt)
+			};
+		}
+
+		function onOpen(evt) {
+			console.log(district_mark);
+			doSend(district_mark);
+		}
+
+		function onClose(evt) {
+		}
+
+		function onMessage(evt) {
+			window.addEventListener("load", init, false);
+			console.log(evt.data);
+			var data = evt.data.replace(/&quot;/g, '"');
+			try{
+				data = JSON.parse(data);
+			}catch(e){
+				console.log(e.name+":"+ e.message)
+			}
+			if(data) {
+				console.log(data);
+				if(data.order_sn){
+					location.href = "";
+				}
+			}
+		}
+
+		function onError(evt) {
+			//出现错误
+		}
+
+		function doSend(message){
+			websocket.send(message);
+		}
+
+
+		Vue.prototype.$http = axios;
+		var vm = new Vue({
+			data:{	
+				show_time:3000,
+				showComing:false,
+				showFinish:false,
+				comingNum:"",
+				district_list:""
+			},
+			mounted:function(){
+				window.addEventListener("load", init, false);
+				var _self = this;
+				var form = new FormData();
+				form.append("device_code",device_code);
+
+				//获取coming的订单号
+				this.$http.post("/index.php/api/showNumber/getComingOrderNum",form)
+						.then(function(returnData){
+							console.log(returnData.data.data);
+							_self.comingNum = returnData.data.data;
+							_self.showComing=true;
+						});
+
+				//获取个分区finish的订单号
+				this.$http.post("/index.php/api/showNumber/getAllFinishOrderNum",form)
+						.then(function(returnData){
+							console.log(returnData.data.data);
+							_self.district_list = returnData.data.data;
+							_self.showFinish=true;
+						});
+			},
+		}).$mount('#showNumber');
+</script>
+</html>

@@ -1,0 +1,40 @@
+<table class="agent-table table-hover">
+	<thead>
+	<tr class="text-center">
+		<td>序号</td>
+		<td>店铺名称</td>
+		<td>店铺区域</td>
+		<td>店铺详细地址</td>
+		<td>店铺管理员</td>
+		<td>外卖电话1</td>
+		<td>外卖电话2</td>
+		<td>操作</td>
+	</tr>
+	</thead>
+	<tbody>
+	<volist name="Arrlist2" id="vo">
+		<tr>
+			<td>{$i}</td>
+			<td>{$vo.restaurant_name}</td>
+			<td>{$vo.city3_name}</td>
+			<td>
+				<span  class="store-address">
+					{$vo.address}
+				</span>
+			</td>
+			<td>{$vo.login_account}</td>
+			<td>{$vo.telephone1}</td>
+			<td>{$vo.telephone2}</td>
+			<td>
+				<button class="btn btn-black" data-toggle="modal" data-target="#storeModal" onclick="modify_store({$vo.restaurant_id})">编辑</button>
+				<button class="btn btn-default" onclick="delstore({$vo.restaurant_id})">删除</button>
+			</td>
+		</tr>
+	</volist>
+	</tbody>
+</table>
+<div>
+	<ul class="pagination" id="detail-page">
+		{$page}
+	</ul>
+</div>

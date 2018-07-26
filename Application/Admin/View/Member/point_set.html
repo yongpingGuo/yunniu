@@ -1,0 +1,95 @@
+<extend name="Public:base" />
+<block name="main">
+    <section class="section">
+        <div class="section-header">{{langData.SMSDocking[lang]}}</div>
+        <div class="section-content">
+            <form>
+                <div class="radio-form">
+                    <input type="radio" name="if_open" id="point-set-on" value="1" onchange="to_db(this.name,this.value,'/index.php/Admin/Member/score_set')">
+                    <label for="point-set-on">开启</label>
+                    <input type="radio" name="if_open" id="point-set-off" value="0" onchange="to_db(this.name,this.value,'/index.php/Admin/Member/score_set')">
+                    <label for="point-set-off">关闭</label>
+                    <input type="hidden" id="or_open" value="{$if_open}"/>
+                </div>
+                <div id="memberList">
+                    <div class="flex-content">
+                        <div class="flex-main">
+                            {{langData.consumptionAmount[lang]}}
+                            <input class="small-input" type="text" name="account" value="{$prepaid_rules[account]}" id="man">{{langData.yuan[lang]}},{{langData.points[lang]}}
+                            <input class="small-input" type="text" name="benefit" value="{$score}" id="zhe">{{langData.point[lang]}}
+                            <input type="hidden" name="id" value="{$prepaid_rules[id]}" />
+                        </div>
+                        <div>
+                            <button class="btn btn-sm btn-primary" onclick="return save_point_set(this)">{{langData.save[lang]}}</button>
+                            <button class="btn btn-sm btn-danger" onclick="return shanchu_point_set(this,'/index.php/Admin/Member/del_point_set')">{{langData.delete[lang]}}</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/js/vip.js"></script>
+    <script>
+    // 积分设置后面的保存
+    function save_point_set(obj) {
+        var account = $('[name="account"]').val();
+        var benefit = $('[name="benefit"]').val();
+        var id = $(obj).parent().siblings('[name="id"]').val();
+        if (account == "" || benefit == "") {
+            layer.msg(vm.langData.pointsSetNotBeEmpty[vm.lang]);
+        } else {
+            // ajax提交
+            $.post('/index.php/Admin/Member/save_point_set', { "account": account, "benefit": benefit, "id": id }, function(data) {
+                // console.log(data);
+                layer.msg(vm.langData.success[vm.lang]);
+                $.post('/index.php/Admin/Member/get_point_set', "", function(data) {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                });
+            });
+        }
+        return false;
+    }
+
+    // 积分设置删除
+    function shanchu_point_set(obj, url) {
+        layer.confirm('', {
+            title: vm.langData.deleteConfirm[vm.lang],
+            btn: [vm.langData.yes[vm.lang], vm.langData.cancel[vm.lang]]
+        }, function(index) {
+            // 获取到它的ID，然后删除掉即可
+            var hid = $("[name='id']").val();
+            // ajax提交
+            $.post(url, { "id": hid }, function(data) {
+                // console.log(data);
+                if (data.status == 0) {
+                    // 不成功
+                    layer.msg(vm.langData.failed[vm.lang]);
+                } else {
+                    // 成功添加了就实时获取
+                    $("#memberList").html(data);
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+
+    // 页面加载完就判断店铺填的公众号支付信息跟代理的是否一致，不一致则让其处于关闭且不可选
+    $(function(){
+        $.post("/index.php/admin/member/if_same","",function(data){
+            if(data == 0){
+                // 1、让其处于不可选状态
+                $('[name="if_open"]').val([0]);
+                $('[name="if_open"]').attr("disabled","disabled");
+                // 2、关闭数据库中的积分设置开关值(那边返回0的同时直接让它关闭)
+                // alert("店铺与代理的微信支付对接信息不一致，请统一");
+            }
+        });
+    });
+
+    $('[name="if_open"]').val([$("#or_open").val()]);
+    </script>
+</block>

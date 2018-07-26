@@ -1,0 +1,433 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+html,body{
+	width: 100%;
+	height: 100%;	
+	font-size: 14px;
+	line-height: 1.6;
+	font-family: 'Microsoft Yahei',Tahoma,Helvetica,Arial,'宋体',sans-serif;
+}
+body{	
+	position: relative;
+	background-color: #ededed;
+    -webkit-user-select:none;
+    -moz-user-select:none;
+    -ms-user-select:none;
+    user-select:none;
+}
+iframe{
+	display: none;
+}
+a:focus,
+button,
+button:focus{
+    outline: none;
+}
+
+.common-btn{
+	border: 0;
+	background-color: #ff8800;
+	color: #fff;
+}
+.common-btn:focus{
+	background-color: #ddd;
+}
+
+.btn-none{
+	border: none;
+	background-color: transparent;
+	outline: transparent;
+}
+.red{
+	color: #e84244;
+}
+
+/* ---------------------------------------------- /*
+ * home 顶部信息
+/* ---------------------------------------------- */
+.home-header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	width: 100%;
+	color: #fff;	
+	z-index: 1000;
+	padding-left: 0.5em;
+}
+.home-header>a{
+	text-decoration: none;
+	color: #fff;
+	display: inline-block;
+}
+.home-header>a img{
+	height: 1em;
+	margin-right: 10px;
+}
+.order-head{
+	position: absolute;
+	top: 0;
+}
+/* ---------------------------------------------- /*
+ * home 底部信息
+/* ---------------------------------------------- */
+.home-footer{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	color: #fff;
+	z-index: 1000;
+}
+/* ---------------------------------------------- /*
+ * 点餐页
+/* ---------------------------------------------- */
+.sorts-list{
+	list-style: none;
+	line-height: 5;
+}
+.sorts-list li{
+	border-bottom: 2px solid #fff;
+}
+.sorts-list li.active{
+	background-color: #c2c2c2;
+}
+.sorts-list a{
+	color: black;
+	display: block;
+	text-decoration: none;
+	text-align: center;
+}
+.order-content{
+	width: 100%;
+	height: 100%;	
+	overflow-y: auto;
+	background-color: #fff;
+}
+.food-item{
+	display: block;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	text-decoration: none;
+	color: #303030;
+}
+.food-item:hover,
+.food-item:focus,
+.food-item:visited{
+	text-decoration: none;
+	color: #303030;
+	outline: none;
+}
+.food-box{
+	border: 1px solid #b0b0b0;
+	width: 100%;
+	padding: 2px;
+}
+.food-box-img{
+	position: relative;
+	width: 100%;
+	height: 0;
+	padding-bottom: 64%;
+}
+.food-box-img img{
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.star{
+    font-size: 2rem;
+    height: 3rem;
+    line-height: 3rem;
+}
+.star span{
+    color: #e84244;
+}
+.cayenne{
+	height: 3rem;
+	line-height: 3rem;
+}
+.cayenne img{
+	height: 1.8rem;
+}
+.food-details{
+	display: -webkit-box; //box布局并做好兼容
+	display: box;
+	position: relative;
+	line-height: 2;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+.food-name {    
+	-webkit-box-flex: 1; //box-flex:1控制宽度自适应
+    box-flex: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    text-align: left;
+}
+.modal-title{
+	font-size: 2rem;
+	line-height: 2;
+}
+.modal-img-content{
+	position: relative;
+	height: 0;
+	padding-bottom: 60%;
+}
+.modal-img-content img{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.modal-price-content{
+	height: 4.2rem;
+	line-height: 4.2rem;
+	font-size: 2.2rem;
+}
+.modal-num{
+	display: inline-block;
+	min-width: 1.5em;
+	text-align: center;
+}
+.food-intro{
+	overflow : hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+}
+.food-attr{
+	margin-top: 40px;
+}
+.food-attr-name{
+	display: inline-block;
+	line-height: 40px;
+}
+.attr-list{
+	list-style: none;
+	padding-left: 7em;
+	font-size: 1.3rem;
+	margin-left: -15px;
+    margin-right: -20px;
+}
+.attr-list li{
+	position: relative;
+    margin-right: 0.5em;
+    margin-bottom: 8px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.attr-list .attr-item-name{
+	margin-left: -7em;
+	margin-right: 0;
+	margin-bottom: 0;
+	width: 6.5em;
+	margin-right: 0.2em;
+	text-align: center;
+}
+
+.attr-select-item{	
+	text-align: center;	
+	border: 1px solid #787878;
+	cursor: pointer;
+	border-radius: 2px;
+}
+.attr-sm{
+	width: 6em;
+}
+.attr-lg{
+	width: 12.5em;
+}
+.attr-list li input{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+}
+.attr-select{
+	background-color: #e68011;
+	color: #f9f9f9;
+}
+.modal-bottom{
+	line-height: 4.2rem;
+	font-size: 1.3rem;
+	background-color: transparent;
+	margin-left: -8px;
+	margin-right: -8px;
+}
+.modal-bottom button{
+	float: left;
+	border: 0;
+	background-color: transparent;
+	width: 50%;
+	color: #fff;
+}
+.modal-bottom .btn-close{
+	background-color: #4a3518;
+}
+.modal-bottom button:active,
+.modal-bottom button:focus{
+	background-color: #ff4700;
+}
+/* ---------------------------------------------- /*
+ * 餐牌号modal
+/* ---------------------------------------------- */
+#tableModal{
+	height: 100%;
+	font-size: 2.3rem;
+}
+#tableModal.in .modal-dialog{
+    position: absolute;
+	top: 50%;
+	left: 50%;      
+	-ms-transform:translate(-50%, -50%);	/* IE 9 */
+	-moz-transform:translate(-50%, -50%); 	/* Firefox */
+	-webkit-transform:translate(-50%, -50%); /* Safari 和 Chrome */
+	-o-transform:translate(-50%, -50%); 
+	transform: translate(-50%, -50%);
+	background-color: #ff7a08;
+	width: auto;
+	margin: 0;
+}
+.tableModal-return{
+	line-height: 2.3;
+	background-color: #fff;
+	color: #ff7a08;
+}
+.tableModal-return button{
+	padding-left: 1rem;
+	letter-spacing: 5px;
+}
+.number-input{
+	top: 0;
+}
+.number-input input{
+	border: none;
+	display: inline-block;
+	vertical-align: middle;
+	width: 7em;
+    height: 2em;
+    line-height: 1;
+    font-size: 1.2em;
+    text-align: center;
+	background-image: url('../images/input_bg.png');
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #fff;
+	font-weight: 700;
+	margin-right: 1rem;
+}
+.number button,
+.number-table button,
+#payModal .number-input>button{
+	display: inline-block;
+	vertical-align: middle;
+	height: 6rem;
+	width: 6rem;
+	line-height: 1;
+	border: 0;
+	background: #e9ebea;
+	background: -webkit-gradient(linear, left top, left bottom, from(#e9ebea), to(#bdbdbc));
+	background: -moz-linear-gradient(top,  #e9ebea,  #bdbdbc);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#e9ebea', endColorstr='#bdbdbc');
+	padding: 0;	
+	box-shadow: 3px 3px 1px rgba(0,0,0,0.5);
+	border-radius: 5px;
+}
+.number button:active,
+.number-table button:active,
+#payModal .number-input>button:active{
+	background: #999;
+	background: -webkit-gradient(linear, left top, left bottom, from(#777), to(#000));
+	background: -moz-linear-gradient(top,  #777,  #000);
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorstr='#777', endColorstr='#000');
+}
+.number-table{
+	display: inline-block;
+	margin:0;
+}
+.number-table td{
+	padding: 1rem;
+	text-align: center;
+}
+.number-table-right button{
+	height: 10rem;
+	padding: 0;
+}
+.pay-wrapper{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.pay{
+	position: absolute;
+	top: 50%;
+	left: 50%;	
+	-ms-transform:translate(-50%, -50%);	/* IE 9 */
+	-moz-transform:translate(-50%, -50%); 	/* Firefox */
+	-webkit-transform:translate(-50%, -50%); /* Safari 和 Chrome */
+	-o-transform:translate(-50%, -50%); 
+	transform: translate(-50%, -50%);
+	width: 100%;
+}
+.pay h2{
+	margin-top: -1em;
+	font-size: 30px;
+	font-weight: 700;
+}
+.pay-item a{
+	display: inline-block;
+	color: black;
+	text-decoration: none;
+}
+.pay-item-img{
+	width: 350px;
+	height: 350px;
+	margin-bottom: 20px;
+}
+/* ---------------------------------------------- /*
+ * 完成页
+/* ---------------------------------------------- */
+.finish,
+.overdue{
+	position: absolute;
+	top: 50%;	      
+	-ms-transform:translateY(-50%);	/* IE 9 */
+	-moz-transform:translateY(-50%); 	/* Firefox */
+	-webkit-transform:translateY(-50%); /* Safari 和 Chrome */
+	-o-transform:translateY(-50%); 
+	transform: translateY(-50%);
+	width: 100%;
+}
+.finish h2,
+.overdue h2{
+	color: #015546;   
+    margin: 0;
+}
+.finish-content .check-btn{
+	margin-top: 30px;
+	line-height: 2;
+	padding: 10px 4em;
+	font-size: 20px;
+	border-radius: 2px;
+}
+.layer-class{
+	background-color: rgba(0, 0, 0, 0.7);
+    box-shadow: none;
+    color: #e8e8e8;
+    text-align: center;
+    font-size: 2.4rem;
+    border-radius: 5px;
+}

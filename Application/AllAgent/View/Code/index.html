@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+    <script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="__PUBLIC__/js/layer.js"></script>
+    <title></title>
+</head>
+<body>
+      <div class="container-fluid">
+          {$page}
+          <table class="table table-hover">
+              <thead><tr><th>序号</th><th>机器码</th><th>所属商家</th><th>注册码</th><th>状态</th><th>开始时间</th><th>结束时间</th><th>操作</th></tr></thead>
+              <tbody>
+              <volist name="deviceList" id="vo">
+                  <tr><td>{$i}</td><td>{$vo.device_code}</td><td>{$vo.business_name}</td><td>{$vo.code}</td>
+                      <td>
+                      <if condition="$vo.device_status eq 1">
+                          已激活
+                          <else/>
+                          未激活
+                      </if>
+                      </td>
+                      <td>{$vo.start_time|date="Y-m-d H:i:s",###}</td><td>{$vo.end_time|date="Y-m-d H:i:s",###}</td>
+                      <td><button onclick="editDevice(this)" data-device_code="{$vo.device_code}" data-business_id="{$vo.business_id}" data-business_name="{$vo.business_name}" data-code="{$vo.code}" data-endTime='{$vo.end_time|date="Y-m-d H:i:s",###}'>编辑</button></td>
+                  </tr>
+              </volist>
+              </tbody>
+          </table>
+      </div>
+      <!-- 模态框（Modal） -->
+      <div class="modal fade" id="deviceModal" tabindex="-1" role="dialog" aria-labelledby="deviceModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title" id="deviceModalLabel">设备编辑</h4>
+                  </div>
+                  <div class="modal-body">
+                      <form action="javascript:void(0)">
+                          <div class="form-group">
+                              <label for="business">所属商家</label>
+                              <select name="business" id="business">
+                                  <option value="" ></option>
+                              </select>
+                          </div>
+                          <div class="form-group">
+                              <label for="code">注册码</label>
+                              <input type="text" class="form-control" id="code">
+                          </div>
+                          <div class="form-group">
+                              <label for="endTime">结束时间</label>
+                              <input type="text" class="form-control" id="endTime">
+                          </div>
+                      </form>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                      <button type="button" class="btn btn-primary">提交更改</button>
+                  </div>
+              </div><!-- /.modal-content -->
+          </div><!-- /.modal -->
+      </div>
+</body>
+<script src="__PUBLIC__/js/AllAgent/device-code.js"></script>
+</html>

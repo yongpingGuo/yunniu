@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <script type="text/javascript" src="/Public/js/jquery-3.1.0.min.js"></script>
+        <form method="post" action="/alipay/wappay/pay.php" id="form_sub">
+            <input type="hidden" name="order_sn" value='{$order_info.order_sn}'/>
+            <input type="hidden" name="subject" value='钉钉预点餐'/>
+            <input type="hidden" name="total_amount" value='{$order_info.total_amount}'/>
+            <input type="hidden" name="device_code" value='{$device_code}'/>
+            <input type="hidden" name="sing" value='{$sing}'/>
+        </form>
+        <script type="text/javascript">
+            $("#form_sub").submit();
+        </script>
+    </body>
+</html>

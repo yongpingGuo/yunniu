@@ -1,0 +1,199 @@
+<include file="Public/head"/>
+
+<!-- 收银 -->
+<body class="order-body">
+<input type="hidden" name="isOpenNum" id="isOpenNum" value="{$Think.session.isOpenNum}">
+<input type="hidden" name="tpl" value="{$tpl}" id="tpl"/>
+
+	<header class="home-header">
+		<a href="__CONTROLLER__/index" class="order-return">
+			<img src="__PUBLIC__/images/lt.png">
+			<span>重新点餐</span>
+		</a>
+		<div class="text-center order-head">方雅自助点餐系统</div>
+	</header>
+
+	<div class="order">
+		<!-- 左边分类 start -->
+		<div class="order-left">
+			<ul class="sorts-list">
+				<volist name = "info" id = "v">
+					<li>
+						<a href="" data-toggle="tab" id="category_type" onclick="showtypefood({$v.food_category_id})">
+							<span>{$v.food_category_name}</span>
+						</a>
+					</li>
+				</volist>
+			</ul>
+		</div> <!-- 左边分类 end -->
+
+		<!-- 中间菜品列表 start -->
+		<div class="order-content">
+			<div class="container-fluid">
+				<div class="tab-content" id="food_info">
+					<div class="tab-pane fade in active" id="recommend">
+						<div class="row">
+							<volist name = "info1" id = "v1">
+								<div class="col-sm-6 col-md-4">
+									<a href="javascript:void(0)" class="food-item"  data-toggle="modal" data-target="#foodModal" data-food_id="{$v1.food_id}" onclick="findfoodinfo(this)">
+										<div class="food-box">
+											<div class="food-box-img">
+												<img src="/{$v1.food_img}">
+											</div>
+											<div class="clearfix">
+												<div class="pull-left">
+													<div class="star">
+														<if condition = "$v1.star_level eq 1">
+															<span></span>
+														</if>
+														<if condition = "$v1.star_level eq 2">
+															<span>★★</span>
+														</if>
+														<if condition = "$v1.star_level eq 3">
+															<span>★★★</span>
+														</if>
+														<if condition = "$v1.star_level eq 4">
+															<span>★★★★</span>
+														</if>
+														<if condition = "$v1.star_level eq 5">
+															<span>★★★★★</span>
+														</if>
+													</div>
+												</div>
+												<div class="pull-right text-right">
+													<div class="cayenne">
+														<if condition = "$v1.hot_level eq 0">
+
+														</if>
+														<if condition = "$v1.hot_level eq 1">
+															<!-- <img src="__PUBLIC__/images/cayenne.png"> -->
+														</if>
+														<if condition = "$v1.hot_level eq 2">
+															<img src="__PUBLIC__/images/cayenne.png">
+															<img src="__PUBLIC__/images/cayenne.png">
+														</if>
+														<if condition = "$v1.hot_level eq 3">
+															<img src="__PUBLIC__/images/cayenne.png">
+															<img src="__PUBLIC__/images/cayenne.png">
+															<img src="__PUBLIC__/images/cayenne.png">
+														</if>
+													</div>
+												</div>
+											</div>
+										</div>
+										<div class="food-details">
+											<div class="food-name">{$v1.food_name}</div>
+											<div class="food-price">&yen;{$v1.food_price}</div>
+										</div>
+									</a>
+								</div>
+							</volist>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- 菜品列表 end -->
+
+		<!-- 右边已选菜品 start -->
+		<div class="order-right">
+			<div class="container-fluid">
+				<!-- 菜品选择列表 start -->
+				<div class="food-select" id="foodlist">
+
+				</div><!-- 菜品选择列表 end -->
+			</div>
+
+			<div class="total" >
+				<p>合计：&yen;<span id="Total">0.00</span>元</p>
+				<button class="common-btn place-order-btn" onclick="PlaceOrder2()">
+					<span>立即下单</span>
+					<img src="__PUBLIC__/images/gt.png">
+				</button>
+			</div>
+		</div><!-- 右边已选菜品 end -->
+	</div>
+
+	<!-- 菜品Modal -->
+	<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="food-modal-dialog" id="modelfood">
+
+		</div>
+	</div>
+	<!-- 餐桌Modal -->
+	<div class="modal" id="tableModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="tableModal-return">
+				<button class="btn-none" data-dismiss="modal">
+					<span>&lt;</span>
+					<span>返回点餐</span>
+				</button>
+			</div>
+			<div class="number text-center">
+				<div class="number-tips">1.领取点餐机旁边的餐牌号</div>
+				<div class="number-tips">2.输入餐牌号，按确认</div>
+				<div class="number-input">
+					<input type="text" id="numtext" data-order_type="{$Think.get.order_type}" value="" readonly="readonly">
+					
+					<button id="btn" onclick="placeor()">确认</button>
+				</div>
+				<div class="number-table clearfix">
+					<div class="pull-left">
+						<table>
+							<tr>
+								<td>
+									<button class="num-btn">1</button>
+								</td>
+								<td>
+									<button class="num-btn">2</button>
+								</td>
+								<td>
+									<button class="num-btn">3</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="num-btn">4</button>
+								</td>
+								<td>
+									<button class="num-btn">5</button>
+								</td>
+								<td>
+									<button class="num-btn">6</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button class="num-btn">7</button>
+								</td>
+								<td>
+									<button class="num-btn">8</button>
+								</td>
+								<td>
+									<button class="num-btn">9</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="pull-left number-table-right">
+						<table>
+							<tr>
+								<td>
+									<button class="num-btn">0</button>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<button id="del-num">
+										<p>删</p>除
+									</button>
+								</td>
+							</tr>
+						</table>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+</body>
+<script src="__PUBLIC__/js/Home/order.js"></script>
+</html>

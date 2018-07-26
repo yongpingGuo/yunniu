@@ -1,0 +1,65 @@
+<include file="Public/head"/>
+<body class="body-hide">
+	<header class="admin-header">
+		<div class="container-fluid clearfix">
+			<div class="pull-left header-title">方雅点餐系统 | 管理端后台</div>
+			<div class="pull-right header-user">
+				<p>尊敬的：{$Think.session.admin_name}</p>
+				<button class="btn-none" onclick="loginout()">退出</button>
+			</div>
+		</div>
+	</header>
+
+	<!-- 左侧导航栏 -->	
+	<aside class="sidebar">
+		<ul class="sidebar-menu">
+			<li class="treeview">
+				<div class="treeview-header">
+					<span>商家管理</span>
+					<div class="pull-right-container plus-icon"></div>
+				</div>
+				<ul class="treeview-menu">
+					<li>
+						<a href="{:U('business/index')}" target='rightFrame'>商家列表</a>
+					</li>
+				</ul>
+			</li>
+			<li class="treeview">
+				<div class="treeview-header">
+					<span>设备管理</span>
+					<div class="pull-right-container plus-icon"></div>
+				</div>
+				<ul class="treeview-menu">
+					<li>
+						<a href="{:U('device/index')}" target='rightFrame'>设备列表</a>
+					</li>
+					<li>
+						<a href="{:U('device/code')}" target='rightFrame'>注册码列表</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</aside>
+
+	<iframe id="rightFrame" name="rightFrame" scrolling="auto" src="{:U('Business/index')}"></iframe>
+
+</body>
+<script>
+	function loginout(){
+		var msg = confirm("确定要退出？");
+		if(msg == true){
+			$.ajax({
+				type:"get",
+				url:"/index.php/manager/Index/loginout",
+				async:true,
+				dataType:"json",
+				success:function(data){
+					if(data.code == 1){
+						location.href = "/index.php/manager/Index/login";
+					}
+				}
+			});
+		}
+	}
+</script>
+</html>

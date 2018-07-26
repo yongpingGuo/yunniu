@@ -1,0 +1,59 @@
+<section class="section" id="ajax-content">
+    <div class="section-content flex-content">
+        <div class="flex-main">
+            <table class="member-discount-table" id="addDisc">
+                <tbody>
+                <?php foreach ($discount as $K1 => $v): ?>
+                <tr id="tr<?php echo $v['id'];?>">
+                    <td><?php echo ++$k1;?></td>
+                    <td>{{langData.discount2[lang]}}:<?php echo $v['val'];?>{{langData.discount3[lang]}}</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#OrderOrFoodDiscountModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'discount')">
+                            <img src="__PUBLIC__/images/edit.png">
+                        </button>
+                        <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                            <img src="__PUBLIC__/images/remove.png">
+                        </button>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <button class="blue-btn" onclick="addDiscRedu(1)">{{langData.addDiscount[lang]}}</button>
+        </div>
+        <div class="flex-main">
+            <table class="member-discount-table" id="addRedu">
+                <tbody>
+                <?php foreach ($reduce as $K2 => $v): ?>
+                <tr id="tr<?php echo $v['id'];?>">
+                    <td><?php echo ++$k2;?></td>
+                    <td>{{langData.legislative[lang]}}:<?php echo $v['val'];?>{{langData.yuan[lang]}}:</td>
+                    <td>
+                        <button data-toggle="modal" data-target="#OrderOrFoodReduceModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'reduce')">
+                            <img src="__PUBLIC__/images/edit.png">
+                        </button>
+                        <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                            <img src="__PUBLIC__/images/remove.png">
+                        </button>
+                    </td>
+                </tr>
+                <?php endforeach ?>
+                </tbody>
+            </table>
+            <button class="blue-btn" onclick="addDiscRedu(2)">{{langData.addLegislation[lang]}}</button>
+        </div>
+    </div>
+</section>
+
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

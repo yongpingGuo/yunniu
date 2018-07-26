@@ -1,0 +1,15 @@
+<include file="Public/head"/>
+<body>
+<p id="app_auth_token" data-app_auth_token="{$app_auth_token}" data-user_id ="{$user_id}">
+    {$app_auth_token}
+</p>
+</body>
+<script>
+    $(function(){
+        var app_auth_token = $("#app_auth_token").data("app_auth_token");
+        var user_id = $("#app_auth_token").data("user_id");
+        $url = "/index.php/admin/dataDock/setAppAuthToken/app_auth_token/"+app_auth_token+"/user_id/"+user_id;
+        location.href = $url;
+    });
+</script>
+</html>

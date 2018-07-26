@@ -1,0 +1,96 @@
+<?php
+namespace Vertical\Controller;
+use Think\Controller;
+use Vertical\Service\RouteService;
+/**
+ * Created by PhpStorm.
+ * User: liangbaobin
+ * Date: 2017/2/16
+ * Time: 22:37
+ */
+class TemplateController extends Controller
+{
+    protected $routeService;
+    protected $restaurant_id;
+    protected $next_page_filename;
+
+    public function __construct($ignore_process = array(4)){
+        Controller::__construct();
+        $this->restaurant_id = session("restaurant_id");
+        $this->routeService = new RouteService($ignore_process,2);
+    }
+
+    public function serviceRoute(){
+        if(session('group_id') == 2){
+            exit("请选择正确模板");
+        }
+        $current_action = I("current_action");
+        $next_process = $this->routeService->getNextProcess($this->restaurant_id,$current_action);
+        $this->next_page_filename = "Template/".$next_process['filename'];
+        $next_action = $next_process['action'];
+        $this->$next_action();
+    }
+
+    public function index(){
+        $this->display($this->next_page_filename);
+    }
+
+    public function select(){
+        $this->display($this->next_page_filename);
+    }
+
+    public function order(){
+        $this->display($this->next_page_filename);
+    }
+
+    public function number(){
+        $this->display($this->next_page_filename);
+    }
+
+    public function pay(){
+        $orderModel = order();
+        $o_condition['order_sn'] = I("get.order_sn");
+        $rel = $orderModel->where($o_condition)->field("total_amount,order_sn")->find();
+        $pay_select_model = D('pay_select');
+        $ps_condition['restaurant_id'] = session('restaurant_id');
+        $pay_select_config = $pay_select_model->where($ps_condition)->select();
+
+        $pay_select = array();
+        foreach($pay_select_config as $key => $val){
+            if($val['value'] == 1){
+                $pay_select[$val['s_num']] = 1;
+            }else{
+                $pay_select[$val['s_num']] = 0;
+            }
+        }
+
+        $set_where['type'] = 0;
+        $set_where['restaurant_id'] = session('restaurant_id');
+        $set_model = D("set");
+        $set_info = $set_model->where($set_where)->find();
+        $discount = $set_info['if_open'];
+
+        $this->assign("wechat_code",$pay_select['1']);
+        $this->assign("discount",$discount);
+        $this->assign("ali_code",$pay_select['4']);
+        $this->assign("wechat",$pay_select['3']);
+        $this->assign("cash",$pay_select['2']);
+        $this->assign("total_amount",$rel['total_amount']);
+        $this->assign("order_sn",$rel['order_sn']);
+        $this->display($this->next_page_filename);
+    }
+
+    public function finish(){
+        $this->display();
+    }
+
+    public function scorePromptPage(){
+        $restaurant_id = session('restaurant_id');
+        $this->assign("restaurant_id",$restaurant_id);
+        $this->display();
+    }
+
+    public function payPrompt(){
+        $this->display();
+    }
+}

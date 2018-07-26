@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="{:U('Systemset/ico_manager')}">图片上传</a>
+    </li>
+    <li>
+        <a href="{:U('Systemset/ico_category')}">添加分类</a>
+    </li>
+</ul>
+欢迎添加图标分类<br/><br/>
+
+<form action="?" onsubmit="return keep(this)">
+    图标分类名：<input type="text" placeholder="请输入图标分类" name="category_name" id="category_name" autocomplete="off"/><br/><br/>
+    <button>保存</button>
+</form>
+
+<script>
+    function keep(obj){
+        var category_name = $('#category_name' ).val();
+        if(category_name == ''){
+            layer.msg('分类名不能为空');
+            return false;
+        }
+
+        $.post('/index.php/allAgent/Systemset/catefory_name_if_same',{'category_name':category_name},function(retunData){
+            var data = JSON.parse(retunData);
+            console.log(data);
+            if(data.code == 1){
+                layer.msg('存在相同分类名');
+                return false;
+            }
+        });
+
+        $.post(obj.action,$(obj).serialize(),function(retunData){
+            var data = JSON.parse(retunData);
+            var msg = data.msg;
+            layer.msg(msg);
+            window.location.reload();
+        });
+        return false;
+    }
+
+</script>
+</body>
+</html>

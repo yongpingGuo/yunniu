@@ -1,0 +1,33 @@
+<include file="Public/head"/>
+<body>
+    <div class="container-fluid">
+        <div class="row col-lg-4 col-lg-offset-4">
+            <h1 class="">授权步骤</h1>
+        </div>
+        <div class="row col-lg-4 col-lg-offset-4">
+            <ul class="center-block">
+                <li>
+                    请在下方准确填写你要授权的支付宝PID
+                </li>
+                <li>
+                    点击下方确定按钮，跳转到支付宝登陆页面
+                </li>
+                <li>
+                    登陆支付宝，点击确认授权
+                </li>
+            </ul>
+            支付宝PID：<input type="text" name="aliNumber" id="aliPid">
+            <a href="javascript:void(0)" target="_blank" class="btn btn-primary" onclick="changeUrl()">前去授权</a>
+        </div>
+    </div>
+</body>
+<script>
+    function changeUrl(){
+        var aliNumber = $("#aliPid").val();
+        if(aliNumber){
+            var url = "/index.php/component/test/testCreate/aliNumber/"+aliNumber;
+            window.open(url);
+        }
+    }
+</script>
+</html>

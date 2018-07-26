@@ -1,0 +1,16 @@
+Admin 商家总后台
+Agent 代理商总后台
+AllAgent 系统管理后台
+Api 对接安卓的api接口
+Business、Boss、Manager、ShowNumber 废弃
+Component 通过机器码进入商城首页
+Home 点餐商城首页
+MobileAdmin 移动端商家管理后台
+PayMethod 支付相关接口
+vertical是之前的竖屏，点餐分横屏和竖屏
+showNumber是分区叫号屏
+
+
+
+
+

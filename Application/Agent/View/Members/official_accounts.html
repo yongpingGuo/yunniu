@@ -1,0 +1,70 @@
+<include file="Public/head"/>
+<body class="members">
+
+    <div id="public_number_set">
+        <div class="container-fluid">
+            <form enctype="multipart/form-data" class="form-horizontal" method="post" onSubmit="return save_public_number_set(this)">
+                <div class="form-group">
+                    <label for="appid" class="col-sm-3 control-label">公众号appid:</label>
+                    <div class="col-sm-7 col-lg-5">
+                        <input type="text" name="appid" value="{$public_number_set['appid']}" id="appid" class="form-control" dataType="Require" placeholder="请输入公众号appid">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="appsecret" class="col-sm-3 control-label">公众号密钥appsecret:</label>
+                    <div class="col-sm-7 col-lg-5">
+                        <input type="text" name="appsecret" value="{$public_number_set['appsecret']}" id="appsecret" class="form-control" dataType="Require" placeholder="请输入公众号appsecret">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="public_number_url" class="col-sm-3 control-label">会员入口:</label><br>
+                    <div class="col-sm-7 col-lg-6">
+                    <?php foreach ($restaurantData as $k => $v): ?>
+                        <div><?php echo $v['restaurant_name'];?>：http://shop.founpad.com/index.php/Mobile/weixin/getUserDetail?business_id=<?php echo $v['business_id'];?>&restaurant_id=<?php echo $v['restaurant_id'];?></div>
+                    <?php endforeach ?>
+                        <span class="text-danger">（请勿填写或者更改链接入口地址，只需复制粘贴至微信公众号设置即可）</span>
+                        <input type="hidden" name="business_id" value="{$business_id}"/>
+                        <input type="hidden" name="id" value="{$public_number_set['id']}"/>
+                    </div>
+                </div>
+               
+                <div class="col-sm-11 text-center">
+                    <button class="btn btn-black" type="submit">保存</button>
+                </div>
+            </form>
+            <form class="form-horizontal official_accounts_upload" action="__CONTROLLER__/txt" enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                    <label for="file" class="col-sm-3 control-label">微信JS授权文件（txt格式）:</label>
+                    <div class="col-sm-4 col-lg-2">
+                        <div class="file-content btn btn-primary">
+                            <span>上传文件</span>
+                            <input type="file" name="file">
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-lg-2">
+                        <input type="submit" class="btn btn-success">
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <script>
+        function save_public_number_set(obj){
+            // 利用“我佛山人”插件进行合法的验证
+            if( Validator.Validate(obj, 3))
+            {
+                $.post("/index.php/agent/members/add_public_number_set", $(obj).serialize(), function(data){
+                    alert(data.info);
+                    $.get("/index.php/agent/members/get_public_number_set", function (data) {
+                        $("#public_number_set").html(data);
+                    });
+                });
+            }
+            return false;
+        }
+    </script>
+    <script src="__PUBLIC__/js/validator.js"></script>
+    <script src="__PUBLIC__/js/lamson.js"></script>
+</body>
+</html>

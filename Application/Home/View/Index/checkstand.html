@@ -1,0 +1,311 @@
+<include file="Public/head"/>
+<!-- 收银 -->
+<body>
+	<header class="home-header">
+		<a href="#">
+			<img src="__PUBLIC__/images/lt.png">
+			<span>重新点餐</span>
+		</a>
+		<div class="header-right">
+			<a href="#">
+				<img src="__PUBLIC__/images/scan.png">
+				<span>打单</span>
+			</a>
+			<a href="{:U('Index/order_list')}">
+				<img src="__PUBLIC__/images/cart.png">
+				<div class="cart-num">2</div>
+			</a>
+			<a href="#">
+				<img src="__PUBLIC__/images/print.png">
+				<div class="print-num">2</div>
+			</a>
+			<a href="#">
+				<img src="__PUBLIC__/images/user.png">
+				<span>12424</span>
+			</a>
+		</div>
+	</header>
+
+	<div class="order">
+		<!-- 左边分类 start -->
+		<div class="order-left">
+			<ul class="sorts-list">
+				<li>
+					<a href="#all" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>全部</span>
+					</a>
+				</li>
+				<li class="active">
+					<a href="#recommend" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>推荐</span>
+					</a>
+				</li>
+				<li>
+					<a href="#sort01" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>粥；面；汤粉</span>
+					</a>
+				</li>
+				<li>
+					<a href="#sort02" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>米线类</span>
+					</a>
+				</li>
+				<li>
+					<a href="#sort03" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>小吃类</span>
+					</a>
+				</li>
+				<li>
+					<a href="#sort04" data-toggle="tab">
+						<img src="__PUBLIC__/images/dishes.png">
+						<span>饮料类</span>
+					</a>
+				</li>
+			</ul>
+		</div> <!-- 左边分类 end -->
+
+		<!-- 中间菜品列表 start -->
+		<div class="order-content container-fluid">
+			<div class="tab-content row">
+				<div class="tab-pane fade" id="all">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+				<div class="tab-pane fade in active" id="recommend">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+				<div class="tab-pane fade" id="sort01">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+				<div class="tab-pane fade" id="sort02">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+				<div class="tab-pane fade" id="sort03">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+				<div class="tab-pane fade" id="sort04">
+					<!-- 一个菜品模块 start -->
+					<div class="col-sm-4">
+						<div class="food-list">
+							<a href="#"  data-toggle="modal" data-target="#foodModal">
+								<img src="__PUBLIC__/images/dishes02.png">
+							</a>
+							<div class="food-details">
+								<div class="star">
+									<span class="add-star"></span>
+									<span class="star-bg"></span>
+								</div>
+								<div class="food-price">
+									&yen;12.00
+								</div>
+							</div>
+							<a href="#" data-toggle="modal" data-target="#foodModal" class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</a>
+						</div>
+					</div><!-- 一个菜品模块 end -->
+				</div>
+			</div>
+		</div><!-- 菜品列表 end -->
+		
+		<!-- 右边已选菜品 start -->
+		<div class="order-right container-fluid">
+			<!-- 菜品选择列表 start -->
+			<div class="food-select">
+				<section class="food-select-item">
+					<div class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</div>
+					<div class="select-content clearfix">
+						<div class="pull-left text-left">
+							<button class="btn-none">
+								<img src="__PUBLIC__/images/minus_btn.png">
+							</button>
+							<span class="select-num">1</span>
+							<button class="btn-none">
+								<img src="__PUBLIC__/images/plus_btn.png">
+							</button>
+						</div>
+						<div class="pull-right text-right red">
+							<b>&yen;12.00元</b>
+						</div>
+					</div>
+				</section>
+				<section class="food-select-item">
+					<div class="food-name">牛肉面牛肉面牛肉面牛肉面牛肉面牛肉面</div>
+					<div class="select-content clearfix">
+						<div class="pull-left text-left">
+							<button class="btn-none">
+								<img src="__PUBLIC__/images/minus_btn.png">
+							</button>
+							<span class="select-num">1</span>
+							<button class="btn-none">
+								<img src="__PUBLIC__/images/plus_btn.png">
+							</button>
+						</div>
+						<div class="pull-right text-right red">
+							<b>&yen;12.00元</b>
+						</div>
+					</div>
+				</section>
+			</div><!-- 菜品选择列表 end -->
+
+			<div class="total">
+				<b>共：&yen;24.00元</b>
+			</div>
+		</div><!-- 右边已选菜品 end -->
+	</div>
+
+	<footer class="home-footer text-right">
+		<span class="mr-10">下单前，请确认您的餐牌号为：256</span><!-- 说明：点餐流程涉及到餐牌号的，这里就显示 -->
+		<button class="confirm-btn" onclick="location='{:U('Index/pay')}'">
+			<span>确认下单</span>
+			<img src="__PUBLIC__/images/gt.png">
+		</button>
+	</footer>
+
+	<!-- Modal -->	
+	<div class="modal fade" id="foodModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="food-content">
+					<div class="row">
+						<div class="col-sm-6">
+							<img src="__PUBLIC__/images/dishes02.png" class="pre100">
+						</div>
+						<div class="col-sm-6">
+							<p class="modal-title">牛肉面牛肉面牛肉面牛肉面</p>
+							<div class="modal-price-content">
+								<button class="btn-none">
+									<img src="__PUBLIC__/images/minus_btn.png">
+								</button>
+								<span class="modal-num">1</span>
+								<button class="btn-none">
+									<img src="__PUBLIC__/images/plus_btn.png">
+								</button>
+								<span class="red modal-price">&yen;12.00元</span>
+							</div>
+							<p class="food-intro">
+								面条起源于中国，已有四千多年的制作食用历史。
+								面条是一种制作简单，食用方便，营养丰富，即可
+								主食又可快餐的健康保健食品。早已为世界人民所
+								接受与喜爱。面条一种用谷物或豆类的面粉加水磨
+								成面团，之后或者压或擀制或抻成片再切或压，或
+								者使用搓、拉、捏等手段，制成条状（或窄或宽，
+								或扁或圆）或小片状，最后经煮、炒、烩、炸而成
+								的一种食品。
+							</p>
+						</div>
+					</div>
+					<div class="food-attr">
+						<ul class="attr-list clearfix">
+							<li>不辣</li>
+							<li>微辣</li>
+							<li>超辣</li>
+						</ul>
+						<ul class="attr-list clearfix">
+							<li>加葱</li>
+							<li>不加葱</li>
+						</ul>
+						<ul class="attr-list clearfix">
+							<li>薯条</li>
+							<li>玉米</li>
+							<li>可乐</li>
+							<li>雪碧</li>
+						</ul>
+					</div>
+				</div>
+				<div class="modal-bottom">
+					<button type="button" data-dismiss="modal" class="btn-close">关闭</button>
+					<button type="button" id="food-checked">确认</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

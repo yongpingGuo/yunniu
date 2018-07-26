@@ -1,0 +1,91 @@
+<extend name="Public:base" xmlns="http://www.w3.org/1999/html" />
+<block name="main">
+    <include file="Public/header" title="会员折扣" />
+    <section class="section">
+        <header class="section-title">会员整单打折</header>
+        <div id="discount_list">
+            <volist name="discount_info" id="at_vo">
+                <form action="javascript:void(0)">
+                    <div class="section-row">
+                        <div>
+                            <span>会员组</span>
+                            <div class="select-reset">
+                                <select name="group_id">
+                                    <if condition="$at_vo['group_id'] eq 0">
+                                        <option value="0" selected='selected'>默认会员组</option>
+                                        <else/>
+                                        <option value="0">默认会员组</option>
+                                    </if>
+                                    <?php foreach ($group_info as $k => $v):
+                                    if ($v['group_id'] == $at_vo['group_id']) {
+                                    $selected = "selected='selected'";
+                                    }else{
+                                    $selected = "";
+                                    }
+                                    echo "<option value='".$v['group_id']."'".$selected.">".$v['group_name']."</option>";
+                                    ?>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
+                            <span>满</span>
+                            <input type="text" name="money" value="{$at_vo['money']}" class="input-xs">
+                            <span> 元：</span>
+                        </div>
+                        <div class="flex-content vertical-flex">
+                            <div class="flex-main">
+                                <span>折扣</span>
+                                <input type="text" name="discount" value="{$at_vo['discount']}" class="input-xs">
+                                <span>折，立减</span>
+                                <input type="text" name="reduce" value="{$at_vo['reduce']}" class="input-xs">
+                                <span>元</span>
+                            </div>
+                            <button class="default-btn" onclick="keep_discount(this,2)">保存</button>
+                            <input type="hidden" name="id" value="{$at_vo['id']}" />
+                            <button class="default-btn" onclick="deleteDisc(this)">删除</button>
+                        </div>
+                        <hr class="hr hr-dashed">
+                    </div>
+                </form>
+            </volist>
+        </div>
+        <button class="danger-btn" onclick="add_vip_discount()">
+            <i class="iconfont icon-plus"></i>
+        </button>
+        <div class="remarks tips">
+            <div>
+                <span class="tips-icon">*</span>
+                <span>会员组的请前往品牌后台设置</span>
+                <div>同一品牌下，所有会员共享！</div>
+                <div>消费条件由店铺独立设置！=免费）</div>
+            </div>
+            <div>
+                <span class="tips-icon">*</span>
+                <span>会员更多功能请前往会员模块</span>
+            </div>
+        </div>
+    </section>
+    <div class="remarks tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>折扣和立减同时有效！</span>
+            <div>不设立减时，立减填写为：0元</div>
+            <div>不设折扣时，折扣填写为：10折（0折=免费）</div>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>折扣设置如：8.5折；8折；</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>消费满按最大额计算：</span>
+            <div>1. 满10元，立减1元</div>
+            <div>2. 满20元，立减3元</div>
+            <div>当顾客消费9元时，不进行打折</div>
+            <div>当顾客消费10-19元时，立减1元</div>
+            <div>当顾客消费20元以上时，立减3元</div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/vip_discount.js"></script>
+</block>

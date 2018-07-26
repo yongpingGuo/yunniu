@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/admin.css">
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/Manager-business/index.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <table class="business-table">
+            <thead>
+                <tr>
+                    <th>序号</th>
+                    <th class="text-center">商家名称</th>
+                    <th>登陆账号</th>
+                    <th>登陆密码</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                <volist name="business_list" id="vo">
+                    <tr>
+                        <td>{$i}</td>
+                        <td><a class="btn" onclick="open_close({$i})">+</a>{$vo.business_name}</td>
+                        <td>{$vo.business_account}</td>
+                        <td>{$vo.business_password}</td>
+                        <td>
+                            <button data-business_id="{$vo.business_id}" data-business_account="{$vo.business_account}" data-business_name="{$vo.business_name}" data-business_password="{$vo.business_password}" onclick="editBusiness(this)">编辑</button>
+                            <button data-business_id="{$vo.business_id}" onclick="delBusiness(this)">删除</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="4">
+                            <table class="table-condensed ml-30">
+                                    <tr>       
+                                        <td>前台收银2</td>                                  
+                                        <td>7865455111</td>                                  
+                                        <td>2017-11-05</td>                                  
+                                        <td>开启</td>                                  
+                                        <td>店铺名</td>                              
+                                    </tr>
+                                    <tr>       
+                                        <td>前台收银2</td>                                  
+                                        <td>7865455111</td>                                  
+                                        <td>2017-11-05</td>                                  
+                                        <td>开启</td>                                  
+                                        <td>店铺名</td>                              
+                                    </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </volist>
+            </tbody>
+        </table>
+        <div class="">
+            <button onclick="addBusiness()">新增商家</button>
+        </div>
+    </div>
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="businessInfo" tabindex="-1" role="dialog" aria-labelledby="businessInfoLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title" id="businessInfoLabel">添加商家</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="javascript:void(0);" id="businessInfoForm">
+                        <input type="hidden" value="add" name="type" id="type">
+                        <input type="hidden" name="business_id" id="business_id">
+                        <div class="form-group">
+                            <label for="business_name">商家姓名</label>
+                            <input type="text" id="business_name" name="business_name" class="form-control"></div>
+                        <div>
+                            <label for="business_account">登陆账号</label>
+                            <input type="text" id="business_account" name="business_account" class="form-control"></div>
+                        <div>
+                            <label for="business_password">登陆密码</label>
+                            <input type="text" class="form-control" id="business_password" name="business_password"></div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button type="button" class="btn btn-primary" onclick="submitBusinessModify()">提交更改</button>
+                </div>
+            </div>
+            <!-- /.modal-content --> </div>
+        <!-- /.modal --> </div>
+</body>
+</html>

@@ -1,0 +1,179 @@
+<include file="Public/head" />
+<!-- 商家信息 -->
+
+<body>
+    <form id="search_form" action="/index.php/Admin/Dishes/excel_out2" method="post"><form/>
+    <section class="section">
+        <div class="section-header">菜品信息的导入导出</div>
+        <div class="section-content">
+            <p>
+                <button class="file-content blue-btn">
+                    <span>导入</span>
+                    <img src="/Public/images/in.png" class="mini-icon">
+                    <input type="file" id="myfile">
+                </button>
+                <button type="button" class="blue-btn" id="getdata" onclick="exportway()">
+                    <span>导出</span>
+                    <img src="/Public/images/out.png" class="mini-icon">
+                </button>
+            </p>
+            <p>菜品修改说明:</p>
+            <table class="table-condensed table-bordered">
+                <tr>
+                    <td>food_id</td>
+                    <td>食物id(不能修改,新增数据时切勿添加food_id)</td>
+                </tr>
+                <tr>
+                    <td>food_name</td>
+                    <td>菜品名称(必填)</td>
+                </tr>
+                <tr>
+                    <td>food_name_en</td>
+                    <td>菜品英文名</td>
+                </tr>
+                <tr>
+                    <td>time_category</td>
+                    <td>时间段类别id</td>
+                </tr>
+                <tr>
+                    <td>discount</td>
+                    <td>第二份起的价格</td>
+                </tr>
+                <tr>
+                    <td>food_price</td>
+                    <td>菜品价格(必填)</td>
+                </tr>
+                <tr>
+                    <td>star_level</td>
+                    <td>星级水平(必填)</td>
+                </tr>
+                <tr>
+                    <td>hot_level</td>
+                    <td>辣程度(必填)</td>
+                </tr>
+                <tr>
+                    <td>is_prom</td>
+                    <td>是否开启时价</td>
+                </tr>
+                <tr>
+                    <td>is_tax</td>
+                    <td>是否含税(0不含1含税)</td>
+                </tr>
+                <tr>
+                    <td>foods_num_day</td>
+                    <td>每天供应量</td>
+                </tr>
+                <tr>
+                    <td>food_desc</td>
+                    <td>食物的描述</td>
+                </tr>
+                <tr>
+                    <td>restaurant_id</td>
+                    <td>店铺id(修改及添加数据都可以省略此数据)</td>
+                </tr>
+                <tr>
+                    <td>is_sale</td>
+                    <td>是否上架（1表示上架，0否）</td>
+                </tr>
+                <tr>
+                    <td>print_id</td>
+                    <td>打印机id</td>
+                </tr>
+                <tr>
+                    <td>sort</td>
+                    <td>排序</td>
+                </tr>
+                <tr>
+                    <td>district_id</td>
+                    <td>分区id</td>
+                </tr>
+                <tr>
+                    <td>tag_print_id</td>
+                    <td>标签打印机id(0表示没有)</td>
+                </tr>
+                <tr>
+                    <td>dianzan</td>
+                    <td>点赞，0不赞，1赞</td>
+                </tr>
+                <tr>
+                    <td>category_names</td>
+                    <td>分类名称</td>
+                </tr>
+                <tr>
+                    <td>attribute_type_str</td>
+                    <td>菜品类别名(eg:口味,饮料,饮料 格式:用英文的逗号','隔开)</td>
+                </tr>
+                <tr>
+                    <td>print_id_str</td>
+                    <td>打印机id集</td>
+                </tr>
+                <tr>
+                    <td>select_type_str</td>
+                    <td>该类型下的属性(0单选，1多选 ;格式:用英文的逗号','隔开)</td>
+                </tr>
+                <tr>
+                    <td>count_type_str</td>
+                    <td>类别下的属性是否列入统计（0 : 否，1：是）(格式:用英文的逗号','隔开)</td>
+                </tr>
+                <tr>
+                    <td>tag_print_id_str</td>
+                    <td>标签打印机id集(格式:用英文的逗号','隔开)</td>
+                </tr>
+                <tr>
+                    <td>attribute_val</td>
+                    <td>类别值和价格集合(格式:用'|'隔开,值与值之间用英文的','隔开,值和价格用'_'符隔开 ;
+                        <br>eg:少辣_0.00,中辣_0.00,超辣_0.00|水_0.00,茶_0.00,可乐_0.00,豆奶_0.00) </td>
+                </tr>
+            </table>
+        </div>
+    </section>
+</body>
+<script>
+function exportway() {
+    $("#search_form").attr('action', '/index.php/Admin/Dishes/excel_out2');
+    $("#search_form").submit();
+}
+
+$("input[type='file']").change(function() {
+    var formData = new FormData();
+    formData.append("myfile", $(this)[0].files[0]);
+    console.log($(this)[0].files[0]);
+    $.ajax({
+        url: "/index.php/Admin/Dishes/excel_in",
+        type: "POST",
+        data: formData,
+        //              data:$(this)[0].files[0],
+        /**
+         *必须false才会自动加上正确的Content-Type
+         */
+        contentType: false,
+        /*
+         * 必须false才会避开jQuery对 formdata 的默认处理
+         * XMLHttpRequest会对 formdata 进行正确的处理
+         */
+        processData: false,
+        beforeSend: function() {
+            layer.open({
+                type: 3,
+                icon: 2,
+                skin: "loading"
+            });
+        },
+        complete: function() {
+            layer.closeAll('loading');
+        },
+        success: function(data) {
+            if (data.code == 0) {
+                layer.msg('上传成功');
+            } else {
+                layer.msg(data.msg);
+
+            }
+
+        }
+    });
+
+});
+</script>
+
+</html>

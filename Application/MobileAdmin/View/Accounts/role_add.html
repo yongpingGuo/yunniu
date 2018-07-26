@@ -1,0 +1,65 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="新增角色" />
+    <section class="section">
+        <form action="javascript:void(0)" id="add_role">
+            <table class="table-padding">
+                <tbody>
+                    <tr>
+                        <td>姓名：</td>
+                        <td>
+                            <input type="text" class="input" name="Cashier_name" placeholder="请输入名称">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>店长：</td>
+                        <td>
+                            <div class="select-reset w100">
+                                <select>
+                                    <option>店长</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>账号：</td>
+                        <td>
+                            <input type="text" class="input" name="Cashier_phone" placeholder="请输入纯数字组合">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>密码：</td>
+                        <td>
+                            <input type="password" class="input" name="Cashier_pwd" placeholder="请输入纯数字组合">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>确认密码：</td>
+                        <td>
+                            <input type="password" class="input" name="Cashier_pwds" placeholder="请输入纯数字组合">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>性别：</td>
+                        <td>
+                            <label class="radio">
+                                <input type="radio" name="Cashier_sex" value="1" checked="checked">
+                                <i class="circle-icon"></i>
+                                <span>男</span>
+                            </label>
+                            <label class="radio">
+                                <input type="radio" name="Cashier_sex" value="0">
+                                <i class="circle-icon"></i>
+                                <span>女</span>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </section>
+    <button class="danger-btn-lg" onclick="keep_role(0)">保存设置</button>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/role.js"></script>
+</block>

@@ -1,0 +1,144 @@
+<include file="Public/head"/>
+<style>
+	.redcolor{
+		color: red;
+	}
+</style>
+<body>
+<section class="container-fluid">
+	<div class="main-content">
+		<input type="hidden" name="session_manager_id" value="{$Think.session.manager_id}" id="session_manager_id"/>
+		<div style="border-bottom:1px solid #000">
+		<form action="/index.php/allAgent/Agent/agent" method="get">		
+			品牌商:<input type="text" name="business_name" id="key2"/>
+			帐号: <input type="text" name="business_account" id="key1"/>
+			<button class="btn-black add-agent">搜索</button>
+		</form>
+		</div>
+		{:tpl_AuthCheck('AllAgent/add_business',$_SESSION['manager_id'],'or','<button data-toggle="modal" class="btn-black add-agent" style="float:right" onclick="addAgent()">新增品牌商</button>','')}
+		<div id="mytable">
+			<table class="agent-table table-hover">
+				<thead>
+				<tr class="text-center">
+					<td>序号</td>
+					<td>品牌商</td>
+					<td>账号</td>
+					<td>等级</td>
+					<td>公司名称</td>
+					<td>联系人</td>
+					<td>手机号码</td>
+					<td>备注</td>
+					<td></td>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name = "Arrlist" id = "v">
+					<tr>
+						<td>{$i}</td>
+						<td>{$v.business_name}</td>
+						<td>{$v.business_account}</td>
+						<eq name = "v.business_grade" value = '0'>
+						<td>低</td>
+						</eq>
+						<eq name = "v.business_grade" value = '1'>
+						<td>中</td>
+						</eq>
+						<eq name = "v.business_grade" value = '2'>
+						<td>高</td>
+						</eq>
+						<td>{$v.corporate_name}</td>
+						<td>{$v.business_contact}</td>
+						<td>{$v.business_phone}</td>
+						<td class="agent-detail">
+							<span>{$v.business_ps}</span>
+						</td>
+						<td>
+							<button class="btn btn-black" data-toggle="modal" onclick="modify({$v.business_id})">编辑</button>
+							<button class="btn btn-default" onclick="delinfo({$v.business_id})">删除</button>
+						</td>
+					</tr>
+				</volist>
+			</table>
+			<div>
+				<ul class="pagination" id="detail-page">
+					{$page}
+				</ul>
+			</div>
+			</tbody>
+		</div>
+	</div>
+</section>
+
+<div class="modal fade" id="addAgent" tabindex="-1" role="dialog">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-head" id="title">编辑品牌商</div>
+			<form action = "__CONTROLLER__/add_business" method="post" id="myform">
+				<table>
+					<input type="hidden" name="form_id" value="1">
+					<input type="hidden" name="business_id">
+					<tr>
+						<td>名称：</td>
+						<td>
+							<input type="text" name="business_name" placeholder="品牌商名称"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>账号：</td>
+						<td>
+							<input type="text" name="business_account" placeholder="品牌商帐号" id="business_account"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td>
+							<input type="password" name="business_password" placeholder="品牌商密码"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td>
+							<input type="password" name="business_passwords" placeholder="品牌商密码"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>公司名称：</td>
+						<td>
+							<input type="text" name="corporate_name" placeholder="公司名称"></td>
+					</tr>
+					<tr>
+						<td>等级：</td>
+						<td>
+							<select id="grade">
+								<option>请选择</option>
+								<option value="0">低</option>
+								<option value="1">中</option>
+								<option value="2">高</option>
+							</select>
+						<span class="redcolor"> * </span>	
+						</td>
+					</tr>
+					<tr>
+						<td>联系人：</td>
+						<td>
+							<input type="text" name="business_contact" placeholder="联系人名称"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>手机：</td>
+						<td>
+							<input type="text" name="business_phone" placeholder="联系人手机号码"><span class="redcolor"> * </span></td>
+					</tr>
+					<tr>
+						<td>备注：</td>
+						<td>
+							<textarea id="business_ps" name="business_ps" placeholder="相关信息备注"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="text-center">
+					<button class="btn btn-black" type="button" onclick="commit()">保存</button>
+					<button class="btn btn-default" data-dismiss="modal">关闭</button>
+					<input type="reset" name="reset" id="reset" style="display: none;"/>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</body>
+<script src="__PUBLIC__/js/AllAgent/agent.js"></script>

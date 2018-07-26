@@ -1,0 +1,27 @@
+<include file="Public/head"/>
+<!-- 查询 -->
+<style>
+	div{padding-left: 15px;padding-top: 15px;}
+</style>
+<body>
+
+	<div style="margin-left:50px;">
+		<h2>美团订单详细信息</h2>
+		<div>订单号：{$re['wm_order_id_view']}</div>
+		<div>订单时间：{$re['timestamp']}</div>
+		<div>订单商品：
+			<foreach name="re.detail" item="item" key="key">
+				<div style="padding-left:50px;">{$item['food_name']} - {$item['quantity']} - {$item['price']}</div>
+			</foreach>
+		</div>
+		<div>订单商品总金额：{$re['food_add']}</div>
+		<div>收件人：{$re['recipient_name']}</div>
+		<div>收件人号码：{$re['recipient_phone']}</div>
+		<div>收件人地址：{$re['recipient_address']}</div>
+		<div>配送费：{$re['shipping_fee']}</div>
+		<div>抽佣金额：{$re['commisionamount']}</div>
+		<div>商家收入金额：{$re['settleamount']}</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<extend name="Public:base" />
+<block name="main">
+	<section class="section">
+		<header class="section-title">对接设置</header>
+		<label class="section-row flex-content">
+			<div class="radio">
+				<input type="radio" name="payment">
+				<i class="circle-icon"></i>
+			</div>
+			<div class="flex-main">
+				<span>微信、支付宝官方对接</span>
+				<div class="remarks">微信收款到银行卡，支付宝收款到支付宝。</div>
+			</div>
+		</label>
+		<label class="section-row flex-content">
+			<div class="radio">
+				<input type="radio" name="payment">
+				<i class="circle-icon"></i>
+			</div>
+			<div class="flex-main">
+				<span>银行代收（微信+支付宝）</span>
+				<div class="remarks">微信与支付宝，商家收款都在同一张银行卡上。</div>
+			</div>
+		</label>
+	</section>
+	<section class="section">
+		<header class="section-title">对接设置</header>
+		<div class="flex-content flex-wrap section-row">
+			<a class="index-item" href="{:U('Index/wechat')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/wechat.png">
+				</div>
+				<div>微信官方</div>
+			</a>
+			<a class="index-item" href="{:U('Index/alipay')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/alipay.png">
+				</div>
+				<div>支付宝官方</div>
+			</a>
+			<a class="index-item" href="{:U('Index/bank')}">
+				<div class="section-icon">
+					<img src="__PUBLIC__/images/mobile/discount.png">
+				</div>
+				<div>银行代收</div>
+			</a>
+		</div>
+		<div class="remarks indent-1">设为银行代收时，无须申请微信与支付宝。</div>
+	</section>
+	<section class="section">
+		<header class="section-title">使用状态</header>
+		<div class="section-row">
+			<span class="text-4">微信收款</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<div class="section-row">
+			<span class="text-4">支付宝收款</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+		</div>
+		<div class="section-row">
+			<span>自助点餐机现金收款</span>
+			<div class="checkbox-switch">
+				<input type="checkbox">
+				<label></label>
+			</div>
+			<span class="remarks">建议关闭</span>
+		</div>
+		<div class="remarks">顾客流程：下单 >未支付，打印小票 >恁小票到收银台支付</div>
+	</section>
+	<section class="section">
+		<header class="section-title">花一分钱测试微信支付</header>
+		<img src="__PUBLIC__/images/pay_01.png" class="icon-lg">
+		<div class="remarks text-center">请用其它手机扫本码，支付时，确认商家名称正确。</div>
+	</section>
+	<section class="section">
+		<header class="section-title">花一分钱测试支付宝</header>
+		<img src="__PUBLIC__/images/pay_03.png" class="icon-lg">
+		<div class="remarks text-center">请用其它手机扫本码，支付时，确认商家名称正确。</div>
+	</section>
+</block>

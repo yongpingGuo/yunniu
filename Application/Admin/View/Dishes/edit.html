@@ -1,0 +1,733 @@
+<include file="Public/head"/>
+<!-- 编辑菜品信息 -->
+<style>
+    .file {
+        height: 25px;
+        position: relative;
+        display: inline-block;
+        background: #D0EEFF;
+        border: 1px solid #99D3F5;
+        border-radius: 4px;
+        padding: 4px 12px;
+        overflow: hidden;
+        color: #1E88C7;
+        text-decoration: none;
+        text-indent: 0;
+        line-height: 20px;
+    }
+
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+
+    .file:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
+    }
+</style>
+<body>
+<div class="container-fluid">
+    <div class="row edit-dishes">
+        <form action="__CONTROLLER__/modifyfoodinfo/food_id/{$info.food_id}" id="food_info" method="post"
+              enctype="multipart/form-data">
+            <div class="col-sm-5">
+                <!--<img src="__PUBLIC__/images/dishes01.png" class="pre100 center-block">-->
+                <div id="preview"><img style="width:100%;height: 350px;" src="/{$info.food_img}" alt=""></div>
+                <div class="text-right mt-10">
+                    <!--<button class="btn-none mr-20">上传</button>-->
+                    <input type="file" class="btn-none mr-20" name="img_pic" onchange="preview(this)"/>
+                    <script type="text/javascript">
+                        function preview(file) {
+                            var prevDiv = document.getElementById('preview');
+                            if (file.files && file.files[0]) {
+                                var reader = new FileReader();
+                                reader.onload = function (evt) {
+                                    prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="pre100 center-block" style="width:100%;height: 350px;"/>';
+                                }
+                                reader.readAsDataURL(file.files[0]);
+                            }
+                            else {
+                                prevDiv.innerHTML = '<div class="img"  style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+                            }
+                        }
+                    </script>
+
+                    <span>建议分辨率：300*200</span>
+                </div>
+            </div>
+            <div class="col-sm-7">
+                <div class="col-sm-6">
+                    <table>
+                        <tr>
+                            <td>菜品名称：</td>
+                            <td><input type="text" name="food_name" value="{$info.food_name}"></td>
+                        </tr>
+                        <tr>
+                            <td>所属分类：</td>
+                            <td>
+                                <volist name="data" id="v">
+                                    <if condition="$v[is_select] eq 1">
+                                        <input type="checkbox" name="sort[]" value="{$v.food_category_id}" checked>{$v.food_category_name}
+                                        <else/>
+                                        <input type="checkbox" name="sort[]" value="{$v.food_category_id}">{$v.food_category_name}
+                                    </if>
+                                </volist>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>价格：</td>
+                            <td><input type="text" name="food_price" value="{$info.food_price}"></td>
+                        </tr>
+                        <tr>
+                            <td>第二份起：</td>
+                            <td><input type="text" name="discount" value="{$info.discount}"></td>
+                        </tr>
+                        <tr>
+                            <td>每日份数：</td>
+                            <td><input type="text" name="food_num_day" value="{$info.foods_num_day}"></td>
+                        </tr>
+                        <tr>
+                            <td>推荐指数：</td>
+                            <td><input type="text" name="star_level" value="{$info.star_level}"></td>
+                        </tr>
+                        <tr>
+                            <td>描述：</td>
+                            <td><textarea name="food_desc">{$info.food_desc}</textarea></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <h4>时价</h4>
+
+                    <p>
+                        价格：<input type="text" name="prom_price" value="{$info1.prom_price}">
+                    </p>
+
+                    <p>
+                        第二份起：<input type="text" name="discount" value="{$info1.discount}">
+                    </p>
+
+                    <p>
+                        每日份数：<input type="text" name="prom_goods_num" value="{$info1.prom_goods_num}">
+                    </p>
+
+                    <p>
+                        开始时间：<input type="text" name="prom_start_time" value="{$info1.prom_start_time}">
+                    </p>
+
+                    <p>
+                        结束时间：<input type="text" name="prom_end_time" value="{$info1.prom_end_time}">
+                    </p>
+                </div>
+            </div>
+        </form>
+        <div class="text-right mt-10" style="margin-right: 20px">
+            <button class="admin-btn" onclick="save_food()">保存</button>
+        </div>
+    </div>
+    <div class="row dishes-sort" style="height: 200px;overflow: auto">
+        <div id="type_form">
+            <for start="1" end="$type_page" name="c">
+                <if condition="$c eq 1">
+                    <div style="display: inline" id="div_{$c}">
+                        <else/>
+                        <div style="display: none" id="div_{$c}">
+                </if>
+                <div class="col-sm-6 borderRight">
+                    <div class="row dishes-sort-attr">
+                        <div class="col-sm-4">
+                            类别：
+                            <input type="text" name="attr_type"
+                                   onchange="changeType(this,'attr_type',{$attr_type_list[$c*2-1]['attribute_type_id']})"
+                                   style="width:60%"
+                                   value="{$attr_type_list[$c*2-1][type_name]}">
+                            <input type="hidden" value="0" id="form{$c*2-1}" name="form[]">
+                        </div>
+                        <div class="col-sm-3">
+                            <span>打印机：</span>
+                            <select name="print"
+                                    onchange="changeType(this,'print',{$attr_type_list[$c*2-1]['attribute_type_id']})">
+                                <volist name="printerList" id="vp0">
+                                    <if condition="$attr_type_list[$c*2-1]['print_id'] eq $vp0['printer_id']">
+                                        <option value="{$vp0.printer_id}" selected>{$vp0.printer_name}</option>
+                                        <else/>
+                                        <option value="{$vp0.printer_id}">{$vp0.printer_name}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>类型：</span>
+                            <select name="select_type"
+                                    onchange="changeType(this,'select_type',{$attr_type_list[$c*2-1]['attribute_type_id']})">
+                                <if condition="$attr_type_list[$c*2-1]['select_type'] eq 0">
+                                    <option selected="selected" value="0">单选</option>
+                                    <option value="1">多选</option>
+                                    <else/>
+                                    <option value="0">单选</option>
+                                    <option selected="selected" value="1">多选</option>
+                                </if>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                            <button class="btn-none add-attr" data-form="form{$c*2-1}"
+                                    data-type_id="{$attr_type_list[$c*2-1]['attribute_type_id']}"
+                                    onclick="addTypeAttr(this)">
+                                添加属性
+                            </button>
+                        </div>
+                    </div>
+                    <table class="pre100 mt-10 text-center table-condensed">
+                        <volist name="attr_list[$c*2-1]" id="j">
+                            <tr class="add-attr-data" style="height: 40px">
+                                <form action="javascript:void(0)" id="attr_{$j.food_attribute_id}">
+                                    <input type="hidden" name="food_attribute_id" value="{$j.food_attribute_id}">
+                                    <td class="col-sm-2"><input type="text" name="attr_name"
+                                                                value="{$j.attribute_name}" size="10"></td>
+                                    <td class="col-sm-3"><a href="javascript:void(0);" class="file">选择文件<input
+                                            type="file"
+                                            name="attr_img"
+                                            class="myFile"
+                                            id=""
+                                            onchange="mypreview(this)"></a>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <div id="showpage"
+                                             style="width: 80%;height: 38px;border:1px #002070 solid;margin-left: 10%;">
+                                            <img style="width: 100%;height: 100%;"
+                                                 src="/{$j.attribute_img}" alt="">
+                                        </div>
+                                    </td>
+                                    </td>
+                                    <td class="col-sm-3">叠加：<input type="text" name="money" size="1"
+                                                                   value="{$j.attribute_price}">元
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <button class="btn-none" data-attr_id="{$j.food_attribute_id}"
+                                                onclick="removeAttr(this)">删除
+                                        </button>
+                                        |
+                                        <button class="btn-none" data-attr_id="{$j.food_attribute_id}"
+                                                onclick="modifyType(this)">确定
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+                <div class="col-sm-6">
+                    <div class="row dishes-sort-attr">
+                        <div class="col-sm-4">
+                            类别：
+                            <input type="text" name="attr_type"
+                                   onchange="changeType(this,'attr_type',{$attr_type_list[$c*2]['attribute_type_id']})"
+                                   style="width:60%"
+                                   value="{$attr_type_list[$c*2][type_name]}">
+                            <input type="hidden" value="{$attr_type_list[$c*2][type_name]}" id="form{$c*2}"
+                                   name="form[]">
+                        </div>
+                        <div class="col-sm-3">
+                            <span>打印机：</span>
+                            <select name="print"
+                                    onchange="changeType(this,'print',{$attr_type_list[$c*2]['attribute_type_id']})">
+                                <volist name="printerList" id="vp">
+                                    <if condition="$attr_type_list[$c*2]['print_id'] eq $vp.printer_id">
+                                        <option value="{$vp.printer_id}" selected>{$vp.printer_name}</option>
+                                        <else/>
+                                        <option value="{$vp.printer_id}">{$vp.printer_name}</option>
+                                    </if>
+                                </volist>
+                            </select>
+                        </div>
+                        <div class="col-sm-3">
+                            <span>类型：</span>
+                            <select name="select_type"
+                                    onchange="changeType(this,'select_type',{$attr_type_list[$c*2]['attribute_type_id']})">
+                                <if condition="$attr_type_list[$c*2]['select_type'] eq 0">
+                                    <option selected="selected" value="0">单选</option>
+                                    <option value="1">多选</option>
+                                    <else/>
+                                    <option value="0">单选</option>
+                                    <option selected="selected" value="1">多选</option>
+                                </if>
+                            </select>
+                        </div>
+                        <div class="col-sm-2 text-center">
+                            <button class="btn-none add-attr" data-form="form{$c*2}"
+                                    data-type_id="{$attr_type_list[$c*2]['attribute_type_id']}"
+                                    onclick="addTypeAttr(this)">添加属性
+                            </button>
+                        </div>
+                    </div>
+                    <table class="pre100 mt-10 text-center table-condensed">
+                        <volist name="attr_list[$c*2]" id="k">
+                            <tr class="add-attr-data" style="height: 40px">
+                                <form action="javascript:void(0)" id="attr_{$k.food_attribute_id}">
+                                    <input type="hidden" name="food_attribute_id" value="{$k.food_attribute_id}">
+                                    <td class="col-sm-2"><input type="text" name="attr_name"
+                                                                value="{$k.attribute_name}" size="10"></td>
+                                    <td class="col-sm-3"><a href="javascript:void(0);" class="file" name="attr_img">选择文件<input
+                                            type="file"
+                                            name="attr_img"
+                                            class="myFile"
+                                            id=""
+                                            onchange="mypreview(this)"></a>
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <div id="showpage"
+                                             style="width: 80%;height: 38px;border:1px #002070 solid;margin-left: 10%;">
+                                            <img style="width: 100%;height: 100%;"
+                                                 src="/{$k.attribute_img}" alt="">
+                                        </div>
+                                    </td>
+                                    </td>
+                                    <td class="col-sm-3">叠加：<input type="text" name="money" size="1"
+                                                                   value="{$k.attribute_price}">元
+                                    </td>
+                                    <td class="col-sm-2">
+                                        <button class="btn-none" data-attr_id="{$k.food_attribute_id}"
+                                                onclick="removeAttr(this)">删除
+                                        </button>
+                                        |
+                                        <button class="btn-none" data-attr_id="{$k.food_attribute_id}"
+                                                onclick="modifyType(this)">确定
+                                        </button>
+                                    </td>
+                                </form>
+                            </tr>
+                        </volist>
+                    </table>
+                </div>
+        </div>
+        </for>
+    </div>
+</div>
+<ul class="pagination" id="page_btn">
+    <!--<li><a href="javascript:void(0)">&laquo;</a></li>-->
+    <for start="1" end="$type_page" name="m">
+        <if condition="$m eq 1">
+            <li class="active"><a href="javascript:void(0)" onclick="showFoodType(this)">{$m}</a></li>
+            <else/>
+            <li class=""><a href="javascript:void(0)" onclick="showFoodType(this)">{$m}</a></li>
+        </if>
+
+    </for>
+    <!--<li><a href="javascript:void(0)" onclick="showFoodType(this)">2</a></li>-->
+    <!--<li><a href="javascript:void(0)">&raquo;</a></li>-->
+    <button class="admin-btn ml-30" id="right-attr-btn" onclick="moreFoodType(this)">添加类别</button>
+    <!--<button class="admin-btn" id="left-attr-btn" onclick="deleteFoodType(this)">删除当前页</button>-->
+</ul>
+</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)" id="myModal_form">
+                    <input type="hidden" name="attribute_type_id" id="Modal_type_id" value="">
+                    <input type="hidden" name="food_id"  value="{$Think.get.food_id}">
+                    <div class="form-group">
+                        <label for="atn">属性:</label>
+                        <input type="text" id="atn" name="attr_name" value="" placeholder="请输入属性名称" size="10">
+                    </div>
+                    <div class="form-group">
+                        <label for="">图片:</label>
+                        <div id="showpage" style="width: 20%;height: 68px;border:1px #002070 solid;margin-left: 6.5%;"><img style="width: 100%;height: 100%;" src="" alt=""></div>
+                        <a style="margin-left: 6.5%;margin-top: 2px;" href="javascript:void(0);" class="file" name="attr_img">选择文件<input type="file" name="attr_img" class="myFile" id="" onchange="mypreview2(this)"></a>
+                    </div>
+                    <div class="form-group">
+                        <label for="">叠加:</label>
+                        <input type="text" name="money" size="1" placeholder="0" value="">元
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-sm btn-success" onclick="submit_myModal()">提交更改</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+
+<div class="modal fade" id="type_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="type_modalLabel">添加菜品类别</h4>
+            </div>
+            <div class="modal-body">
+                <form action="javascript:void(0)" id="type_modal_form">
+                    <input type="hidden" name="food_id" value="{$Think.get.food_id}">
+                    <div class="form-group">
+                        <label>&nbsp;名称&nbsp;&nbsp;：</label>
+                        <input type="text" name="type_name">
+                    </div>
+                    <div class="form-group">
+                        <label>打印机：</label>
+                        <select name="print_id" id="print_mdl">
+                            <volist name="printerList" id="vp">
+                                <option value="{$vp.printer_id}">{$vp.printer_name}</option>
+                            </volist>
+                        </select>
+                    </div>
+                    <div>
+                        <label>&nbsp;类型&nbsp;&nbsp;：</label>
+                        <select name="select_type" id="select_type">
+                            <option value="0">单选</option>
+                            <option value="1">多选</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">关闭</button>
+                <button type="button" class="btn btn-sm btn-success" onclick="submit_typeModal()">提交更改</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal -->
+</div>
+</body>
+<script>
+    function select_all(obj) {
+        var tt = $(obj).val();
+        if (tt == 0) {
+            $(".menu_input").prop("checked", true);
+            $(obj).val(1);
+        } else if (tt == 1) {
+            $(".menu_input").prop("checked", false);
+            $(obj).val(0)
+        }
+    }
+
+    function removeAttr(obj) {
+        var attr_id = $(obj).data("attr_id");
+        if(confirm("是否删除该属性")){
+            $.ajax({
+                url: "/index.php/admin/dishes/removeAttr",
+                data: {"attr_id": attr_id},
+                dataType: "json",
+                type: "post",
+                success: function (msg) {
+                    if (msg.code == 1) {
+                        $(obj).parent().parent().remove();
+                        alert("删除成功");
+                    } else {
+                        alert("删除失败");
+                    }
+                },
+                error: function () {
+                    alert("网络出错");
+                }
+            });
+        }
+    }
+
+    function mypreview(file) {
+        var prevDiv = $(file).parent().parent().next().children();
+        prevDiv = prevDiv[0];
+        console.log(prevDiv);
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="pre100 center-block" style="width:100%;height:100%;" />';
+            }
+            reader.readAsDataURL(file.files[0]);
+        }
+        else {
+            prevDiv.innerHTML = '<div style="width:100%;height:100%;" class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+    }
+
+    function mypreview2(file) {
+        var prevDiv = $(file).parent().prev();
+        prevDiv = prevDiv[0];
+        console.log(prevDiv);
+        if (file.files && file.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (evt) {
+                prevDiv.innerHTML = '<img src="' + evt.target.result + '" class="pre100 center-block" style="width:100%;height:100%;" />';
+            }
+            reader.readAsDataURL(file.files[0]);
+        }
+        else {
+            prevDiv.innerHTML = '<div style="width:100%;height:100%;" class="img" style="filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod=scale,src=\'' + file.value + '\'"></div>';
+        }
+    }
+
+    //切换属性类别页
+    function showFoodType(obj) {
+        var page = $(obj).html();
+        var li_list = $(obj).parent().siblings('li');
+//        console.log(li_list);
+        $.each(li_list, function (k1, v1) {
+            $(this).attr('class', "");
+        });
+        $(obj).parent().attr('class', 'active');
+        var div_id = "#div_" + page;
+        var div_list = $("#type_form").children();
+        $.each(div_list, function (k, v) {
+            $(this).hide();
+        });
+        $(div_id).show();
+    }
+
+    //增加属性添加栏
+    function addTypeAttr(obj) {
+        var temp = $(obj).data("type_id");
+        if(temp){
+            $("#Modal_type_id").val(temp);
+            $('#myModal').modal('show');
+        }else{
+            alert("请先点击左下添加分类信息");
+        }
+    }
+
+//    function moreFoodType() {
+//        //让其它页div隐藏，新添加页div显示
+//        var div_list = $("#type_form").children();
+//        $.each(div_list, function (k, v) {
+//            $(this).hide();
+//        });
+//
+//        var temp_num = parseInt($("#type_form").children().length);
+//        var form1_id = temp_num * 2 - 1;
+//        var form2_id = temp_num * 2;
+//
+//        var id = parseInt($("#type_form").children().length) + 1;
+//        console.log(id);
+//        var div_id = "div_" + id;
+//        var str = '<div style="display: inline" id="' + div_id + '">'
+//                + '<div class="col-sm-6 borderRight">'
+//                + '<div class="row">'
+//                + '<div class="col-sm-4">'
+//                + '类别：'
+//                + '<input type="text" name="attr_type[]" style="width:60%">'
+//                + '<input type="hidden" value="0" id="' + form1_id + '" name="form[]">'
+//                + '</div>'
+//                + '<div class="col-sm-3">'
+//                + '<span>打印机：</span>'
+//                + '<select name="print[]">'
+//                + '<option>厨房A</option>'
+//                + '<option>厨房B</option>'
+//                + '</select>'
+//                + '</div>'
+//                + '<div class="col-sm-3">'
+//                + '<span>类型：</span>'
+//                + '<select name="select_type[]">'
+//                + '<option selected="selected" value="0">单选</option>'
+//                + '<option value="1">多选</option>'
+//                + '</select>'
+//                + '</div>'
+//                + '<div class="col-sm-2 text-center">'
+//                + '<button class="btn-none add-attr" data-form="' + form1_id + '" onclick="addTypeAttr(this)">添加属性</button>'
+//                + '</div>'
+//                + '</div>'
+//                + '<table class="pre100 mt-10 text-center table-condensed">'
+//                + '</table>'
+//                + '</div>'
+//                + '<div class="col-sm-6">'
+//                + '<div class="row">'
+//                + '<div class="col-sm-4">'
+//                + '类别：'
+//                + '<input type="text" name="attr_type[]" style="width:60%">'
+//                + '<input type="hidden" value="0" id="' + form2_id + '" name="form[]">'
+//                + '</div>'
+//                + '<div class="col-sm-3">'
+//                + '<span>打印机：</span>'
+//                + '<select name="print[]">'
+//                + '<option>厨房A</option>'
+//                + '<option selected="selected">厨房B</option>'
+//                + '</select>'
+//                + '</div>'
+//                + '<div class="col-sm-3">'
+//                + '<span>类型：</span>'
+//                + '<select name="select_type[]">'
+//                + '<option selected="selected" value="0">单选</option>'
+//                + '<option value="1">多选</option>'
+//                + '</select>'
+//                + '</div>'
+//                + '<div class="col-sm-2 text-center">'
+//                + '<button class="btn-none add-attr" data-form="' + form2_id + '" onclick="addTypeAttr(this)">添加属性</button>'
+//                + '</div>'
+//                + '</div>'
+//                + '<table class="pre100 mt-10 text-center table-condensed">'
+//                + '</table>'
+//                + '</div>'
+//                + '</div>';
+//        $("#type_form").append(str);
+//        $("#page_btn li").attr("class","");
+//        var str2 = '<li class="active"><a href="javascript:void(0)" onclick="showFoodType(this)">' + id + '</a></li>';
+//        $("#page_btn").append(str2);
+//    }
+
+    function moreFoodType(){
+        $("#type_modal").modal('show');
+    }
+
+    function deleteFoodType(obj) {
+        var div_list = $("#type_form").children();
+        var div_list_num = $("#type_form").children().length;
+        console.log(div_list_num);
+        if (div_list_num > 1) {
+            //将当前div删除
+            $.each(div_list, function (k, v) {
+                if ($(this).css('display') == 'inline') {
+                    $(this).remove();
+                }
+            });
+            //重新编排div的id
+            var div_list2 = $("#type_form").children();
+            console.log(div_list2);
+            $.each(div_list2, function (k2, v2) {
+                var div_id = "div_" + (parseInt(k2) + 1);
+                $(this).attr('id', div_id);
+            });
+            //删除(减少)页码
+            $("#page_btn li:last").remove();
+
+//            console.log("#div_1");
+            $("#div_1").css("display", "inline");
+            $("#page_btn li").attr("class", "");
+            $("#page_btn li:first").attr("class", "active");
+        } else {
+            alert("不能全部删除！！！");
+        }
+    }
+
+    function save_food() {
+        var formData = new FormData($("#food_info")[0]);
+        $.ajax({
+            url: "__CONTROLLER__/modifyfoodinfo/food_id/{$food_id}",
+            type: "post",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            dataType: "json",
+            success: function (msg) {
+                $("#type_form").data('id', msg.food_id);
+                alert(msg.msg);
+            },
+            error: function () {
+                alert("出错了");
+            }
+        });
+    }
+
+    function modifyType(obj) {
+        if (confirm("是否修改/增加菜品新属性？")) {
+            var temp = $(obj).data("attr_id");
+            var form_id = "#attr_" + temp;
+            var form = $(form_id)[0];
+            console.log(form);
+            var formData = new FormData(form);
+            console.log(formData);
+
+            $.ajax({
+                url: "/index.php/admin/dishes/modifyType",
+                data: formData,
+                dataType: "json",
+                type: 'post',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (msg) {
+                    alert(msg.msg);
+                },
+                error: function () {
+                    alert("出错了");
+                }
+            });
+        }
+    }
+
+    function changeType(obj, type, type_id) {
+        var type = type;
+        var type_id = type_id;
+        var value = $(obj).val();
+        $.ajax({
+            url: "/index.php/admin/dishes/changeType",
+            type: "post",
+            dataType: 'json',
+            data: {"type": type, "type_id": type_id, "value": value},
+            success: function (msg) {
+                alert(msg.msg);
+            },
+            error: function () {
+                alert('出错了');
+            }
+        });
+    }
+
+    function submit_myModal() {
+        var formData = new FormData($("#myModal_form")[0]);
+        $.ajax({
+            url: "/index.php/admin/dishes/addTypeAttr",
+            data: formData,
+            dataType: "json",
+            type: "post",
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (msg) {
+                if(msg.code == 1){
+                    var food_id = msg.data['food_id'];
+                    self.location.href = "/index.php/Admin/Dishes/edit/food_id/"+food_id;
+                }
+            },
+            error: function () {
+                alert("出错了");
+            }
+        });
+    }
+
+    function submit_typeModal(){
+        var form = $("#type_modal_form")[0];
+        var formData = new FormData(form);
+
+        $.ajax({
+            url:'/index.php/admin/dishes/addAttrType',
+            data:formData,
+            type:"post",
+            dataType:"json",
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success:function(msg){
+                if(msg.code == 1){
+                    var food_id = msg.data['food_id'];
+                    self.location.href = "/index.php/admin/dishes/edit/food_id/"+food_id;
+                }
+            },
+            error:function(){
+                console.log("出错了");
+            }
+        });
+    }
+
+    window.onload = function(){
+        //document.getElementById("star_level").checked=true;
+        document.getElementsByName("star_level")[{$info.star_level}].checked = true;
+    //alert(a);
+    }
+</script>
+</html>

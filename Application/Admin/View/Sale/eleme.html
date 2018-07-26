@@ -1,0 +1,174 @@
+<extend name="Public:base" />
+<block name="css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+</block>
+<block name="main">
+    <ul class="nav nav-tabs">
+        <li>
+            <a href="{:U('Sale/meituan')}">{{langData.meituan[lang]}}</a>
+        </li>
+        <li class="active">
+            <a href="{:U('Sale/eleme')}">{{langData.eleme[lang]}}</a>
+        </li>
+    </ul>
+    <form id="search_form" action="/index.php/Admin/Sale/exportExcel_eleme" method="post">
+        <div class="sale-search-form">
+            <div class="item">
+                <span>{{langData.date[lang]}}:</span>
+                <input class="selectIcon" type="text" id="startDate" name="startDate" value="{$startDate}">
+                <span>{{langData.to[lang]}}</span>
+                <input class="selectIcon" type="text" id="endtDate" name="endtDate" value="{$endDate}">
+            </div>
+            <div class="item">
+                <span>{{langData.time[lang]}}:</span>
+                <input class="selectIcon" type="text" id="startTime" name="startTime" value="{$startTime}">
+                <span>{{langData.to[lang]}}</span>
+                <input class="selectIcon" type="text" id="endTime" name="endTime" value="{$endTime}">
+            </div>
+            <button class="blue-btn" onclick="submit_form()" type="button">{{langData.search[lang]}}</button>
+            <button class="blue-btn" type="button" onclick="exportway()">
+                <span>{{langData.export[lang]}}</span>
+                <img src="__PUBLIC__/images/out.png" class="mini-icon">
+            </button>
+        </div>
+    </form>
+    <div id="eleme_order_info">
+        <div class="section">
+            <div class="section-header text-center">{{langData.orderDetails[lang]}}</div>
+            <div class="section-content">
+                <div>
+                    <table class="w100">
+                        <tbody>
+                            <tr class="text-center">
+                                <td></td>
+                                <td class="text-left">{{langData.dateAndTime[lang]}}</td>
+                                <td>{{langData.orderNumber[lang]}}</td>
+                                <td>{{langData.serviceFee[lang]}}</td>
+                                <td>{{langData.serviceFee[lang]}}</td>
+                                <td>{{langData.deliveryFee[lang]}}</td>
+                                <td>{{langData.customerActualPaymentPrice[lang]}}</td>
+                                <td>{{langData.actualBusinessReceivables[lang]}}</td>
+                            </tr>
+                            <volist name="order_list" id="vo" key="k">
+                                <tr class="stats-detail-item text-center">
+                                    <td class="text-left">
+                                        <span class="stats-detail-index">{$k}</span>
+                                        <button class="stats-detail-btn" onclick="open_close({$k},this)">+</button>
+                                    </td>
+                                    <td class="text-left">{$vo.activeAt}</td>
+                                    <!--<td>{$vo.orderId}</td>-->
+                                    <td>{$vo.daySn}</td>
+                                    <td>{$vo.serviceFee}</td>
+                                    <td>{$vo.deliverFee}</td>
+                                    <td>{$vo.originalPrice}</td>
+                                    <td>{$vo.totalPrice}</td>
+                                    <td>{$vo.income}</td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="3">
+                                        <table id="order_food{$k}" data-value="0" class="stats-detail-dishes" hidden="hidden">
+                                            <volist name="vo.groups" id="vo2">
+                                                <foreach name="vo2:items" item="vo3">
+                                                    <tr>
+                                                        <td class="stats-detail-name">{{langData.dishName[lang]}}:{$vo3->name}</td>
+                                                        <td class="stats-detail-name">{{langData.copies[lang]}}:{$vo3->quantity}</td>
+                                                        <td class="stats-detail-name">{{langData.unitPrice[lang]}}:{$vo3->price}</td>
+                                                        <td class="stats-detail-name">{{langData.total[lang]}}:{$vo3->total}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <foreach name="vo3:newSpecs" item="vo4">
+                                                            <td class="stats-detail-attr">{{langData.specification[lang]}}:{$vo4->name}</td>
+                                                            <td class="stats-detail-num">{{langData.specValue[lang]}}{$vo4->value}</td>
+                                                        </foreach>
+                                                    </tr>
+                                                    <tr>
+                                                        <foreach name="vo3:attributes" item="vo5">
+                                                            <td class="stats-detail-attr">{{langData.attributes[lang]}}:{$vo5->name}</td>
+                                                            <td class="stats-detail-num">{{langData.propertyValue[lang]}}:{$vo5->value}</td>
+                                                        </foreach>
+                                                    </tr>
+                                                </foreach>
+                                            </volist>
+                                        </table>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                            </volist>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center sale-table-page">
+                    <ul class="pagination" id="detail-page">
+                        {$page}
+                    </ul>
+                </div>
+                <input type="hidden" id="income_sum" value="{$income_sum}">
+                <input type="hidden" id="serviceFee_sum" value="{$serviceFee_sum}">
+                <input type="hidden" id="deliverFee_sum" value="{$deliverFee_sum}">
+                <input type="hidden" id="order_count" value="{$order_count}">
+            </div>
+        </div>
+    </div>
+    <div class="data-result">
+        <div>{{langData.statisticalResults[lang]}}:</div>
+        <p>
+            <span id="search_data">{$startDate} - {$endDate}</span>
+            <span class="ml-10" id="search_time">{$startTime} - {$endTime}</span>
+        </p>
+        <span>{{langData.totalMerchantRevenue[lang]}}:</span><span class="ml-30" id="search_total_amount">{$income_sum}元</span> |
+        <span>{{langData.numberOfOrder[lang]}}:</span><span class="ml-30" id="search_total_num">{$order_count}</span> |
+        <span>{{langData.totalServiceFee[lang]}}:</span><span class="ml-30" id="search_total_service">{$serviceFee_sum}元</span> |
+        <span>{{langData.totalDeliveryAmount[lang]}}:</span><span class="ml-30" id="search_total_delivery">{$deliverFee_sum}元</span>
+    </div>
+</block>
+<block name="js">
+    <include file="Public/datetimepicker"/>
+    <script>
+        $(".main-content").css('padding-bottom', '100px');
+    $('#nav_waimai').addClass('active').parent().show();
+    $("#detail-page").children().children("a").click(function() {
+        var page = parseInt($(this).data("page"));
+        var form = $("#search_form")[0];
+        var formDate = new FormData(form);
+        $.ajax({
+            url: "/index.php/admin/sale/eleme_order_page/page/" + page,
+            data: formDate,
+            type: "post",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $("#eleme_order_info").html(data);
+            },
+            error: function() {
+                alert("出错了");
+            }
+        });
+    });
+
+    function open_close(i, obj) {
+        var tid = "#order_food" + i;
+        var value = $(tid).data("value");
+        console.log(value);
+        if (value == 1) {
+            $(obj).text('+');
+            $(tid).hide();
+            $(tid).data("value", 0);
+        } else if (value == 0) {
+            $(obj).text('-');
+            $(tid).show();
+            $(tid).data("value", 1)
+        }
+    }
+
+    function exportway() {
+        $("#search_form").submit();
+    }
+
+    function submit_form() {
+        $("#search_form").attr('action', '/index.php/Admin/Sale/eleme');
+        $("#search_form").submit();
+    }
+    </script>
+</block>

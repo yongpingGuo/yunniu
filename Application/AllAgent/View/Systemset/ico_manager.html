@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/webuploader/lamWebuploader.css">
+    <script src="__PUBLIC__/webuploader/webuploader.min.js"></script>
+    <script src="__PUBLIC__/webuploader/lamWebuploader.js" id="lamWebuploader"></script>
+</head>
+<body>
+<ul class="nav nav-tabs">
+    <li class="active">
+        <a href="{:U('Systemset/ico_manager')}">图片上传</a>
+    </li>
+    <li>
+        <a href="{:U('Systemset/ico_category')}">添加分类</a>
+    </li>
+</ul>
+
+<input type="hidden" value="{$options}" id="two_level_options"/>
+
+<form method="post" id="masterForm" action="/index.php/allAgent/Systemset/ico_index" enctype="multipart/form-data">
+    图标类型选择：（<font style="color: #FF0000">注意：操作完图片后，请按左下角的“提交”按钮进行最终保存</font>）<br/><br/>
+
+    &nbsp;&nbsp;
+    分类
+    <span id="second">
+        <select name="second_lever" id="second_lever">
+        </select>
+    </span>
+
+    <div id="lamThumbWrap" class="lamBtyUploader lamThumbWrap"></div>
+
+    <p class="btnBox"><button id="sbm" type="submit">提 交</button>
+    <input type="hidden" name="img_id" id="primary_key" value="{$data['img_id']}" /><!-- 主键 -->
+    <input type="hidden" name="_rootpath" id="_rootpath" value="__UP_ICO__"><!-- 图片的统一存储路径 -->
+    <input type="hidden" name="photo" id="photo" value="{$data['photo']}" /><!-- 相册 -->
+
+</form>
+
+<script>
+    $(function(){
+        var primary_id = $('#primary_key' ).val();
+        // 多文件上传插件
+        var lwp = lamWebuploader('lamThumbWrap', {
+            // 文件上传的服务端处理页
+            server: "{:U('mulUpload')}",
+            // 要post的其它数据
+            formData: {PHPSESSID:'{:session_id()}', img_id:primary_id},
+            // 服务器的文件存放总路径
+            rootpath : "__UP_ICO__",
+            // 隐藏域的JQ标识。如果有设置值，那么文件上传到服务器后返回的响应信息将会被累加到这个隐藏域里
+            rawId : '#photo',
+            // 删除已上传的文件的服务端处理页
+            delServer : "{:U('delPhoto')}"
+        }, 'imgUploader');
+
+        // 修复当组件所在的层默认为隐藏时无法上传文件的bug
+       /* $('#opnTab caption b').eq(3).click(function(){
+            lwp.refresh();
+        });*/
+
+
+        var two_level_options = $('#two_level_options').val();
+        if(two_level_options == ''){
+            $("#second").hide();
+        }else{
+            $("#second_lever").html(two_level_options);
+        }
+    });
+
+    $("#second_lever").change(function(){
+        var parentId=$("#second_lever").val();
+        if(null!= parentId && ""!=parentId){
+            $.getJSON("/index.php/allAgent/Systemset/photo_change",{'second_level_id':parentId},function(photo_info){
+                $('.fileList' ).remove();
+                if(photo_info != null){
+                    $('#primary_key' ).val(photo_info.img_id);
+                    $('#photo' ).val(photo_info.photo);
+                }else{
+                    $('#primary_key' ).val('');
+                    $('#photo' ).val('');
+                }
+
+                var primary_id2 = $('#primary_key' ).val();
+                // 多文件上传插件
+                var lwp = lamWebuploader('lamThumbWrap', {
+                    // 文件上传的服务端处理页
+                    server: "{:U('mulUpload')}",
+                    // 要post的其它数据
+                    formData: {PHPSESSID:'{:session_id()}', img_id:primary_id2},
+                    // 服务器的文件存放总路径
+                    rootpath : "__UP_ICO__",
+                    // 隐藏域的JQ标识。如果有设置值，那么文件上传到服务器后返回的响应信息将会被累加到这个隐藏域里
+                    rawId : '#photo',
+                    // 删除已上传的文件的服务端处理页
+                    delServer : "{:U('delPhoto')}"
+                }, 'imgUploader');
+            });
+        }
+        else{
+            $("#second").hide();
+        }
+    });
+
+</script>
+</body>
+</html>

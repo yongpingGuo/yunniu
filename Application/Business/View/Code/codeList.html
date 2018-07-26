@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/Business/codelist.js"></script>
+    <title></title>
+</head>
+<body>
+<div class="container-fluid">
+    <span>温馨提示：注册码关联店铺和设备，请谨慎修改绑定</span>
+    <table class="table table-condensed">
+        <thead>
+        <tr>
+            <th>序号</th><th>注册码</th><th>初始天数</th><th>所剩天数</th><th>状态</th><th>绑定店铺</th><th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <volist name="codeList" id="vo" key="k">
+            <tr><td>{$k}</td><td>{$vo.code}</td><td>{$vo['code_timestamp']/86400}天</td><td>{$vo['rest_timestamp']/86400}天</td>
+                <td>可用</td>
+                <td>
+                    <select name="code_restaurant" id="code_restaurant" data-code_id="{$vo.code_id}" onchange="changeCodeRestaurant(this)">
+                        <option value="">未绑定</option >
+                        <volist name="restaurantList" id="vo1" key="n">
+                            <if condition="$vo['restaurant_id'] eq $vo1['restaurant_id']">
+                                <option value="{$vo1.restaurant_id}" selected>
+                                    {$vo1.restaurant_name}
+                                </option>
+                                <else/>
+                                <option value="{$vo1.restaurant_id}">
+                                    {$vo1.restaurant_name}
+                                </option>
+                            </if>
+                        </volist>
+                    </select>
+                </td>
+                <td><button>修改</button></td></tr>
+        </volist>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

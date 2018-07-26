@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<foreach name="group_info" item="v">
+    <div class="member-tab-item" id="delGroup">
+        <span class="index">{++$key}</span>会员组
+        <input type="text" name="group_name1" value="{$v[group_name]}"  placeholder="请在此输入会员组" id="gm">
+        <input type="hidden" name="group_id" value="{$v[group_id]}" id='hid'/>
+        <div class="tab-item-right">
+            <button class="btn btn-primary" onclick="return save_group(this,'/index.php/Agent/Members/save_group')">保存</button>
+            <button class="btn btn-danger" onclick="return shanchu_group(this,'/index.php/Agent/Members/del_group')">删除</button>
+        </div>
+    </div>
+</foreach>
+
+</body>
+</html>

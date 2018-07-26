@@ -1,0 +1,211 @@
+<include file="Public/head"/>
+<!-- 查询 -->
+<body>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+
+	<form id="search_form" action="/index.php/Admin/Sale/exportExcel" method="post">
+		<div class="search-box">
+			<div class="datetime-search">
+				<span>日期：</span>
+				<input type="text" id="startDate" name="startDate" value="{$startDate}">
+				<span>-</span>
+				<input type="text" id="endtDate" name="endtDate" value="{$endDate}">
+				<span class="ml-30">时间：</span>
+				<input type="text" id="startTime" name="startTime" value="{$startTime}">
+				<span>-</span>
+				<input type="text" id="endTime" name="endTime" value="{$endTime}">
+				<button class="btn btn-sm btn-primary" onclick="submit_form()" type="button">搜索</button>
+				<button class="btn btn-sm btn-primary" type="button" onclick="exportway()">导出Excel</button>
+			</div>
+			<ul class="search-list clearfix">
+				<li>搜索范围：</li>
+				<li><input type="radio" name="sortType" id="saleAmount" checked value="1"><label for="saleAmount">营业金额</label></li>
+				<li><input type="radio" id="food_nameTag" name="sortType" value="2"><label for="food_nameTag">菜品：</label><input
+						type="text" id="food_name" name="food_name"></li>
+			</ul>
+			<ul class="search-list clearfix">
+				<li>支付方式：</li>
+				<li>
+					<input type="checkbox" id="all_pay" value="off" onchange="select_all_pay(this)" checked="checked"><label for="all_pay">所有</label>
+				</li>
+				<li>
+					<input type="checkbox" name="pay_type[]" id="weixin" value="2" checked="checked"><label for="weixin">微信</label>
+				</li>
+				<li>
+					<input type="checkbox" name="pay_type[]" id="aliPay" value="1" checked="checked"><label for="aliPay">支付宝</label>
+				</li>
+				<li>
+					<input type="checkbox" name="pay_type[]" id="cash" value="0" checked="checked"><label for="cash">现金</label>
+				</li>
+			</ul>
+			<ul class="search-list clearfix">
+				<li>就餐方式：</li>
+				<li>
+					<input type="checkbox" id="all_order_type" value="off" onchange="select_all_order(this)" checked="checked"><label for="all_order_type" >所有</label>
+				</li>
+				<li>
+					<input type="checkbox" name="order_type[]" id="inShop" value="1" checked="checked"><label for="inShop">店内点餐</label>
+				</li>
+				<li>
+					<input type="checkbox" name="order_type[]" id="take_out" value="2" checked="checked"><label for="take_out">打包带走</label>
+				</li>
+			</ul>
+		</div>
+	</form>
+	<div class="search-result" id="orderInfo">
+
+	</div>
+	<div class="data-result">
+		<span>统计结果:</span><br>
+		<p>
+			<span id="search_data">{$startDate} - {$endDate}</span>
+			<span class="ml-10" id="search_time">00:00:00 - 23:59:59</span>
+			<span class="ml-10" id="search_food">菜品:所有</span>
+			<span class="ml-10" id="search_pay_type">支付方式：微信、支付宝、现金、</span>
+			<span class="ml-30" id="search_order_type">就餐方式：店内点餐、打包带走、</span>
+		</p>
+		<span>总营业额</span><span class="ml-30" id="search_total_amount">{$total_amount}元</span>
+	</div>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__PUBLIC__/js/dateSelect.js"></script>
+</body>
+<script>
+	$(function(){
+		var form = $("#search_form")[0];
+		var formData = new FormData(form);
+		$.ajax({
+			url:'/index.php/admin/sale/orderInfo',
+			data:formData,
+			type:"post",
+			contentType:false,
+			processData:false,
+			async:false,
+			cache:false,
+			success:function(data){
+				$("#orderInfo").html(data);
+				putData();
+			}
+		});
+	});
+
+	function exportExcel(){
+		var form = $("#search_form")[0];
+		var formDate = new FormData(form);
+		$.ajax({	
+			type:"post",
+			url:"/index.php/Admin/Sale/exportExcel",
+			data:formDate,
+			dataType:"json",
+			contentType:false,
+			processData:false,
+			async:false,
+			cache:false,
+			success:function(msg){
+				console.log("导出成功");
+			},
+			error:function(){
+				console.log("访问出错");
+			}
+		});
+	}
+
+	function submit_form(){
+		var form = $("#search_form")[0];
+		url = "/index.php/admin/sale/orderInfo";
+		var temp = $("input[name='sortType']:checked").val();
+		if($("#food_name").val() != "" && temp == 2){
+			url = "/index.php/admin/sale/countFoodSale";
+		}
+		var formDate = new FormData(form);
+		$.ajax({
+			url:url,
+			data:formDate,
+			type:"post",
+			cache:false,
+			contentType:false,
+			processData:false,
+			success:function(data) {
+				$("#orderInfo").html(data);
+				putData();
+			}
+		});
+	}
+
+	function select_all_pay(obj){
+		var value = $(obj).val();
+		if(value == "off"){
+			$(obj).val("on");
+			var t1 = $(obj).parent().parent().find("li");
+			$.each(t1,function(k1,v1){
+				$(this).children().prop("checked","checked");
+			});
+		}else{
+			$(obj).val("off");
+			var t2 = $(obj).parent().parent().find("li");
+			$.each(t2,function(k2,v2){
+				$(this).children().prop("checked",false);
+			});
+		}
+	}
+
+	function select_all_order(obj){
+		var value = $(obj).val();
+		if(value == "off"){
+			$(obj).val("on");
+			var t1 = $(obj).parent().parent().find("li");
+			$.each(t1,function(k1,v1){
+				$(this).children().prop("checked",true);
+			});
+		}else{
+			$(obj).val("off");
+			var t2 = $(obj).parent().parent().find("li");
+			$.each(t2,function(k2,v2){
+				$(this).children().prop("checked",false);
+			});
+		}
+	}
+
+	function putData(){
+		//修改统计结果
+		var startDate = $("#startDate").val();
+		var endDate = $("#endtDate").val();
+		$("#search_data").html(startDate+" - "+endDate);
+
+		var food_name = $("#food_name").val();
+		if(food_name){
+			$("#search_food").html("菜品:"+food_name);
+		}else{
+			$("#search_food").val("所有");
+		}
+
+		var pay_type = $("#pay_str").val();
+		if(pay_type == ""){
+			$("#search_pay_type").html("支付方式：所有");
+		}else{
+			$("#search_pay_type").html("支付方式："+pay_type);
+		}
+
+		var order_type = $("#order_str").val();
+		if(order_type == ""){
+			$("#search_order_type").html("就餐方式：所有");
+		}else{
+			$("#search_order_type").html("就餐方式："+order_type);
+		}
+
+
+		var search_total_amount = $("#total_amount").val();
+		$("#search_total_amount").html(search_total_amount+"元");
+	}
+	
+	function exportway(){
+		var value = $("input[name='sortType']:checked").val();
+		if(value == 1){
+			$("#search_form").attr('action','/index.php/Admin/Sale/exportExcel');
+		}else{
+			$("#search_form").attr('action','/index.php/Admin/Sale/exportExcel1');
+		}
+		$("#search_form").submit();
+	}
+</script>
+</html>

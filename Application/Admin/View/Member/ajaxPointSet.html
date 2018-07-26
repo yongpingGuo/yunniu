@@ -1,0 +1,24 @@
+<div class="flex-content" id="ajax-content">
+    <div class="flex-main">
+        {{langData.consumptionAmount[lang]}}
+        <input class="small-input" type="text" name="account" value="{$prepaid_rules[account]}" id="man">{{langData.yuan[lang]}},{{langData.points[lang]}}
+        <input class="small-input" type="text" name="benefit" value="{$score}" id="zhe">{{langData.point[lang]}}
+        <input type="hidden" name="id" value="{$prepaid_rules[id]}" />
+    </div>
+    <div>
+        <button class="btn btn-sm btn-primary" onclick="return save_point_set(this)">{{langData.save[lang]}}</button>
+        <button class="btn btn-sm btn-danger" onclick="return shanchu_point_set(this,'/index.php/Admin/Member/del_point_set')">{{langData.delete[lang]}}</button>
+    </div>
+</div>
+<script src="__PUBLIC__/js/vue.js"></script>
+<script src="__PUBLIC__/language.json"></script>
+<script src="__PUBLIC__/js/Admin/common.js"></script>
+<script type="text/javascript">
+new Vue({
+    el: "#ajax-content",
+    data: {
+        lang: language,
+        langData: langData
+    }
+})
+</script>

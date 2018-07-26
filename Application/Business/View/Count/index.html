@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <script src="__PUBLIC__/js/jquery-3.0.1.min.js"></script>
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <title></title>
+</head>
+<body>
+    <div class="container-fluid">
+        <h2>店铺营业情况</h2>
+        <form action="">
+            <!--<select>-->
+                <!--<option value="year">2016</option>-->
+            <!--</select>年-->
+            <!--<select name="" id="month">-->
+                <!--<option value="">10</option>-->
+            <!--</select>月-->
+            <!--<select name="" id="day">-->
+                <!--<option value="">22</option>-->
+            <!--</select>日-->
+            <input type="date" value="2016-10-22">
+        </form>
+        <table class="table table-bordered">
+            <thead><tr><th>序号</th><th>店铺名称</th><th>营业额</th><th>操作</th></tr></thead>
+            <tbody>
+            <volist name="restaurantList" id="vo">
+                <tr><td>{$i}</td><td>{$vo.restaurant_name}</td><td>{$vo.total_amount}</td><td><a href="">详情</a></td></tr>
+            </volist>
+              </tbody>
+        </table>
+        <button class="btn btn-sm">检索</button>
+    </div>
+</body>
+</html>

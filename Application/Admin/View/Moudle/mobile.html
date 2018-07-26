@@ -1,0 +1,96 @@
+<extend name="Public:base" />
+<block name="main">
+	<ul class="nav nav-tabs">
+	    <li>
+	        <a href="{:U('Device/deskInfo')}">{{langData.tableSet[lang]}}</a>
+	    </li>
+	    <li class="active">
+	        <a href="{:U('Moudle/mobile')}">{{langData.styleSet[lang]}}</a>
+	    </li>
+	</ul>
+	<div class="section">
+		<div class="section-header">{{langData.styleSet[lang]}}</div>
+		<div class="section-content">
+			<div class="clearfix">
+				<volist name = "info" id = 'v' offset = "0" length ='1'>
+					<div class="pull-left mobile_template_item">
+						<div class="mobileTemplateImg">
+							<img src="{$v.group_img_url}">
+						</div>
+						<div class="clearfix">
+							<div class="color-select color-green">
+								<input type="radio" name="color_ph" value="2" class="color3"/>
+							</div>
+							<div class="color-select color-blue">
+								<input type="radio" name="color_ph" value="1" class="color3"/>
+							</div>
+							<div class="color-select color-red">
+								<input type="radio" name="color_ph" value="0" class="color3"/>
+							</div>							
+							<div class="color-select color-orange">
+								<input type="radio" name="color_ph" value="5" class="color3"/>
+							</div>
+							<div class="color-select color-yellow">
+								<input type="radio" name="color_ph" value="3" class="color3"/>
+							</div>
+							<div class="color-select color-brown">
+								<input type="radio" name="color_ph" value="4" class="color3"/>
+							</div>
+						</div>
+						<div>
+							<label>
+								<eq name = "v['status']" value = "1">
+									<input type="radio" name="phone" class="tplphone radio-circle" value="{$v.restaurant_page_group_id}" data-tpltype = "3" checked="checked">
+									<else/>
+									<input type="radio" name="phone" class="tplphone radio-circle" value="{$v.restaurant_page_group_id}" data-tpltype = "3" >
+								</eq>
+								<i></i>
+								<span>{$v.group_name}</span>
+							</label>
+						</div>
+					</div>
+				</volist>
+				<volist name = "info" id = 'v' offset = "1">
+					<div class="pull-left mobile_template_item">
+						<div class="mobileTemplateImg">
+							<img src="{$v.group_img_url}">
+						</div>
+						<div>
+							<span>{{langData.name[lang]}}:</span>
+							<span class="text-danger">{$v.group_name}</span>	
+						</div>
+						<div>
+							<label>
+								<eq name = "v['status']" value = "1">
+									<input type="radio" name="phone" class="tplphone radio-circle" value="{$v.restaurant_page_group_id}" data-tpltype = "3" checked="checked">
+									<else/>
+									<input type="radio" name="phone" class="tplphone radio-circle" value="{$v.restaurant_page_group_id}" data-tpltype = "3" >
+								</eq>
+								<i></i>
+								<span>{{langData.customTemplates[lang]}}</span>
+							</label>
+						</div>
+					</div>
+				</volist>
+				<div class="pull-left mobile_template_item">
+					<div class="mobileTemplateImg">
+						<img src="">
+					</div>
+					<div>
+						<input type="text" onchange="findTelp(this)" data-tpltype='3'>
+					</div>
+					<div>
+						<label>
+							<input type="radio" name="phone" class="tplphone radio-circle">
+							<i></i>
+							<span>{{langData.customTemplates[lang]}}</span>
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</block>
+<block name="js">
+	<script type="text/javascript" src="__PUBLIC__/js/Moudle_device_mobile.js"></script>
+</block>

@@ -1,0 +1,305 @@
+<extend name="Public:base" />
+<block name="main">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#wxpay" data-toggle="tab" id="wx">{{langData.WeChat[lang]}}</a>
+        </li>
+        <li><a href="#alipay" data-toggle="tab" id="ali">{{langData.Alipay[lang]}}</a></li>
+        <li><a href="#others" data-toggle="tab" id="si">{{langData.bankReceipt[lang]}}</a></li>
+        <li><a href="#pay-select" data-toggle="tab" id="state">{{langData.statusSwitch[lang]}}</a></li>
+    </ul>
+    <div class="pay-content">
+        <div id="myTabContent" class="tab-content">
+            <div class="tab-pane fade in active clearfix" id="wxpay">
+                <img src="__PUBLIC__/images/receipt.jpg" class="pull-right pay-code">
+                <form action="javascript:void(0)" id="wxpayForm">
+                    <table class="table-condensed">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span>{{langData.WeChatPayment[lang]}}:</span>
+                                    <div class="checkbox-switch">
+                                        <volist name="pay_select" id="pa_vo">
+                                            <if condition="$pa_vo['s_num'] eq 1">
+                                                <if condition="$pa_vo['value'] eq 1">
+                                                    <input type="checkbox" name="{$pa_vo.config_name}" class="wx" onchange="is_open('wx',this)" checked>
+                                                    <else/>
+                                                    <input type="checkbox" name="{$pa_vo.config_name}" class="wx" onchange="is_open('wx',this)">
+                                                </if>
+                                            </if>
+                                        </volist>
+                                        <label></label>
+                                    </div>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.WeChatBusinessNumber[lang]}}:</td>
+                                <td>
+                                    <input type="text" value="{$wx_config.wxpay_child_mchid}" :placeholder="langData.subBusiness[lang]" name="wxpay_child_mchid" id="wxpay_child_mchid">
+                                </td>
+                                <td>
+                                    <span class="section-tips">{{langData.subBusinessTips[lang]}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.officialAccountAPPID[lang]}}:</td>
+                                <td>
+                                    <input type="text" value="{$wx_config.wxpay_appid}" name="wxpay_appid" id="wxpay_appid">
+                                </td>
+                                <td>
+                                    <span class="section-tips">{{langData.officialAccountAPPIDKeyTips[lang]}}</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>{{langData.officialAccountKey[lang]}}:</td>
+                                <td>
+                                    <input type="text" value="{$wx_config.wxpay_appsecret}" name="wxpay_appsecret" id="wxpay_appsecret">
+                                </td>
+                                <td>
+                                    <span class="section-tips">{{langData.officialAccountAPPIDKeyTips[lang]}}</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <div class="container-fluid">
+                    <button class="blue-btn" data-paytype="wxpay" onclick="submitPayInfo(this)">{{langData.save[lang]}}</button>
+                </div>
+                <div class="section-tips">
+                    <div>{{langData.note[lang]}}:</div>
+                    <div>* {{langData.WeChatDataDockTips1[lang]}}</div>
+                    <div>* {{langData.WeChatDataDockTips2[lang]}}</div>
+                    <div>* {{langData.WeChatDataDockTips3[lang]}}</div>
+                    <div>* {{langData.WeChatDataDockTips4[lang]}}:https://mp.weixin.qq.com/</div>
+                    <div>* {{langData.WeChatDataDockTips5[lang]}}:http://kf.qq.com/faq/161223jeuArU161223NVVVj2.html</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="alipay">
+                <div>
+                    <span>{{langData.AlipayPayment[lang]}}:</span>
+                    <div class="checkbox-switch">
+                        <volist name="pay_select" id="pa_vo">
+                            <if condition="$pa_vo['s_num'] eq 4">
+                                <if condition="$pa_vo['value'] eq 1">
+                                    <input type="checkbox" name="{$pa_vo.config_name}" class="ali" onchange="is_open('ali',this)" checked>
+                                    <else/>
+                                    <input type="checkbox" name="{$pa_vo.config_name}" class="ali" onchange="is_open('ali',this)">
+                                </if>
+                            </if>
+                        </volist>
+                        <label></label>
+                    </div>
+                </div>
+                <div>
+                    <span>{{langData.AlipayPayApply[lang]}}:</span>
+                    <a class="blue-btn" target="_blank" href="https://b.alipay.com/settling/index.htm?appId=2017022305833230">{{langData.goToAlipayApply[lang]}}</a>
+                </div>
+                <div class="section-tips">
+                    <div>{{langData.aliApplyTips1[lang]}}:</div>
+                    <div class="section-tips-indent">{{langData.aliApplyTips2[lang]}}</div>
+                    <div class="section-tips-indent">{{langData.aliApplyTips3[lang]}}</div>
+                </div>
+                <div>
+                    <span>{{langData.alipayPID[lang]}}:</span>
+                    <if condition="$pid eq 0">
+                        <input type="text" name="aliNumber" id="aliPid">
+                        <else/>
+                        <input type="text" name="aliNumber" id="aliPid" value="{$pid}">
+                    </if>
+                    <button target="_blank" class="blue-btn" onclick="changeUrl()">{{langData.officialAuthorization[lang]}}</button>
+                    <span class="section-tips">{{langData.alipayPIDTips[lang]}}</span>
+                </div>
+                <div class="section-tips">
+                    <div>{{langData.statement[lang]}}:</div>
+                    <div>* {{langData.aliDataDockTips1[lang]}}</div>
+                    <div>* {{langData.aliDataDockTips2[lang]}}</div>
+                    <div>* {{langData.aliDataDockTips3[lang]}}</div>
+                    <div>* {{langData.aliDataDockTips4[lang]}}:https://cshall.alipay.com/enterprise/knowledgeDetail.htm?knowledgeId=201602045710</div>
+                </div>
+            </div>
+            <div class="tab-pane fade" id="others">
+                <div class="flex-content">
+                    <div>
+                        <form action="javascript:void(0)" id="othersForm">
+                            <table class="table-condensed">
+                                <tbody>
+                                    <tr>
+                                        <td>{{langData.businessNumber[lang]}}:</td>
+                                        <td>
+                                            <input type="text" value="{$fourth.account}" name="account">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>{{langData.password[lang]}}:</td>
+                                        <td>
+                                            <input type="text" value="{$fourth.pwd}" name="pwd">
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                        <div class="container-fluid">
+                            <button class="blue-btn" data-paytype="others" onclick="submitPayInfos(this)">{{langData.save[lang]}}</button>
+                        </div>
+                        <div class="section-tips">
+                            <div>{{langData.advantage[lang]}}:</div>
+                            <div>* {{langData.bankReceiptAdvantage[lang]}}</div>
+                            <div>{{langData.disadvantage[lang]}}:</div>
+                            <div>* {{langData.bankReceiptDisadvantage[lang]}}</div>
+                            <div>{{langData.statement[lang]}}:</div>
+                            <div>* {{langData.bankReceiptTips1[lang]}}</div>
+                            <div>* {{langData.bankReceiptTips2[lang]}}</div>
+                            <div>* {{langData.bankReceiptTips3[lang]}}</div>
+                            <div>* {{langData.bankReceiptTips4[lang]}}</div>
+                            <div>* {{langData.bankReceiptTips5[lang]}}</div>
+                        </div>
+                    </div>
+                    <div>
+                        <img src="__PUBLIC__/images/receipt.jpg" class="pay-code">
+                        <img src="__PUBLIC__/images/minsheng.jpg" class="pay-code">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="tab-pane fade" id="pay-select">
+                <if condition="$pay_mode.mode eq 1">
+                    <label>
+                        <input type="radio" name="mode" value="1" class="radio-circle mode1" onchange="is_mode(this)" checked>
+                        <i></i>
+                        <span>{{langData.officialPayment[lang]}}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="mode" value="2" class="radio-circle mode2" onchange="is_mode(this)">
+                        <i></i>
+                        <span>{{langData.bankReceipt[lang]}}</span>
+                    </label>
+                    <elseif condition="$pay_mode.mode eq 2" />
+                    <label>
+                        <input type="radio" name="mode" value="1" class="radio-circle mode1" onchange="is_mode(this)">
+                        <i></i>
+                        <span>{{langData.officialPayment[lang]}}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="mode" value="2" class="radio-circle mode2" onchange="is_mode(this)" checked>
+                        <i></i>
+                        <span>{{langData.bankReceipt[lang]}}</span>
+                    </label>
+                    <else/>
+                    <label>
+                        <input type="radio" name="mode" value="1" class="radio-circle mode1" onchange="is_mode(this)">
+                        <i></i>
+                        <span>{{langData.officialPayment[lang]}}</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="mode" value="2" class="radio-circle mode2" onchange="is_mode(this)">
+                        <i></i>
+                        <span>{{langData.bankReceipt[lang]}}</span>
+                    </label>
+                </if>
+                <div class="section-tips section-tips-indent">{{langData.payMethodSuggest[lang]}}</div>
+                <div>
+                    <span>{{langData.selfServiceCash[lang]}}:</span>
+                    <div class="checkbox-switch">
+                        <volist name="pay_select" id="pa_vo">
+                            <if condition="$pa_vo['s_num'] eq 2">
+                                <if condition="$pa_vo['value'] eq 1">
+                                    <input type="checkbox" name="{$pa_vo.config_name}" class="cash" onchange="is_open('cash',this)" checked>
+                                    <else/>
+                                    <input type="checkbox" name="{$pa_vo.config_name}" class="cash" onchange="is_open('cash',this)">
+                                </if>
+                            </if>
+                        </volist>
+                        <label></label>
+                    </div>
+                    <span class="section-tips">{{langData.selfServiceCashSuggest[lang]}}</span>
+                </div>
+                <div class="section-tips">{{langData.selfServiceCashTips[lang]}}</div>
+                <div class="row">
+                    <volist name="pay_select" id="pa_vo">
+                        <div class="col-xs-3">
+                            <div class="pay-item">
+                                <if condition="$pa_vo['s_num'] eq 99">
+                                    <p>{$pa_vo.name}</p>
+                                    <img src="{$pa_vo.img}">
+                                    <if condition="$pa_vo['value'] eq 1">
+                                        <input type="radio" name="{$pa_vo.config_name}" value="1" checked onchange="changeStatus(this)">{{langData.on[lang]}}
+                                        <input type="radio" name="{$pa_vo.config_name}" value="0" onchange="changeStatus(this)">{{langData.off[lang]}}
+                                        <else/>
+                                        <input type="radio" name="{$pa_vo.config_name}" value="1" onchange="changeStatus(this)">{{langData.on[lang]}}
+                                        <input type="radio" name="{$pa_vo.config_name}" value="0" checked onchange="changeStatus(this)">{{langData.off[lang]}}
+                                    </if>
+                                </if>
+                            </div>
+                        </div>
+                    </volist>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/js/PayInfo.js"></script>
+    <script>
+    function changeStatus(obj) {
+        var value = $(obj).val();
+        var config_name = $(obj).attr("name");
+        $.ajax({
+            url: "/index.php/Admin/dataDock/selectPay",
+            data: {
+                "value": value,
+                "config_name": config_name
+            },
+            type: "post",
+            success: function() {
+                layer.msg(vm.langData.success[vm.lang]);
+            }
+        });
+    }
+
+    function is_open(name, obj) {
+        var config_name = $(obj).attr("name");
+        var cls = "." + name;
+        var hschek = $(cls).is(':checked');
+        if (hschek) {
+            status = 1;
+        } else {
+            status = 0;
+        }
+        $.ajax({
+            url: "/index.php/Admin/dataDock/selectPay",
+            data: {
+                "value": status,
+                "config_name": config_name
+            },
+            type: "post",
+            success: function() {
+                layer.msg(vm.langData.success[vm.lang]);
+            }
+        });
+    }
+
+    function is_mode(obj) {
+        var status = $(obj).val();
+        $.ajax({
+            url: "/index.php/Admin/dataDock/selectMode",
+            data: {
+                "mode": status
+            },
+            type: "post",
+            success: function() {
+                layer.msg(vm.langData.success[vm.lang]);
+            }
+        });
+    }
+
+
+    function changeUrl() {
+        var aliNumber = $("#aliPid").val();
+        if (aliNumber) {
+            var url = "/index.php/component/test/testCreate/aliNumber/" + aliNumber;
+            window.open(url);
+        }
+    }
+    </script>
+</block>

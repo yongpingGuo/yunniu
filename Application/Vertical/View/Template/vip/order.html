@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+		<!-- 引入样式 -->
+		<link rel="stylesheet" href="__PUBLIC__/element-ui/lib/theme-default/index.css">
+		<!--弹出窗效果-->
+		<link rel="stylesheet" href="__PUBLIC__/css/layer.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/vertical_template.css">
+		<link rel="stylesheet" href="__PUBLIC__/css/no_pay.css">		
+		
+	</head>
+	<body>
+		<div id="order" v-cloak>
+			<header class="template-header">
+				<button class="return-btn" @click="orderAgain">
+					<img src="__PUBLIC__/images/return.png">
+					<span>重新点餐</span>
+				</button>
+				<button id="score_btn" class="return-btn" @click="scoreConsume">
+					<span class="el-icon-star-off">积分核销</span>
+                    <input type="hidden" name="scoreOpen" id="ifOpen" value="{$if_open}"/>
+				</button>
+			</header>
+			<section class="order-body">
+				<!-- 左侧分类 -->
+				<aside class="order-aside">
+					<ul class="order-aside-list" :style="{height: contentHeight+'px'}">
+						<!--  :id="'category'+classify.food_category_id"  -->
+						<li v-for="(classify, index) in goods" class="order-aside-item" :class="{active: isActive == classify}" @click="showFood(classify,index)">
+							<img :src="classify.img">
+							<span>{{classify.food_category_name}}</span>
+						</li>
+					</ul>
+				</aside>
+				<!-- /左侧分类 -->
+
+				<!-- 菜品列表 -->
+				<div class="order-content" :style="{height: contentHeight+'px'}">
+					<el-row :gutter="20">
+						<el-col :span="12" v-for="food in current_food_list">
+							<div class="food-item">
+								<button class="add-cart" @click="addCart(food,$event)">
+									<i class="el-icon-plus"></i>
+								</button>
+								<div class="food-img-content">
+									<img :src="food.food_img" class="food-img">
+								</div>
+								<div class="food-info">
+									<div class="food-name">{{food.food_name}}</div>
+									<div class="food-price">{{food.food_price}}元</div>
+								</div>
+							</div>
+						</el-col>
+					</el-row>
+				</div>
+				<!-- /菜品列表 -->
+
+			</section>
+			<footer class="order-footer" id="footer">
+				<div class="total-section">
+					<div class="total">总价：{{total}}元</div>
+				</div>
+				<div class="cart-item">
+					<el-row :gutter="20">
+						<el-col :span="8" v-for="(cart,index) in carts">
+							<div class="food-item">
+								<div class="food-img-content">
+									<img :src="cart.food_img" class="food-img">
+								</div>
+								<div class="food-info">
+									<div class="food-name">{{cart.food_name}}</div>
+									<div class="food-price">{{cart.food_total}}元</div>
+								</div>
+								<div class="cart-num-content">
+									<button class="cart-num-btn" @click="deleteFoodNum(index)">
+										<i class="el-icon-minus"></i>
+									</button>
+									<span class="cart-num">{{cart.food_num}}</span>
+									<button class="cart-num-btn" @click="addFoodNum(index)">
+										<i class="el-icon-plus"></i>
+									</button>
+								</div>
+							</div>
+						</el-col>
+					</el-row>
+				</div>
+				<button class="place-order" @click="immediatePay()">立即下单</button>
+			</footer>
+		</div>
+	</body>
+	<!-- 先引入 Vue -->
+	<script src="__PUBLIC__/js/vue.js"></script>
+	<!-- 引入组件库 -->
+	<script src="__PUBLIC__/element-ui/lib/index.js"></script>
+	<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+	<script src="__PUBLIC__/js/prevent.js"></script>
+	<script src="__PUBLIC__/js/jquery.fly.min.js"></script>
+	<script src="__PUBLIC__/js/layer.js"></script>	
+	<script>
+		var foodData=new Vue({
+			data:{
+				goods:[],
+				current_food_list:[],
+				carts:[],
+				total:0,
+				isActive:'',
+				num:2,
+				contentHeight:''				
+			},
+			beforeCreate:function(){
+				_self=this;
+				$.ajax({
+					type: "get",
+					url: "/index.php/api/order/getOrderPageInfo",
+					dataType: 'json',  
+					success: function(data){
+						_self.goods=data.data;
+						if (_self.goods.length!=0) {
+							_self.isActive = _self.goods[0];
+							_self.current_food_list = _self.goods[0].food_list;
+						}
+					},
+					error: function(data){
+						console.log('error'+data);
+					}
+				});
+			},
+			mounted:function(){
+				this.contentHeight=$(window).height()*0.8- $('#footer').height();
+				$('iframe').hide();
+                var isOpenScore = $("#ifOpen").val();
+                console.log(isOpenScore);
+                if(isOpenScore == "1"){
+                    $("#score_btn").show();
+                }else{
+                    $("#score_btn").hide();
+                }
+			},
+			methods:{
+				showFood:function(item,index){
+					this.isActive = item;
+					this.current_food_list = this.goods[index].food_list;
+				},
+				addCart:function(item,event){
+					var index;
+					var hasfood=false;
+					if(this.carts.length!=0){
+						for (var i = 0;i<this.carts.length;i++) {
+							if (item.food_id==this.carts[i].food_id) {
+								hasfood=true;
+								index=i;
+							}
+						}						
+					}
+					if(hasfood==false){
+						item.food_num='1';
+						item.food_total=Number(item.food_price);					
+						this.carts.push(item);
+						var total = Number(this.total + Number(item.food_price));
+						this.total = Number(total.toFixed(2));
+					}
+					else{
+						var num=Number(this.carts[index].food_num)+1;
+						var food_price = Number(this.carts[index].food_price);
+						var food_total = Number((Number(this.carts[index].food_total) + food_price).toFixed(2));
+						var total = Number(this.total + food_price);
+						this.total = Number(total.toFixed(2));
+						foodData.carts[index].food_num=num;
+						foodData.carts[index].food_total=food_total;
+						var now_food = this.carts[index];
+						Vue.set(this.carts,index,now_food);
+						// console.log(this.carts[index]);
+					}
+
+			        var flyer = $('<div id="flyEle"></div>'); //抛物体对象 
+			        flyer.fly({ 
+			            start: { 
+			                left: event.pageX,//抛物体起点横坐标 
+			                top: event.pageY //抛物体起点纵坐标 
+			            }, 
+			            end: { 
+			                left: $('.total').offset().left+$('.total').width()/2,//抛物体终点横坐标 
+			                top: $('.total').offset().top+$('.total').height()/2, //抛物体终点纵坐标 
+			                width:20,
+			                height:20
+			            }, 
+			            speed: 2, //越大越快，默认1.2
+			            onEnd: function() { 
+			                // $("#tip").show().animate({width: '200px'},300).fadeOut(500);////成功加入购物车动画效果 
+			                $('#flyEle').remove(); //销毁抛物体 
+			            } 
+			        }); 
+				},
+				deleteFoodNum:function(index){
+					var num = this.carts[index].food_num-=1;
+					var food_price = Number(this.carts[index].food_price);
+					// console.log(this.carts[index]);
+					var total = Number(this.total - food_price);
+					this.total = Number(total.toFixed(2));
+					if(num > 0){
+						this.carts[index].food_num = num;
+						this.carts[index].food_total=Number((Number(this.carts[index].food_total)-food_price).toFixed(2));
+						var now_food = this.carts[index];
+						Vue.set(this.carts,index,now_food);
+					}else if(num <= 0){
+						this.carts.splice(index,1);
+					}
+				},
+				addFoodNum:function(index){
+					var num = Number(this.carts[index].food_num)+1;
+					this.carts[index].food_num = num;
+
+					// console.log(this.carts[index]);
+					var food_price = Number(this.carts[index].food_price);
+					this.carts[index].food_total=Number((Number(this.carts[index].food_total)+food_price).toFixed(2));
+					// console.log(food_price);
+					var total = Number(this.total + food_price);
+					this.total = Number(total.toFixed(2));
+					var now_food = this.carts[index];
+					Vue.set(this.carts,index,now_food);
+				},
+				immediatePay:function(){
+					var _self = this;
+					var carts = _self.carts;
+					var order_type = localStorage.getItem("order_type");
+					$.ajax({
+						url:"/index.php/vertical/order/immediatePay",
+						data:{"carts":carts,"order_type":order_type},
+						type:"post",
+						dataType:"json",
+						success:function(returnData){
+							if(returnData.code == 1){
+								var order_sn = returnData.order_sn;
+								location.href='/index.php/Vertical/Template/serviceRoute/current_action/order/order_sn/'+order_sn;
+							}else{
+								//location.href='/index.php/Vertical/Template/serviceRoute';
+								layer.msg(returnData.msg,{
+									skin: 'layer-class',
+									area: '80%'
+								});
+							}
+							localStorage.removeItem("order_type");
+
+						}
+					});
+				},
+				orderAgain:function(){
+					localStorage.removeItem("order_type");
+					location.href='/index.php/Vertical/Template/serviceRoute';
+				},
+				scoreConsume:function(){
+					location.href='/index.php/Vertical/Template/scorePromptPage';
+//					var qrc_type = "score";
+//					JsObj.OpenVguang(qrc_type);
+				}
+			}
+		}).$mount('#order');
+</script>
+</html>

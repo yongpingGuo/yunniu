@@ -1,0 +1,132 @@
+<section class="section flex-content vertical-flex">
+    <div id="cahrtCanvas"></div>
+    <div class="chart-legend">
+        <div class="section-row flex-content">
+            <span class="chart-icon wechat"></span>
+            <div class="flex-main">
+                <span>微信</span>
+                <div><?php echo $statisData['wechat'];?></div>
+            </div>
+        </div>
+        <div class="section-row flex-content">
+            <span class="chart-icon alipay"></span>
+            <div class="flex-main">
+                <span>支付宝</span>
+                <div><?php echo $statisData['alipay'];?></div>
+            </div>
+        </div>
+        <div class="section-row flex-content">
+            <span class="chart-icon cash"></span>
+            <div class="flex-main">
+                <span>现金</span>
+                <div><?php echo $statisData['cash'];?></div>
+            </div>
+        </div>
+        <div class="section-row flex-content">
+            <span class="chart-icon member"></span>
+            <div class="flex-main">
+                <span>会员</span>
+                <div><?php echo $statisData['member'];?></div>
+            </div>
+        </div>
+        <div class="flex-content">
+            <span class="chart-icon card"></span>
+            <div class="flex-main">
+                <span>银行代收</span>
+                <div><?php echo $statisData['fourth'];?></div>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="section-row">
+    <div class="chart-content">
+        <div>总的营业额</div>
+        <div><?php echo $statisData['total'];?></div>
+    </div>
+    <div class="chart-content">
+        <div>总的订单数</div>
+        <div><?php echo $statisData['count'];?></div>
+    </div>
+    <div class="chart-content chart-detail">
+        <div class="flex-content">
+            <span>退菜单数：</span>
+            <span class="flex-main text-right"><?php echo $statisData['re_count'];?>单</span>
+        </div>
+        <div class="flex-content">
+            <span>退菜份数：</span>
+            <span class="flex-main text-right"><?php echo $statisData['refuse_num'];?>份</span>
+        </div>
+        <div class="flex-content">
+            <span>退菜金额：</span>
+            <span class="flex-main text-right"><?php echo $statisData['refuse_total'];?>元</span>
+        </div>
+    </div>
+</div>
+
+<block name="js">
+    <script>
+        var chart = null;
+        $('#cahrtCanvas').css({
+            "width": $('.section').width() - 7*14,
+            "height": $('.section').width() - 9*14
+        });;
+        $(function() {
+            $('#cahrtCanvas').highcharts({
+                chart: {
+                    backgroundColor: "rgba(0,0,0,0)",
+                    spacing: [10, 0, 10, 0]
+                },
+                credits: {
+                    enabled: false
+                },
+                title: {
+                    text: null
+                },
+                tooltip: {
+                    pointFormat: '<b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: false,
+                        },
+                    }
+                },
+                series: [{
+                             type: 'pie',
+                             innerSize: '80%',
+                             data: [{
+                                        name: '微信',
+                                        y: <?php echo $statisData['wechat'];?>,
+                                        color: '#00ff01'
+                                    },
+                                    {
+                                        name: '支付宝',
+                                        y: <?php echo $statisData['alipay'];?>,
+                                        color: '#00a0ea'
+                                    },
+                                    {
+                                        name: '现金',
+                                        y: <?php echo $statisData['cash'];?>,
+                                        color: '#fe0000'
+                                    },
+                                    {
+                                        name: '会员',
+                                        y: <?php echo $statisData['member'];?>,
+                                        color: '#ff7e00'
+                                    },
+                                    {
+                                        name: '银行代收',
+                                        y: <?php echo $statisData['fourth'];?>,
+                                        color: '#fe00dd'
+                                    }
+                             ]
+                         }],
+                exporting: {
+                    enabled:false
+                }
+            });
+        });
+
+    </script>
+</block>

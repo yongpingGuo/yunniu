@@ -1,0 +1,57 @@
+<!-- <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" /> -->
+
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/ydc_order.css"/>
+		<title></title>
+	</head>
+	<body class="order-body">
+		<div class="order-content">
+			<!-- 是否展示头部-->
+			<if condition="$show eq 1">
+				<header class="header-company">
+					<div class="logo-img"><img src="{$info.logo}"/></div>
+					<div class="company-info">
+						<div class="company-name">{$info.restaurant_name}</div>
+						<div class="company-address">{$info.address}</div>
+					</div>
+				</header>
+			</if>
+			<div class="main-content">
+				<div class="main-order">
+					<div class="order-list">
+						<a class="order-btn" id="diancan" href="{$url['diancan']}">
+							<img src="__PUBLIC__/images/diancan.png"/>
+							<span class="btn-text">开始点餐</span>
+						</a>
+						<a class="order-btn" href="{$url['myorder']}">
+							<img src="__PUBLIC__/images/dingdan.png"/>
+							<span class="btn-text">查看订单</span>
+						</a>
+					<input type="text" value="{$desk_code}" hidden id="desk_code">
+					</div>
+				</div>
+			</div>
+			<input name="isCode" id="isCode" value="{$returnData.code}" hidden/>
+			<input name="urlString" id="urlString" value="{$returnData.data}" hidden/>
+			<footer class="footer-company">
+				<div class="footer-info">技术支持：方派科技</div>
+			</footer>
+		</div>
+	</body>
+</html>
+<script>
+	window.onload = function(){ 
+		var desk_code = document.getElementById("desk_code").value;
+		var oldUrl = document.getElementById("diancan").href;
+		if(desk_code){
+			document.getElementById("diancan").setAttribute("href",oldUrl+"/desk_code/"+desk_code);
+		}
+	}
+</script>

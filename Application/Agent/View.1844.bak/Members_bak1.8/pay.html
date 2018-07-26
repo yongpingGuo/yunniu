@@ -1,0 +1,75 @@
+<include file="Public/head"/>
+<body class="members">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+
+
+    <div class="container-fluid" id="wxpay">
+        <form action="javascript:void(0)" id="wxpayForm">
+            <div class="form-group" style="margin-top: 12px">
+                <label for="wxpay_appid">
+                    公众号APPID:
+                    <input class="form-control" type="text" value="{$wx_config.wxpay_appid}" placeholder="绑定支付的APPID" name="wxpay_appid" id="wxpay_appid">
+                </label>
+            </div>
+            <!--<div class="form-group">
+                <label for="wxpay_mchid">
+                    MCHID:
+                    <input class="form-control" type="text" value="{$wx_config.wxpay_mchid}" placeholder="商户号" name="wxpay_mchid" id="wxpay_mchid">
+                </label>
+            </div>-->
+            <div class="form-group">
+                <label for="wxpay_key">
+                    KEY:
+                    <input class="form-control" type="text" value="{$wx_config.wxpay_key}" placeholder="商户支付密钥" name="wxpay_key" id="wxpay_key">
+                </label>
+
+            </div>
+            <div class="form-group">
+                <label for="wxpay_appsecret">
+                    公众号密钥APPSECRET:
+                    <input class="form-control" type="text" value="{$wx_config.wxpay_appsecret}" placeholder="公众帐号secert" name="wxpay_appsecret" id="wxpay_appsecret">
+                </label>
+            </div>
+            <div class="form-group">
+                <label for="wxpay_child_mchid">
+                    微信商户号:
+                    <input class="form-control" type="text" value="{$wx_config.wxpay_child_mchid}" placeholder="子商户号（用于代理）" name="wxpay_child_mchid" id="wxpay_child_mchid">
+                </label>
+            </div>
+        </form>
+        <button class="btn btn-primary" data-paytype="wxpay" onclick="submitPayInfo(this)">
+            修改/添加
+        </button>
+    </div>
+
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.js"></script>
+	<script src="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.zh-CN.js"></script>
+	<script src="__PUBLIC__/js/membersManage.js"></script>
+
+    <script>
+        function submitPayInfo(obj){
+            var form1 = $("#wxpayForm")[0];
+            formData = new FormData(form1);
+            // console.log(formData);
+            $.ajax({
+                url:"/index.php/agent/Members/editAddPayInfo/",
+                data:formData,
+                type:'post',
+                dataType:'json',
+                contentType:false,
+                cache:false,
+                processData:false,
+                success:function(data){
+                    // console.log(data);
+                },
+                error:function(){
+                    console.log("网络出错了");
+                }
+            });
+        }
+    </script>
+
+
+
+</body>
+</html>

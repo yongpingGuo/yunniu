@@ -1,0 +1,702 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+    <!-- Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+
+    <!-- admin CSS 文件 -->
+    <link rel="stylesheet" href="__PUBLIC__/css/base.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/agent.css?v=20171215">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/layer/layer.js"></script>
+    <title>餐饮店云管理</title>
+</head>
+<body class="members">
+    <ul class="nav nav-tabs" id="mytab">
+        <li class="active">
+            <a href="#discount" data-toggle="tab">会员折扣设置</a>
+        </li>
+        <li>
+            <a href="#restaurant_discount" data-toggle="tab">店铺折扣设置</a>
+        </li>
+        <!--<li><a href="#charge" data-toggle="tab">充值信息</a></li>-->
+        <!--<li><a href="#group" data-toggle="tab">会员组</a></li>-->
+        <li><a href="#remind" data-toggle="tab">余额开关</a></li>
+        <li><a href="#discountReduce" data-toggle="tab">整单或菜品打折立减</a></li>
+    </ul>
+    <div class="tab-content container-fluid">
+        <div class="tab tab-pane in active" id="discount">
+            <section class="section">
+                <div class="section-header">
+                    <span>会员优惠折扣</span>
+                    <div class="checkbox-switch">
+                        <if condition="$if_open eq 1">
+                            <input type="checkbox" name="if_open" class="if_open" onchange="to_db(this.name,'/index.php/agent/Members/discount_set')" checked>
+                            <else/>
+                            <input type="checkbox" name="if_open" class="if_open" onchange="to_db(this.name,'/index.php/agent/Members/discount_set')">
+                        </if>
+                        <label></label>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <table class="member-discount-table">
+                        <tbody>
+                        <?php foreach ($discount_info as $K => $v): ?>
+                        <tr id="tr<?php echo $v['id'];?>">
+                            <td><?php echo ++$k;?></td>
+                            <td>满 <?php echo $v['money'];?>元</td>
+                            <td>折扣：<?php echo $v['discount'];?>折</td>
+                            <td>立减：<?php echo $v['reduce'];?>元</td>
+                            <td><?php echo $v['group_id'];?></td>
+                            <td>
+                                <button data-toggle="modal" data-target="#discountModal" id='modify' data-type_id="<?php echo $v['id'];?>">
+                                    <img src="__PUBLIC__/images/edit.png">
+                                </button>
+                                <button onclick="return deleteDisc(this)" data-type_id="<?php echo $v['id'];?>">
+                                    <img src="__PUBLIC__/images/remove.png">
+                                </button>
+                            </td>
+                        </tr>
+                        <?php endforeach ?>
+                        </tbody>
+                    </table>
+                    <button class="blue-btn" data-toggle="modal" data-target="#discountModal" onclick="reset()">新增折扣</button>
+                </div>
+            </section>
+        </div>
+
+        <div class="tab tab-pane" id="restaurant_discount">
+            <section class="section">
+                <div class="section-header">
+                    <span>店铺优惠折扣</span>
+                    <div class="checkbox-switch">
+                        <if condition="$if_open_restaurant eq 1">
+                            <input type="checkbox" name="if_open_restaurant" class="if_open_restaurant" onchange="to_db(this.name,'/index.php/Agent/Members/restaurant_discount_set')" checked>
+                            <else/>
+                            <input type="checkbox" name="if_open_restaurant" class="if_open_restaurant" onchange="to_db(this.name,'/index.php/Agent/Members/restaurant_discount_set')">
+                        </if>
+                        <label></label>
+                        <input type="hidden" name="refresh" value="{$refresh}" id="refresh"/>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <?php if($discount_restaurant_info):?>
+                        <table class="member-discount-table" id="tab">
+                        <tbody>
+                        <tr>
+                            <td>满 {$discount_restaurant_info['money']} 元</td>
+                            <td>折扣：{$discount_restaurant_info['discount']}折</td>
+                            <td>立减：{$discount_restaurant_info['reduce']} 元</td>
+                            <td>
+                                <button data-toggle="modal" data-target="#discountModal_restaurant" id='modify_restaurant' data-type_id="{$discount_restaurant_info['id']}">
+                                    <img src="__PUBLIC__/images/edit.png">
+                                </button>
+                                <button onclick="return deleteDisc_restaurant(this)" data-type_id="{$discount_restaurant_info['id']}">
+                                    <img src="__PUBLIC__/images/remove.png">
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <?php endif; ?>
+
+                    <?php if(!$discount_restaurant_info):?>
+                        <button class="blue-btn" data-toggle="modal" data-target="#discountModal_restaurant" onclick="reset()">新增折扣</button>
+                    <?php endif; ?>
+
+                    <button class="blue-btn" data-toggle="modal" data-target="#discountModal_restaurant" onclick="reset()" style="display:none;" id="new_add">新增折扣</button>
+
+                </div>
+            </section>
+        </div>
+
+        <div class="tab tab-pane" id="remind">
+            <section class="section">
+                <div class="section-header">
+                    <span>余额开关</span>
+                    <div class="checkbox-switch">
+                        <if condition="$if_open_remind eq 1">
+                            <input type="checkbox" name="if_open_remind" class="if_open_remind" onchange="to_db(this.name,'/index.php/Agent/Members/remind_set')" checked>
+                            <else/>
+                            <input type="checkbox" name="if_open_remind" class="if_open_remind" onchange="to_db(this.name,'/index.php/Agent/Members/remind_set')">
+                        </if>
+                        <label></label>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="tab tab-pane" id="discountReduce">
+            <section class="section">
+                <div class="section-content flex-content">
+                    <div class="flex-main">
+                        <table class="member-discount-table">
+                            <tbody>
+                            <?php foreach ($discount as $K1 => $v): ?>
+                            <tr id="tr<?php echo $v['id'];?>">
+                                <td><?php echo ++$k1;?></td>
+                                <td>折扣：<?php echo $v['val'];?>折</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#OrderOrFoodDiscountModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'discount')">
+                                        <img src="__PUBLIC__/images/edit.png">
+                                    </button>
+                                    <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                                        <img src="__PUBLIC__/images/remove.png">
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php endforeach ?>
+                            </tbody>
+                        </table>
+                        <button class="blue-btn" data-toggle="modal" data-target="#OrderOrFoodDiscountModal" onclick="reset()">新增折扣</button>
+                    </div>
+                    <div class="flex-main">
+                        <table class="member-discount-table">
+                            <tbody>
+                            <?php foreach ($reduce as $K2 => $v): ?>
+                            <tr id="tr<?php echo $v['id'];?>">
+                                <td><?php echo ++$k2;?></td>
+                                <td>立减：<?php echo $v['val'];?>元</td>
+                                <td>
+                                    <button data-toggle="modal" data-target="#OrderOrFoodReduceModal" onclick="edit_info(<?php echo $v['val'];?>,<?php echo $v['id'];?>,'reduce')">
+                                        <img src="__PUBLIC__/images/edit.png">
+                                    </button>
+                                    <button onclick="return deleteDiscOrRedu(this)" data-type_id="<?php echo $v['id'];?>">
+                                        <img src="__PUBLIC__/images/remove.png">
+                                    </button>
+                                </td>
+                            </tr>
+                            <?php endforeach ?>
+                            </tbody>
+                        </table>
+                        <button class="blue-btn" data-toggle="modal" data-target="#OrderOrFoodReduceModal" onclick="reset()">新增立减</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <div class="modal fade discountModal" id="discountModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel">会员折扣编辑</h4>
+                </div>
+                <div class="modal-body">
+                <form id="postRoleInfo" class="form-horizontal" >
+                     <input type="hidden" name="id" id="Jid">
+                    <div class="discountModal-info">
+                        <span>会员组：</span>
+                        <div class="select-reset">
+                            <select name="group_id" class="selector">
+                                <option value="0">默认会员组</option>
+                                <?php foreach ($group_info as $k => $v): ?>
+                                   <?php echo "<option value='".$v['group_id']."''>".$v['group_name']."</option>";?>
+                                <?php endforeach ?>
+                            </select>
+                        </div>
+                        <span>满</span>
+                        <input type="text" name="money" class="mini-input" id="money">
+                        <span>元，折扣</span>
+                        <input type="text" name="discount" class="mini-input" id="discounts">
+                        <span>折，立减</span>
+                        <input type="text" name="reduce" class="mini-input" id="reduce"> 
+                        <span>元</span>                  
+                    </div>
+                    <div class="section-tips">
+                  <!--       <div>* 当选择为所有顾客时，即非会员也享有此折扣。</div>
+                        <div>* 当有多个折扣设置时，系统取最大折扣优惠。</div> -->
+                        <div>* 折扣和立减同时有效！</div>
+                        <div>* 折扣值的填写规范如下：如打8折，则填写8；打8.5折，则填写8.5</div>
+                        <div>* 折扣值的填写范围为：大于等于1，小于等于10</div>
+                        <div>* 不打折扣时，折扣值请填写：10</div>
+                        <div>* 不设置立减时，立减值请填写：0</div>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="blue-btn">保存</button>
+                        <input  type="reset" id="reset" style="display:none;"/>
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade discountModal_restaurant" id="discountModal_restaurant">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel_">店铺折扣编辑</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="postRoleInfo_restaurant" class="form-horizontal" >
+                        <input type="hidden" name="id" id="Jid_restaurant">
+                        <div class="discountModal-info">
+                            <span>满</span>
+                            <input type="text" name="money" class="mini-input" id="money_restaurant">
+                            <span>元，折扣</span>
+                            <input type="text" name="discount" class="mini-input" id="discounts_restaurant">
+                            <span>折，立减</span>
+                            <input type="text" name="reduce" class="mini-input" id="reduce_restaurant">
+                            <span>元</span>
+                        </div>
+                        <div class="section-tips">
+                            <!--       <div>* 当选择为所有顾客时，即非会员也享有此折扣。</div>
+                                  <div>* 当有多个折扣设置时，系统取最大折扣优惠。</div> -->
+                            <div>* 折扣和立减同时有效！</div>
+                            <div>* 折扣值的填写规范如下：如打8折，则填写8；打8.5折，则填写8.5</div>
+                            <div>* 折扣值的填写范围为：大于等于1，小于等于10</div>
+                            <div>* 不打折扣时，折扣值请填写：10</div>
+                            <div>* 不设置立减时，立减值请填写：0</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="blue-btn">保存</button>
+                            <input  type="reset" id="reset_restaurant" style="display:none;"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade OrderOrFoodDiscountModal" id="OrderOrFoodDiscountModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel1">折扣操作</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="postRoleInfo_order_or_food" class="form-horizontal" action="javascript:void(0)">
+                        <input type="hidden" name="id" id="discount_id">
+                        <div class="discountModal-info">
+                            <span>折扣</span>
+                            <input type="text" name="val" class="mini-input" id="order_or_food_discount">
+                            <input type="hidden" name="discount_or_reduce" value="1"/>
+                            <span>折</span>
+                        </div>
+                        <div class="section-tips">
+                            <div>* 折扣和立减同时有效！</div>
+                            <div>* 折扣值的填写规范如下：如打8折，则填写8；打8.5折，则填写8.5</div>
+                            <div>* 折扣值的填写范围为：大于等于1，小于等于10</div>
+                            <div>* 不打折扣时，折扣值请填写：10</div>
+                        </div>
+                        <div class="text-center">
+                            <button class="blue-btn" onclick="order_or_food_post(this,'discount')">保存</button>
+                            <input  type="reset" id="order_or_food_discount_reset" style="display:none;"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade OrderOrFoodReduceModal" id="OrderOrFoodReduceModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close-btn" data-dismiss="modal" aria-hidden="true"></button>
+                    <h4 class="modal-title" id="myModalLabel2">立减操作</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="order_or_food_reduce_form" class="form-horizontal" action="javascript:void(0)">
+                        <input type="hidden" name="id" id="reduce_id">
+                        <div class="discountModal-info">
+                            <span>立减</span>
+                            <input type="text" name="val" class="mini-input" id="order_or_food_reduce">
+                            <input type="hidden" name="discount_or_reduce" value="2"/>
+                            <span>元</span>
+                        </div>
+                        <div class="section-tips">
+                            <div>* 折扣和立减同时有效！</div>
+                            <div>* 不设置立减时，立减值请填写：0</div>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="blue-btn" onclick="order_or_food_post(this,'reduce')">保存</button>
+                            <input  type="reset" id="order_or_food_reduce_reset" style="display:none;"/>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+<script>
+    $(function(){
+        console.log(typeof $("#refresh").val())
+       if($("#refresh").val() == '1'){
+           $('#mytab li:eq(1) a').tab('show');
+       }else if($("#refresh").val() == '2'){
+           $('#mytab li:eq(5) a').tab('show');
+       }
+    });
+
+    // 将各类型的设置传递到数据库
+function to_db(a,url){
+    var cls = "." + a;
+    var hschek = $(cls).is(':checked');
+    if (hschek) {
+        b = 1;
+    }else{
+        b = 0;
+    }
+    // 判断是if_open还是if_vip
+    if(a == "if_open"){
+        // 发送ajax
+        $.post(url,{"if_open":b},function(data){
+            var object = JSON.parse( data )
+            if(object.code === 1){
+                if(object.if_open === '1'){
+                    $('[name="if_open_restaurant"]').prop("checked", true);
+                }else{
+                    $('[name="if_open_restaurant"]').prop("checked", false);
+                }
+            }else{
+                alert(object.msg);
+            }
+        });
+    }
+    // 店铺折扣
+    if(a == "if_open_restaurant"){
+        // 发送ajax
+        $.post(url,{"if_open_restaurant":b},function(data){
+            var object = JSON.parse( data )
+            if(object.code === 1){
+                if(object.if_open === '1'){
+                    $('[name="if_open"]').prop("checked", true);
+                }else{
+                    $('[name="if_open"]').prop("checked", false);
+                }
+            }else{
+                alert(object.msg);
+            }
+        });
+    }
+
+    // 余额开关
+    if(a == "if_open_remind"){
+        // 发送ajax
+        $.post(url,{"if_open_remind":b},function(data){
+            var object = JSON.parse( data )
+            if(object.code === 1){
+                if(object.if_open === '1'){
+                    $('[name="if_open_remind"]').prop("checked", true);
+                }else{
+                    $('[name="if_open_remind"]').prop("checked", false);
+                }
+            }else{
+                alert(object.msg);
+            }
+        });
+    }
+
+}
+
+    function reset() {
+        $("input[type='reset']").trigger('click');
+    }
+
+    //删除会员折扣
+    function deleteDisc(obj) {
+        layer.confirm('您确定要删除吗？', {icon:3}, function(index){
+                var _id = $(obj).data('type_id');
+                $.ajax({
+                    url:"/index.php/agent/Members/deleteDisc",
+                    dataType:'json',
+                    data:{"id":_id},
+                    type:'POST',
+                    success:function(data){
+                        if (data==1) {
+                            $("#tr"+_id).remove();
+                        }
+                    }
+                });
+                layer.close(index);
+            });
+            return false;
+    }
+
+    function deleteDiscOrRedu(obj) {
+        layer.confirm('您确定要删除吗？', {icon:3}, function(index){
+            var _id = $(obj).data('type_id');
+            $.ajax({
+                url:"/index.php/Agent/Members/deleteDiscOrRedu",
+                dataType:'json',
+                data:{"id":_id},
+                type:'POST',
+                success:function(data){
+//                    location.href = '/index.php/Admin/Member/setting/refresh/2'
+                    $.get('/index.php/Agent/Members/ajaxFill',{},function(returnData){
+                        $('#discountReduce' ).html(returnData)
+                    });
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+
+    function deleteDisc_restaurant(obj) {
+        layer.confirm('您确定要删除吗？', {icon:3}, function(index){
+            var _id = $(obj).data('type_id');
+            $.ajax({
+                url:"/index.php/Agent/Members/deleteDisc_restaurant",
+                dataType:'json',
+                data:{"id":_id},
+                type:'POST',
+                success:function(data){
+                    if (data==1) {
+                        $("#tab").remove();
+                        $("#new_add").show();
+                    }
+                }
+            });
+            layer.close(index);
+        });
+        return false;
+    }
+
+    //修改
+    $(document).on('click','#modify',function() {
+        $.ajax({
+            url:"/index.php/agent/Members/editSetting",
+            dataType:'json',
+            data:{"id":$(this).data('type_id')},
+            type:'POST',
+            success:function(data){
+                $('#Jid').val(data.id);
+                $('#money').val(data.money);
+                $('#discounts').val(data.discount);
+                $('#reduce').val(data.reduce);
+                $(".selector").find("option[value="+data.group_id+"]").prop("selected",true);
+            }
+        });
+    });
+
+    function edit_info(val,id,disc_or_rede){
+        $('#'+disc_or_rede+'_id').val(id);
+        $('#order_or_food_'+disc_or_rede).val(val);
+    }
+
+    //修改店铺
+    $(document).on('click','#modify_restaurant',function() {
+        $.ajax({
+            url:"/index.php/agent/Members/editSetting_restaurant",
+            dataType:'json',
+            data:{"id":$(this).data('type_id')},
+            type:'POST',
+            success:function(data){
+                $('#Jid_restaurant').val(data.id);
+                $('#money_restaurant').val(data.money);
+                $('#discounts_restaurant').val(data.discount);
+                $('#reduce_restaurant').val(data.reduce);
+            }
+        });
+    });
+
+    //新增会员折扣的
+    $("#postRoleInfo").on('submit',function(e) {
+        var ev = window.evnet || e
+        window.event ? window.event.returnValue = false : ev.preventDefault();
+
+        var money = $("#money").val();
+        var discounts = $("#discounts").val();
+        var reduce = $("#reduce").val();
+
+        if(!(money && discounts && reduce)){
+            layer.msg("所填内容不能为空");
+            return false;
+        }
+
+        if(isNaN(money)){
+            layer.msg("请确保“满多少元”为数字");
+            $("#money").val('');
+            return false;
+        }
+
+        if(money<0){
+            layer.msg("请确保“满多少元”大于等于0");
+            $("#money").val('');
+            return false;
+        }
+
+        if(isNaN(discounts)){
+            layer.msg("请确保“折扣”为数字");
+            $("#discounts").val('');
+            return false;
+        }
+
+        if(discounts<1 || discounts>10){
+            layer.msg("请确保“折扣值”在1到10之间（包含1和10），如：8折为8,8.5折为8.5");
+            $("#discounts").val('');
+            return false;
+        }
+
+        if(isNaN(reduce)){
+            layer.msg("请确保“立减”为数字");
+            $("#reduce").val('');
+            return false;
+        }
+
+        if(reduce<0){
+            layer.msg("请确保“立减值”大于等于0");
+            $("#money").val('');
+            return false;
+        }
+
+            $.ajax({
+                url:"/index.php/Agent/Members/setting",
+                dataType:'json',
+                data:$('#postRoleInfo').serialize(),
+                type:'POST',
+                success:function(data){
+//                    console.log(data);
+                    if(data == 1){
+                        $('#discountModal').modal('hide');
+                        window.location.reload();
+                    }else{
+                        alert(data.info);
+                        $('#discountModal').modal('hide');
+                        $("input[type='reset']").trigger('click');
+                    }
+                }
+            });
+    });
+
+    //新增或者修改会员折扣
+    $("#postRoleInfo_restaurant").on('submit',function(e) {
+        var ev = window.evnet || e
+        window.event ? window.event.returnValue = false : ev.preventDefault();
+
+        var money_restaurant = $("#money_restaurant").val();
+        var discounts_restaurant = $("#discounts_restaurant").val();
+        var reduce_restaurant = $("#reduce_restaurant").val();
+
+        if(!(money_restaurant && discounts_restaurant && reduce_restaurant)){
+            layer.msg("所填内容不能为空");
+            return false;
+        }
+
+        if(isNaN(money_restaurant)){
+            layer.msg("请确保“满多少元”为数字");
+            $("#money_restaurant").val('');
+            return false;
+        }
+
+        if(money_restaurant<0){
+            layer.msg("请确保“满多少元”大于等于0");
+            $("#money").val('');
+            return false;
+        }
+
+        if(isNaN(discounts_restaurant)){
+            layer.msg("请确保“折扣”为数字");
+            $("#discounts_restaurant").val('');
+            return false;
+        }
+
+        if(discounts_restaurant<1 || discounts_restaurant>10){
+            layer.msg("请确保“折扣值”在1到10之间（包含1和10），如：8折为8,8.5折为8.5");
+            $("#discounts_restaurant").val('');
+            return false;
+        }
+
+        if(isNaN(reduce_restaurant)){
+            layer.msg("请确保“立减”为数字");
+            $("#reduce_restaurant").val('');
+            return false;
+        }
+
+        if(reduce_restaurant<0){
+            layer.msg("请确保“立减值”大于等于0");
+            $("#money").val('');
+            return false;
+        }
+
+        $.ajax({
+            url:"/index.php/Agent/Members/setting_restaurant",
+            dataType:'json',
+            data:$('#postRoleInfo_restaurant').serialize(),
+            type:'POST',
+            success:function(data){
+//                console.log(data);
+                if(data == 1){
+                    $('#discountModal_restaurant').modal('hide');
+                    location.href = '/index.php/Agent/Members/setting/refresh/1'
+                }else{
+                    alert(data.info);
+                    $('#discountModal_restaurant').modal('hide');
+                    $("input[type='reset']").trigger('click');
+                }
+            }
+        });
+    });
+
+    // 订单或者菜品折扣
+    function order_or_food_post(obj,type){
+        if(type == 'discount'){
+            var discounts = $("#order_or_food_discount").val();
+            if(!(discounts)){
+                layer.msg("折扣值不能为空");
+                return false;
+            }
+
+            if(isNaN(discounts)){
+                layer.msg("请确保“折扣”为数字");
+                $("#order_or_food_discount").val('');
+                return false;
+            }
+
+            if(discounts<1 || discounts>10){
+                layer.msg("请确保“折扣值”在1到10之间（包含1和10），如：8折为8,8.5折为8.5");
+                $("#order_or_food_discount").val('');
+                return false;
+            }
+        }else{
+            var reduce = $("#order_or_food_reduce").val();
+            if(isNaN(reduce)){
+                layer.msg("请确保“立减”为数字");
+                $("#order_or_food_reduce").val('');
+                return false;
+            }
+
+            if(reduce<0){
+                layer.msg("请确保“立减值”大于等于0");
+                $("#order_or_food_reduce").val('');
+                return false;
+            }
+        }
+        $.ajax({
+            url:"/index.php/Agent/Members/order_or_food_discount",
+            dataType:'json',
+//            data:$('#postRoleInfo_order_or_food').serialize(),
+            data:$(obj).parent().parent().serialize(),
+            type:'POST',
+            success:function(data){
+                $('#OrderOrFoodDiscountModal').modal('hide');
+                $('#OrderOrFoodReduceModal').modal('hide');
+                if(data == 1){
+//                    location.href = '/index.php/Admin/Member/setting/refresh/2'
+                    $.get('/index.php/Agent/Members/ajaxFill',{},function(returnData){
+                        $('#discountReduce' ).html(returnData)
+                    });
+                }else{
+                    alert(data.info);
+                    $("input[type='reset']").trigger('click');
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

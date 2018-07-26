@@ -1,0 +1,94 @@
+<extend name="Public:base" />
+<block name="css">
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/bootstrap-datetimepicker-master/bootstrap-datetimepicker.min.css">
+</block>
+<block name="main">
+	<div class="sale-search-form">
+		<form  method="get" id="myform">
+			<div class="item">
+				<span>{{langData.cashier[lang]}}:</span>
+					<select name="cashier_id" id="cashier_id" class="select-grey">
+					<option value="">{{langData.all[lang]}}</option>
+					<?php foreach ($cashierList as $k => $v): 
+						if($cashier_id == $v['cashier_id'])	{
+							$selected = "selected='selected'";
+						}else{
+							$selected = "";
+						}
+					?>
+						<option value="<?php echo $v['cashier_id'];?>" <?php echo $selected;?>><?php echo $v['cashier_name'];?></option>
+					<?php endforeach ?>
+				</select>
+			</div>
+			<div class="item">
+				<span>{{langData.date[lang]}}:</span>
+				<input class="selectIcon" type="text" id="startDate" name="startDate" value="{$startDate}">
+				<span>-</span>
+				<input class="selectIcon" type="text" id="endtDate" name="endtDate" value="{$endDate}">
+			</div>
+			<div class="item">
+				<span>{{langData.time[lang]}}:</span>
+				<input class="selectIcon" type="text" id="startTime" name="startTime" value="{$startTime}">
+				<span>-</span>
+				<input class="selectIcon" type="text" id="endTime" name="endTime" value="{$endTime}">
+			</div>
+			<button class="blue-btn" type="button" data-commit_type = "0" onclick="search(this)">{{langData.search[lang]}}</button>
+			<button class="blue-btn" type="button" data-commit_type = "1" onclick="search(this)">
+				<span>{{langData.export[lang]}}</span>
+				<img src="__PUBLIC__/images/out.png" class="mini-icon">
+			</button>
+		</form>
+	</div>
+	<div class="clearfix" id="ajax_html">
+		<section class="section small-section pull-left">
+			<div class="section-header">{{langData.mainCourse[lang]}}</div>
+			<div class="section-content dishes-stat">
+				<table>
+					<volist name="all_foodinfo" id="v">
+						<tr>
+							<td>{$key+1}</td>
+							<td>
+								<div class="food-chart-name">{$v.food_name}</div>
+							</td>
+							<td class="progress-td">
+								<div class="dishes-progress-bg">
+									<div class="dishes-progress" style="width:{$v[num]*$step_length}px;"></div>
+								</div>
+							</td>
+							<td>{$v.num}{{langData.copies[lang]}}</td>	
+						</tr>
+					</volist>
+				</table>	
+			</div>
+		</section>
+		<section class="section small-section pull-left">
+			<div class="section-header">{{langData.specification[lang]}}</div>
+			<div class="section-content dishes-stat">
+				<table>
+					<volist name="all_attributeArr" id="v">
+						<tr>
+							<td>{$key+1}</td>
+							<td>
+								<div class="food-chart-name">{$v.food_attribute_name}</div>
+							</td>
+							<td class="progress-td">
+								<div class="dishes-progress-bg">
+									<div class="dishes-progress" style="width:{$v[num]*$step_length_attr}px;"></div>
+								</div>
+							</td>
+							<td>{$v[num]}{{langData.copies[lang]}}</td>	
+						</tr>
+					</volist>
+				</table>	
+			</div>
+		</section>		
+		<div>
+			<ul class="pagination" id="detail-page">
+			</ul>
+		</div>
+	</div>
+</block>
+<block name="js">
+	<include file="Public/datetimepicker"/>
+	<script src="__PUBLIC__/js/Admin-Restaurant/Sale_food_chart.js"></script>
+</block>

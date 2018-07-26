@@ -1,0 +1,34 @@
+<extend name="Public:base" />
+<block name="main">
+	<include file="Public/header" title="消费赠送积分"/>	
+	<section class="section">
+		<!-- <header class="section-title">消费赠送积分</header> -->
+		<div class="section-row">
+			<span class="text-6">消费赠送积分：</span>
+			<div class="checkbox-switch">
+                <if condition="$if_open eq 1">
+                    <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/point_set')" checked>
+                    <else/>
+                    <input type="checkbox" name="score" class="score" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/point_set')">
+                </if>
+
+			    <label></label>
+			</div>
+		</div>
+		<table class="w100 table-padding">
+		    <tbody>
+                <?php foreach ($prepaid_rules as $k => $v): ?>
+                <tr>
+                    <td><?php echo ++$k;?></td>
+                    <td>消费满<?php echo $v['account'];?>元</td>
+                    <td>积分赠送：<?php echo $v['benefit'];?> 分</td>
+                </tr>
+                <?php endforeach ?>
+		    </tbody>
+		</table>
+	</section>	
+</block>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/consumption_vip.js"></script>
+</block>

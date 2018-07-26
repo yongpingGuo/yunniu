@@ -1,0 +1,109 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="菜品设置"/>
+    <section class="section food-set clear">
+        <div class="classify">
+            <div class="food-set-title">菜品分类</div>
+            <ul class="classify-content">
+                <volist name="data" id="v">
+                    <?php if($final_food_category_id == $v['food_category_id']):?>
+                    <li class="classify-item active" data-id="{$v.food_category_id}" onclick="showinfo(this)">{$v['food_category_name']}</li>
+                    <?php else: ?>
+                    <li class="classify-item" data-id="{$v.food_category_id}" onclick="showinfo(this)">{$v['food_category_name']}</li>
+                    <?php endif; ?>
+                </volist>
+            </ul>
+        </div>
+        <div class="dish-list">
+            <div class="food-set-title">菜品编辑</div>
+            <div id="mytr">
+                <volist name="info" id="v">
+                    <div class="dish-list-item">
+                        <div class="flex-content vertical-flex">
+                            <span class="flex-main">{$v.food_name}</span>
+                            <span>{$v.food_price}元</span>
+                        </div>
+                        <div class="flex-content">
+                            <div class="flex-main">
+                                <img src="/{$v.food_img}" class="dish-icon">
+                            </div>
+                            <div class="dishes-btn-group">
+                                <button class="default-btn" onclick="modify_food({$v['food_id']})">编辑</button>
+                                <button class="default-btn" onclick="type_and_attr({$v['food_id']})">规格</button>
+                                <button class="default-btn" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="delfoodinfo(this)">删除</button>
+                                <button class="default-btn" data-index="{$key+1}" data-sort="{$v.sort}" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="moveup(this)">上移</button>
+                                <button class="default-btn" data-index="{$key+1}" data-sort="{$v.sort}" data-food_id="{$v.food_id}" data-food_category_id="{$v.food_category_id}" onclick="movedown(this)">下移</button>
+                                <if condition="$v['is_shutdown'] eq 1 ">
+                                    <button class="default-btn" data-food_id="{$v.food_id}" onclick="not_sell_all(this)" style="background-color: red" >售罄</button>
+                                <else />
+                                    <button class="default-btn" data-food_id="{$v.food_id}" onclick="sell_all(this)">售罄</button>
+                                </if>
+                            </div>
+                        </div>
+                    </div>
+                </volist>
+            </div>
+            <div class="text-right">
+                <button class="danger-btn" onclick="location='{:U(\'Dishes/dish_add\')}'">
+                    <i class="iconfont icon-plus"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/food_set.js"></script>
+    <script>
+        //设为售罄
+        function sell_all(obj){
+            var food_id = $(obj ).data('food_id');
+            console.log(food_id);
+            layer.confirm('您确定要将此菜品设为售罄吗？', {icon:3}, function(index){
+                $.ajax({
+                    type:"post",
+                    url:"/index.php/MobileAdmin/Dishes/sell_all?is_shutdown=1",
+                    data: {'food_id':food_id},
+                    async:true,
+                    success:function(data){
+                        if(data == 1){
+                            layer.msg('设置成功');
+                            setTimeout(function(){
+                                location.reload();
+                            }, 1000);
+                        }else{
+                            layer.msg('设置失败');
+                        }
+                    }
+                });
+                layer.close(index);
+            });
+        }
+
+        //将菜品设为正常销售
+        function not_sell_all(obj){
+            var food_id = $(obj ).data('food_id');
+            console.log(food_id);
+            layer.confirm('您确定要将此菜品设为正常销售吗？', {icon:3}, function(index){
+                $.ajax({
+                    type:"post",
+                    url:"/index.php/MobileAdmin/Dishes/sell_all?is_shutdown=0",
+                    data: {
+                        'food_id':food_id,
+                    },
+                    async:true,
+                    success:function(data){
+                        if(data == 1){
+                            layer.msg('设置成功');
+                            setTimeout(function(){
+                                location.reload();
+                            }, 1000);
+                        }else{
+                            layer.msg('设置失败');
+                        }
+                    }
+                });
+                layer.close(index);
+            });
+        }
+    </script>
+</block>

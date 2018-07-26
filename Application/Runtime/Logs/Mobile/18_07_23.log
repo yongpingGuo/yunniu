@@ -1,0 +1,1064 @@
+[ 2018-07-23T10:20:30+08:00 ] 219.137.72.164 /index.php/mobile/index/homePage/restaurant_id/131/pay_status/online
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000021s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000527s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000494s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000542s ]
+SQL: SHOW COLUMNS FROM `restaurant` [ RunTime:0.0042s ]
+SQL: SELECT `restaurant_name`,`logo`,`address`,`business_id` FROM `restaurant` WHERE `restaurant_id` = 131 LIMIT 1   [ RunTime:0.0026s ]
+SQL: SHOW COLUMNS FROM `business` [ RunTime:0.0037s ]
+SQL: SELECT `type` FROM `business` WHERE `business_id` = 25 LIMIT 1   [ RunTime:0.0023s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000075s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000170s ]
+NOTIC: [8] Undefined variable: desk_code /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/52b18b0402c3a384a0519542fa968073.php 第 35 行.
+NOTIC: [8] Undefined variable: returnData /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/52b18b0402c3a384a0519542fa968073.php 第 39 行.
+NOTIC: [8] Undefined variable: returnData /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/52b18b0402c3a384a0519542fa968073.php 第 40 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.007996s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008062s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000208s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000285s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000744s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000795s ]
+
+[ 2018-07-23T10:20:31+08:00 ] 219.137.72.164 /index.php/mobile/index/index/restaurant_id/131
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000414s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000659s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000731s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000100s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000162s ]
+NOTIC: [8] Undefined index: desk_code /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 20 行.
+NOTIC: [8] Undefined variable: returnData /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 87 行.
+NOTIC: [8] Undefined variable: returnData /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 88 行.
+NOTIC: [8] Undefined variable: jsApiParameters /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 176 行.
+NOTIC: [8] Undefined variable: restaurant_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 184 行.
+NOTIC: [8] Undefined variable: business_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 184 行.
+NOTIC: [8] Undefined variable: restaurants_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 184 行.
+NOTIC: [8] Undefined variable: restaurant_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 193 行.
+NOTIC: [8] Undefined variable: business_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 193 行.
+NOTIC: [8] Undefined variable: restaurants_id /www/web/yunniutest/public_html/Application/Runtime/Cache/Mobile/59803a09875c7569286531ef77035039.php 第 193 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008274s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008317s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000196s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000232s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000459s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000506s ]
+
+[ 2018-07-23T10:20:33+08:00 ] 219.137.72.164 /index.php/Mobile/Index/ajaxGetFoodInfo
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000450s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000505s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000572s ]
+SQL: SHOW COLUMNS FROM `food_category` [ RunTime:0.0038s ]
+SQL: SHOW COLUMNS FROM `category_time` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `food_category` WHERE `restaurant_id` = 131 AND `is_timing` = 0 ORDER BY sort asc  [ RunTime:0.0033s ]
+SQL: SELECT `food_category_id` FROM `food_category` WHERE `restaurant_id` = 131 AND `is_timing` = 1  [ RunTime:0.0030s ]
+SQL: SELECT DISTINCT  `category_id` FROM `category_time` WHERE `time1` < 1532312431 AND `time2` > 1532312431 AND `category_id` IN ('1763','3133')  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `food_category_timing` [ RunTime:0.0033s ]
+SQL: SELECT DISTINCT  `food_category_id`,`start_time`,`end_time` FROM `food_category_timing` WHERE `timing_day` LIKE '%1%' AND `food_category_id` IN ('1763','3133')  [ RunTime:0.0028s ]
+NOTIC: [8] Undefined variable: category_id_list /www/web/yunniutest/public_html/Application/Mobile/Model/FoodCategoryModel.class.php 第 58 行.
+SQL: SELECT * FROM `food_category` WHERE `food_category_id` IN ('1763')  [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `food_category_relative` [ RunTime:0.0033s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 4912  [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `food` [ RunTime:0.0037s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34590 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34590 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34590 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34588 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34588 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34588 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34589 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34589 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34589 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34592 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34592 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34592 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34593 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34593 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34593 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34596 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34596 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34596 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34595 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34595 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34595 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34597 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34597 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34597 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34591 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34591 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34591 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34598 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34598 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34598 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34599 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34599 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34599 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34600 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34600 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34600 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34594 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34594 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34594 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 175  [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 436 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 436 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0033s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 436 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 438 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 438 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 438 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 440 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0033s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 440 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 440 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 442 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 442 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 442 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 443 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 443 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 443 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 445 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 445 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0033s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 445 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 437 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 437 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 437 [ RunTime:0.0034s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8152 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8152 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8152 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19285 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19285 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19285 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 567 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 567 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 567 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1163 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1163 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1163 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 433 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 433 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 433 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 3134  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 7108 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 7108 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `prom` [ RunTime:0.0037s ]
+SQL: SELECT `prom_price` FROM `prom` WHERE `prom_id` = 7108 AND `prom_start_time` < 1532312432 AND `prom_end_time` > 1532312432 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 7108 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 559 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 559 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 559 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 180  [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 474 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 474 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 474 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 475 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 475 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 475 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 476 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 476 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 479 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 479 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 479 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 484 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 484 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 484 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 2352 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 2352 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 2352 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 4718 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 4718 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 4718 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 5353 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 5353 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 5353 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12011 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12011 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12011 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1164 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1164 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1164 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 3101  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 23457 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 23457 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 23457 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 20681 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 20681 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 20681 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 198  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19721 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19721 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19721 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 179  [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 468 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 468 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 468 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 471 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 471 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 471 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 473 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 473 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 473 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8179 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8179 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8179 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8178 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8178 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8178 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8161 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8161 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8161 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8147 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8147 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8147 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8139 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8139 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8139 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8128 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8128 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8128 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8713 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8713 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8713 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 13676 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 13676 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 13676 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 182  [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19729 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19729 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19729 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19285 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19285 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19285 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19704 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19704 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19704 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19326 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19326 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19326 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 19286 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 19286 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 19286 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 195  [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 4135 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 4135 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 4135 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 4952 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0038s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 4952 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 4952 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 6758 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 6758 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 6758 [ RunTime:0.0033s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 7572 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 7572 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 7572 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 7934 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 7934 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 7934 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8216 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8216 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8216 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12526 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12526 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12526 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 177  [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 467 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 467 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 467 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 465 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 465 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 465 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 466 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0033s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 466 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 466 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 176  [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 447 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 447 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 447 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 448 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 448 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 448 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 449 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 449 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 449 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 450 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 450 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 450 [ RunTime:0.0035s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 451 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 451 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 451 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 452 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 452 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 452 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 453 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 453 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 453 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 456 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 456 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 456 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 457 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 457 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 457 [ RunTime:0.0035s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 458 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0032s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 458 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0034s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 458 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 459 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 459 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 459 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 460 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 460 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 460 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 461 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 461 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 461 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 462 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 462 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 462 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 463 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 463 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 463 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 581 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 581 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 581 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 584 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 584 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 584 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 585 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 585 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 585 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 3934 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 3934 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 3934 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 8714 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 8714 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 8714 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 568 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 568 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 568 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 575 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 575 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 575 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 465 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 465 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 465 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1029 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1029 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1029 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 373  [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1696 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1696 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1696 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 4032 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0032s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 4032 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 4032 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 4127 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 4127 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 4127 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 469 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 469 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 469 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1195 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1195 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1195 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 491 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 491 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 491 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1254 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1254 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1254 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1255 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1255 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1255 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1256 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1256 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1256 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1258 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1258 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1258 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 1259 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 1259 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 1259 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 804  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 3803 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 3803 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 3803 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 3955 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 3955 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 3955 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 7113 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 7113 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 7113 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 10452 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 10452 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 10452 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12523 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12523 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12523 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 1990  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12458 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12458 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12458 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12460 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12460 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12460 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12462 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12462 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12462 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12464 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12464 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12464 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12840 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12840 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12840 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 13370 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 13370 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 13370 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 13612 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 13612 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 13612 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 13675 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 13675 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 13675 [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 13718 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 13718 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 13718 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 4915  [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 1848  [ RunTime:0.0027s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11892 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11892 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11892 [ RunTime:0.0030s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11897 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11897 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11897 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11893 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11893 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11893 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11894 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11894 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11894 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11895 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11895 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11895 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11896 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11896 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11896 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11898 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11898 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0034s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11898 [ RunTime:0.0031s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11899 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0032s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11899 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0036s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11899 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11900 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11900 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11900 [ RunTime:0.0033s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 12010 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0032s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 12010 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0034s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 12010 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 11891 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 11891 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 11891 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 4914  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34614 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34614 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34614 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34615 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34615 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34615 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34616 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34616 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34616 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34617 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34617 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34617 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34618 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34618 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34618 [ RunTime:0.0032s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34619 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0031s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34619 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34619 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34620 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0029s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34620 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34620 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 34621 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 34621 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 34621 [ RunTime:0.0027s ]
+SQL: SELECT * FROM `food_category_relative` WHERE `food_category_id` = 1763  [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 472 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 472 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 472 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 7109 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 7109 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 7109 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 10464 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 10464 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 10464 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 10466 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 10466 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 10466 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 10467 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0030s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 10467 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0032s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 10467 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 10470 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 10470 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0029s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 10470 [ RunTime:0.0028s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 16727 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 16727 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 16727 [ RunTime:0.0029s ]
+SQL: select SUM(t1.food_num) as num from order_food t1 LEFT JOIN
+                        `order` t2 on t1.order_id = t2.order_id
+												WHERE t1.food_id = 20227 and t2.order_status in ('3','11','12')
+                        and t2.add_time between 1532275200 and 1532361599 [ RunTime:0.0028s ]
+SQL: SELECT * FROM `food` WHERE `food_id` = 20227 AND `restaurant_id` = 131 AND `is_sale` = 1 LIMIT 1   [ RunTime:0.0028s ]
+SQL: SELECT COUNT(*)  AS total_num FROM attribute_type AS t1 RIGHT JOIN food_attribute AS t2 ON t1.attribute_type_id = t2.attribute_type_id WHERE t1.food_id = 20227 [ RunTime:0.0027s ]
+
+[ 2018-07-23T10:20:35+08:00 ] 219.137.72.164 /index.php/Mobile/Index/findfoodinfo/food_id/438/restaurant_id/131/desk_code/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000018s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000526s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000485s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000526s ]
+SQL: SHOW COLUMNS FROM `food` [ RunTime:0.0037s ]
+SQL: SELECT `is_prom` FROM `food` WHERE `food_id` = 438 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT `food_price` FROM `food` WHERE `food_id` = 438 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `prom` [ RunTime:0.0036s ]
+SQL: SELECT `food_id`,`food_name`,`food_img`,`food_desc` FROM `food` WHERE `food_id` = 438 LIMIT 1   [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `attribute_type` [ RunTime:0.0033s ]
+SQL: SELECT `attribute_type_id`,`type_name`,`select_type` FROM `attribute_type` WHERE `food_id` = 438  [ RunTime:0.0115s ]
+SQL: SHOW COLUMNS FROM `food_attribute` [ RunTime:0.0038s ]
+SQL: SELECT `food_attribute_id`,`attribute_name`,`attribute_price` FROM `food_attribute` WHERE `attribute_type_id` = 13877  [ RunTime:0.0125s ]
+SQL: SELECT `food_attribute_id`,`attribute_name`,`attribute_price` FROM `food_attribute` WHERE `attribute_type_id` = 13878  [ RunTime:0.0031s ]
+SQL: SELECT `food_attribute_id`,`attribute_name`,`attribute_price` FROM `food_attribute` WHERE `attribute_type_id` = 13879  [ RunTime:0.0030s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000085s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000182s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.071201s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.071263s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000271s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000322s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000537s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000592s ]
+
+[ 2018-07-23T10:20:36+08:00 ] 219.137.72.164 /index.php/Mobile/Index/PlaceOrder/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000023s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000493s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000564s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000620s ]
+SQL: SHOW COLUMNS FROM `order_201807` [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `food` [ RunTime:0.0026s ]
+SQL: SHOW COLUMNS FROM `food_attribute` [ RunTime:0.0023s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40644 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40647 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40650 LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT `is_prom` FROM `food` WHERE `food_id` = 438 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `food_price` FROM `food` WHERE `food_id` = 438 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT COUNT(*) AS tp_count FROM `order_201807` WHERE `add_time` BETWEEN 1532275200 AND 1532361599 AND `restaurant_id` = 131 LIMIT 1   [ RunTime:0.0215s ]
+NOTIC: [8] Undefined index: table_num /www/web/yunniutest/public_html/Application/Mobile/Controller/IndexController.class.php 第 662 行.
+SQL: SELECT COUNT(*) AS tp_count FROM `order_201807` WHERE `cancell_num` = '54127' LIMIT 1   [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `restaurant` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `restaurant` WHERE `restaurant_id` = 131 LIMIT 1   [ RunTime:0.0035s ]
+NOTIC: [8] Undefined index: openid /www/web/yunniutest/public_html/Application/Mobile/Controller/IndexController.class.php 第 688 行.
+SQL: INSERT INTO `order_201807` (`order_sn`,`add_time`,`total_amount`,`original_price`,`table_num`,`desk_code`,`is_reserve`,`openid`,`take_num`,`push_status`,`restaurant_id`,`restaurant_name`,`order_type`,`terminal_order`,`related_user`) VALUES ('DC0013118072310203600001','1532312436','0.01','0.01','0',NULL,'1',NULL,'54127','1','131','龙龙食府-花城店','1','3',NULL) [ RunTime:0.0636s ]
+SQL: SHOW COLUMNS FROM `order_food_201807` [ RunTime:0.0028s ]
+SQL: SHOW COLUMNS FROM `order_food_attribute_201807` [ RunTime:0.0024s ]
+SQL: SELECT * FROM `food` WHERE ( food_id=438 ) LIMIT 1   [ RunTime:0.0022s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40644 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40647 LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40650 LIMIT 1   [ RunTime:0.0017s ]
+SQL: INSERT INTO `order_food_201807` (`order_id`,`food_id`,`food_name`,`food_num`,`food_price2`,`print_id`,`tag_print_id`,`food_detail`) VALUES ('1030','438','饺子','1','0.01','424','0','[{\"food_status\":1,\"window_name\":\"\"}]') [ RunTime:0.0301s ]
+SQL: SELECT `attribute_name` FROM `food_attribute` WHERE `food_attribute_id` = 40644 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40644 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT `attribute_type_id` FROM `food_attribute` WHERE `food_attribute_id` = 40644 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `attribute_type` [ RunTime:0.0026s ]
+SQL: SELECT `print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13877 ) LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `count_type` FROM `attribute_type` WHERE ( attribute_type_id = 13877 ) LIMIT 1   [ RunTime:0.0021s ]
+SQL: SELECT `tag_print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13877 ) LIMIT 1   [ RunTime:0.0063s ]
+SQL: INSERT INTO `order_food_attribute_201807` (`food_attribute_name`,`food_attribute_price`,`print_id`,`count_type`,`order_food_id`,`tag_print_id`,`num`,`food_attribute_id`) VALUES ('玉米','0.00','424','0','660','0','1','40644') [ RunTime:0.0341s ]
+SQL: SELECT `attribute_name` FROM `food_attribute` WHERE `food_attribute_id` = 40647 LIMIT 1   [ RunTime:0.0020s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40647 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `attribute_type_id` FROM `food_attribute` WHERE `food_attribute_id` = 40647 LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT `print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13878 ) LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT `count_type` FROM `attribute_type` WHERE ( attribute_type_id = 13878 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `tag_print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13878 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: INSERT INTO `order_food_attribute_201807` (`food_attribute_name`,`food_attribute_price`,`print_id`,`count_type`,`order_food_id`,`tag_print_id`,`num`,`food_attribute_id`) VALUES ('水','0.00','424','0','660','0','1','40647') [ RunTime:0.0019s ]
+SQL: SELECT `attribute_name` FROM `food_attribute` WHERE `food_attribute_id` = 40650 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `attribute_price` FROM `food_attribute` WHERE `food_attribute_id` = 40650 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT `attribute_type_id` FROM `food_attribute` WHERE `food_attribute_id` = 40650 LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT `print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13879 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `count_type` FROM `attribute_type` WHERE ( attribute_type_id = 13879 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT `tag_print_id` FROM `attribute_type` WHERE ( attribute_type_id = 13879 ) LIMIT 1   [ RunTime:0.0018s ]
+SQL: INSERT INTO `order_food_attribute_201807` (`food_attribute_name`,`food_attribute_price`,`print_id`,`count_type`,`order_food_id`,`tag_print_id`,`num`,`food_attribute_id`) VALUES ('可乐','0.00','424','0','660','0','1','40650') [ RunTime:0.0019s ]
+
+[ 2018-07-23T10:20:37+08:00 ] 219.137.72.164 /index.php/Mobile/Index/pay_old_user/order_sn/DC0013118072310203600001
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000040s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000396s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000522s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000568s ]
+SQL: SHOW COLUMNS FROM `order_201807` [ RunTime:0.0038s ]
+SQL: SELECT `total_amount`,`order_sn`,`desk_code`,`restaurant_id` FROM `order_201807` WHERE `order_sn` = 'DC0013118072310203600001' LIMIT 1   [ RunTime:0.0030s ]
+SQL: SHOW COLUMNS FROM `restaurant` [ RunTime:0.0046s ]
+SQL: SELECT * FROM `restaurant` WHERE `restaurant_id` = 131 LIMIT 1   [ RunTime:0.0031s ]
+SQL: SHOW COLUMNS FROM `business` [ RunTime:0.0036s ]
+SQL: SELECT * FROM `business` WHERE `business_id` = 25 LIMIT 1   [ RunTime:0.0031s ]
+NOTIC: [2] file_put_contents(/www/web/yunniutest/public_html/Application/Mobile/Controller/sesssion2.txt): failed to open stream: Permission denied /www/web/yunniutest/public_html/Application/Mobile/Controller/IndexController.class.php 第 1272 行.
+SQL: SHOW COLUMNS FROM `config` [ RunTime:0.0031s ]
+SQL: SELECT `config_name`,`config_value` FROM `config` WHERE `config_type` = 'wxpay' AND `restaurant_id` = 131  [ RunTime:0.0193s ]
+
+[ 2018-07-23T10:21:38+08:00 ] 101.226.79.223 /index.php/Mobile/Index/pay_old_user/order_sn/DC0013118072310203600001
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000019s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000466s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000479s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000522s ]
+SQL: SHOW COLUMNS FROM `order_201807` [ RunTime:0.0032s ]
+SQL: SELECT `total_amount`,`order_sn`,`desk_code`,`restaurant_id` FROM `order_201807` WHERE `order_sn` = 'DC0013118072310203600001' LIMIT 1   [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `restaurant` [ RunTime:0.0034s ]
+SQL: SELECT * FROM `restaurant` WHERE `restaurant_id` = 131 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `business` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `business` WHERE `business_id` = 25 LIMIT 1   [ RunTime:0.0017s ]
+NOTIC: [2] file_put_contents(/www/web/yunniutest/public_html/Application/Mobile/Controller/sesssion2.txt): failed to open stream: Permission denied /www/web/yunniutest/public_html/Application/Mobile/Controller/IndexController.class.php 第 1272 行.
+SQL: SHOW COLUMNS FROM `config` [ RunTime:0.0025s ]
+SQL: SELECT `config_name`,`config_value` FROM `config` WHERE `config_type` = 'wxpay' AND `restaurant_id` = 131  [ RunTime:0.0017s ]
+

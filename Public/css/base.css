@@ -1,0 +1,476 @@
+@charset "utf-8";
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+label {
+    font-weight: normal;
+}
+
+hr {
+    margin: 0;
+}
+
+button {
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+a,
+a:focus {
+    outline: none;
+}
+
+.w100 {
+    width: 100%;
+}
+
+.mini-icon {
+    height: 1em;
+}
+
+button img {
+    vertical-align: inherit;
+}
+
+.inline-block {
+    display: inline-block;
+    margin-right: 18px;
+}
+
+fieldset {
+    padding: 5px 20px 10px;
+    border: 1px solid #d9d9d9;
+    margin-bottom: 15px;
+}
+
+legend {
+    width: auto;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 2px;
+    margin-bottom: 0;
+}
+
+.file-content {
+    position: relative;
+}
+
+.uploadImg {
+    width: 100%;
+    height: 100%;
+}
+
+input[type="file"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 220px;
+    height: 24px;
+    border: 1px solid #d3d3d3;
+    padding-left: 4px;
+    font-size: 12px;
+    outline: none;
+}
+
+input[type="text"]:disabled {
+    background-color: #fff;
+}
+
+input[type="text"].mini-input {
+    width: 3em;
+}
+
+input[type="text"].small-input {
+    width: 6em;
+}
+
+input[type="text"].large-input {
+    width: 297px;
+}
+
+input[type="text"].larger-input {
+    width: 445px;
+}
+
+textarea {
+    width: 297px;
+    height: 72px;
+    border: 1px solid #d3d3d3;
+    outline:none;
+    resize:none;
+}
+
+select {
+    font-size: 12px;
+    height: 24px;
+}
+
+.text-danger {
+    color: red;
+}
+.text-small{
+    font-size: 12px;
+}
+.text-large {
+    font-size: 1.2em;
+}
+
+.blue-btn {
+    display: inline-block;
+    min-width: 70px;
+    text-align: center;
+    line-height: 30px;
+    padding: 0 10px;
+    background-color: #50a4fa;
+    color: #fff;
+    border-radius: 4px;
+}
+
+.blue-btn:hover,
+.blue-btn:focus {
+    background-color: #65b1ff;
+    color: #fff;
+    outline: none;
+    text-decoration: none;
+}
+
+
+/*编辑按钮*/
+
+.edit-btn {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/edit.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.remove-btn {
+    vertical-align: middle;
+    width: 20px;
+    height: 20px;
+    background-image: url(../images/remove.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.flex-content {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    
+}
+.vertical-flex{
+    -webkit-box-align: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+.flex-main {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+
+
+/*
+	修改单选框样式（圆形）
+*/
+
+input[type="radio"].radio-circle {
+    display: none;
+}
+
+input[type="radio"].radio-circle+i {
+    display: inline-block;
+    vertical-align: middle;
+    width: 1em;
+    height: 1em;
+    background-image: url('../images/radio.png');
+    background-size: 100%;
+    margin-right: 2px;    
+}
+
+input[type="radio"].radio-circle:checked+i {
+    background-image: url('../images/radio_checked.png');
+}
+
+input[type="radio"].radio-circle:disabled+i {
+    background-image: url('../images/radio.png');
+}
+
+input[type="radio"].radio-circle:checked:disabled+i {
+    background-image: url('../images/radio.png');
+}
+
+
+/*
+	修改复选框样式（开关）
+*/
+
+.checkbox-switch {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    vertical-align: middle;
+}
+
+.checkbox-switch input[type="checkbox"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    opacity: 0;
+    cursor: pointer;
+    margin: 0;
+    line-height: 20px;
+}
+
+.checkbox-switch label {
+    position: relative;
+    display: block;
+    width: 50px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+    background: #a9a9a9;
+    border-radius: 20px;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.checkbox-switch label:before {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    line-height: 20px;
+    font-size: 12px;
+    content: 'OFF';
+    right: 8px;
+    z-index: 1;
+}
+
+.checkbox-switch label:after {
+    content: '';
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 100%;
+    left: 2px;
+    top: 2px;
+    z-index: 2;
+    background: #fff;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+}
+
+.checkbox-switch input:checked+label {
+    background: #79b9fa;
+}
+
+.checkbox-switch input:checked+label:before {
+    content: 'ON';
+    right: auto;
+    left: 11px;
+}
+
+.checkbox-switch input:checked+label:after {
+    left: 30px;
+}
+
+/*
+	修改下拉框样式
+*/
+
+input[type="text"].selectIcon {
+    width: 170px;
+    background-image: url(../images/select_grey.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+}
+.select-grey {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 170px;
+    height: 24px;
+    padding-right: 24px;
+    background-color: transparent;
+    background-image: url(../images/select_grey.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    border: 1px solid #dedede;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    outline: none;
+}
+.select-reset {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 170px;
+    height: 24px;
+    background-image: url(../images/select_grey.png);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: auto 100%;
+    border: 1px solid #dedede;
+    overflow: hidden;
+}
+
+.select-reset select {
+    background: transparent;
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    -webkit-appearance: none;
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    padding-right: 24px;
+}
+
+.select-reset.mini {
+    width: 60px;
+}
+
+.select-reset.mini select {
+    width: 100px;
+}
+
+select:focus {
+    background-color: transparent;
+}
+/*
+    修改tab栏的样式
+*/
+.nav-tabs{
+    padding-left: 15px;
+    margin-bottom: 15px;
+}
+.nav-tabs>li{
+    margin-right: 5px;
+    margin-bottom: 0;
+}
+.nav-tabs>li>a,
+.nav>li>a:focus, 
+.nav>li>a:hover{
+    padding: 5px 20px;
+    border-radius: 0;
+    background-color: #d5d5d5;
+    color: #000;
+    border-color: #b7b6b6;
+    border-bottom-color: transparent;
+}
+.nav-tabs>li.active>a, 
+.nav-tabs>li.active>a:focus, 
+.nav-tabs>li.active>a:hover{
+    border-color: #79b9fa;
+    border-bottom-color: transparent;
+    background-color: #79b9fa;
+    color: #fff;
+}
+/*tab样式二（报表）*/
+.nav-menu{
+    list-style: none;
+    margin-bottom: 0;
+}
+.nav-menu:after, 
+.nav-menu:before{
+    display: table;
+    content: " ";
+}
+.nav-menu:after {
+    clear: both;
+}
+.nav-menu>li{
+    display: block;
+    float: left;
+    padding: 2px 12px;
+    border: 1px solid #9c9c9c;
+}
+.nav-menu>li.active{
+    background-color: #4485fd;
+    border: 1px solid #4485fd;
+}
+.nav-menu>li.active a{
+    color: #fff;
+}
+.nav-menu>li a{
+    color: #313231;
+    text-decoration: none;
+}
+
+/*
+    修改modal的样式
+*/
+.modal-dialog {
+    width: 718px;
+    margin-top: 120px;
+}
+.modal-header{
+    padding: 0 0 0 10px;
+    height: 44px;
+    line-height: 44px;
+    background-color: #1c253f;
+    color: #fff;
+    font-size: 16px;
+}
+.modal-title{
+    font-size: 1em;
+    line-height: 44px;
+}
+.modal-header .close{
+    position: absolute;
+    top: -1px;
+    right: 0;
+    background-color: #79b9fa;
+    color: #fff;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    line-height: 44px;
+    text-align: center;
+    opacity: 1;
+    margin: 0;
+    font-size: 3em;
+}
+.modal-header .close-btn{
+    position: absolute;
+    top: -1px;
+    right: 0;
+    width: 44px;
+    height: 44px;
+    background-color: #79b9fa;
+    background-image: url(../images/close.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.info-input{
+    color: #999;
+    font-size: 13px;
+}

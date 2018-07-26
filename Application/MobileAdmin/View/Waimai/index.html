@@ -1,0 +1,40 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="美团" />
+    <section class="section">
+        <div class="section-row title">
+            <span>已绑定的美团店铺：</span>
+            <?php if(empty($restaurant_name)):?>
+            <span>未绑定</span>
+            <?php else: ?> {$restaurant_name}
+            <?php endif; ?>
+        </div>
+        <!--<button class="danger-btn-lg">点击这里，前往支付宝授权</button>-->
+        <input type="hidden" value="{$url}" id="grant_url" />
+        <input type="hidden" value="{$unbind_url}" id="unbind_url" />
+        <input type="hidden" value="{$has_bind}" id="has_bind" />
+        <a class="danger-btn-lg link-btn" target="_blank" href="javascript:void(0)" id="meituan_grant">点击这里，前往美团官方绑定</a>
+        <div class="metituan-ad">
+            <div class="flex-content section-row">
+                <span>票据广告：</span>
+                <textarea class="flex-main textarea" name="bill_foot_language" id="bill_foot_language">{$language_info['bill_foot_language']}</textarea>
+            </div>
+            <button class="danger-btn-lg section-row" onclick="changeadvlang_meituan()">保存广告语</button>
+            <div class="remarks section-row">注：美团自动接单、打印机设置等，在收银机上设置</div>
+        </div>
+        <button class="danger-btn-sm" id="meituan_unbind">解绑美团店铺</button>
+    </section>
+    <div class="tips">
+        <div>
+            <span class="tips-icon">*</span>
+            <span>对接后，在点餐机上面进入美团设置自动接单、打印机。</span>
+        </div>
+        <div>
+            <span class="tips-icon">*</span>
+            <span>注：自动接单只限一台设备，设备包含手机、点餐机、APP等等。若在收银机上接单，应关闭APP、手机等美团自动接单功能。</span>
+        </div>
+    </div>
+</block>
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/waimai.js"></script>
+</block>

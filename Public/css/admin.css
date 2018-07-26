@@ -1,0 +1,1171 @@
+@charset "utf-8";
+html,body,.h100{
+	height: 100%;
+}
+body{
+	font-family: "宋体",sans-serif;
+}
+.index-body{
+	background-color: #D9D9D9;
+	padding-top: 80px;
+	overflow-y: hidden;
+}
+[v-cloak]{
+	display: none;
+}
+.loading.layui-layer-loading .layui-layer-loading2{
+	width: 50px;
+    height: 50px;
+    background-size: 100%;
+}
+.pagination {
+    margin: 10px 0; 
+}
+.pagination>.active>a, .pagination>.active>a:focus, .pagination>.active>a:hover, .pagination>.active>span, .pagination>.active>span:focus, .pagination>.active>span:hover {
+    cursor: pointer;
+    background-color: #79b9fa;
+    border-color: #79b9fa;
+}
+.item{
+	display: inline-block;
+	margin-right: 15px;
+}
+.item .select-grey,
+.item .select-reset,
+.item input[type="text"]{
+	width: 113px;
+}
+.main{
+	position: relative;
+	width: 1210px;
+	height: 100%;
+	margin: 0 auto;
+	background-color: #fff;
+	padding-left: 175px;
+	border-right: 1px solid #d3d3d3;
+}
+.main-content{
+	padding-top: 10px;
+}
+.main-iframe{
+	width: 100%;
+	height: 100%;
+	border:none;
+}
+/* ---------------------------------------------- /*
+ * admin 顶部信息
+/* ---------------------------------------------- */
+.admin-header{
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	width: 100%;
+	min-width: 1210px;
+	border-top: solid 5px #1c253f;
+	background-color: #fff;
+	border-bottom: 1px solid #fafafa;
+}
+.admin-header-content{
+	width: 1210px;
+	height: 64px;
+	margin: 0 auto;
+}
+.header-title{
+	font-family: '黑体';
+	font-size: 20px;
+	color: #707070;
+	line-height: 64px;
+}
+.header-logo{
+	display: inline-block;
+	width: 55px;
+	height: 55px;
+	border: 1px solid #79b9fa;
+	margin-top: -5px;
+	vertical-align: middle;
+	border-radius: 50%;
+}
+.header-user{
+	font-size: 14px;
+	color: #5a5a5a;
+	padding: 15px 5px;
+	line-height: 34px;
+}
+.header-user-name{
+	display: inline-block;
+    padding-right: 16px;
+    vertical-align: middle;
+    text-align: right;
+    line-height: 1.4;
+    height: 100%;
+}
+.header-logout{
+	border-right: 1px solid #a0a0a0;
+	border-left: 1px solid #a0a0a0;
+	min-width: 4em;
+	margin-right: 5px;
+	padding: 0 .5em;
+}
+
+/* ---------------------------------------------- /*
+ * admin 左侧导航栏
+/* ---------------------------------------------- */
+.sidebar{
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	z-index: 100;
+	width: 175px;
+	height: 100%;
+	overflow-y: auto;
+	background-color: #1c253f;
+	line-height: 45px;
+	font-size: 14px;
+	color: #fff;
+}
+.sidebar ul,
+.sidebar li{
+	list-style: none;
+}
+.treeview a{
+	display: block;
+	white-space: nowrap;
+	color: inherit;
+	text-decoration: none;	
+}
+.treeview img{
+	width: 18px;
+	margin-right: 10px;
+}
+.treeview-header{
+	position: relative;
+	cursor:pointer;
+	padding-left: 25px;
+}
+.treeview-menu .treeview-item>a {
+	padding-left: 60px;
+}
+.treeview-item:hover{
+	background-color: #3c4357;
+}
+.treeview-item.active{
+	background-color: #79b9fa;
+}
+.treeview-menu{
+	display: none;
+}
+.sidebar-menu>.treeview:first-child .treeview-menu{
+	display: block;
+}
+.data-treeview-menu{
+	display: block;
+}
+
+/* ---------------------------------------------- /*
+ * admin 右侧
+/* ---------------------------------------------- */
+.section{
+	width: 1006px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	border: 1px solid #d3d3d3;	
+	color: #313231;
+}
+.small-section{
+	width: 485px;
+}
+.section-header{
+	background-color: #fafafa;
+	font-size: 16px;
+	font-weight: bold;
+	color: #545554;
+	line-height: 2.5;
+	padding: 0 15px;
+	border-bottom: 1px solid #d3d3d3;
+}
+.section-header .checkbox-switch{
+	margin-top: -5px;
+}
+.section-header button{
+	font-size: 12px;
+	font-weight: normal;
+}
+.section-content{
+	padding: 15px 25px;
+	font-size: 14px;
+	color: #313231;
+}
+.section-tips{
+	font-size: 12px;
+	color: #8d8c8c;
+	font-weight: normal;
+}
+.section-tips-indent{
+	text-indent: 2em;
+}
+.section-header-border{
+	padding-bottom: 10px;
+	border-bottom: 1px solid #d5d5d5;
+	margin-left: 15px;
+	margin-right: 15px;
+	margin-bottom: 10px;
+}
+/* ---------------------------------------------- /*
+ * 商家信息
+/* ---------------------------------------------- */
+.logo-preview{
+	display: inline-block;
+	vertical-align: middle;
+	box-sizing: content-box;
+	width: 90px;
+	height: 90px;
+	border: 1px solid #ddd;
+	margin-right: 10px;
+}
+.logo-preview img{
+	width: 100%;
+	height: 100%;
+}
+.logo-upload{
+	display: inline-block;
+	vertical-align: middle;
+	padding-top: 20px;
+}
+.logo-upload .blue-btn{
+	margin-bottom: 10px;
+}
+.restaurant-info .text-danger{
+	margin-left: -1em;
+}
+.mode-item{
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+.mode-item input[type=radio]{
+	margin: 0;
+	vertical-align: middle;
+}
+/* ---------------------------------------------- /*
+ * 模板
+/* ---------------------------------------------- */
+.order-process{
+	margin: 0 -25px 10px;
+	border-bottom: 1px solid #eaeaea;
+	padding: 10px;
+	-webkit-box-align: start; 
+    -moz-box-align: start;
+    box-align: start;
+    -ms-flex-align: flex-start;
+    -webkit-align-items: flex-start; 
+    align-items: flex-start;
+}
+.process-item{
+	position: relative;
+	padding: 0 13px;
+}
+.process-item:after{
+	content: '>';
+    position: absolute;
+    top: 70px; 
+    margin-left: -24px;
+    font-family: sans-serif;
+    font-size: 1.5em;
+    width: 20px;
+    text-align: center;
+    color: #189e45;
+}
+.process-item:first-child:after{
+	content: '';
+}
+.process-item-header{
+	padding-bottom: 10px;
+}
+.process-item img{
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+
+/* ---------------------------------------------- /*
+ * 广告展示
+/* ---------------------------------------------- */
+.showImg{
+	border: 1px solid #dcdcdc;
+	margin: 0 20px 10px 0;
+}
+.imgHorizontal{
+	position: relative;
+	width: 175px;
+	height: 100px;
+}
+
+.imgVertical{
+	position: relative;
+	width: 100px;
+	height: 175px;
+}
+.imgRectangle{
+	position: relative;
+	width: 150px;
+	height: 150px;
+}
+.delete-btn{
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	background-color: transparent;
+	border: 0;
+	z-index: 1;
+	width: 25px;
+	height: 25px;
+}
+
+.device-horizontal,
+.device-vertical{
+	padding-left: 5em;
+	position: relative;
+}
+.device-left{
+	position: absolute;
+	top: 0;
+	left: 0;
+	line-height: 110px;
+}
+.device-horizontal .device-item{
+	padding-right: 20px;
+	padding-bottom: 10px;
+}
+.device-vertical .device-item{
+	padding-right: 40px;
+	padding-bottom: 10px;
+}
+
+/*手机模板*/
+.mobile_template_item{
+	margin: 0 25px 10px 0;
+}
+.mobileTemplateImg{
+	width: 145px;
+	height: 230px;
+	margin: 0 auto 10px;
+	border: 1px solid #ddd;
+}
+.mobileTemplateImg img{
+	width: 100%;
+	height: 100%;
+}
+.color-select{
+	float: left;
+	width: 22px;
+	height: 22px;
+	border: 1px solid #c8c8c8;
+	margin-right: 2px;
+}
+.color-select.active{
+	border-color: #fff;
+}
+.color-select input{
+	opacity: 0;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+.color-red{
+	background-color: #ff0000;
+}
+.color-blue{
+	background-color: #45a9ff;
+}
+.color-green{
+	background-color: #77d339;
+}
+.color-yellow{
+	background-color: #ffb400;
+}
+.color-brown{
+	background-color: #534c4c;
+}
+.color-orange{
+	background-color: #99512e;
+}
+.mobile_template_item input[type="text"]{
+	width: 145px;
+	height: 22px;
+}
+/*
+	小票
+*/
+.receipt-content{
+	padding: 10px 20px;
+}
+.receipt-tips{
+	width: 255px;
+	text-align: center;
+	margin-bottom: 10px;
+}
+.receipt-left{
+	width: 255px;
+}
+.receipt{
+	width: 100%;
+	border: 1px solid #d8d8d8;
+	padding: 10px 15px;
+	font-size: 12px;
+	line-height: 2;
+	margin-top: 10px;
+}
+.receipt-larger{
+	font-weight: bold;
+	font-size: 30px;
+	text-align: center;
+	line-height: 1.5;
+}
+.receipt-logo{
+	text-align: center;
+	margin: .5em;
+}
+.receipt-logo img{
+	width: 8em;
+	height: 8em;
+	border-radius: 1em;
+}
+.receipt-num{
+	width: 4em;
+	text-align:center;
+}
+.receipt-price{
+	width: 4em;
+	text-align: right;
+}
+.recepir-hr{
+	margin-top: 5px;
+	margin-bottom: 0;
+	border-top: 1px dashed black;
+}
+.receipt-info{
+	width: 650px;
+	padding-left: 20px;
+	margin-top: 15px;
+}
+.receipt-info table{
+	margin-bottom: 20px;
+}
+.receipt-info table td{
+	padding: 0 5px;
+	height: 37px;
+	vertical-align: middle;
+}
+.receipt-info-tips{
+	margin-left: 220px;
+}
+/* ---------------------------------------------- /*
+ * 设备管理
+/* ---------------------------------------------- */
+.table-code{
+	width: 80%;
+	margin-top: 20px;
+}
+.table-code-img{
+	width: 60px;
+	height: 60px;
+}
+.device-table{
+	width: 100%;
+}
+
+
+/* ---------------------------------------------- /*
+ * 菜品设置
+/* ---------------------------------------------- */
+.dishes-classify{
+	float: left;
+	width: 262px;
+	min-height: 80%;
+	margin: 0 10px;
+}
+.dishes-classify .section-content{
+	padding: 0;
+}
+.dishes-classify-table{
+	width: 100%;
+	margin-top: 5px;
+}
+.dishes-classify-table tr:hover{
+	background-color: #f7f9fa;
+}
+.dishes-classify-table tr.active{
+	background-color: #d6eaff;
+}
+
+.dishes-classify-table td{
+	padding: 10px 5px;
+}
+.rank-up,
+.rank-down{
+	display: block;
+	width: 14px;
+	height: 10px;
+	margin: 1px auto;
+	background-position: center;
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+.rank-up{
+	background-image: url('../images/up.png');
+}
+.rank-down{
+	background-image: url('../images/down.png');
+}
+
+.dishes-list{
+	float: left;
+	width: 725px;
+	min-height: 80%;
+	margin-left: 0;
+}
+.dishes-list .section-content{
+	padding: 10px;
+}
+.dishes-list-table{
+	width: 100%;
+}
+.dishes-list-table tr{
+	border-bottom: 1px dashed #dcdcdc;
+}
+.dishes-list-table td{
+	padding: 12px 5px;
+}
+.dishes-list-name{
+	max-width: 180px;
+	vertical-align: top;
+}
+.dishes-list-name span{
+	display: inline-block;
+	max-width: 180px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+}
+.dishes-list-img{
+	width: 86px;
+	height: 52px;
+	border: 1px solid #dcdcdc;
+	overflow: hidden;
+}
+.dishes-list-price{
+	width: 5em;
+	text-align: right;
+}
+.dishes-list-star{
+	width: 10em;
+}
+.showStar{
+	display: inline-block;
+	width: 5.5em;
+	color: #f11717;
+}
+.showCayenne{
+	height: 1.3em;
+	margin-left: -8px;
+}
+/*.dishes-list .checkbox-switch input + label:before{
+	content: '下架';
+}
+.dishes-list .checkbox-switch input:checked + label:before{
+	content: '上架';
+	left: 6px;
+}*/
+.dishes-list-operation{
+	width: 60px;
+}
+.modal-item{
+	padding: 5px 0;
+}
+.dishesClassifyModal .nav-tabs{
+	margin: 5px -15px;
+}
+
+.icon-content{
+	display: none;
+	position: absolute;
+	z-index: 100;
+	width: 90%;
+	background-color: #fefefe;
+	border: 1px solid #ddd;
+	border-radius: 10px;
+	padding: 15px;
+	margin-top: 8px;
+}
+
+.icon-content:after, 
+.icon-content:before {
+	position: absolute;
+	left: 8em;
+	top: 0;
+  	border: solid transparent;
+  	content: ' ';
+  	width: 0;
+  	height: 0;
+}
+
+.icon-content:after {
+	border-width: 12px;
+    border-bottom-color: #fff;
+    top: -22px;
+}
+
+.icon-content:before {
+	border-width: 12px;
+	border-bottom-color: #ddd;
+	top: -24px;
+}
+.hide-btn{
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+.icon-content img{
+	width: 14%;
+	margin: 5px;
+}
+.classify-icon{
+	width: 30px;
+	height: 30px;
+}
+/* 编辑菜品 */
+
+.img-preview{
+	width: 302px;
+	height: 182px;
+	border: 1px solid #e1e1e1;
+	margin-bottom: 4px;
+}
+.img-preview img{
+	width: 100%;
+	height: 100%;
+}
+.dishes-info-left{
+	line-height: 2;
+}
+.dishes-info-right{
+	margin-left: 45px;
+}
+.dishes-info-right table td{
+	padding: 4px;
+}
+.cayenne img{
+	height: 1.8em;
+}
+.cayenne span{
+	display: inline-block;
+	width: 1.3em;
+	height: 1.3em;
+	cursor: pointer;
+	background-image: url(../images/cayenne.png);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+.cayenne span.active~span {
+    background-image: url(../images/cayenne_grey.png);
+}
+
+.star>input {
+    opacity: 0;
+    position: absolute;
+    width: 2em;
+    height: 2em;
+    margin: 0;
+    cursor: pointer;
+}
+.star>span {
+    font-size: 1.5em;
+    color: #e84244;
+    -webkit-transition: color .8s;
+    transition: color .8s;
+}
+.star>input:checked~span {
+    color: #666;
+}
+.star>input:checked+span {
+    color: #e84244;
+}
+
+fieldset input[type="text"]{
+	max-width: 150px;
+}
+.classifySelect{
+	min-width: 120px;
+	padding-right: 15px;
+}
+.dishes-spec{
+	border: 1px solid #d6d6d6;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.dishes-spec-header{
+	padding: 10px 0;
+}
+.dishes-attr-left{
+	line-height: 34px;
+}
+.dishes-attr-list{
+	width: 860px;
+}
+.dishes-attr-item{
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	min-width: 9em;
+	padding: .5em;
+	border:1px solid #ddd;
+	margin-right: 15px;
+	margin-bottom: 15px;
+	font-size: 12px;
+}
+.dishes-attr-edit{
+	position: absolute;
+	right: .5em;
+	bottom: .5em;
+}
+.dishes-attr-del{
+	position: absolute;
+	right: -10px;
+	top: -10px;
+	background-position: center center;
+	border:1px solid #c3c3c3;
+	border-radius: 100%;
+}
+.dishes-attr-add{
+	display: inline-block;
+}
+
+/* ---------------------------------------------- /*
+ * 第三方对接
+/* ---------------------------------------------- */
+.pay-code{
+	display: block;
+	width: 140px;
+	margin-bottom: 1em;
+}
+.pay-content{
+	padding: 0 15px 15px;
+	line-height: 1.8;
+}
+
+/*打印机对接*/
+.printer-content .print-table{
+	width: 100%;
+	margin-bottom: 10px;
+}
+.print-tips{
+	margin-top: 15px;
+}
+.printModal-table tr>td:first-child{
+	min-width: 7em; 
+	vertical-align: top;
+}
+.printer-template{
+	float: left;
+	margin-right: 15px;
+}
+.pay-tips{
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid #eee;
+}
+
+/* ---------------------------------------------- /*
+ * 收银员
+/* ---------------------------------------------- */
+.accounts-table tr>td{
+	min-width: 4em;
+	padding: 5px 50px 5px 0;
+}
+.accounts-tips{
+	margin-top: 10px;
+	line-height: 1.8;
+}
+.accountsModal-table{
+	width: 100%;
+}
+.accountsModal-table tr>td{
+	padding: 5px;
+}
+.accountsModal-table tr>td:first-child{
+	width: 6em;
+}
+.accountsModal-table tr>td input{
+	max-width: 170px;
+}
+/* ---------------------------------------------- /*
+ * 销售统计(旧的)
+/* ---------------------------------------------- */
+.search-box{
+	padding-left: 15px;
+	background-color: #fff;
+}
+.datetime-search{
+	margin-bottom: 15px;
+}
+.datetime-search input{
+	width: 100px;
+}
+.search-list{
+	list-style: none;
+}
+.search-list>li{
+	min-width: 100px;
+	float: left;
+}
+.search-result{
+	width: 100%;
+	overflow:auto;
+}
+.sale-table{
+	white-space: nowrap;
+}
+.sale-table tr>td:first-child{
+	padding: 0 0 0 15px;
+}
+.sale-table td{
+	padding: 0 15px;
+}
+.sale-table-content{
+	width: 100%;
+	overflow: auto;
+	position: relative;
+}
+.sale-table-page .pagination{
+	margin: 0;
+}
+
+.search-form{
+	width: 150px;
+	display: inline-block;
+}
+
+/* ---------------------------------------------- /*
+ * 销售统计
+/* ---------------------------------------------- */
+.sale-search-form{
+	padding: 0 15px 15px;
+}
+/*简要报表*/
+.summary-nav{
+	position: absolute;
+	right: 15px;
+	top: 46px;
+	z-index: 1;
+}
+.summary-header{
+/*	-webkit-box-align: end;
+    -moz-align-items: flex-end;
+    -ms-flex-align: flex-end;
+    -webkit-align-items: flex-end;
+    align-items: flex-end;*/
+	border-bottom: 1px solid #9c9c9c;
+	padding-bottom: 25px;
+}
+.summary-header-name{
+	font-size: 20px;
+}
+.summary-header-num{
+	font-size: 30px;
+}
+.summary-content{
+	padding-left: 130px;
+}
+.summary-info{
+	float: left;
+	width: 180px;
+	padding-top: 30px;
+}
+.summary-info-item{
+	height: 30px;
+}
+.summary-info-icon{
+	display: inline-block;
+	width: .8em;
+	height: .8em;
+}
+.cash{
+	background-color: #df1b1c;
+}
+.wechat{
+	background-color: #2ed023;
+}
+.alipay{
+	background-color: #5897f6;
+}
+.member{
+	background-color: #ff9702;
+}
+.card{
+	background-color: #ff0090;
+}
+.summary-info-stat{
+	margin-top: 15px;
+	padding-top: 10px;
+	height: 40px;
+	border-top: 1px solid #9c9c9c;
+}
+.summary-chart{
+	float: left;
+	margin-left: 60px;
+}
+.summary-dishes-content{
+	margin-top: 20px;
+}
+.summary-dishes{
+	float: left;
+	width: 260px;
+	margin-right: 60px;
+}
+.summary-dishes-title{
+	border-bottom: 1px solid #9c9c9c;
+	line-height: 2.6;
+	margin-bottom: 10px;
+}
+.summary-dishes table{
+	width: 100%;
+}
+.summary-dishes table td{
+	height: 40px;
+}
+/*菜品明细*/
+.dishes-stat-header{
+	padding: 0 15px 15px;
+}
+.dishes-stat{
+	padding: 5px;
+	font-size: 12px;
+}
+.dishes-stat table{
+	width: 100%;
+}
+.dishes-stat table td{
+	padding: 5px;
+}
+.food-chart-name{
+	max-width: 12em;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+.progress-td{
+	width: 240px;
+}
+.dishes-progress-bg{
+	background-color: #ababab;
+	width: 220px;
+	overflow-x: hidden;
+}
+.dishes-progress{
+	background-color: #2068b0;
+	height: 9px;
+}
+/*明细统计*/
+.stats-detail-header{
+	border-bottom: 1px solid #cacaca;
+	padding: 5px 10px;
+}
+.stats-detail-header .item{
+	padding: 5px 0;
+}
+.stats-detail-header .blue-btn{
+	line-height: 26px;
+}
+.stats-detail{
+	border-top: none;
+	width: 815px;
+	margin-right: 5px;
+	min-height: 400px;
+}
+.stats-detail .section-content{
+	padding: 10px;
+}
+.stats-detail-item{
+	border-top: 1px dashed #cacaca;
+	height: 25px;
+}
+.stats-detail-item td{
+	min-width: 3em;
+}
+.stats-detail-index{
+	display: inline-block;
+	width: 1em;
+}
+.stats-detail-btn{
+	width: 1.5em;
+	text-align: center;
+	color: #019fde;
+}
+.stats-detail-dishes{
+	width: 100%;
+	color: #939393;
+	margin-bottom: 5px;
+}
+.stats-detail-name{
+	padding-left: 1em;
+}
+.stats-detail-attr{
+	padding-left: 3em;
+}
+.stats-detail-num{
+	width: 5em;
+	text-align: right;
+}
+.stats-detail-status{
+	width: 4em;
+	text-align: center;
+}
+
+.stats-detail-info{
+	width: 150px;
+}
+.stats-detail-total{
+	width: 180px;
+	border-top: 1px solid #9c9c9c;
+	text-align: right;
+	padding: 5px 0;
+	margin-bottom: 10px;
+}
+/*饿了么统计*/
+
+.data-result{
+	border-top: 1px solid #ddd;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 100;
+	background-color: #fff;
+	padding: 15px;	
+}
+
+/* ---------------------------------------------- /*
+ * 会员管理
+/* ---------------------------------------------- */
+/*会员折扣*/
+.member-discount-table{
+	margin-bottom: 5px;
+}
+.member-discount-table tr{
+	border-bottom: 1px dashed #ddd;
+}
+.member-discount-table tr:last-child{
+	border-bottom: none;
+}
+.member-discount-table td{
+	padding: 6px 45px 6px 0;
+	font-size: 12px;
+}
+.member-discount-table td:first-child{
+	padding-right: 15px;
+	padding-left: 15px;
+}
+.member-discount-table td:last-child{
+	padding-right: 0px;
+}
+.discountModal-info{
+	margin-bottom: 15px;
+}
+/*会员组*/
+.memberGroup{
+	display: inline-block;
+	width: 170px;
+}
+.memberGroup-item{
+	padding: 5px;
+	border-bottom: 1px dashed #ddd;
+	font-size: 12px;
+}
+/*充值信息*/
+.member-charge tr{
+	font-size: 12px;
+	border-bottom: 1px dashed #ddd;
+}
+.member-charge th,
+.member-charge td{
+	padding: 5px 70px 5px 5px;
+}
+.member-charge th:first-child,
+.member-charge td:first-child{
+	padding-right: 30px;
+}
+.member-charge th:last-child,
+.member-charge td:last-child{
+	padding-right: 0;
+}
+/*积分兑换*/
+.point_consumptio-table tr{
+	border-bottom: 1px dashed #ddd;
+}
+.point_consumptio-table td{
+	font-size: 12px;
+	padding: 10px 5px 5px 13px;
+}
+.point_consumptio-table td:nth-child(2){
+	padding-left: 13px;
+	padding-right: 27px;
+}
+.point-exchange-item{
+	width: 20%;
+	margin-bottom: 20px;
+	padding-right: 1.5em;
+}
+.pic-thumbnail {
+    display: block;
+    position: relative;
+    width: 100%;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding-bottom: 60%;
+    margin-bottom: 10px;
+}
+.pic-thumbnail img{
+	width: 100%;
+	height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/*自定义菜单*/
+.menu-item{
+	margin-bottom: 10px;
+}
+/*电子餐牌*/
+.el-input input[type="text"]{
+	width: 100%;
+}
+.billBoard .el-select__tags{
+    max-height: 24px;
+    overflow: hidden;
+}
+.billBoard .el-select .el-tag {
+    height: 22px;
+    line-height: 22px;
+    margin: 0px 0px 0px 6px;
+}
+.billBoard .el-input--mini .el-input__inner{
+    max-height: 24px;
+}
+.billBoard .el-date-editor--time-select{
+	width: 70px;
+}
+.partition .el-tag{
+	margin-right: 1em;
+	margin-bottom: .5em;
+}
+.dishes-info-right table td.textR{
+	text-align: right;
+}
+.star.inline{
+	display: inline-block;
+}

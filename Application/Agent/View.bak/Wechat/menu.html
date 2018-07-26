@@ -1,0 +1,192 @@
+<include file="Public/head" />
+<body>
+<div class="container-fluid main-content">
+    <div class="wechat-menu" id="menu">
+        <div v-for="(menuItem,menuIndex) in menu" v-if="menu">
+            <div class="menu-item clearfix">
+                <div class="pull-left">
+                    <input type="text" v-model="menuItem.name">
+                </div>
+                <button @click="removeMenu(menuIndex)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span>删除此菜单</span>
+                </button>
+                <span class="text-grey">|</span>
+                <button @click="addSubMenu(menuIndex)">
+                    <i class="glyphicon glyphicon-plus"></i>
+                    <span>添加子菜单</span>
+                </button>
+                <span class="text-grey" v-show="!menuItem.sub_button||menuItem.sub_button==''">|</span>
+                <button @click="setMenu(menuIndex)" v-show="!menuItem.sub_button||menuItem.sub_button==''">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <span>设置此菜单动作</span>
+                </button>
+            </div>
+            <div class="menu-item clearfix" v-if="menuItem.sub_button" v-for="(menuSub,subIndex) in menuItem.sub_button">
+                <div class="pull-left">
+                    <div class="flex-content">
+                        <span class="menu-left-icon"></span>
+                        <input type="text" v-model="menuSub.name">
+                    </div>
+                </div>
+                <button @click="removeSubMenu(menuIndex,subIndex)">
+                    <i class="glyphicon glyphicon-remove"></i>
+                    <span>删除此菜单</span>
+                </button>
+                <span class="text-grey">|</span>
+                <button @click="setSubMenu(menuIndex,subIndex)">
+                    <i class="glyphicon glyphicon-pencil"></i>
+                    <span>设置此菜单动作</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button class="blue-btn" onclick="addMenu()">新增菜单</button>
+    <button class="blue-btn" onclick="saveMenu()">保存菜单结构</button>
+    <!--<button class="btn btn-primary">删除</button>-->
+</div>
+<div class="modal fade" tabindex="-1" id="setting">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">选择菜单【未命名菜单】要执行的操作</h4>
+            </div>
+            <div class="modal-body">
+                <div class="flex-content">
+                    <span>链接：</span>
+                    <input type="text" class="flex-main" id="menuUrl">
+                </div>
+                <div class="text-grey">指定点击此菜单时跳转的链接（注：链接需加http://）</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="blue-btn" id="saveUrl">保存</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<script src="__PUBLIC__/js/jquery-3.1.0.min.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/layer/layer.js"></script>
+<!-- 引入vue.js -->
+<script src="__PUBLIC__/js/vue.js"></script>
+<script type="text/javascript">
+    var url="/index.php/Agent/Wechat/menuAjax";
+    var menuList = new Vue({
+        data:{
+            menu:[]
+        },
+        mounted: function() {
+            var that = this;
+            $.ajax({
+                url: url,
+                type: 'get',
+                dataType: 'json',
+                success:function(data){
+                    that.menu=data.button;
+                }
+            });
+        },
+        methods: {
+            removeMenu(index){
+        //删除主菜单
+        this.menu.splice(index, 1);
+    },
+    addSubMenu(index){
+        //新增子菜单
+        if(!this.menu[index].sub_button) {
+            this.menu[index].sub_button=[];
+        }
+        if(this.menu[index].sub_button&&this.menu[index].sub_button.length<5){
+            this.menu[index].sub_button.push({
+                'name':'',
+                'type':"view",
+                'url':''
+            });
+        }else{
+            layer.msg('最多五个子菜单');
+        }
+        var newArr=this.menu[index];
+        Vue.set(this.menu, index, newArr);
+    },
+    setMenu(menuIndex){
+        // 设置主菜单动作
+        var url=this.menu[menuIndex].url;
+        $('#menuUrl').val(url);
+        $('#saveUrl').data('menuIndex', menuIndex);
+        $('#saveUrl').data('subIndex', '');
+        $('#setting').modal('show');
+    },
+    removeSubMenu(menuIndex,subIndex){
+        //删除子菜单
+        this.menu[menuIndex].sub_button.splice(subIndex, 1);
+        var newArr=this.menu[menuIndex];
+        Vue.set(this.menu, menuIndex, newArr);
+    },
+    setSubMenu(menuIndex,subIndex){
+        // 设置子菜单的动作
+        var url=this.menu[menuIndex].sub_button[subIndex].url;
+        $('#menuUrl').val(url);
+        $('#saveUrl').data('menuIndex', menuIndex);
+        $('#saveUrl').data('subIndex', subIndex);
+        $('#setting').modal('show');
+    }
+    }
+    }).$mount('#menu');
+
+    //修改链接
+    $('#saveUrl').click(function(event) {
+        var menuIndex= $('#saveUrl').data('menuIndex');
+        var subIndex=$('#saveUrl').data('subIndex');
+        if(subIndex===""){
+            console.log("主菜单链接");
+            menuList.menu[menuIndex].url=$('#menuUrl').val();
+        }else{
+            console.log("子菜单链接");
+            menuList.menu[menuIndex].sub_button[subIndex].url=$('#menuUrl').val();
+        }
+        $('#setting').modal('hide');
+    });
+
+    // 新增菜单
+    function addMenu(){
+        if(menuList.menu.length<3){
+            menuList.menu.push({
+                'name':'',
+                'type':"view",
+                'url':''
+            });
+        }else{
+            layer.msg("主菜单不能超过三个");
+        }
+    }
+
+    // 保存菜单结构
+    function saveMenu(){
+        var menuData=JSON.stringify(menuList.menu);
+        console.log(menuData);
+        var createMenu = "__MODULE__/Wechat/menu";
+        $.ajax({
+            type:'post',
+            url:createMenu,
+            data:{
+                menu:menuData
+            },
+            success:function(data){
+                if(data.code == 0){
+                    layer.msg(data.msg);
+                    setTimeout(function(){
+//										location.href = url;
+                        window.location.reload();
+                    }, 1000);
+                }else{
+                    layer.msg(data.msg);
+                }
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>

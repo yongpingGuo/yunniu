@@ -1,0 +1,312 @@
+<extend name="Public:base" />
+<block name="css">
+	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/Mobile/select.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/mobiscroll-datetime/css/mobiscroll.javascript.min.css">
+</block>
+<block name="main">
+	<body class="time-body">
+		<header class="home-header">
+			<a href="javascript:history.back(-1)">
+				<img src="__PUBLIC__/images/lt.png">
+				<b>重新点餐</b>
+			</a>
+		</header>
+		<!--<div class="text-center time-title">选择用餐时间</div>-->
+		<div class="time-content select-time">
+			<eq name="timeInfo.types" value="1">
+				<div class="list-item flex-content vertical-flex">
+					<span class="flex-main">选择日期</span>
+					<div>
+						<eq name="timeInfo.is_today" value="1">
+							<label class="radio radio-rect">
+								<input type="radio" class="radio" name="date" value="1" checked="checked">
+								<span class="radio-name">今天</span>
+							</label>
+						</eq>
+						<eq name="timeInfo.is_tomorrow" value="1">
+							<label class="radio radio-rect">
+								<input type="radio" class="radio" name="date" value="2">
+								<span class="radio-name">明天</span>
+							</label>
+						</eq>
+					</div>
+				</div>
+				<div class="list-item flex-content vertical-flex">
+					<span>预计到店时间</span>
+					<span id="time" class="flex-main text-right">
+						<span class="text-grey">请选择时间</span>
+					</span>
+					 <span id="timeTips" class="flex-main text-right text-grey" hidden="hidden">没有可选时间</span>
+					<i class="iconfont icon-more"></i>
+				</div>
+			</eq>
+			 <!--类型为自由食用-->
+			<eq name="timeInfo.types" value="2">
+				<div class="list-item flex-content vertical-flex">
+					<span class="flex-main">选择日期</span>
+					<div>
+						<eq name="timeInfo.is_free_today" value="1">
+							<label class="radio radio-rect">
+								<input type="radio" class="radio" name="date" value="1" checked="checked">
+								<span class="radio-name">今天</span>
+							</label>
+						</eq>
+						<eq name="timeInfo.is_free_tomorrow" value="1">
+							<label class="radio radio-rect">
+								<input type="radio" class="radio" name="date" value="2">
+								<span class="radio-name">明天</span>
+							</label>
+						</eq>
+					</div>
+				</div>
+				<div class="list-item flex-content vertical-flex">
+					<span>预计到店时间</span>
+					<input type="text" id="time" class="flex-main text-right" readonly>
+					<i class="iconfont icon-more"></i>
+				</div>
+			</eq>         
+		</div>
+		 <p class="text-active time-tips">温馨提示：我们准时出餐，为使食品质量更好，请提前到店</p>
+		<input type="hidden" name="types" id="types" value='{$timeInfo.types}' />
+		<input type="hidden" name="order_sn" id="order_sn" value='{$order_sn}' />
+		
+		<div class="pay-select">
+			<div class="pay-item" id="weixin">
+				<a href="javascript:void(0)">
+					<img src="__PUBLIC__/images/wechat.png" class="pay-item-img">
+					<span>微信支付</span>
+				</a>
+				<div class="pay-item-right">
+					<span class="glyphicon glyphicon-ok-circle red" data-paytype="0"></span>
+				</div>
+			</div>
+            <if condition="($open==1)">
+    			<div class="pay-item" id="vip">
+    				<a href="javascript:void(0)">
+    					<img src="__PUBLIC__/images/vip_pay.png" class="pay-item-img">
+    					<span>使用会员余额支付</span>
+    				</a>
+    				<div class="pay-item-right">
+    					<span class="glyphicon glyphicon-ok-circle" data-paytype="1"></span>
+    				</div>
+    			</div>
+            </if>
+		</div>
+		<div class="text-center">
+			<button class="btn-none check-pay" id="goPay">  <!--  onclick="selectPay()" -->
+				确认支付<span class="larger ml-10"> &yen;<span class="Total">{$order.total_amount}</span></span>
+				<img src="__PUBLIC__/images/gt.png" class="pay-btn-img"/>
+			</button>
+		</div>
+    </body>
+</block>
+<block name="js">
+    <script src="__PUBLIC__/layer/layer.js"></script>
+	<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+    <script src="__PUBLIC__/js/Mobile/mobileSelect.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/mobiscroll-datetime/js/mobiscroll.javascript.min.js"></script>
+    <script type="text/javascript">
+		$('.pay-item').click(function(){
+			$('.pay-item-right span').removeClass('red');
+			$(this).find('.pay-item-right span').addClass('red');
+		});
+		
+        //获取时间选择的方式：1为限定时间，2为自由时间
+        var types = $("#types").val(); 
+        // 获取准时用餐的时间
+        var fixed_today = new Array();//今天时间数组
+            <volist name="timeInfo.ext" id="vo">
+                    <eq name="vo['is_use']" value="1">fixed_today.push('{$vo.times}');</eq>
+            </volist>
+            fixed_today=fixed_today.sort();
+        var fixed_tomorrow = new Array();//明天时间数组
+            <volist name="timeInfo.ext_tomo" id="vo">
+                    <eq name="vo['is_use']" value="1">fixed_tomorrow.push('{$vo.times}');</eq>
+            </volist>  
+            fixed_tomorrow=fixed_tomorrow.sort();     
+        // 获取自由食用的时间
+        var free_start_today="{$timeInfo.time1_today}";
+        var free_start_exist="{$timeInfo.time2_today}";//如果值为0，则表示今天开始时间大于结束时间
+        var free_start_tomorrow="{$timeInfo.time1}";
+        var free_end="{$timeInfo.time2}";
+        var mobileSelect;
+        var freeMobiscroll;
+        // 定义mobiscroll的样式
+        mobiscroll.settings = {
+            lang: 'zh',
+            display: 'bottom'
+        };
+        var dayVal=$('input[name="date"]:checked').val();
+        if (types == 1) { //限定时间
+            fixedArr(dayVal);       
+
+        } else { //自由时间
+            freeArr(dayVal);
+        }
+        // 限定时间：根据日期绑定对应时间
+        function fixedArr(val) {
+            $('#time').show();
+            $('#timeTips').hide();
+            var fixed_time_arr;
+            if (val == 1) {
+                // 今天
+                fixed_time_arr=fixed_today;
+            } else {
+                // 明天
+                fixed_time_arr=fixed_tomorrow;
+            }
+            if(fixed_time_arr.length==0){
+                $('#timeTips').show();
+                layer.msg("没有可选时间");
+                $('#time').text("没有可选时间").hide();
+                return;
+            }
+            $('#time').text(fixed_time_arr[0]);
+            // 判断是否初始化mobileSelect控件
+            if(mobileSelect){
+                mobileSelect.updateWheel(0,fixed_time_arr); 
+            }else{            
+                mobileSelect = new MobileSelect({
+                    trigger: '#time',
+                    title: '选择时间',
+                    wheels: [{
+                        data: fixed_time_arr
+                    }],
+                    position: [0]
+                });
+            }
+        }
+        // 自由食用：根据日期绑定对应时间
+        function freeArr(val) {
+            var free_start="";
+            $('#time').attr('placeholder',"选择时间"); 
+            if (val == 1) {
+                // 今天
+                if(free_start_exist==0){
+                    layer.msg("没有可选时间");
+                    $('#time').attr('placeholder',"没有可选时间");  
+                    if(freeMobiscroll){
+                        freeMobiscroll.destroy()
+                    }
+                    return;
+                }
+                free_start=free_start_today;
+            } else {
+                // 明天
+                free_start=free_start_tomorrow;
+            }
+            
+            var free_start_h = free_start.split(":")[0];
+            var free_start_m = free_start.split(":")[1];
+            var free_end_h = free_end.split(":")[0];
+            var free_end_m = free_end.split(":")[1];
+            $('#time').val(free_start);
+            freeMobiscroll=mobiscroll.time('#time', {
+                min: new Date(new Date().setHours(free_start_h, free_start_m)),
+                max: new Date(new Date().setHours(free_end_h, free_end_m)),
+            });
+        }
+
+        $('input[name="date"]').change(function(event) {
+            dayVal=$('input[name="date"]:checked').val();
+            if (types == 1) {
+                fixedArr(dayVal);
+            }else {
+                freeArr(dayVal);
+            }
+        });
+
+        $("#goPay").click(function() {
+            var time = "";
+            if (types == 1) {
+                time = $("#time").text();
+            } else {
+                time = $("#time").val();
+            }
+            var check = $(":radio:checked").val();
+
+            var order_sn = $("#order_sn").val();
+
+            if (typeof(check) == 'undefined') { //没有选择时间
+                var check = 1;
+                layer.msg("日期已默认选择今天");
+    //            return false;
+            }
+            if(!(time.indexOf(":") > 0 )){
+                layer.msg("请选择时间");
+                return false;
+            }
+            $.post("{:U('Index/updateOrder')}", { use_time: time, use_day: check, order_sn: order_sn }, function(data) {
+                if(data.code == 1) {
+                    layer.msg(data.msg);
+                    return false;
+                }
+                var payType = $(".glyphicon-ok-circle.red").data("paytype");
+                if(payType == 1){
+                    //self.location.href = "/index.php/mobile/AlipayWapPay/wapPay/order_sn/"+order_sn;
+                    $.ajax({
+                        url: "/index.php/mobile/Index/balance/order_sn/"+order_sn,
+                        type: "get",
+                        data: "",
+                        dataType: "json",
+                        contentType: "application/json",
+                        success: function(data){
+                            if(data.code==1){
+                                window.location.href = "/index.php/mobile/Order/index/restaurant_id/"+data.restaurant_id;
+                            }else{
+                                alert(data.msg);
+                                // alert(data.message);
+                            }
+                        },
+                        error: function(x,err){
+                            alert(err);
+                        }
+                    })
+                }else if(payType == 0){
+                    callpay();
+                }
+                //location = '/index.php/Mobile/Index/pay_old/order_sn/'+data.order_sn+'';
+            });
+        });
+		
+        //调用微信JS api 支付
+        function jsApiCall() {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest',
+                {$jsApiParameters},
+                function(res) {
+                    WeixinJSBridge.log(res.err_msg);
+                    if (res.err_msg == 'get_brand_wcpay_request:cancel') {
+                        alert("您已取消了此次支付");
+                        return;
+                    } else if (res.err_msg == 'get_brand_wcpay_request:fail') {
+                        alert("支付失败");
+                        return;
+                    } else if (res.err_msg == 'get_brand_wcpay_request:ok') {
+                        var restaurant_id = $("#restaurant_id").val();
+                        var desk_code = $("#desk_code").val();
+                        //                            location.href="{:U('Order/index', 'restaurant_id=restaurant_id&business_id=business_id')}";
+                        location.href = "/index.php/Mobile/Order/index/restaurant_id/{$restaurant_id}/business_id/{$business_id}/restaurants_id/{$restaurants_id}/";
+                    } else {
+                        alert("未知错误" + res.error_msg);
+                        return;
+                    }
+                }
+            );
+        }
+
+        function callpay() {
+            if (typeof WeixinJSBridge == "undefined") {
+                if (document.addEventListener) {
+                    document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+                } else if (document.attachEvent) {
+                    document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+                    document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+                }
+            } else {
+                jsApiCall();
+            }
+        }
+    </script>
+</block>

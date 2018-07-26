@@ -1,0 +1,66 @@
+<include file="Public/head" />
+
+<body onload="init()">
+    <section class="container-fluid" id="comment_list">
+        <div class="main-content">
+            <div class="store-head">
+                <label>
+                    <input type="radio" name="store" id="0" class="radio-circle store_type" <?php if($vip_mode == 0) echo checked?> >
+                    <i></i>
+                    <span>店铺模式</span>
+                </label>
+                <br>
+                <br>
+                <br>
+                <label>
+                    <input type="radio" name="store" id="1" class="radio-circle store_type" <?php if($vip_mode == 1) echo checked?>>
+                    <i></i>
+                    <span>代理模式</span>
+                </label>
+            </div>
+        </div>
+    </section>
+    <script>
+        //修改代理的单多店模式
+        var checked = $(".store_type:checked").attr('id');
+        $('.store_type').on('click',function(){
+            var id = $(this).attr('id');
+            console.log(id)
+            if(id != checked ){
+                layer.msg('你要更换会员模式吗?',{
+                    time:0,
+                    btn:['确定','取消'],
+                    yes:function(index){
+                        layer.close(index);
+                        $.ajax({
+                            type:"post",
+                            url:"/index.php/Agent/Members/restaurantOrbusiness",//店铺模式的切换
+                            data:{
+                                type:id
+                            },
+                            async:false,
+                            dataType:"json",
+                            success:function(data){
+                                if(data.code == 0){
+                                    layer.msg(data.msg);
+                                    setTimeout(function(){
+                                        parent.location.reload();
+                                    }, 1000);
+                                }else{
+                                    layer.msg(data.msg);
+                                }
+                            },
+                            error:function(msg){
+                                alert('请求错误');
+                            }
+                        })
+                    }
+                })
+            }
+
+        })
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,126 @@
+<include file="Public/head"/>
+<style>
+	.red_color{
+		color: red;
+	}
+</style>
+<body>
+	<section class="container-fluid">
+		<div class="main-content">		
+			{:tpl_AuthCheck('AllAgent/add_admin',$_SESSION['manager_id'],'or','<button data-toggle="modal" class="btn-black add-agent" onclick="showmodel()">新增管理员</button>','')}
+			<div id="mytable">
+			<table class="table table-hover">
+				<tr>
+					<th>序号</th>
+					<th>管理员帐号</th>
+					<th>管理员密码</th>
+					<th>管理员级别</th>
+					<th>品牌商权限</th>
+					<th>设备权限</th>
+					<th>管理员权限</th>
+					<th>手机号码</th>
+					<th>备注</th>
+					<th>操作</th>
+				</tr>
+				<volist name = "Arrlist" id = "v">
+				<tr>	
+					<td>{$key+1}</td>
+					<td>{$v.manager_account}</td>
+					<td>
+						<span class="agent-psd">
+							{$v.manager_password||md5}
+						</span>
+					</td>		
+					<td>{$v.title}</td>
+					<td>品牌商(<if condition = "$v.title eq '超级管理员'">新增/编辑/删除
+					<elseif condition = "$v.title eq '高级管理员'"/>新增/编辑/删除
+					<elseif condition = "$v.title eq '中级管理员'"/>新增/编辑
+					<else/>
+					</if>);</td>
+					<td>设备(<if condition = "$v.title eq '超级管理员'">新增/编辑/删除
+					<elseif condition = "$v.title eq '高级管理员'"/>编辑/删除
+					<elseif condition = "$v.title eq '中级管理员'"/>
+					<else/>
+					</if>);</td>
+					<td>管理员(<if condition = "$v.title eq '超级管理员'">新增/编辑/删除
+					<elseif condition = "$v.title eq '高级管理员'"/>
+					<elseif condition = "$v.title eq '中级管理员'"/>
+					<else/>
+					</if>);</td>
+					<td>{$v.manager_phone}</td>
+					<td>{$v.manager_ps}</td>
+					<td>
+						<button class="btn btn-black" data-target="#addAdmin" data-toggle="modal" onclick="modify_admin({$v.manager_id})">编辑</button>
+						<button class="btn btn-default" onclick="del_admin({$v.manager_id})">删除</button>
+					</td>
+				</tr>
+				</volist>
+			</table>
+			<div>
+			    <ul class="pagination" id="detail-page">
+			        {$page}
+			    </ul>
+			</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="modal fade" id="addAdmin" tabindex="-1" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-head" id="admintext">新增管理员</div>
+				<form>
+				<input type="hidden" name="commit_way" />
+				<input type="hidden" name="manager_id" />
+				<table>
+					<tr>
+						<td>账号：</td>
+						<td>
+							<input type="text" name="manager_account"><span class="red_color"> * </span></td>
+					</tr>
+					<tr>
+						<td>密码：</td>
+						<td>
+							<input type="password" name="manager_password"><span class="red_color"> * </span></td>
+					</tr>
+					<tr>
+						<td>确认密码：</td>
+						<td>
+							<input type="password" name="manager_passwords"><span class="red_color"> * </span></td>
+					</tr>
+					
+					<tr id="admin_group">
+						<td>管理员级别：</td>
+						<td>
+							<select id="group_id">
+								<option value="0">--请选择--</option>
+								<volist name = "all_admingroup" id = "v1">
+								<option value="{$v1.id}">{$v1.title}</option>
+								</volist>
+							</select><span class="red_color"> * </span>
+						</td>
+					</tr>
+					<tr>
+						<td>手机：</td>
+						<td>
+							<input type="text" name="manager_phone"><span class="red_color"> * </span></td>
+					</tr>
+					<tr>
+						<td>备注</td>
+						<td>
+							<textarea name="manager_ps" id="manager_ps"></textarea>
+						</td>
+					</tr>
+				</table>
+				<div class="text-center">
+					<button class="btn btn-black" type="button" id="commit">保存</button>
+					<button class="btn btn-default" data-dismiss="modal">关闭</button>
+					<input type="reset" name="reset" style="display: none;">
+				</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="__PUBLIC__/js/AllAgent/admin.js"></script>
+</html>

@@ -1,0 +1,35 @@
+<extend name="Public:base" />
+<block name="main">
+    <include file="Public/header" title="充值信息"/>
+    <section class="content">
+        <span class="text-6">会员余额支付：</span>
+        <div class="checkbox-switch">
+            <if condition="$if_open_remind eq 1">
+                <input type="checkbox" name="if_open_remind" class="if_open_remind" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/remind_set')" checked>
+                <else/>
+                <input type="checkbox" name="if_open_remind" class="if_open_remind" onchange="to_bd(this.name,'/index.php/MobileAdmin/Member/remind_set')">
+            </if>
+            <label></label>
+        </div>
+    </section>
+    <section class="section">
+        <table class="w100 text-center table-striped">
+            <tbody>
+                <?php foreach ($prepaid_rules as $k => $v): ?>
+                    <tr>
+                        <td><?php echo ++$k;?></td>
+                        <td><?php echo $v['account'];?>元</td>
+                        <td><?php echo $v['benefit'];?>元</td>
+                        <td class="text-right"><?php echo $v['account']+$v['benefit'];?>元</td>
+                    </tr>
+                <?php endforeach ?>
+            </tbody>
+        </table>
+       	<div class="remarks">充值设置可到品牌总部后台设置</div>
+    </section>
+    
+</block>
+
+<block name="js">
+    <script type="text/javascript" src="__PUBLIC__/js/MobileAdmin/consumption_vip.js"></script>
+</block>

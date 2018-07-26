@@ -1,0 +1,126 @@
+<div class="section eleme-stats">
+    <div class="section-header text-center">订单详细（商家收入=商品金额-抽佣金额-总活动款（商家承担的部分））</div>
+    <div class="section-content">
+        <div>
+            <table>
+                <tbody>
+                <tr class="text-center">
+                    <td></td>
+                    <td class="text-left">日期时间</td>
+                    <!--<td>订单号</td>-->
+                    <td>流水号</td>
+                    <td>支付类型</td>
+                    <td>商品金额</td>
+                    <td>抽佣金额</td>
+                    <td>配送费</td>
+                    <td>总活动款</td>
+                    <td>商家收入</td>
+                </tr>
+                <volist name="order_list" id="vo" key="k">
+                    <tr class="stats-detail-item text-center">
+                        <td class="text-left">
+                            <span class="stats-detail-index">{$k}</span>
+                            <button class="stats-detail-btn" onclick="open_close({$k},this)">+</button>
+                        </td>
+                        <td class="text-left">{$vo.ctime}</td>
+                        <!--<td>{$vo.orderIdView}</td>-->
+                        <td>{$vo.daySeq}</td>
+                        <td>
+                            <if condition="$vo.payType eq 1">
+                                货到付款
+                                <else/>
+                                在线支付
+                            </if>
+                        </td>
+                        <td>{$vo.foodAmount}</td>
+                        <td>{$vo.commisionAmount}</td>
+                        <td>{$vo.shippingAmount}</td>
+                        <td>{$vo.totalActivityAmount}</td>
+                        <td>{$vo.settleAmount}</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td colspan="5">
+                            <table id="order_food{$k}" data-value="0" class="stats-detail-dishes">
+                                <volist name="vo.detail" id="vo2" key="ko">
+                                    <tr>
+                                        <td class="stats-detail-name">{$ko}、菜品名：{$vo2['food_name']}</td>
+                                        <td class="stats-detail-name">份数：{$vo2['quantity']}</td>
+                                        <td class="stats-detail-name">单价：{$vo2['price']}</td>
+                                        <td class="stats-detail-name">总价：<?php echo $vo2['quantity']*$vo2['price'] ?></td>
+                                    </tr>
+                                    <if condition="$vo2.box_num != '' && $vo2.box_price != ''">
+                                        <tr>
+                                            <td class="stats-detail-name">餐盒个数：{$vo2['box_num']}</td>
+                                            <td class="stats-detail-name">餐盒单价：{$vo2['box_price']}</td>
+                                            <td class="stats-detail-name">餐盒费：<?php echo $vo2['box_num']*$vo2['box_price'] ?></td>
+                                        </tr>
+                                    </if>
+                                    <if condition="$vo2.spec != ''">
+                                        <tr>
+                                            <td class="stats-detail-attr">规格：{$vo2['spec']}</td>
+                                        </tr>
+                                    </if>
+                                    <if condition="$vo2.food_property != ''">
+                                        <tr>
+                                            <td class="stats-detail-attr">属性：{$vo2['food_property']}</td>
+                                        </tr>
+                                    </if>
+                                </volist>
+                            </table>
+                        </td>
+                        <td colspan="3"></td>
+                    </tr>
+                </volist>
+                </tbody>
+            </table>
+        </div>
+        <div class="text-center sale-table-page">
+            <ul class="pagination" id="detail-page">
+                {$page}
+            </ul>
+        </div>
+        <input type="hidden" id="income_sum" value="{$income_sum}">
+        <input type="hidden" id="serviceFee_sum" value="{$serviceFee_sum}">
+        <input type="hidden" id="deliverFee_sum" value="{$deliverFee_sum}">
+        <input type="hidden" id="order_count" value="{$order_count}">
+    </div>
+</div>
+<script>
+$("#detail-page").children().children("a").click(function() {
+    var page = parseInt($(this).data("page"));
+    var form = $("#search_form")[0];
+    var formDate = new FormData(form);
+    $.ajax({
+        url: "/index.php/admin/sale/meituan_order_page/page/" + page,
+        data: formDate,
+        type: "post",
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function(data) {
+            $("#meituan_order_info").html(data);
+        },
+        error: function() {
+            alert("出错了");
+        }
+    });
+});
+
+function open_close(i, obj) {
+    var tid = "#order_food" + i;
+    var value = $(tid).data("value");
+    console.log(value);
+    if (value == 1) {
+        $(obj).text('+');
+        $(tid).hide();
+        $(tid).data("value", 0);
+    } else if (value == 0) {
+        $(obj).text('-');
+        $(tid).show();
+        $(tid).data("value", 1)
+    }
+}
+</script>
+
+</html>
